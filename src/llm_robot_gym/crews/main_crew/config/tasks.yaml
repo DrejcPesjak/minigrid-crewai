@@ -1,0 +1,85 @@
+main_task:
+  description: >
+    Play the Minigrid gym environment by taking optimal actions based on observations.
+    You must navigate through the grid-based environment efficiently by:
+    - Understanding your current position and orientation
+    - Identifying objects and obstacles in view
+    - Planning optimal sequences of movements
+    - Taking appropriate actions (move forward, turn left/right, pickup objects)
+    - Working towards completing the environment's objective
+
+    Mission Space
+    ------------
+    Action mission space:
+        "go to the [color] [type] [location]"
+        or
+        "pick up a/the [color] [type] [location]"
+        or 
+        "open the [color] door [location]"
+        or
+        "put the [color] [type] [location] next to the [color] [type] [location]"
+
+        [color] is the color of the box. Can be "red", "green", "blue", "purple", "yellow" or "grey".
+        [type] is the type of the object. Can be "ball", "box" or "key".
+        [location] can be " ", "in front of you", "behind you", "on your left" or "on your right"
+
+    And mission space:
+        Two action missions concatenated with "and"
+        
+        Example:
+        go to the green key and put the box next to the yellow ball
+
+    Sequence mission space:
+        Two missions, they can be action or and missions, concatenated with ", then" or "after you".
+        
+        Example:
+        open a red door and go to the ball on your left after you put the grey ball next to a door
+
+    Action Space
+    -----------
+    Num | Name    | Action
+    --- | ------- | ------
+    0   | left    | Turn left
+    1   | right   | Turn right  
+    2   | forward | Move forward
+    3   | pickup  | Pick up an object
+    4   | drop    | Unused
+    5   | toggle  | Unused
+    6   | done    | Unused
+
+    Observation Encoding
+    ------------------
+    Each tile is encoded as a 3 dimensional tuple: (OBJECT_IDX, COLOR_IDX, STATE)
+
+    OBJECT_TO_IDX and COLOR_TO_IDX mapping is as follows:
+    COLOR_TO_IDX = ["red": 0, "green": 1, "blue": 2, "purple": 3, "yellow": 4, "grey": 5]
+    OBJECT_TO_IDX = ["unseen": 0, "empty": 1, "wall": 2, "floor": 3, "door": 4, "key": 5, "ball": 6, "box": 7, "goal": 8, "lava": 9, "agent": 10]
+    STATE_TO_IDX = ["open": 0, "closed": 1, "locked": 2]
+    STATE refers to the door state with 0=open, 1=closed and 2=locked
+
+    Rewards
+    -------
+    A reward of '1 - 0.9 * (step_count / max_steps)' is given for success, and '0' for failure.
+
+    Termination
+    ----------
+    The episode ends if any one of the following conditions is met:
+    - The agent achieves the task.
+    - Timeout (see max_steps).
+
+    YOU ARE THE AGENT. THE MISSION OF THE CURRENT EPISODE IS:
+    {mission}
+
+    THE OBSERVATION OF THE CURRENT EPISODE IS:
+    {observation}
+    
+  expected_output: >
+    An explanation and action from the following options (only the numbers 0-6 are valid, only one action is expected):
+    - LEFT (0): Turn left 90 degrees
+    - RIGHT (1): Turn right 90 degrees  
+    - FORWARD (2): Move one cell forward
+    - PICKUP (3): Pick up an object in front of you
+    - DROP (4): Drop an object in front of you
+    - TOGGLE (5): Toggle an object in front of you
+    - DONE (6): Done
+  agent: brain_agent

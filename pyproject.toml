@@ -1,0 +1,20 @@
+[project]
+name = "llm_robot_gym"
+version = "0.1.0"
+description = "llm_robot_gym using crewAI"
+authors = [{ name = "Drejc Pesjak", email = "drejcpesjak.pesjak@gmail.com" }]
+requires-python = ">=3.10,<=3.13"
+dependencies = [
+    "crewai[tools]>=0.76.2,=0.13.4"
+]
+
+[project.scripts]
+llm_robot_gym = "llm_robot_gym.main:run"
+run_crew = "llm_robot_gym.main:run"
+train = "llm_robot_gym.main:train"
+replay = "llm_robot_gym.main:replay"
+test = "llm_robot_gym.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
