@@ -9,6 +9,7 @@ from typing import Optional
 
 from constants import LEVELS
 from crews.main_crew.crew import LlmRobotGymCrew
+from utils.convert_space import convert_observation
 
 class RobotGymFlowState(BaseModel):
     """State for the RobotGymFlow"""
@@ -50,26 +51,13 @@ class MinigridFlow(Flow[RobotGymFlowState]):
         """Get action from agent"""
         print("agent_action")
         inputs = {
-            'observation': str(self.state.observation),
+            'observation': str(convert_observation(self.state.observation)),
             'mission': str(self.state.mission)
         }
         result = self.crew.kickoff(inputs=inputs)
         print(f"result: {result}")
-        # action = result['action']
-        # import re
-        # action_match = re.search(r'\((\d+)\)', action)
-        # if action_match:
-        #     action = int(action_match.group(1))
-        #     print(f"action: {action}")
-        # else:
-        #     # Generate random action between 0-6 as fallback
-        #     action = random.randint(0, 6)
 
         self.state.last_action = 6 # done
-        #           if result['action'] in range(7):
-        #   File "/home/drew99/School/MastersT/crewai-gym/venv-crewgym/lib/python3.10/site-packages/crewai/crews/crew_output.py", line 50, in __getitem__
-        #     raise KeyError(f"Key '{key}' not found in CrewOutput.")
-        # KeyError: "Key 'action' not found in CrewOutput."
         try:
             if result['action'] in range(7):
                 self.state.last_action = result['action']
