@@ -20,6 +20,7 @@ class RobotGymFlowState(BaseModel):
     reward: Optional[float] = 0.0
     info: Optional[dict] = None
     last_action: Optional[int] = None
+    observation_history: Optional[list] = []
 
 class MinigridFlow(Flow[RobotGymFlowState]):
     """Flow for running Minigrid environments with CrewAI agents"""
@@ -50,10 +51,13 @@ class MinigridFlow(Flow[RobotGymFlowState]):
     def agent_action(self):
         """Get action from agent"""
         print("agent_action")
+        cnv_obs = convert_observation(self.state.observation)
         inputs = {
-            'observation': str(convert_observation(self.state.observation)),
+            'observation_history': str(self.state.observation_history[-5:]), # last 5 observations
+            'observation': str(cnv_obs),
             'mission': str(self.state.mission)
         }
+        self.state.observation_history.append(cnv_obs)
         result = self.crew.kickoff(inputs=inputs)
         print(f"result: {result}")
 

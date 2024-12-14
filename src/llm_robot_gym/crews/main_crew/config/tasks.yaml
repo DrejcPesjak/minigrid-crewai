@@ -4,10 +4,10 @@ main_task:
 
     Observation Grid:
     - A 7x7 grid dynamically generated relative to your position and orientation.
-    - Your position is marked as "agent_X", where X is your orientation with respect to current observation grid ('<' for left, '>' for right, '^' for up, 'v' for down).
+    - Your position is marked as "agent_X", where X is your orientation with respect to current observation grid.
     - The direction is according to the global map.
-    - The grid uses the format `<object>_<color>_<state>`.
-    - Tiles labeled `unseen` are outside your visible range.
+    - The grid uses the format <object>_<color>_<state>.
+    - Tiles labeled unseen are outside your visible range.
     - And "lava" tiles will kill you if you step on them.
 
     Actions:
@@ -35,10 +35,14 @@ main_task:
     Observation:
     {observation}
 
+    Observation history:
+    {observation_history}
+
     Your Answer:
-    Explain the reasoning for your action and output a valid action number (0-6).
+    Explain the reasoning for your action and output a valid action number (0-6). You are allowed to execute only one action.
     
   expected_output: >
     An explanation of what you are thinking and an action number 
     (only the numbers 0-6 are valid, only one action is expected)
+
   agent: brain_agent

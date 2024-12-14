@@ -26,7 +26,7 @@ IDX_TO_OBJECT = dict(zip(OBJECT_TO_IDX.values(), OBJECT_TO_IDX.keys()))
 STATE_TO_IDX = {"open": 0, "closed": 1, "locked": 2}
 IDX_TO_STATE = dict(zip(STATE_TO_IDX.values(), STATE_TO_IDX.keys()))
 
-DIRECTION_MAP = {0: "North", 1: "East", 2: "South", 3: "West"}
+# DIRECTION_MAP = {0: "North", 1: "East", 2: "South", 3: "West"}
 
 def convert_observation(input_dict):
     # Extract components
@@ -36,6 +36,8 @@ def convert_observation(input_dict):
 
     # Corrected direction mapping
     DIRECTION_MAP = {0: "East", 1: "South", 2: "West", 3: "North"}
+    # DIRECTION_ARROW = {0: ">", 1: "v", 2: "<", 3: "^"}
+    DIRECTION_ARROW = {0: "right", 1: "down", 2: "left", 3: "up"}
     direction = DIRECTION_MAP.get(direction_idx, "Unknown")
 
     # Convert image into object_color_state format
@@ -53,13 +55,20 @@ def convert_observation(input_dict):
             s = ""
             if object_name in ["door"]:
                 s = f"_{state_name}"
-            if object_name is "agent":
-                object_name += "_>"
+            if object_name == "agent":
+                object_name += f"_{DIRECTION_ARROW[direction_idx]}"
             grid_row.append(f"{object_name}{c}{s}")
         grid.append(grid_row)
 
     # Flip the grid 
-    grid = [row[::-1] for row in grid]
+    if direction == "East":
+        grid = [row[::-1] for row in grid]
+    elif direction == "West":
+        pass
+    elif direction == "North":
+        grid = list(zip(*grid))
+    elif direction == "South":
+        grid = list(zip(*grid[::-1]))[::-1]
 
     # Convert grid to a string with newlines for better visualization
     grid_string = " \r\n ".join(" ".join(cell for cell in row) for row in grid)
