@@ -5,7 +5,9 @@ description = "llm_robot_gym using crewAI"
 authors = [{ name = "Drejc Pesjak", email = "drejcpesjak.pesjak@gmail.com" }]
 requires-python = ">=3.10,<=3.13"
 dependencies = [
-    "crewai[tools]>=0.76.2,=0.13.4"
+    "crewai[tools]>=0.76.2",
+    "gymnasium==0.29.1",
+    "minigrid==2.3.1"
 ]
 
 [project.scripts]

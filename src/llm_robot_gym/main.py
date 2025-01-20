@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import random
 import sys
+import time
 
 import gymnasium as gym
 from crewai.flow.flow import Flow, listen, router, start, or_
@@ -21,6 +22,7 @@ class RobotGymFlowState(BaseModel):
     info: Optional[dict] = None
     last_action: Optional[int] = None
     observation_history: Optional[list] = []
+    timestamp: Optional[float] = time.time()
 
 class MinigridFlow(Flow[RobotGymFlowState]):
     """Flow for running Minigrid environments with CrewAI agents"""
@@ -52,12 +54,21 @@ class MinigridFlow(Flow[RobotGymFlowState]):
         """Get action from agent"""
         print("agent_action")
         cnv_obs = convert_observation(self.state.observation)
+        ob_hist = self.state.observation_history[-5:] # last 5 observations
+        ob_hist = [o['observation_grid_string'] for o in ob_hist]
         inputs = {
-            'observation_history': str(self.state.observation_history[-5:]), # last 5 observations
-            'observation': str(cnv_obs),
+            # 'observation_history': str(ob_hist),
+            'observation': f"{cnv_obs}",
             'mission': str(self.state.mission)
         }
         self.state.observation_history.append(cnv_obs)
+        
+        # time delay to limit 15 requests per minute
+        t = time.time()
+        if t - self.state.timestamp < 5:
+            time.sleep(5 - (t - self.state.timestamp))
+        self.state.timestamp = time.time()
+
         result = self.crew.kickoff(inputs=inputs)
         print(f"result: {result}")
 
