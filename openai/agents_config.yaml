@@ -1,0 +1,44 @@
+agents:
+  main_agent:
+    agent_name: "main_agent"
+    system_message: |
+      You are an intelligent agent designed to play Minigrid games. 
+      Navigate through the Minigrid environment efficiently by taking optimal actions to complete objectives. 
+      Make decisions based on the dynamic 7x7 observation grid relative to your position and orientation.
+    task_message: |
+      Play the Minigrid environment by taking optimal actions based on observations.
+
+      Observation Grid:
+      - A 7x7 grid dynamically generated relative to your position and orientation.
+      - Your position is marked as "agent_X", where X is your orientation with respect to current observation grid.
+      - The direction is according to the global map.
+      - The grid uses the format <object>_<color>_<state>.
+      - Tiles labeled unseen are outside your visible range.
+      - And "lava" tiles will kill you if you step on them.
+
+      Actions:
+      - 0: Turn left
+      - 1: Turn right
+      - 2: Move forward
+      - 3: Pickup object
+      - 4: Drop object
+      - 5: Toggle (e.g., open doors)
+      - 6: Done (e.g., finish the game)
+
+      Rules:
+      - Use only valid actions (0-6).
+      - PICKUP (3) works only if the target object is directly in front of you.
+      - TOGGLE (5) works only for interactable objects (e.g., doors).
+
+      Mission:
+      {mission}
+
+      Observation:
+      {observation}
+
+      Observation history:
+      {observation_history}
+
+      Your Answer:
+      Explain the reasoning for your action and output a valid action number (0-6). You are allowed to execute only one action.
+    output_format: "AgentAction"

@@ -1,14 +1,15 @@
 import random
-import sys
+import yaml
 
 import gymnasium as gym
 from openai import OpenAI
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from typing import Optional
 
 from constants import LEVELS
 from convert_space import convert_observation
+from output_types import AgentAction
 
 class RobotGymFlowState(BaseModel):
     """State for the RobotGymFlow"""
@@ -22,74 +23,42 @@ class RobotGymFlowState(BaseModel):
     observation_history: Optional[list] = []
 
 
-class AgentAction(BaseModel):
-    explanation: str = Field(..., description="The explanation why should the action be taken")
-    action: int = Field(..., description="The action to take")
+class LlmRobotGymAgent:
+    def __init__(self, agent_name: str):
+        # Load agent configuration
+        with open("agents_config.yaml", "r") as file:
+            config = yaml.safe_load(file)
+        
+        agent_config = config["agents"].get(agent_name)
+        if not agent_config:
+            raise ValueError(f"Agent '{agent_name}' not found in configuration.")
 
-class LlmRobotGymAgent():
-
-    def __init__(self):
+        self.agent_name = agent_config["agent_name"]
+        self.system_message = agent_config["system_message"]
+        self.task_message = agent_config["task_message"]
+        self.output_format = eval(agent_config["output_format"])  # Convert class name to Pydantic class
+        
         self.client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
         self.model_name = "llama3.2"
-    
+
+        # self.client = OpenAI(
+        #     api_key="none",
+        #     base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+        # )
+        # self.model_name="gemini-1.5-flash"
+
     def parse_input(self, inputs):
-        system_message = {"role": "system", "content": """
-                          You are an intelligent agent designed to play Minigrid games. 
-                          Navigate through the Minigrid environment efficiently by taking optimal actions to complete objectives. 
-                          Make decisions based on the dynamic 7x7 observation grid relative to your position and orientation.
-                          """}
-        task_message = """
-        Play the Minigrid environment by taking optimal actions based on observations.
+        system_message = {"role": "system", "content": self.system_message}
+        task_message = {"role": "user", "content": self.task_message.format(**inputs)}
+        return [system_message, task_message]
 
-        Observation Grid:
-        - A 7x7 grid dynamically generated relative to your position and orientation.
-        - Your position is marked as "agent_X", where X is your orientation with respect to current observation grid.
-        - The direction is according to the global map.
-        - The grid uses the format <object>_<color>_<state>.
-        - Tiles labeled unseen are outside your visible range.
-        - And "lava" tiles will kill you if you step on them.
-
-        Actions:
-        - 0: Turn left
-        - 1: Turn right
-        - 2: Move forward
-        - 3: Pickup object
-        - 4: Drop object
-        - 5: Toggle (e.g., open doors)
-        - 6: Done (e.g., finish the game)
-
-        Rules:
-        - Use only valid actions (0-6).
-        - PICKUP (3) works only if the target object is directly in front of you.
-        - TOGGLE (5) works only for interactable objects (e.g., doors).
-
-        Plan:
-        - Step 1: Identify your current position and direction.
-        - Step 2: Locate key objects that are relevant to the mission (e.g., keys, doors, goal).
-        - Step 3: Plan optimal movements to achieve the mission.
-
-        Mission:
-        {mission}
-
-        Observation:
-        {observation}
-
-        Observation history:
-        {observation_history}
-
-        Your Answer:
-        Explain the reasoning for your action and output a valid action number (0-6). You are allowed to execute only one action.
-        """
-        user_message = {"role": "user", "content": task_message.format(**inputs)}
-
-        return [system_message, user_message]
-    
-    def completion(self, messages) -> AgentAction:
+    def completion(self, messages):
         return self.client.beta.chat.completions.parse(
             model=self.model_name,
             messages=messages,
-            response_format=AgentAction,
+            response_format=self.output_format,
         ).choices[0].message.parsed
+
 
 class MinigridWorkFlow():
     """Flow for running Minigrid environments with CrewAI agents"""
@@ -109,7 +78,7 @@ class MinigridWorkFlow():
             return "end"
             
         self.env = gym.make(env_name, render_mode="human")
-        self.agent = LlmRobotGymAgent()
+        self.agent = LlmRobotGymAgent(agent_name="main_agent")
         obs, info = self.env.reset() # info is empty
         print("init_env")
         obs['image'][3][6][0] = 10  
@@ -121,9 +90,9 @@ class MinigridWorkFlow():
         print("agent_action")
         cnv_obs = convert_observation(self.state.observation)
         inputs = {
-            'observation_history': str(self.state.observation_history[-5:]), # last 5 observations
+            'mission': str(self.state.mission),
             'observation': str(cnv_obs),
-            'mission': str(self.state.mission)
+            'observation_history': str(self.state.observation_history[-5:]), # last 5 observations
         }
         self.state.observation_history.append(cnv_obs)
         msg = self.agent.parse_input(inputs)
@@ -171,8 +140,8 @@ class MinigridWorkFlow():
         self.init_env()
         while True:
             self.agent_action()
-            if self.state.last_action == 6:
-                break
+            # if self.state.last_action == 6:
+            #     break
             if self.play_episode() == "end":
                 break
         self.terminate()
