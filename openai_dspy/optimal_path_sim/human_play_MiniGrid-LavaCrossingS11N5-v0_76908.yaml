@@ -1,0 +1,861 @@
+- action: 1
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right lava empty lava empty empty empty \n empty lava lava\
+      \ lava lava lava lava \n empty empty empty empty empty empty empty \n lava lava\
+      \ lava lava lava lava empty"
+  observation_history: []
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava empty lava \n unseen\
+      \ unseen wall empty lava lava lava \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall lava lava lava lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right lava empty lava empty empty empty \n empty lava lava\
+      \ lava lava lava lava \n empty empty empty empty empty empty empty \n lava lava\
+      \ lava lava lava lava empty"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava lava lava \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall lava lava lava lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right lava empty lava empty empty empty \n empty lava lava\
+      \ lava lava lava lava \n empty empty empty empty empty empty empty \n lava lava\
+      \ lava lava lava lava empty"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava empty lava \n unseen\
+      \ unseen wall empty lava lava lava \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall lava lava lava lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+- action: 0
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall lava lava lava lava \n unseen unseen wall empty lava empty lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right lava empty lava empty empty empty \n empty lava lava\
+      \ lava lava lava lava \n empty empty empty empty empty empty empty \n lava lava\
+      \ lava lava lava lava empty"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava empty lava \n unseen\
+      \ unseen wall empty lava lava lava \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall lava lava lava lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava lava lava \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall lava lava lava lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ lava empty empty empty \n empty lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty empty \n lava lava lava lava lava lava empty\
+      \ \n empty lava empty lava empty empty empty \n empty lava empty lava empty\
+      \ empty empty"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right lava empty lava empty empty empty \n empty lava lava\
+      \ lava lava lava lava \n empty empty empty empty empty empty empty \n lava lava\
+      \ lava lava lava lava empty"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava empty lava \n unseen\
+      \ unseen wall empty lava lava lava \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall lava lava lava lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava lava lava \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall lava lava lava lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall lava lava lava lava \n unseen unseen wall empty lava empty lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty lava\
+      \ empty empty empty lava \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty lava \n lava lava lava lava lava empty lava\
+      \ \n lava empty lava empty empty empty lava \n lava empty lava empty empty empty\
+      \ empty"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right lava empty lava empty empty empty \n empty lava lava\
+      \ lava lava lava lava \n empty empty empty empty empty empty empty \n lava lava\
+      \ lava lava lava lava empty"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava empty lava \n unseen\
+      \ unseen wall empty lava lava lava \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall lava lava lava lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava lava lava \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall lava lava lava lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall lava lava lava lava \n unseen unseen wall empty lava empty lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ lava empty empty empty \n empty lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty empty \n lava lava lava lava lava lava empty\
+      \ \n empty lava empty lava empty empty empty \n empty lava empty lava empty\
+      \ empty empty"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ empty empty lava empty \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty lava empty \n lava lava lava lava empty lava lava\
+      \ \n empty lava empty empty empty lava empty \n empty lava empty empty empty\
+      \ empty empty"
+  observation_history:
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava empty lava \n unseen\
+      \ unseen wall empty lava lava lava \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall lava lava lava lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava lava lava \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall lava lava lava lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall lava lava lava lava \n unseen unseen wall empty lava empty lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ lava empty empty empty \n empty lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty empty \n lava lava lava lava lava lava empty\
+      \ \n empty lava empty lava empty empty empty \n empty lava empty lava empty\
+      \ empty empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty lava\
+      \ empty empty empty lava \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty lava \n lava lava lava lava lava empty lava\
+      \ \n lava empty lava empty empty empty lava \n lava empty lava empty empty empty\
+      \ empty"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty empty\
+      \ empty lava empty wall \n lava lava lava lava lava lava wall \n agent_right\
+      \ empty empty empty lava empty wall \n lava lava lava empty lava lava wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty empty empty\
+      \ wall"
+  observation_history:
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down lava lava lava \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall lava lava lava lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall lava lava lava lava \n unseen unseen wall empty lava empty lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ lava empty empty empty \n empty lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty empty \n lava lava lava lava lava lava empty\
+      \ \n empty lava empty lava empty empty empty \n empty lava empty lava empty\
+      \ empty empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty lava\
+      \ empty empty empty lava \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty lava \n lava lava lava lava lava empty lava\
+      \ \n lava empty lava empty empty empty lava \n lava empty lava empty empty empty\
+      \ empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ empty empty lava empty \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty lava empty \n lava lava lava lava empty lava lava\
+      \ \n empty lava empty empty empty lava empty \n empty lava empty empty empty\
+      \ empty empty"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall unseen \n empty empty\
+      \ empty lava empty wall unseen \n lava lava lava lava lava wall unseen \n agent_right\
+      \ empty empty lava empty wall unseen \n lava lava empty lava lava wall unseen\
+      \ \n empty empty empty lava empty wall unseen \n empty empty empty empty empty\
+      \ wall unseen"
+  observation_history:
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall lava lava lava lava \n unseen unseen wall empty lava empty lava\
+      \ \n unseen unseen wall empty lava empty lava \n unseen unseen wall empty lava\
+      \ empty lava \n unseen unseen wall empty lava empty lava \n unseen unseen wall\
+      \ empty lava empty lava"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ lava empty empty empty \n empty lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty empty \n lava lava lava lava lava lava empty\
+      \ \n empty lava empty lava empty empty empty \n empty lava empty lava empty\
+      \ empty empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty lava\
+      \ empty empty empty lava \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty lava \n lava lava lava lava lava empty lava\
+      \ \n lava empty lava empty empty empty lava \n lava empty lava empty empty empty\
+      \ empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ empty empty lava empty \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty lava empty \n lava lava lava lava empty lava lava\
+      \ \n empty lava empty empty empty lava empty \n empty lava empty empty empty\
+      \ empty empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty empty\
+      \ empty lava empty wall \n lava lava lava lava lava lava wall \n agent_right\
+      \ empty empty empty lava empty wall \n lava lava lava empty lava lava wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty empty empty\
+      \ wall"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n empty empty\
+      \ lava empty wall unseen unseen \n lava lava lava lava wall unseen unseen \n\
+      \ agent_right empty lava empty wall unseen unseen \n lava empty lava lava wall\
+      \ unseen unseen \n empty empty lava empty wall unseen unseen \n empty empty\
+      \ empty empty wall unseen unseen"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ lava empty empty empty \n empty lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty empty \n lava lava lava lava lava lava empty\
+      \ \n empty lava empty lava empty empty empty \n empty lava empty lava empty\
+      \ empty empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty lava\
+      \ empty empty empty lava \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty lava \n lava lava lava lava lava empty lava\
+      \ \n lava empty lava empty empty empty lava \n lava empty lava empty empty empty\
+      \ empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ empty empty lava empty \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty lava empty \n lava lava lava lava empty lava lava\
+      \ \n empty lava empty empty empty lava empty \n empty lava empty empty empty\
+      \ empty empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty empty\
+      \ empty lava empty wall \n lava lava lava lava lava lava wall \n agent_right\
+      \ empty empty empty lava empty wall \n lava lava lava empty lava lava wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty empty empty\
+      \ wall"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall unseen \n empty empty\
+      \ empty lava empty wall unseen \n lava lava lava lava lava wall unseen \n agent_right\
+      \ empty empty lava empty wall unseen \n lava lava empty lava lava wall unseen\
+      \ \n empty empty empty lava empty wall unseen \n empty empty empty empty empty\
+      \ wall unseen"
+- action: 1
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n lava lava lava wall unseen unseen unseen\
+      \ \n agent_right lava empty wall unseen unseen unseen \n empty lava lava wall\
+      \ unseen unseen unseen \n empty lava empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty lava\
+      \ empty empty empty lava \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty empty lava \n lava lava lava lava lava empty lava\
+      \ \n lava empty lava empty empty empty lava \n lava empty lava empty empty empty\
+      \ empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ empty empty lava empty \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty lava empty \n lava lava lava lava empty lava lava\
+      \ \n empty lava empty empty empty lava empty \n empty lava empty empty empty\
+      \ empty empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty empty\
+      \ empty lava empty wall \n lava lava lava lava lava lava wall \n agent_right\
+      \ empty empty empty lava empty wall \n lava lava lava empty lava lava wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty empty empty\
+      \ wall"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall unseen \n empty empty\
+      \ empty lava empty wall unseen \n lava lava lava lava lava wall unseen \n agent_right\
+      \ empty empty lava empty wall unseen \n lava lava empty lava lava wall unseen\
+      \ \n empty empty empty lava empty wall unseen \n empty empty empty empty empty\
+      \ wall unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n empty empty\
+      \ lava empty wall unseen unseen \n lava lava lava lava wall unseen unseen \n\
+      \ agent_right empty lava empty wall unseen unseen \n lava empty lava lava wall\
+      \ unseen unseen \n empty empty lava empty wall unseen unseen \n empty empty\
+      \ empty empty wall unseen unseen"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty empty agent_down lava empty wall \n lava\
+      \ lava lava empty lava lava wall \n lava empty empty empty lava empty wall \n\
+      \ lava empty empty empty empty empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava empty wall \n lava empty empty empty lava\
+      \ goal_green wall"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty lava empty\
+      \ empty empty lava empty \n lava lava lava lava lava lava lava \n agent_right\
+      \ empty empty empty empty lava empty \n lava lava lava lava empty lava lava\
+      \ \n empty lava empty empty empty lava empty \n empty lava empty empty empty\
+      \ empty empty"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty empty\
+      \ empty lava empty wall \n lava lava lava lava lava lava wall \n agent_right\
+      \ empty empty empty lava empty wall \n lava lava lava empty lava lava wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty empty empty\
+      \ wall"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall unseen \n empty empty\
+      \ empty lava empty wall unseen \n lava lava lava lava lava wall unseen \n agent_right\
+      \ empty empty lava empty wall unseen \n lava lava empty lava lava wall unseen\
+      \ \n empty empty empty lava empty wall unseen \n empty empty empty empty empty\
+      \ wall unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n empty empty\
+      \ lava empty wall unseen unseen \n lava lava lava lava wall unseen unseen \n\
+      \ agent_right empty lava empty wall unseen unseen \n lava empty lava lava wall\
+      \ unseen unseen \n empty empty lava empty wall unseen unseen \n empty empty\
+      \ empty empty wall unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n lava lava lava wall unseen unseen unseen\
+      \ \n agent_right lava empty wall unseen unseen unseen \n empty lava lava wall\
+      \ unseen unseen unseen \n empty lava empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava lava lava agent_down lava lava wall \n lava empty\
+      \ empty empty lava empty wall \n lava empty empty empty empty empty wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava goal_green wall \n wall wall wall wall\
+      \ wall wall wall"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n lava empty empty\
+      \ empty lava empty wall \n lava lava lava lava lava lava wall \n agent_right\
+      \ empty empty empty lava empty wall \n lava lava lava empty lava lava wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty empty empty\
+      \ wall"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall unseen \n empty empty\
+      \ empty lava empty wall unseen \n lava lava lava lava lava wall unseen \n agent_right\
+      \ empty empty lava empty wall unseen \n lava lava empty lava lava wall unseen\
+      \ \n empty empty empty lava empty wall unseen \n empty empty empty empty empty\
+      \ wall unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n empty empty\
+      \ lava empty wall unseen unseen \n lava lava lava lava wall unseen unseen \n\
+      \ agent_right empty lava empty wall unseen unseen \n lava empty lava lava wall\
+      \ unseen unseen \n empty empty lava empty wall unseen unseen \n empty empty\
+      \ empty empty wall unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n lava lava lava wall unseen unseen unseen\
+      \ \n agent_right lava empty wall unseen unseen unseen \n empty lava lava wall\
+      \ unseen unseen unseen \n empty lava empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty empty agent_down lava empty wall \n lava\
+      \ lava lava empty lava lava wall \n lava empty empty empty lava empty wall \n\
+      \ lava empty empty empty empty empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava empty wall \n lava empty empty empty lava\
+      \ goal_green wall"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down lava empty wall \n lava\
+      \ empty empty empty empty empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava empty wall \n lava empty empty empty lava goal_green\
+      \ wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall unseen \n empty empty\
+      \ empty lava empty wall unseen \n lava lava lava lava lava wall unseen \n agent_right\
+      \ empty empty lava empty wall unseen \n lava lava empty lava lava wall unseen\
+      \ \n empty empty empty lava empty wall unseen \n empty empty empty empty empty\
+      \ wall unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n empty empty\
+      \ lava empty wall unseen unseen \n lava lava lava lava wall unseen unseen \n\
+      \ agent_right empty lava empty wall unseen unseen \n lava empty lava lava wall\
+      \ unseen unseen \n empty empty lava empty wall unseen unseen \n empty empty\
+      \ empty empty wall unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n lava lava lava wall unseen unseen unseen\
+      \ \n agent_right lava empty wall unseen unseen unseen \n empty lava lava wall\
+      \ unseen unseen unseen \n empty lava empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty empty agent_down lava empty wall \n lava\
+      \ lava lava empty lava lava wall \n lava empty empty empty lava empty wall \n\
+      \ lava empty empty empty empty empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava empty wall \n lava empty empty empty lava\
+      \ goal_green wall"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava lava lava agent_down lava lava wall \n lava empty\
+      \ empty empty lava empty wall \n lava empty empty empty empty empty wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava goal_green wall \n wall wall wall wall\
+      \ wall wall wall"
+- action: 0
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down empty empty wall \n lava\
+      \ empty empty empty lava empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava goal_green wall \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n empty empty\
+      \ lava empty wall unseen unseen \n lava lava lava lava wall unseen unseen \n\
+      \ agent_right empty lava empty wall unseen unseen \n lava empty lava lava wall\
+      \ unseen unseen \n empty empty lava empty wall unseen unseen \n empty empty\
+      \ empty empty wall unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n lava lava lava wall unseen unseen unseen\
+      \ \n agent_right lava empty wall unseen unseen unseen \n empty lava lava wall\
+      \ unseen unseen unseen \n empty lava empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty empty agent_down lava empty wall \n lava\
+      \ lava lava empty lava lava wall \n lava empty empty empty lava empty wall \n\
+      \ lava empty empty empty empty empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava empty wall \n lava empty empty empty lava\
+      \ goal_green wall"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava lava lava agent_down lava lava wall \n lava empty\
+      \ empty empty lava empty wall \n lava empty empty empty empty empty wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava goal_green wall \n wall wall wall wall\
+      \ wall wall wall"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down lava empty wall \n lava\
+      \ empty empty empty empty empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava empty wall \n lava empty empty empty lava goal_green\
+      \ wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty lava empty wall unseen unseen unseen \n empty\
+      \ lava lava wall unseen unseen unseen \n empty lava empty wall unseen unseen\
+      \ unseen \n agent_right empty empty wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n empty lava empty wall unseen unseen unseen\
+      \ \n empty lava goal_green wall unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "wall wall wall wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n lava lava lava wall unseen unseen unseen\
+      \ \n agent_right lava empty wall unseen unseen unseen \n empty lava lava wall\
+      \ unseen unseen unseen \n empty lava empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty empty agent_down lava empty wall \n lava\
+      \ lava lava empty lava lava wall \n lava empty empty empty lava empty wall \n\
+      \ lava empty empty empty empty empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava empty wall \n lava empty empty empty lava\
+      \ goal_green wall"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava lava lava agent_down lava lava wall \n lava empty\
+      \ empty empty lava empty wall \n lava empty empty empty empty empty wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava goal_green wall \n wall wall wall wall\
+      \ wall wall wall"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down lava empty wall \n lava\
+      \ empty empty empty empty empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava empty wall \n lava empty empty empty lava goal_green\
+      \ wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down empty empty wall \n lava\
+      \ empty empty empty lava empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava goal_green wall \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty wall unseen unseen unseen unseen \n lava\
+      \ lava wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen\
+      \ unseen \n agent_right empty wall unseen unseen unseen unseen \n lava empty\
+      \ wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen unseen\
+      \ \n lava goal_green wall unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty empty agent_down lava empty wall \n lava\
+      \ lava lava empty lava lava wall \n lava empty empty empty lava empty wall \n\
+      \ lava empty empty empty empty empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava empty wall \n lava empty empty empty lava\
+      \ goal_green wall"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava lava lava agent_down lava lava wall \n lava empty\
+      \ empty empty lava empty wall \n lava empty empty empty empty empty wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava goal_green wall \n wall wall wall wall\
+      \ wall wall wall"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down lava empty wall \n lava\
+      \ empty empty empty empty empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava empty wall \n lava empty empty empty lava goal_green\
+      \ wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down empty empty wall \n lava\
+      \ empty empty empty lava empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava goal_green wall \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty lava empty wall unseen unseen unseen \n empty\
+      \ lava lava wall unseen unseen unseen \n empty lava empty wall unseen unseen\
+      \ unseen \n agent_right empty empty wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n empty lava empty wall unseen unseen unseen\
+      \ \n empty lava goal_green wall unseen unseen unseen"
+- action: 1
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n lava\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n empty\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n goal_green wall unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava lava lava agent_down lava lava wall \n lava empty\
+      \ empty empty lava empty wall \n lava empty empty empty empty empty wall \n\
+      \ lava empty empty empty lava empty wall \n lava empty empty empty lava empty\
+      \ wall \n lava empty empty empty lava goal_green wall \n wall wall wall wall\
+      \ wall wall wall"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down lava empty wall \n lava\
+      \ empty empty empty empty empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava empty wall \n lava empty empty empty lava goal_green\
+      \ wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down empty empty wall \n lava\
+      \ empty empty empty lava empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava goal_green wall \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty lava empty wall unseen unseen unseen \n empty\
+      \ lava lava wall unseen unseen unseen \n empty lava empty wall unseen unseen\
+      \ unseen \n agent_right empty empty wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n empty lava empty wall unseen unseen unseen\
+      \ \n empty lava goal_green wall unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty wall unseen unseen unseen unseen \n lava\
+      \ lava wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen\
+      \ unseen \n agent_right empty wall unseen unseen unseen unseen \n lava empty\
+      \ wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen unseen\
+      \ \n lava goal_green wall unseen unseen unseen unseen"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty lava empty wall unseen unseen \n empty empty lava empty wall unseen\
+      \ unseen \n empty empty lava goal_green wall unseen unseen \n wall wall wall\
+      \ wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down lava empty wall \n lava\
+      \ empty empty empty empty empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava empty wall \n lava empty empty empty lava goal_green\
+      \ wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down empty empty wall \n lava\
+      \ empty empty empty lava empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava goal_green wall \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty lava empty wall unseen unseen unseen \n empty\
+      \ lava lava wall unseen unseen unseen \n empty lava empty wall unseen unseen\
+      \ unseen \n agent_right empty empty wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n empty lava empty wall unseen unseen unseen\
+      \ \n empty lava goal_green wall unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty wall unseen unseen unseen unseen \n lava\
+      \ lava wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen\
+      \ unseen \n agent_right empty wall unseen unseen unseen unseen \n lava empty\
+      \ wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen unseen\
+      \ \n lava goal_green wall unseen unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n lava\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n empty\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n goal_green wall unseen unseen unseen unseen unseen"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty lava agent_down wall unseen unseen \n empty\
+      \ empty lava empty wall unseen unseen \n empty empty lava goal_green wall unseen\
+      \ unseen \n wall wall wall wall wall unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty empty agent_down empty empty wall \n lava\
+      \ empty empty empty lava empty wall \n lava empty empty empty lava empty wall\
+      \ \n lava empty empty empty lava goal_green wall \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty lava empty wall unseen unseen unseen \n empty\
+      \ lava lava wall unseen unseen unseen \n empty lava empty wall unseen unseen\
+      \ unseen \n agent_right empty empty wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n empty lava empty wall unseen unseen unseen\
+      \ \n empty lava goal_green wall unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty wall unseen unseen unseen unseen \n lava\
+      \ lava wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen\
+      \ unseen \n agent_right empty wall unseen unseen unseen unseen \n lava empty\
+      \ wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen unseen\
+      \ \n lava goal_green wall unseen unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n lava\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n empty\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n goal_green wall unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty lava empty wall unseen unseen \n empty empty lava empty wall unseen\
+      \ unseen \n empty empty lava goal_green wall unseen unseen \n wall wall wall\
+      \ wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: avoid the lava and get to the green goal square
+  observation:
+    direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty lava agent_down wall unseen unseen \n empty\
+      \ empty lava goal_green wall unseen unseen \n wall wall wall wall wall unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty lava empty wall unseen unseen unseen \n empty\
+      \ lava lava wall unseen unseen unseen \n empty lava empty wall unseen unseen\
+      \ unseen \n agent_right empty empty wall unseen unseen unseen \n empty lava\
+      \ empty wall unseen unseen unseen \n empty lava empty wall unseen unseen unseen\
+      \ \n empty lava goal_green wall unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "lava empty wall unseen unseen unseen unseen \n lava\
+      \ lava wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen\
+      \ unseen \n agent_right empty wall unseen unseen unseen unseen \n lava empty\
+      \ wall unseen unseen unseen unseen \n lava empty wall unseen unseen unseen unseen\
+      \ \n lava goal_green wall unseen unseen unseen unseen"
+  - direction: East
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n lava\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n empty\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n goal_green wall unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty lava empty wall unseen unseen \n empty empty lava empty wall unseen\
+      \ unseen \n empty empty lava goal_green wall unseen unseen \n wall wall wall\
+      \ wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: avoid the lava and get to the green goal square
+    observation_grid_string: "empty empty lava agent_down wall unseen unseen \n empty\
+      \ empty lava empty wall unseen unseen \n empty empty lava goal_green wall unseen\
+      \ unseen \n wall wall wall wall wall unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"

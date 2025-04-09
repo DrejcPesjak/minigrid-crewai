@@ -1,0 +1,171 @@
+- action: 1
+  mission: go to the grey key
+  observation:
+    direction: North
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen wall wall\
+      \ wall wall wall \n unseen unseen wall agent_up empty empty empty"
+  observation_history: []
+- action: 2
+  mission: go to the grey key
+  observation:
+    direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty key_grey wall unseen\
+      \ unseen \n box_yellow empty empty empty wall unseen unseen"
+  observation_history:
+  - direction: North
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen wall wall\
+      \ wall wall wall \n unseen unseen wall agent_up empty empty empty"
+- action: 2
+  mission: go to the grey key
+  observation:
+    direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n empty empty key_grey wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen wall wall\
+      \ wall wall wall \n unseen unseen wall agent_up empty empty empty"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty key_grey wall unseen\
+      \ unseen \n box_yellow empty empty empty wall unseen unseen"
+- action: 2
+  mission: go to the grey key
+  observation:
+    direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen\
+      \ \n empty empty wall unseen unseen unseen unseen \n empty key_grey wall unseen\
+      \ unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen wall wall\
+      \ wall wall wall \n unseen unseen wall agent_up empty empty empty"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty key_grey wall unseen\
+      \ unseen \n box_yellow empty empty empty wall unseen unseen"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n empty empty key_grey wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+- action: 1
+  mission: go to the grey key
+  observation:
+    direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen\
+      \ \n empty wall unseen unseen unseen unseen unseen \n key_grey wall unseen unseen\
+      \ unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen wall wall\
+      \ wall wall wall \n unseen unseen wall agent_up empty empty empty"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty key_grey wall unseen\
+      \ unseen \n box_yellow empty empty empty wall unseen unseen"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n empty empty key_grey wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen\
+      \ \n empty empty wall unseen unseen unseen unseen \n empty key_grey wall unseen\
+      \ unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+- action: 2
+  mission: go to the grey key
+  observation:
+    direction: South
+    mission: go to the grey key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty key_grey wall unseen\
+      \ unseen \n box_yellow empty empty empty wall unseen unseen \n wall wall wall\
+      \ wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen wall wall\
+      \ wall wall wall \n unseen unseen wall agent_up empty empty empty"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty key_grey wall unseen\
+      \ unseen \n box_yellow empty empty empty wall unseen unseen"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n empty empty key_grey wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen\
+      \ \n empty empty wall unseen unseen unseen unseen \n empty key_grey wall unseen\
+      \ unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the grey key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen\
+      \ \n empty wall unseen unseen unseen unseen unseen \n key_grey wall unseen unseen\
+      \ unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen"

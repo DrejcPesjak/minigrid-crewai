@@ -1,0 +1,263 @@
+- action: 2
+  mission: open the door
+  observation:
+    direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty wall \n unseen\
+      \ wall key_green empty empty empty door_green_locked \n unseen wall wall wall\
+      \ wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history: []
+- action: 1
+  mission: open the door
+  observation:
+    direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall key_green agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty wall \n unseen\
+      \ wall key_green empty empty empty door_green_locked \n unseen wall wall wall\
+      \ wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 3
+  mission: open the door
+  observation:
+    direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall key_green agent_left \n\
+      \ unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen\
+      \ wall empty empty \n unseen unseen unseen unseen wall empty empty"
+  observation_history:
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty wall \n unseen\
+      \ wall key_green empty empty empty door_green_locked \n unseen wall wall wall\
+      \ wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall key_green agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 0
+  mission: open the door
+  observation:
+    direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+  observation_history:
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty wall \n unseen\
+      \ wall key_green empty empty empty door_green_locked \n unseen wall wall wall\
+      \ wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall key_green agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall key_green agent_left \n\
+      \ unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen\
+      \ wall empty empty \n unseen unseen unseen unseen wall empty empty"
+- action: 0
+  mission: open the door
+  observation:
+    direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty wall \n unseen\
+      \ wall key_green empty empty empty door_green_locked \n unseen wall wall wall\
+      \ wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall key_green agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall key_green agent_left \n\
+      \ unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen\
+      \ wall empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+- action: 2
+  mission: open the door
+  observation:
+    direction: East
+    mission: open the door
+    observation_grid_string: "empty empty empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n empty empty empty wall unseen unseen\
+      \ unseen \n agent_right empty empty door_green_locked unseen unseen unseen \n\
+      \ wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty wall \n unseen\
+      \ wall key_green empty empty empty door_green_locked \n unseen wall wall wall\
+      \ wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall key_green agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall key_green agent_left \n\
+      \ unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen\
+      \ wall empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: open the door
+  observation:
+    direction: East
+    mission: open the door
+    observation_grid_string: "empty empty wall unseen unseen unseen unseen \n empty\
+      \ empty wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen\
+      \ unseen \n agent_right empty door_green_locked unseen unseen unseen unseen\
+      \ \n wall wall wall unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall key_green agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall key_green agent_left \n\
+      \ unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen\
+      \ wall empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: open the door
+    observation_grid_string: "empty empty empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n empty empty empty wall unseen unseen\
+      \ unseen \n agent_right empty empty door_green_locked unseen unseen unseen \n\
+      \ wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 5
+  mission: open the door
+  observation:
+    direction: East
+    mission: open the door
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n empty\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right door_green_locked unseen unseen unseen unseen\
+      \ unseen \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall key_green agent_left \n\
+      \ unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen\
+      \ wall empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: West
+    mission: open the door
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ wall wall wall \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: South
+    mission: open the door
+    observation_grid_string: "unseen wall empty agent_down empty empty door_green_locked\
+      \ \n unseen wall wall wall wall wall wall \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: open the door
+    observation_grid_string: "empty empty empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n empty empty empty wall unseen unseen\
+      \ unseen \n agent_right empty empty door_green_locked unseen unseen unseen \n\
+      \ wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: open the door
+    observation_grid_string: "empty empty wall unseen unseen unseen unseen \n empty\
+      \ empty wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen\
+      \ unseen \n agent_right empty door_green_locked unseen unseen unseen unseen\
+      \ \n wall wall wall unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"

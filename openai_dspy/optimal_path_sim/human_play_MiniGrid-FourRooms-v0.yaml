@@ -1,0 +1,677 @@
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  observation_history: []
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  observation_history:
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+- action: 0
+  mission: reach the goal
+  observation:
+    direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall wall\
+      \ wall wall wall wall wall"
+  observation_history:
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: North
+    mission: reach the goal
+    observation_grid_string: "wall wall wall empty wall wall wall \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  observation_history:
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall wall\
+      \ wall wall wall wall wall"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall wall\
+      \ wall empty wall wall wall \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  observation_history:
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall wall wall empty wall wall wall \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall empty wall wall wall \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  observation_history:
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall wall wall empty wall wall wall \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall wall\
+      \ wall empty wall wall wall \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall wall wall empty wall wall wall \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  observation_history:
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n empty empty empty empty\
+      \ empty empty empty \n empty empty empty empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall wall wall empty wall wall wall \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall wall\
+      \ wall empty wall wall wall \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall empty wall wall wall \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall wall wall empty wall wall\
+      \ wall \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  observation_history:
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall wall\
+      \ wall wall wall wall wall"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall wall wall empty wall wall wall \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall wall\
+      \ wall empty wall wall wall \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall empty wall wall wall \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall wall wall empty wall wall wall \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall wall wall empty wall wall wall \n wall empty empty agent_up\
+      \ empty empty empty"
+  observation_history:
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall wall wall empty wall wall wall \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall wall\
+      \ wall empty wall wall wall \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall empty wall wall wall \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall wall wall empty wall wall wall \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall wall wall empty wall wall\
+      \ wall \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: North
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n unseen unseen wall\
+      \ agent_up wall unseen unseen"
+  observation_history:
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall wall\
+      \ wall empty wall wall wall \n wall empty empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall empty wall wall wall \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall wall wall empty wall wall wall \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall wall wall empty wall wall\
+      \ wall \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall wall wall empty wall wall wall \n wall empty empty agent_up\
+      \ empty empty empty"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  observation_history:
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall empty wall wall wall \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall wall wall empty wall wall wall \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall wall wall empty wall wall\
+      \ wall \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall wall wall empty wall wall wall \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n unseen unseen wall\
+      \ agent_up wall unseen unseen"
+- action: 1
+  mission: reach the goal
+  observation:
+    direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  observation_history:
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall wall wall empty wall wall wall \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall wall wall empty wall wall\
+      \ wall \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall wall wall empty wall wall wall \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n unseen unseen wall\
+      \ agent_up wall unseen unseen"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty goal_green wall \n empty empty empty empty\
+      \ empty empty wall \n empty wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall"
+  observation_history:
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall wall wall empty wall wall\
+      \ wall \n wall empty empty empty empty empty empty \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall wall wall empty wall wall wall \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n unseen unseen wall\
+      \ agent_up wall unseen unseen"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n agent_right empty empty empty goal_green wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n wall wall wall wall wall wall unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall wall wall empty wall wall wall \n wall empty empty agent_up\
+      \ empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n unseen unseen wall\
+      \ agent_up wall unseen unseen"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty goal_green wall \n empty empty empty empty\
+      \ empty empty wall \n empty wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n agent_right empty empty goal_green wall unseen unseen \n empty empty\
+      \ empty empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n unseen unseen wall\
+      \ agent_up wall unseen unseen"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty goal_green wall \n empty empty empty empty\
+      \ empty empty wall \n empty wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n agent_right empty empty empty goal_green wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n wall wall wall wall wall wall unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n empty empty empty wall unseen unseen\
+      \ unseen \n agent_right empty goal_green wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n wall wall wall wall unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n empty empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty goal_green wall \n empty empty empty empty\
+      \ empty empty wall \n empty wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n agent_right empty empty empty goal_green wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n wall wall wall wall wall wall unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n agent_right empty empty goal_green wall unseen unseen \n empty empty\
+      \ empty empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: reach the goal
+  observation:
+    direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty wall unseen unseen unseen unseen \n empty\
+      \ empty wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen\
+      \ unseen \n agent_right goal_green wall unseen unseen unseen unseen \n empty\
+      \ empty wall unseen unseen unseen unseen \n wall wall wall unseen unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: reach the goal
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n empty empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ agent_up empty empty empty"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty goal_green wall \n empty empty empty empty\
+      \ empty empty wall \n empty wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n agent_right empty empty empty goal_green wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n wall wall wall wall wall wall unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n agent_right empty empty goal_green wall unseen unseen \n empty empty\
+      \ empty empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: reach the goal
+    observation_grid_string: "empty empty empty wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n empty empty empty wall unseen unseen\
+      \ unseen \n agent_right empty goal_green wall unseen unseen unseen \n empty\
+      \ empty empty wall unseen unseen unseen \n wall wall wall wall unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"

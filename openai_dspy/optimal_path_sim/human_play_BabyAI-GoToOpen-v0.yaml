@@ -1,0 +1,1137 @@
+- action: 1
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n empty wall empty empty empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n empty door_purple_open\
+      \ empty empty empty empty empty \n empty wall empty empty key_green empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  observation_history: []
+- action: 1
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n empty wall empty empty empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n empty door_purple_open\
+      \ empty empty empty empty empty \n empty wall empty empty key_green empty empty\
+      \ \n empty wall empty empty empty empty empty"
+- action: 0
+  mission: go to a purple key
+  observation:
+    direction: West
+    mission: go to a purple key
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ key_blue ball_blue empty empty empty \n wall empty ball_green box_red empty\
+      \ empty empty \n wall empty empty empty empty empty agent_left \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n empty wall empty empty empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n empty door_purple_open\
+      \ empty empty empty empty empty \n empty wall empty empty key_green empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n empty wall empty empty empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n empty door_purple_open\
+      \ empty empty empty empty empty \n empty wall empty empty key_green empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  - direction: West
+    mission: go to a purple key
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ key_blue ball_blue empty empty empty \n wall empty ball_green box_red empty\
+      \ empty empty \n wall empty empty empty empty empty agent_left \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+- action: 0
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "box_red empty empty agent_down door_purple_open empty\
+      \ empty \n ball_blue empty empty empty wall empty empty \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty empty \n wall\
+      \ wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n empty wall empty empty empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n empty door_purple_open\
+      \ empty empty empty empty empty \n empty wall empty empty key_green empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  - direction: West
+    mission: go to a purple key
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ key_blue ball_blue empty empty empty \n wall empty ball_green box_red empty\
+      \ empty empty \n wall empty empty empty empty empty agent_left \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty empty empty empty empty \n agent_right\
+      \ door_purple_open empty empty empty empty empty \n empty wall empty empty key_green\
+      \ empty empty \n empty wall empty empty empty empty empty \n empty wall empty\
+      \ empty empty empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n empty wall empty empty empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n empty door_purple_open\
+      \ empty empty empty empty empty \n empty wall empty empty key_green empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  - direction: West
+    mission: go to a purple key
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ key_blue ball_blue empty empty empty \n wall empty ball_green box_red empty\
+      \ empty empty \n wall empty empty empty empty empty agent_left \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "box_red empty empty agent_down door_purple_open empty\
+      \ empty \n ball_blue empty empty empty wall empty empty \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty empty \n wall\
+      \ wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n wall empty empty key_green\
+      \ empty empty ball_purple \n unseen empty empty empty empty empty empty \n unseen\
+      \ empty empty empty empty empty empty"
+  observation_history:
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  - direction: West
+    mission: go to a purple key
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ key_blue ball_blue empty empty empty \n wall empty ball_green box_red empty\
+      \ empty empty \n wall empty empty empty empty empty agent_left \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "box_red empty empty agent_down door_purple_open empty\
+      \ empty \n ball_blue empty empty empty wall empty empty \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty empty \n wall\
+      \ wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty empty empty empty empty \n agent_right\
+      \ door_purple_open empty empty empty empty empty \n empty wall empty empty key_green\
+      \ empty empty \n empty wall empty empty empty empty empty \n empty wall empty\
+      \ empty empty empty empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall \n empty empty empty empty empty empty wall \n agent_right\
+      \ empty empty empty empty empty wall \n empty empty key_green empty empty ball_purple\
+      \ door_green_open \n empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall"
+  observation_history:
+  - direction: West
+    mission: go to a purple key
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ key_blue ball_blue empty empty empty \n wall empty ball_green box_red empty\
+      \ empty empty \n wall empty empty empty empty empty agent_left \n wall empty\
+      \ empty empty empty empty empty \n wall wall wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "box_red empty empty agent_down door_purple_open empty\
+      \ empty \n ball_blue empty empty empty wall empty empty \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty empty \n wall\
+      \ wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty empty empty empty empty \n agent_right\
+      \ door_purple_open empty empty empty empty empty \n empty wall empty empty key_green\
+      \ empty empty \n empty wall empty empty empty empty empty \n empty wall empty\
+      \ empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n wall empty empty key_green\
+      \ empty empty ball_purple \n unseen empty empty empty empty empty empty \n unseen\
+      \ empty empty empty empty empty empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty wall empty \n empty empty empty empty empty wall empty \n agent_right\
+      \ empty empty empty empty wall empty \n empty key_green empty empty ball_purple\
+      \ door_green_open empty \n empty empty empty empty empty wall empty \n empty\
+      \ empty empty empty empty wall empty"
+  observation_history:
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n box_red\
+      \ empty empty empty door_purple_open empty empty \n ball_blue empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n empty empty\
+      \ empty empty wall empty empty \n wall wall wall wall wall door_red_open wall\
+      \ \n unseen unseen unseen unseen wall empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "box_red empty empty agent_down door_purple_open empty\
+      \ empty \n ball_blue empty empty empty wall empty empty \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty empty \n wall\
+      \ wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty empty empty empty empty \n agent_right\
+      \ door_purple_open empty empty empty empty empty \n empty wall empty empty key_green\
+      \ empty empty \n empty wall empty empty empty empty empty \n empty wall empty\
+      \ empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n wall empty empty key_green\
+      \ empty empty ball_purple \n unseen empty empty empty empty empty empty \n unseen\
+      \ empty empty empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall \n empty empty empty empty empty empty wall \n agent_right\
+      \ empty empty empty empty empty wall \n empty empty key_green empty empty ball_purple\
+      \ door_green_open \n empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty ball_yellow \n\
+      \ agent_right empty empty empty wall empty empty \n key_green empty empty ball_purple\
+      \ door_green_open empty empty \n empty empty empty empty wall empty empty \n\
+      \ empty empty empty empty wall empty empty"
+  observation_history:
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "box_red empty empty agent_down door_purple_open empty\
+      \ empty \n ball_blue empty empty empty wall empty empty \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty empty \n wall\
+      \ wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty empty empty empty empty \n agent_right\
+      \ door_purple_open empty empty empty empty empty \n empty wall empty empty key_green\
+      \ empty empty \n empty wall empty empty empty empty empty \n empty wall empty\
+      \ empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n wall empty empty key_green\
+      \ empty empty ball_purple \n unseen empty empty empty empty empty empty \n unseen\
+      \ empty empty empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall \n empty empty empty empty empty empty wall \n agent_right\
+      \ empty empty empty empty empty wall \n empty empty key_green empty empty ball_purple\
+      \ door_green_open \n empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty wall empty \n empty empty empty empty empty wall empty \n agent_right\
+      \ empty empty empty empty wall empty \n empty key_green empty empty ball_purple\
+      \ door_green_open empty \n empty empty empty empty empty wall empty \n empty\
+      \ empty empty empty empty wall empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ wall empty empty empty \n empty empty empty wall empty ball_yellow empty \n\
+      \ agent_right empty empty wall empty empty empty \n empty empty ball_purple\
+      \ door_green_open empty empty empty \n empty empty empty wall empty empty empty\
+      \ \n empty empty empty wall empty empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty empty empty empty empty \n agent_right\
+      \ door_purple_open empty empty empty empty empty \n empty wall empty empty key_green\
+      \ empty empty \n empty wall empty empty empty empty empty \n empty wall empty\
+      \ empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n wall empty empty key_green\
+      \ empty empty ball_purple \n unseen empty empty empty empty empty empty \n unseen\
+      \ empty empty empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall \n empty empty empty empty empty empty wall \n agent_right\
+      \ empty empty empty empty empty wall \n empty empty key_green empty empty ball_purple\
+      \ door_green_open \n empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty wall empty \n empty empty empty empty empty wall empty \n agent_right\
+      \ empty empty empty empty wall empty \n empty key_green empty empty ball_purple\
+      \ door_green_open empty \n empty empty empty empty empty wall empty \n empty\
+      \ empty empty empty empty wall empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty ball_yellow \n\
+      \ agent_right empty empty empty wall empty empty \n key_green empty empty ball_purple\
+      \ door_green_open empty empty \n empty empty empty empty wall empty empty \n\
+      \ empty empty empty empty wall empty empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty wall\
+      \ empty empty empty empty \n empty empty wall empty ball_yellow empty empty\
+      \ \n agent_right empty wall empty empty empty empty \n empty ball_purple door_green_open\
+      \ empty empty empty empty \n empty empty wall empty empty empty empty \n empty\
+      \ empty wall empty empty empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n agent_right empty empty empty empty empty empty \n wall empty empty key_green\
+      \ empty empty ball_purple \n unseen empty empty empty empty empty empty \n unseen\
+      \ empty empty empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall \n empty empty empty empty empty empty wall \n agent_right\
+      \ empty empty empty empty empty wall \n empty empty key_green empty empty ball_purple\
+      \ door_green_open \n empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty wall empty \n empty empty empty empty empty wall empty \n agent_right\
+      \ empty empty empty empty wall empty \n empty key_green empty empty ball_purple\
+      \ door_green_open empty \n empty empty empty empty empty wall empty \n empty\
+      \ empty empty empty empty wall empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty ball_yellow \n\
+      \ agent_right empty empty empty wall empty empty \n key_green empty empty ball_purple\
+      \ door_green_open empty empty \n empty empty empty empty wall empty empty \n\
+      \ empty empty empty empty wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ wall empty empty empty \n empty empty empty wall empty ball_yellow empty \n\
+      \ agent_right empty empty wall empty empty empty \n empty empty ball_purple\
+      \ door_green_open empty empty empty \n empty empty empty wall empty empty empty\
+      \ \n empty empty empty wall empty empty empty"
+- action: 1
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty ball_yellow empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n ball_purple door_green_open\
+      \ empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty empty wall \n empty empty empty empty empty empty wall \n agent_right\
+      \ empty empty empty empty empty wall \n empty empty key_green empty empty ball_purple\
+      \ door_green_open \n empty empty empty empty empty empty wall \n empty empty\
+      \ empty empty empty empty wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty wall empty \n empty empty empty empty empty wall empty \n agent_right\
+      \ empty empty empty empty wall empty \n empty key_green empty empty ball_purple\
+      \ door_green_open empty \n empty empty empty empty empty wall empty \n empty\
+      \ empty empty empty empty wall empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty ball_yellow \n\
+      \ agent_right empty empty empty wall empty empty \n key_green empty empty ball_purple\
+      \ door_green_open empty empty \n empty empty empty empty wall empty empty \n\
+      \ empty empty empty empty wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ wall empty empty empty \n empty empty empty wall empty ball_yellow empty \n\
+      \ agent_right empty empty wall empty empty empty \n empty empty ball_purple\
+      \ door_green_open empty empty empty \n empty empty empty wall empty empty empty\
+      \ \n empty empty empty wall empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty wall\
+      \ empty empty empty empty \n empty empty wall empty ball_yellow empty empty\
+      \ \n agent_right empty wall empty empty empty empty \n empty ball_purple door_green_open\
+      \ empty empty empty empty \n empty empty wall empty empty empty empty \n empty\
+      \ empty wall empty empty empty empty"
+- action: 3
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty ball_purple door_green_open empty empty \n empty empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n wall wall\
+      \ wall wall wall wall door_red_open \n unseen unseen unseen unseen wall empty\
+      \ empty \n unseen unseen unseen unseen wall key_purple empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty empty wall empty \n empty empty empty empty empty wall empty \n agent_right\
+      \ empty empty empty empty wall empty \n empty key_green empty empty ball_purple\
+      \ door_green_open empty \n empty empty empty empty empty wall empty \n empty\
+      \ empty empty empty empty wall empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty ball_yellow \n\
+      \ agent_right empty empty empty wall empty empty \n key_green empty empty ball_purple\
+      \ door_green_open empty empty \n empty empty empty empty wall empty empty \n\
+      \ empty empty empty empty wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ wall empty empty empty \n empty empty empty wall empty ball_yellow empty \n\
+      \ agent_right empty empty wall empty empty empty \n empty empty ball_purple\
+      \ door_green_open empty empty empty \n empty empty empty wall empty empty empty\
+      \ \n empty empty empty wall empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty wall\
+      \ empty empty empty empty \n empty empty wall empty ball_yellow empty empty\
+      \ \n agent_right empty wall empty empty empty empty \n empty ball_purple door_green_open\
+      \ empty empty empty empty \n empty empty wall empty empty empty empty \n empty\
+      \ empty wall empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty ball_yellow empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n ball_purple door_green_open\
+      \ empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n empty wall empty empty empty empty empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty empty door_green_open empty empty \n empty empty empty empty wall\
+      \ empty empty \n empty empty empty empty wall empty empty \n wall wall wall\
+      \ wall wall wall door_red_open \n unseen unseen unseen unseen wall empty empty\
+      \ \n unseen unseen unseen unseen wall key_purple empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ empty wall empty empty \n empty empty empty empty wall empty ball_yellow \n\
+      \ agent_right empty empty empty wall empty empty \n key_green empty empty ball_purple\
+      \ door_green_open empty empty \n empty empty empty empty wall empty empty \n\
+      \ empty empty empty empty wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ wall empty empty empty \n empty empty empty wall empty ball_yellow empty \n\
+      \ agent_right empty empty wall empty empty empty \n empty empty ball_purple\
+      \ door_green_open empty empty empty \n empty empty empty wall empty empty empty\
+      \ \n empty empty empty wall empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty wall\
+      \ empty empty empty empty \n empty empty wall empty ball_yellow empty empty\
+      \ \n agent_right empty wall empty empty empty empty \n empty ball_purple door_green_open\
+      \ empty empty empty empty \n empty empty wall empty empty empty empty \n empty\
+      \ empty wall empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty ball_yellow empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n ball_purple door_green_open\
+      \ empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty ball_purple door_green_open empty empty \n empty empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n wall wall\
+      \ wall wall wall wall door_red_open \n unseen unseen unseen unseen wall empty\
+      \ empty \n unseen unseen unseen unseen wall key_purple empty"
+- action: 0
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "key_green empty empty agent_down door_green_open empty\
+      \ empty \n empty empty empty empty wall empty empty \n empty empty empty empty\
+      \ wall empty empty \n wall wall wall wall wall wall door_red_open \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ key_purple empty \n unseen unseen unseen unseen wall empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty empty\
+      \ wall empty empty empty \n empty empty empty wall empty ball_yellow empty \n\
+      \ agent_right empty empty wall empty empty empty \n empty empty ball_purple\
+      \ door_green_open empty empty empty \n empty empty empty wall empty empty empty\
+      \ \n empty empty empty wall empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty wall\
+      \ empty empty empty empty \n empty empty wall empty ball_yellow empty empty\
+      \ \n agent_right empty wall empty empty empty empty \n empty ball_purple door_green_open\
+      \ empty empty empty empty \n empty empty wall empty empty empty empty \n empty\
+      \ empty wall empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty ball_yellow empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n ball_purple door_green_open\
+      \ empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty ball_purple door_green_open empty empty \n empty empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n wall wall\
+      \ wall wall wall wall door_red_open \n unseen unseen unseen unseen wall empty\
+      \ empty \n unseen unseen unseen unseen wall key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty empty door_green_open empty empty \n empty empty empty empty wall\
+      \ empty empty \n empty empty empty empty wall empty empty \n wall wall wall\
+      \ wall wall wall door_red_open \n unseen unseen unseen unseen wall empty empty\
+      \ \n unseen unseen unseen unseen wall key_purple empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty wall empty empty empty empty empty \n empty wall\
+      \ empty ball_yellow empty empty empty \n empty wall empty empty empty empty\
+      \ empty \n agent_right door_green_open empty empty empty empty empty \n empty\
+      \ wall empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n wall wall wall door_red_open wall wall wall"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty empty wall\
+      \ empty empty empty empty \n empty empty wall empty ball_yellow empty empty\
+      \ \n agent_right empty wall empty empty empty empty \n empty ball_purple door_green_open\
+      \ empty empty empty empty \n empty empty wall empty empty empty empty \n empty\
+      \ empty wall empty empty empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty ball_yellow empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n ball_purple door_green_open\
+      \ empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty ball_purple door_green_open empty empty \n empty empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n wall wall\
+      \ wall wall wall wall door_red_open \n unseen unseen unseen unseen wall empty\
+      \ empty \n unseen unseen unseen unseen wall key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty empty door_green_open empty empty \n empty empty empty empty wall\
+      \ empty empty \n empty empty empty empty wall empty empty \n wall wall wall\
+      \ wall wall wall door_red_open \n unseen unseen unseen unseen wall empty empty\
+      \ \n unseen unseen unseen unseen wall key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "key_green empty empty agent_down door_green_open empty\
+      \ empty \n empty empty empty empty wall empty empty \n empty empty empty empty\
+      \ wall empty empty \n wall wall wall wall wall wall door_red_open \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ key_purple empty \n unseen unseen unseen unseen wall empty empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen empty empty empty empty empty empty \n unseen\
+      \ empty ball_yellow empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n agent_right empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n unseen empty empty empty empty empty empty\
+      \ \n unseen wall door_red_open wall wall wall wall"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "wall wall wall wall wall wall wall \n empty wall empty\
+      \ empty empty empty empty \n empty wall empty ball_yellow empty empty empty\
+      \ \n agent_right wall empty empty empty empty empty \n ball_purple door_green_open\
+      \ empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n empty wall empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty ball_purple door_green_open empty empty \n empty empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n wall wall\
+      \ wall wall wall wall door_red_open \n unseen unseen unseen unseen wall empty\
+      \ empty \n unseen unseen unseen unseen wall key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty empty door_green_open empty empty \n empty empty empty empty wall\
+      \ empty empty \n empty empty empty empty wall empty empty \n wall wall wall\
+      \ wall wall wall door_red_open \n unseen unseen unseen unseen wall empty empty\
+      \ \n unseen unseen unseen unseen wall key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "key_green empty empty agent_down door_green_open empty\
+      \ empty \n empty empty empty empty wall empty empty \n empty empty empty empty\
+      \ wall empty empty \n wall wall wall wall wall wall door_red_open \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ key_purple empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty wall empty empty empty empty empty \n empty wall\
+      \ empty ball_yellow empty empty empty \n empty wall empty empty empty empty\
+      \ empty \n agent_right door_green_open empty empty empty empty empty \n empty\
+      \ wall empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n wall wall wall door_red_open wall wall wall"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty ball_yellow\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall door_red_open\
+      \ wall wall wall wall wall"
+  observation_history:
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty ball_purple door_green_open empty empty \n empty empty empty empty\
+      \ wall empty empty \n empty empty empty empty wall empty empty \n wall wall\
+      \ wall wall wall wall door_red_open \n unseen unseen unseen unseen wall empty\
+      \ empty \n unseen unseen unseen unseen wall key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty empty door_green_open empty empty \n empty empty empty empty wall\
+      \ empty empty \n empty empty empty empty wall empty empty \n wall wall wall\
+      \ wall wall wall door_red_open \n unseen unseen unseen unseen wall empty empty\
+      \ \n unseen unseen unseen unseen wall key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "key_green empty empty agent_down door_green_open empty\
+      \ empty \n empty empty empty empty wall empty empty \n empty empty empty empty\
+      \ wall empty empty \n wall wall wall wall wall wall door_red_open \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ key_purple empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty wall empty empty empty empty empty \n empty wall\
+      \ empty ball_yellow empty empty empty \n empty wall empty empty empty empty\
+      \ empty \n agent_right door_green_open empty empty empty empty empty \n empty\
+      \ wall empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n wall wall wall door_red_open wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen empty empty empty empty empty empty \n unseen\
+      \ empty ball_yellow empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n agent_right empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n unseen empty empty empty empty empty empty\
+      \ \n unseen wall door_red_open wall wall wall wall"
+- action: 4
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right empty empty empty empty wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n empty empty empty empty empty wall unseen \n door_red_open\
+      \ wall wall wall wall wall unseen"
+  observation_history:
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n key_green\
+      \ empty empty empty door_green_open empty empty \n empty empty empty empty wall\
+      \ empty empty \n empty empty empty empty wall empty empty \n wall wall wall\
+      \ wall wall wall door_red_open \n unseen unseen unseen unseen wall empty empty\
+      \ \n unseen unseen unseen unseen wall key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "key_green empty empty agent_down door_green_open empty\
+      \ empty \n empty empty empty empty wall empty empty \n empty empty empty empty\
+      \ wall empty empty \n wall wall wall wall wall wall door_red_open \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ key_purple empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty wall empty empty empty empty empty \n empty wall\
+      \ empty ball_yellow empty empty empty \n empty wall empty empty empty empty\
+      \ empty \n agent_right door_green_open empty empty empty empty empty \n empty\
+      \ wall empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n wall wall wall door_red_open wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen empty empty empty empty empty empty \n unseen\
+      \ empty ball_yellow empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n agent_right empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n unseen empty empty empty empty empty empty\
+      \ \n unseen wall door_red_open wall wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty ball_yellow\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall door_red_open\
+      \ wall wall wall wall wall"
+- action: 1
+  mission: go to a purple key
+  observation:
+    direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right ball_purple empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n door_red_open wall wall wall wall wall unseen"
+  observation_history:
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "key_green empty empty agent_down door_green_open empty\
+      \ empty \n empty empty empty empty wall empty empty \n empty empty empty empty\
+      \ wall empty empty \n wall wall wall wall wall wall door_red_open \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ key_purple empty \n unseen unseen unseen unseen wall empty empty"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty wall empty empty empty empty empty \n empty wall\
+      \ empty ball_yellow empty empty empty \n empty wall empty empty empty empty\
+      \ empty \n agent_right door_green_open empty empty empty empty empty \n empty\
+      \ wall empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n wall wall wall door_red_open wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen empty empty empty empty empty empty \n unseen\
+      \ empty ball_yellow empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n agent_right empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n unseen empty empty empty empty empty empty\
+      \ \n unseen wall door_red_open wall wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty ball_yellow\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall door_red_open\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right empty empty empty empty wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n empty empty empty empty empty wall unseen \n door_red_open\
+      \ wall wall wall wall wall unseen"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty door_green_open empty agent_down ball_purple empty\
+      \ empty \n empty wall empty empty empty empty empty \n empty wall empty empty\
+      \ empty empty empty \n wall wall wall door_red_open wall wall wall \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall key_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty key_yellow empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty wall empty empty empty empty empty \n empty wall\
+      \ empty ball_yellow empty empty empty \n empty wall empty empty empty empty\
+      \ empty \n agent_right door_green_open empty empty empty empty empty \n empty\
+      \ wall empty empty empty empty empty \n empty wall empty empty empty empty empty\
+      \ \n wall wall wall door_red_open wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen empty empty empty empty empty empty \n unseen\
+      \ empty ball_yellow empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n agent_right empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n unseen empty empty empty empty empty empty\
+      \ \n unseen wall door_red_open wall wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty ball_yellow\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall door_red_open\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right empty empty empty empty wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n empty empty empty empty empty wall unseen \n door_red_open\
+      \ wall wall wall wall wall unseen"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right ball_purple empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n door_red_open wall wall wall wall wall unseen"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall wall door_red_open wall\
+      \ wall wall \n unseen wall empty empty empty empty empty \n unseen wall key_purple\
+      \ empty empty empty empty \n unseen wall empty empty empty key_yellow empty\
+      \ \n empty door_grey_open empty empty empty empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "unseen empty empty empty empty empty empty \n unseen\
+      \ empty ball_yellow empty empty empty empty \n wall empty empty empty empty\
+      \ empty empty \n agent_right empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n unseen empty empty empty empty empty empty\
+      \ \n unseen wall door_red_open wall wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty ball_yellow\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall door_red_open\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right empty empty empty empty wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n empty empty empty empty empty wall unseen \n door_red_open\
+      \ wall wall wall wall wall unseen"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right ball_purple empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n door_red_open wall wall wall wall wall unseen"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty door_green_open empty agent_down ball_purple empty\
+      \ empty \n empty wall empty empty empty empty empty \n empty wall empty empty\
+      \ empty empty empty \n wall wall wall door_red_open wall wall wall \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall key_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty key_yellow empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall wall door_red_open wall wall wall \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall key_purple empty empty empty empty \n unseen wall empty\
+      \ empty empty key_yellow empty \n empty door_grey_open empty empty empty empty\
+      \ empty \n key_yellow wall empty empty empty key_purple empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty empty wall \n empty ball_yellow\
+      \ empty empty empty empty wall \n empty empty empty empty empty empty wall \n\
+      \ agent_right empty empty empty empty empty wall \n empty empty empty empty\
+      \ empty empty wall \n empty empty empty empty empty empty wall \n wall door_red_open\
+      \ wall wall wall wall wall"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right empty empty empty empty wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n empty empty empty empty empty wall unseen \n door_red_open\
+      \ wall wall wall wall wall unseen"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right ball_purple empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n door_red_open wall wall wall wall wall unseen"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty door_green_open empty agent_down ball_purple empty\
+      \ empty \n empty wall empty empty empty empty empty \n empty wall empty empty\
+      \ empty empty empty \n wall wall wall door_red_open wall wall wall \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall key_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty key_yellow empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall wall door_red_open wall\
+      \ wall wall \n unseen wall empty empty empty empty empty \n unseen wall key_purple\
+      \ empty empty empty empty \n unseen wall empty empty empty key_yellow empty\
+      \ \n empty door_grey_open empty empty empty empty empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen unseen wall agent_down wall unseen unseen \n\
+      \ unseen wall empty empty empty empty empty \n unseen wall key_purple empty\
+      \ empty empty empty \n unseen wall empty empty empty key_yellow empty \n empty\
+      \ door_grey_open empty empty empty empty empty \n key_yellow wall empty empty\
+      \ empty key_purple empty \n empty wall empty empty empty empty empty"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right empty empty empty empty wall unseen \n empty empty empty\
+      \ empty empty wall unseen \n empty empty empty empty empty wall unseen \n door_red_open\
+      \ wall wall wall wall wall unseen"
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right ball_purple empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n door_red_open wall wall wall wall wall unseen"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty door_green_open empty agent_down ball_purple empty\
+      \ empty \n empty wall empty empty empty empty empty \n empty wall empty empty\
+      \ empty empty empty \n wall wall wall door_red_open wall wall wall \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall key_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty key_yellow empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall wall door_red_open wall\
+      \ wall wall \n unseen wall empty empty empty empty empty \n unseen wall key_purple\
+      \ empty empty empty empty \n unseen wall empty empty empty key_yellow empty\
+      \ \n empty door_grey_open empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall wall door_red_open wall wall wall \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall key_purple empty empty empty empty \n unseen wall empty\
+      \ empty empty key_yellow empty \n empty door_grey_open empty empty empty empty\
+      \ empty \n key_yellow wall empty empty empty key_purple empty"
+- action: 2
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall key_purple empty empty empty empty \n unseen wall empty empty empty key_yellow\
+      \ empty \n empty door_grey_open empty empty empty empty empty \n key_yellow\
+      \ wall empty empty empty key_purple empty \n empty wall empty empty empty empty\
+      \ empty \n wall wall wall door_red_open wall wall wall"
+  observation_history:
+  - direction: East
+    mission: go to a purple key
+    observation_grid_string: "empty empty empty empty empty wall unseen \n ball_yellow\
+      \ empty empty empty empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n agent_right ball_purple empty empty empty wall unseen \n empty empty\
+      \ empty empty empty wall unseen \n empty empty empty empty empty wall unseen\
+      \ \n door_red_open wall wall wall wall wall unseen"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty door_green_open empty agent_down ball_purple empty\
+      \ empty \n empty wall empty empty empty empty empty \n empty wall empty empty\
+      \ empty empty empty \n wall wall wall door_red_open wall wall wall \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall key_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty key_yellow empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall wall door_red_open wall\
+      \ wall wall \n unseen wall empty empty empty empty empty \n unseen wall key_purple\
+      \ empty empty empty empty \n unseen wall empty empty empty key_yellow empty\
+      \ \n empty door_grey_open empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall wall door_red_open wall wall wall \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall key_purple empty empty empty empty \n unseen wall empty\
+      \ empty empty key_yellow empty \n empty door_grey_open empty empty empty empty\
+      \ empty \n key_yellow wall empty empty empty key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen unseen wall agent_down wall unseen unseen \n\
+      \ unseen wall empty empty empty empty empty \n unseen wall key_purple empty\
+      \ empty empty empty \n unseen wall empty empty empty key_yellow empty \n empty\
+      \ door_grey_open empty empty empty empty empty \n key_yellow wall empty empty\
+      \ empty key_purple empty \n empty wall empty empty empty empty empty"
+- action: 1
+  mission: go to a purple key
+  observation:
+    direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall key_purple agent_down empty empty empty\
+      \ \n unseen wall empty empty empty key_yellow empty \n empty door_grey_open\
+      \ empty empty empty empty empty \n key_yellow wall empty empty empty key_purple\
+      \ empty \n empty wall empty empty empty empty empty \n wall wall wall door_red_open\
+      \ wall wall wall \n unseen wall empty empty empty empty empty"
+  observation_history:
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "empty door_green_open empty agent_down ball_purple empty\
+      \ empty \n empty wall empty empty empty empty empty \n empty wall empty empty\
+      \ empty empty empty \n wall wall wall door_red_open wall wall wall \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall key_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty key_yellow empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall wall door_red_open wall\
+      \ wall wall \n unseen wall empty empty empty empty empty \n unseen wall key_purple\
+      \ empty empty empty empty \n unseen wall empty empty empty key_yellow empty\
+      \ \n empty door_grey_open empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall wall door_red_open wall wall wall \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall key_purple empty empty empty empty \n unseen wall empty\
+      \ empty empty key_yellow empty \n empty door_grey_open empty empty empty empty\
+      \ empty \n key_yellow wall empty empty empty key_purple empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen unseen wall agent_down wall unseen unseen \n\
+      \ unseen wall empty empty empty empty empty \n unseen wall key_purple empty\
+      \ empty empty empty \n unseen wall empty empty empty key_yellow empty \n empty\
+      \ door_grey_open empty empty empty empty empty \n key_yellow wall empty empty\
+      \ empty key_purple empty \n empty wall empty empty empty empty empty"
+  - direction: South
+    mission: go to a purple key
+    observation_grid_string: "unseen wall empty agent_down empty empty empty \n unseen\
+      \ wall key_purple empty empty empty empty \n unseen wall empty empty empty key_yellow\
+      \ empty \n empty door_grey_open empty empty empty empty empty \n key_yellow\
+      \ wall empty empty empty key_purple empty \n empty wall empty empty empty empty\
+      \ empty \n wall wall wall door_red_open wall wall wall"

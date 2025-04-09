@@ -1,0 +1,447 @@
+- action: 0
+  mission: go to the red ball
+  observation:
+    direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty agent_left \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  observation_history: []
+- action: 2
+  mission: go to the red ball
+  observation:
+    direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n empty empty empty empty wall unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen"
+  observation_history:
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty agent_left \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the red ball
+  observation:
+    direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty agent_left \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n empty empty empty empty wall unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen"
+- action: 1
+  mission: go to the red ball
+  observation:
+    direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n wall wall wall wall\
+      \ wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty agent_left \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n empty empty empty empty wall unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the red ball
+  observation:
+    direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall ball_red empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty agent_left \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ wall wall wall wall wall wall"
+  observation_history:
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty agent_left \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n empty empty empty empty wall unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n wall wall wall wall\
+      \ wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the red ball
+  observation:
+    direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen wall ball_red empty empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall empty\
+      \ empty empty empty empty \n unseen wall empty empty empty empty empty \n unseen\
+      \ wall wall wall wall wall wall"
+  observation_history:
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall empty empty empty empty empty empty \n wall empty\
+      \ empty empty empty empty empty \n wall empty empty empty empty empty empty\
+      \ \n wall empty empty empty empty empty agent_left \n wall wall wall wall wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n empty empty empty empty wall unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n wall wall wall wall\
+      \ wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall ball_red empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty agent_left \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ wall wall wall wall wall wall"
+- action: 2
+  mission: go to the red ball
+  observation:
+    direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen wall ball_red empty empty empty \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall empty empty empty\
+      \ empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall wall wall wall wall"
+  observation_history:
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n empty empty empty empty wall unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n wall wall wall wall\
+      \ wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall ball_red empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty agent_left \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ wall wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen wall ball_red empty empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall empty\
+      \ empty empty empty empty \n unseen wall empty empty empty empty empty \n unseen\
+      \ wall wall wall wall wall wall"
+- action: 2
+  mission: go to the red ball
+  observation:
+    direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen wall ball_red empty empty \n unseen\
+      \ unseen unseen wall empty empty empty \n unseen unseen unseen wall empty empty\
+      \ empty \n unseen unseen unseen wall empty empty agent_left \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall wall wall wall"
+  observation_history:
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n empty empty empty\
+      \ empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n wall wall wall wall\
+      \ wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall ball_red empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty agent_left \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ wall wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen wall ball_red empty empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall empty\
+      \ empty empty empty empty \n unseen wall empty empty empty empty empty \n unseen\
+      \ wall wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen wall ball_red empty empty empty \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall empty empty empty\
+      \ empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall wall wall wall wall"
+- action: 2
+  mission: go to the red ball
+  observation:
+    direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen unseen wall ball_red empty \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall wall wall"
+  observation_history:
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "empty empty empty agent_down wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n empty empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen \n wall wall wall wall\
+      \ wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall ball_red empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty agent_left \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ wall wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen wall ball_red empty empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall empty\
+      \ empty empty empty empty \n unseen wall empty empty empty empty empty \n unseen\
+      \ wall wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen wall ball_red empty empty empty \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall empty empty empty\
+      \ empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen wall ball_red empty empty \n unseen\
+      \ unseen unseen wall empty empty empty \n unseen unseen unseen wall empty empty\
+      \ empty \n unseen unseen unseen wall empty empty agent_left \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall wall wall wall"
+- action: 0
+  mission: go to the red ball
+  observation:
+    direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen unseen unseen wall ball_red \n\
+      \ unseen unseen unseen unseen unseen wall empty \n unseen unseen unseen unseen\
+      \ unseen wall empty \n unseen unseen unseen unseen unseen wall agent_left \n\
+      \ unseen unseen unseen unseen unseen wall empty \n unseen unseen unseen unseen\
+      \ unseen wall empty \n unseen unseen unseen unseen unseen wall wall"
+  observation_history:
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "wall ball_red empty empty empty empty empty \n wall\
+      \ empty empty empty empty empty empty \n wall empty empty empty empty empty\
+      \ empty \n wall empty empty empty empty empty agent_left \n wall empty empty\
+      \ empty empty empty empty \n wall empty empty empty empty empty empty \n wall\
+      \ wall wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen wall ball_red empty empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall empty\
+      \ empty empty empty empty \n unseen wall empty empty empty empty empty \n unseen\
+      \ wall wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen wall ball_red empty empty empty \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall empty empty empty\
+      \ empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen wall ball_red empty empty \n unseen\
+      \ unseen unseen wall empty empty empty \n unseen unseen unseen wall empty empty\
+      \ empty \n unseen unseen unseen wall empty empty agent_left \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen unseen wall ball_red empty \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall wall wall"
+- action: 2
+  mission: go to the red ball
+  observation:
+    direction: South
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall empty empty empty\
+      \ empty \n unseen unseen wall ball_red empty empty empty \n unseen unseen wall\
+      \ wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen wall ball_red empty empty empty empty \n unseen\
+      \ wall empty empty empty empty empty \n unseen wall empty empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall empty\
+      \ empty empty empty empty \n unseen wall empty empty empty empty empty \n unseen\
+      \ wall wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen wall ball_red empty empty empty \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall empty empty empty\
+      \ empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen wall ball_red empty empty \n unseen\
+      \ unseen unseen wall empty empty empty \n unseen unseen unseen wall empty empty\
+      \ empty \n unseen unseen unseen wall empty empty agent_left \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen unseen wall ball_red empty \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen unseen unseen wall ball_red \n\
+      \ unseen unseen unseen unseen unseen wall empty \n unseen unseen unseen unseen\
+      \ unseen wall empty \n unseen unseen unseen unseen unseen wall agent_left \n\
+      \ unseen unseen unseen unseen unseen wall empty \n unseen unseen unseen unseen\
+      \ unseen wall empty \n unseen unseen unseen unseen unseen wall wall"
+- action: 2
+  mission: go to the red ball
+  observation:
+    direction: South
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall ball_red empty empty\
+      \ empty \n unseen unseen wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen wall ball_red empty empty empty \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall empty empty empty\
+      \ empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen wall ball_red empty empty \n unseen\
+      \ unseen unseen wall empty empty empty \n unseen unseen unseen wall empty empty\
+      \ empty \n unseen unseen unseen wall empty empty agent_left \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen unseen wall ball_red empty \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall wall wall"
+  - direction: West
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen unseen unseen unseen wall ball_red \n\
+      \ unseen unseen unseen unseen unseen wall empty \n unseen unseen unseen unseen\
+      \ unseen wall empty \n unseen unseen unseen unseen unseen wall agent_left \n\
+      \ unseen unseen unseen unseen unseen wall empty \n unseen unseen unseen unseen\
+      \ unseen wall empty \n unseen unseen unseen unseen unseen wall wall"
+  - direction: South
+    mission: go to the red ball
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall empty empty empty empty \n unseen unseen wall empty empty empty\
+      \ empty \n unseen unseen wall ball_red empty empty empty \n unseen unseen wall\
+      \ wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"

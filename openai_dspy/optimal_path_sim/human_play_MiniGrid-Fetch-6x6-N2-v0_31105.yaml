@@ -1,0 +1,49 @@
+- action: 0
+  mission: get a grey key
+  observation:
+    direction: North
+    mission: get a grey key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall ball_yellow agent_up empty empty wall"
+  observation_history: []
+- action: 0
+  mission: get a grey key
+  observation:
+    direction: West
+    mission: get a grey key
+    observation_grid_string: "wall wall wall wall wall empty empty \n wall wall wall\
+      \ wall wall empty empty \n wall wall wall wall wall empty key_grey \n wall wall\
+      \ wall wall wall ball_yellow agent_left \n wall wall wall wall wall wall wall\
+      \ \n wall wall wall wall wall wall wall \n wall wall wall wall wall wall wall"
+  observation_history:
+  - direction: North
+    mission: get a grey key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall ball_yellow agent_up empty empty wall"
+- action: 3
+  mission: get a grey key
+  observation:
+    direction: South
+    mission: get a grey key
+    observation_grid_string: "wall wall ball_yellow agent_down empty empty wall \n\
+      \ wall wall empty key_grey empty empty wall \n wall wall empty empty empty empty\
+      \ wall \n wall wall empty empty empty empty wall \n wall wall wall wall wall\
+      \ wall wall \n wall wall wall wall wall wall wall \n wall wall wall wall wall\
+      \ wall wall"
+  observation_history:
+  - direction: North
+    mission: get a grey key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall ball_yellow agent_up empty empty wall"
+  - direction: West
+    mission: get a grey key
+    observation_grid_string: "wall wall wall wall wall empty empty \n wall wall wall\
+      \ wall wall empty empty \n wall wall wall wall wall empty key_grey \n wall wall\
+      \ wall wall wall ball_yellow agent_left \n wall wall wall wall wall wall wall\
+      \ \n wall wall wall wall wall wall wall \n wall wall wall wall wall wall wall"

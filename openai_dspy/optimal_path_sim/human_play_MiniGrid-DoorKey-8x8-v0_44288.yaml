@@ -1,0 +1,683 @@
+- action: 3
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty key_yellow wall unseen unseen\
+      \ \n wall empty empty agent_up wall unseen unseen"
+  observation_history: []
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty key_yellow wall unseen unseen\
+      \ \n wall empty empty agent_up wall unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty key_yellow wall unseen unseen\
+      \ \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty empty door_yellow_locked unseen unseen \n\
+      \ wall empty empty empty wall unseen unseen \n wall empty empty empty wall unseen\
+      \ unseen \n wall empty empty agent_up wall unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty key_yellow wall unseen unseen\
+      \ \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty key_yellow wall unseen unseen\
+      \ \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty empty door_yellow_locked unseen unseen \n\
+      \ wall empty empty empty wall unseen unseen \n wall empty empty empty wall unseen\
+      \ unseen \n wall empty empty agent_up wall unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty key_yellow wall unseen unseen\
+      \ \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty empty door_yellow_locked unseen unseen \n\
+      \ wall empty empty empty wall unseen unseen \n wall empty empty empty wall unseen\
+      \ unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+- action: 1
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty agent_up door_yellow_locked unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty empty door_yellow_locked unseen unseen \n\
+      \ wall empty empty empty wall unseen unseen \n wall empty empty empty wall unseen\
+      \ unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+- action: 5
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_yellow_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty empty wall unseen unseen \n wall empty empty\
+      \ empty wall unseen unseen \n wall empty empty empty wall unseen unseen \n wall\
+      \ empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty empty door_yellow_locked unseen unseen \n\
+      \ wall empty empty empty wall unseen unseen \n wall empty empty empty wall unseen\
+      \ unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty agent_up door_yellow_locked unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right door_yellow_open empty empty wall unseen unseen\
+      \ \n empty wall empty empty wall unseen unseen \n empty wall empty empty wall\
+      \ unseen unseen \n empty wall empty empty wall unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty empty door_yellow_locked unseen unseen \n\
+      \ wall empty empty empty wall unseen unseen \n wall empty empty empty wall unseen\
+      \ unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty agent_up door_yellow_locked unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_yellow_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n wall\
+      \ empty empty wall unseen unseen unseen \n unseen empty empty wall unseen unseen\
+      \ unseen \n unseen empty empty wall unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall unseen unseen \n wall empty\
+      \ empty empty door_yellow_locked unseen unseen \n wall empty empty empty wall\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty agent_up door_yellow_locked unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_yellow_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right door_yellow_open empty empty wall unseen unseen\
+      \ \n empty wall empty empty wall unseen unseen \n empty wall empty empty wall\
+      \ unseen unseen \n empty wall empty empty wall unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen\
+      \ \n empty empty wall unseen unseen unseen unseen \n empty empty wall unseen\
+      \ unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall unseen unseen \n wall empty empty empty door_yellow_locked\
+      \ unseen unseen \n wall empty empty agent_up wall unseen unseen"
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty agent_up door_yellow_locked unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_yellow_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right door_yellow_open empty empty wall unseen unseen\
+      \ \n empty wall empty empty wall unseen unseen \n empty wall empty empty wall\
+      \ unseen unseen \n empty wall empty empty wall unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n wall\
+      \ empty empty wall unseen unseen unseen \n unseen empty empty wall unseen unseen\
+      \ unseen \n unseen empty empty wall unseen unseen unseen"
+- action: 1
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen\
+      \ \n empty wall unseen unseen unseen unseen unseen \n empty wall unseen unseen\
+      \ unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n wall empty empty agent_up door_yellow_locked unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_yellow_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right door_yellow_open empty empty wall unseen unseen\
+      \ \n empty wall empty empty wall unseen unseen \n empty wall empty empty wall\
+      \ unseen unseen \n empty wall empty empty wall unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n wall\
+      \ empty empty wall unseen unseen unseen \n unseen empty empty wall unseen unseen\
+      \ unseen \n unseen empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen\
+      \ \n empty empty wall unseen unseen unseen unseen \n empty empty wall unseen\
+      \ unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "empty door_yellow_open empty agent_down wall unseen\
+      \ unseen \n empty wall empty empty wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n empty wall empty empty wall unseen unseen \n empty wall\
+      \ empty empty wall unseen unseen \n empty wall empty goal_green wall unseen\
+      \ unseen \n wall wall wall wall wall unseen unseen"
+  observation_history:
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_yellow_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right door_yellow_open empty empty wall unseen unseen\
+      \ \n empty wall empty empty wall unseen unseen \n empty wall empty empty wall\
+      \ unseen unseen \n empty wall empty empty wall unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n wall\
+      \ empty empty wall unseen unseen unseen \n unseen empty empty wall unseen unseen\
+      \ unseen \n unseen empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen\
+      \ \n empty empty wall unseen unseen unseen unseen \n empty empty wall unseen\
+      \ unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen\
+      \ \n empty wall unseen unseen unseen unseen unseen \n empty wall unseen unseen\
+      \ unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty wall unseen unseen \n unseen wall empty empty wall unseen\
+      \ unseen \n unseen wall empty empty wall unseen unseen \n unseen wall empty\
+      \ goal_green wall unseen unseen \n unseen wall wall wall wall unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right door_yellow_open empty empty wall unseen unseen\
+      \ \n empty wall empty empty wall unseen unseen \n empty wall empty empty wall\
+      \ unseen unseen \n empty wall empty empty wall unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n wall\
+      \ empty empty wall unseen unseen unseen \n unseen empty empty wall unseen unseen\
+      \ unseen \n unseen empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen\
+      \ \n empty empty wall unseen unseen unseen unseen \n empty empty wall unseen\
+      \ unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen\
+      \ \n empty wall unseen unseen unseen unseen unseen \n empty wall unseen unseen\
+      \ unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "empty door_yellow_open empty agent_down wall unseen\
+      \ unseen \n empty wall empty empty wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n empty wall empty empty wall unseen unseen \n empty wall\
+      \ empty empty wall unseen unseen \n empty wall empty goal_green wall unseen\
+      \ unseen \n wall wall wall wall wall unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty wall unseen unseen \n unseen wall empty empty wall unseen\
+      \ unseen \n unseen wall empty goal_green wall unseen unseen \n unseen wall wall\
+      \ wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n wall\
+      \ empty empty wall unseen unseen unseen \n unseen empty empty wall unseen unseen\
+      \ unseen \n unseen empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen\
+      \ \n empty empty wall unseen unseen unseen unseen \n empty empty wall unseen\
+      \ unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen\
+      \ \n empty wall unseen unseen unseen unseen unseen \n empty wall unseen unseen\
+      \ unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "empty door_yellow_open empty agent_down wall unseen\
+      \ unseen \n empty wall empty empty wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n empty wall empty empty wall unseen unseen \n empty wall\
+      \ empty empty wall unseen unseen \n empty wall empty goal_green wall unseen\
+      \ unseen \n wall wall wall wall wall unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty wall unseen unseen \n unseen wall empty empty wall unseen\
+      \ unseen \n unseen wall empty empty wall unseen unseen \n unseen wall empty\
+      \ goal_green wall unseen unseen \n unseen wall wall wall wall unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty wall unseen unseen \n unseen wall empty goal_green wall unseen\
+      \ unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen\
+      \ \n empty empty wall unseen unseen unseen unseen \n empty empty wall unseen\
+      \ unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen\
+      \ \n empty wall unseen unseen unseen unseen unseen \n empty wall unseen unseen\
+      \ unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "empty door_yellow_open empty agent_down wall unseen\
+      \ unseen \n empty wall empty empty wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n empty wall empty empty wall unseen unseen \n empty wall\
+      \ empty empty wall unseen unseen \n empty wall empty goal_green wall unseen\
+      \ unseen \n wall wall wall wall wall unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty wall unseen unseen \n unseen wall empty empty wall unseen\
+      \ unseen \n unseen wall empty empty wall unseen unseen \n unseen wall empty\
+      \ goal_green wall unseen unseen \n unseen wall wall wall wall unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty wall unseen unseen \n unseen wall empty empty wall unseen\
+      \ unseen \n unseen wall empty goal_green wall unseen unseen \n unseen wall wall\
+      \ wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: use the key to open the door and then get to the goal
+  observation:
+    direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty goal_green wall unseen unseen \n unseen wall wall wall wall unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen\
+      \ \n empty wall unseen unseen unseen unseen unseen \n empty wall unseen unseen\
+      \ unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "empty door_yellow_open empty agent_down wall unseen\
+      \ unseen \n empty wall empty empty wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n empty wall empty empty wall unseen unseen \n empty wall\
+      \ empty empty wall unseen unseen \n empty wall empty goal_green wall unseen\
+      \ unseen \n wall wall wall wall wall unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty wall unseen unseen \n unseen wall empty empty wall unseen\
+      \ unseen \n unseen wall empty empty wall unseen unseen \n unseen wall empty\
+      \ goal_green wall unseen unseen \n unseen wall wall wall wall unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty wall unseen unseen \n unseen wall empty empty wall unseen\
+      \ unseen \n unseen wall empty goal_green wall unseen unseen \n unseen wall wall\
+      \ wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: use the key to open the door and then get to the goal
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty wall unseen unseen \n unseen wall empty goal_green wall unseen\
+      \ unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"

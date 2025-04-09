@@ -1,0 +1,622 @@
+- action: 2
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall wall wall \n wall empty empty\
+      \ box_purple empty empty empty \n wall ball_purple empty empty empty ball_blue\
+      \ key_blue \n wall empty empty agent_up empty empty empty"
+  observation_history: []
+- action: 3
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty box_purple empty empty\
+      \ empty \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  observation_history:
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall wall wall \n wall empty empty\
+      \ box_purple empty empty empty \n wall ball_purple empty empty empty ball_blue\
+      \ key_blue \n wall empty empty agent_up empty empty empty"
+- action: 2
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty empty empty empty empty\
+      \ \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  observation_history:
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall wall wall \n wall empty empty\
+      \ box_purple empty empty empty \n wall ball_purple empty empty empty ball_blue\
+      \ key_blue \n wall empty empty agent_up empty empty empty"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty box_purple empty empty\
+      \ empty \n wall ball_purple empty agent_up empty ball_blue key_blue"
+- action: 1
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n wall empty empty agent_up empty empty empty"
+  observation_history:
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall wall wall \n wall empty empty\
+      \ box_purple empty empty empty \n wall ball_purple empty empty empty ball_blue\
+      \ key_blue \n wall empty empty agent_up empty empty empty"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty box_purple empty empty\
+      \ empty \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty empty empty empty empty\
+      \ \n wall ball_purple empty agent_up empty ball_blue key_blue"
+- action: 2
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n empty empty\
+      \ ball_blue key_blue empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n wall wall wall wall wall wall unseen"
+  observation_history:
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall wall wall \n wall empty empty\
+      \ box_purple empty empty empty \n wall ball_purple empty empty empty ball_blue\
+      \ key_blue \n wall empty empty agent_up empty empty empty"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty box_purple empty empty\
+      \ empty \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty empty empty empty empty\
+      \ \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n wall empty empty agent_up empty empty empty"
+- action: 2
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ ball_blue key_blue empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen"
+  observation_history:
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n wall wall wall wall wall wall wall \n wall empty empty\
+      \ box_purple empty empty empty \n wall ball_purple empty empty empty ball_blue\
+      \ key_blue \n wall empty empty agent_up empty empty empty"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty box_purple empty empty\
+      \ empty \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty empty empty empty empty\
+      \ \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n wall empty empty agent_up empty empty empty"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n empty empty\
+      \ ball_blue key_blue empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n wall wall wall wall wall wall unseen"
+- action: 4
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n ball_blue\
+      \ key_blue empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n wall wall wall wall unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty box_purple empty empty\
+      \ empty \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty empty empty empty empty\
+      \ \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n wall empty empty agent_up empty empty empty"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n empty empty\
+      \ ball_blue key_blue empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n wall wall wall wall wall wall unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ ball_blue key_blue empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen"
+- action: 1
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right box_purple empty wall unseen unseen unseen \n\
+      \ ball_blue key_blue empty wall unseen unseen unseen \n empty empty empty wall\
+      \ unseen unseen unseen \n wall wall wall wall unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall wall wall wall wall \n wall empty empty empty empty empty empty\
+      \ \n wall ball_purple empty agent_up empty ball_blue key_blue"
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n wall empty empty agent_up empty empty empty"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n empty empty\
+      \ ball_blue key_blue empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n wall wall wall wall wall wall unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ ball_blue key_blue empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n ball_blue\
+      \ key_blue empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n wall wall wall wall unseen unseen unseen"
+- action: 3
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty ball_blue key_blue empty wall \n empty empty empty empty\
+      \ empty empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: North
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n wall empty empty agent_up empty empty empty"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n empty empty\
+      \ ball_blue key_blue empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n wall wall wall wall wall wall unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ ball_blue key_blue empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n ball_blue\
+      \ key_blue empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n wall wall wall wall unseen unseen unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right box_purple empty wall unseen unseen unseen \n\
+      \ ball_blue key_blue empty wall unseen unseen unseen \n empty empty empty wall\
+      \ unseen unseen unseen \n wall wall wall wall unseen unseen unseen"
+- action: 1
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty empty key_blue empty wall \n empty empty empty empty empty\
+      \ empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n empty empty\
+      \ ball_blue key_blue empty wall unseen \n empty empty empty empty empty wall\
+      \ unseen \n wall wall wall wall wall wall unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ ball_blue key_blue empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n ball_blue\
+      \ key_blue empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n wall wall wall wall unseen unseen unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right box_purple empty wall unseen unseen unseen \n\
+      \ ball_blue key_blue empty wall unseen unseen unseen \n empty empty empty wall\
+      \ unseen unseen unseen \n wall wall wall wall unseen unseen unseen"
+  - direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty ball_blue key_blue empty wall \n empty empty empty empty\
+      \ empty empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen wall\
+      \ empty empty empty empty empty \n unseen wall ball_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall wall\
+      \ wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ ball_blue key_blue empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n ball_blue\
+      \ key_blue empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n wall wall wall wall unseen unseen unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right box_purple empty wall unseen unseen unseen \n\
+      \ ball_blue key_blue empty wall unseen unseen unseen \n empty empty empty wall\
+      \ unseen unseen unseen \n wall wall wall wall unseen unseen unseen"
+  - direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty ball_blue key_blue empty wall \n empty empty empty empty\
+      \ empty empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty empty key_blue empty wall \n empty empty empty empty empty\
+      \ empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen wall wall wall wall wall \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall ball_purple empty empty\
+      \ empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen\
+      \ wall wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty wall unseen unseen unseen \n ball_blue\
+      \ key_blue empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n wall wall wall wall unseen unseen unseen"
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right box_purple empty wall unseen unseen unseen \n\
+      \ ball_blue key_blue empty wall unseen unseen unseen \n empty empty empty wall\
+      \ unseen unseen unseen \n wall wall wall wall unseen unseen unseen"
+  - direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty ball_blue key_blue empty wall \n empty empty empty empty\
+      \ empty empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty empty key_blue empty wall \n empty empty empty empty empty\
+      \ empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen wall\
+      \ empty empty empty empty empty \n unseen wall ball_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall wall\
+      \ wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen wall wall wall wall \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall ball_purple empty\
+      \ empty \n unseen unseen unseen wall empty empty agent_left \n unseen unseen\
+      \ unseen wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right box_purple empty wall unseen unseen unseen \n\
+      \ ball_blue key_blue empty wall unseen unseen unseen \n empty empty empty wall\
+      \ unseen unseen unseen \n wall wall wall wall unseen unseen unseen"
+  - direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty ball_blue key_blue empty wall \n empty empty empty empty\
+      \ empty empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty empty key_blue empty wall \n empty empty empty empty empty\
+      \ empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen wall\
+      \ empty empty empty empty empty \n unseen wall ball_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall wall\
+      \ wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen wall wall wall wall wall \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall ball_purple empty empty\
+      \ empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen\
+      \ wall wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 4
+  mission: put the purple box next to the blue key, then put the blue ball next to
+    the purple ball
+  observation:
+    direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ ball_purple empty \n unseen unseen unseen unseen wall empty agent_left \n\
+      \ unseen unseen unseen unseen wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty ball_blue key_blue empty wall \n empty empty empty empty\
+      \ empty empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "empty empty empty agent_down box_purple empty wall \n\
+      \ empty empty empty empty key_blue empty wall \n empty empty empty empty empty\
+      \ empty wall \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen wall wall wall wall wall wall \n unseen wall\
+      \ empty empty empty empty empty \n unseen wall ball_purple empty empty empty\
+      \ empty \n unseen wall empty empty empty empty agent_left \n unseen wall wall\
+      \ wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen wall wall wall wall wall \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall ball_purple empty empty\
+      \ empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen\
+      \ wall wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: put the purple box next to the blue key, then put the blue ball next
+      to the purple ball
+    observation_grid_string: "unseen unseen unseen wall wall wall wall \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall ball_purple empty\
+      \ empty \n unseen unseen unseen wall empty empty agent_left \n unseen unseen\
+      \ unseen wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"

@@ -1,0 +1,199 @@
+- action: 2
+  mission: you must fetch a blue key
+  observation:
+    direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ empty empty empty agent_left \n wall wall wall empty empty empty empty \n\
+      \ wall wall wall empty empty empty empty \n wall wall wall key_blue empty empty\
+      \ ball_grey"
+  observation_history: []
+- action: 2
+  mission: you must fetch a blue key
+  observation:
+    direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall empty empty agent_left \n wall wall wall wall empty empty empty \n wall\
+      \ wall wall wall empty empty empty \n wall wall wall wall key_blue empty empty"
+  observation_history:
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ empty empty empty agent_left \n wall wall wall empty empty empty empty \n\
+      \ wall wall wall empty empty empty empty \n wall wall wall key_blue empty empty\
+      \ ball_grey"
+- action: 2
+  mission: you must fetch a blue key
+  observation:
+    direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall empty agent_left \n wall wall wall wall wall empty empty \n wall\
+      \ wall wall wall wall empty empty \n wall wall wall wall wall key_blue empty"
+  observation_history:
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ empty empty empty agent_left \n wall wall wall empty empty empty empty \n\
+      \ wall wall wall empty empty empty empty \n wall wall wall key_blue empty empty\
+      \ ball_grey"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall empty empty agent_left \n wall wall wall wall empty empty empty \n wall\
+      \ wall wall wall empty empty empty \n wall wall wall wall key_blue empty empty"
+- action: 1
+  mission: you must fetch a blue key
+  observation:
+    direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall agent_left \n wall wall wall wall wall wall empty \n wall wall\
+      \ wall wall wall wall empty \n wall wall wall wall wall wall key_blue"
+  observation_history:
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ empty empty empty agent_left \n wall wall wall empty empty empty empty \n\
+      \ wall wall wall empty empty empty empty \n wall wall wall key_blue empty empty\
+      \ ball_grey"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall empty empty agent_left \n wall wall wall wall empty empty empty \n wall\
+      \ wall wall wall empty empty empty \n wall wall wall wall key_blue empty empty"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall empty agent_left \n wall wall wall wall wall empty empty \n wall\
+      \ wall wall wall wall empty empty \n wall wall wall wall wall key_blue empty"
+- action: 2
+  mission: you must fetch a blue key
+  observation:
+    direction: North
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ key_blue empty empty ball_grey \n wall wall wall empty empty empty empty \n\
+      \ wall wall wall empty empty empty empty \n wall wall wall agent_up empty empty\
+      \ empty"
+  observation_history:
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ empty empty empty agent_left \n wall wall wall empty empty empty empty \n\
+      \ wall wall wall empty empty empty empty \n wall wall wall key_blue empty empty\
+      \ ball_grey"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall empty empty agent_left \n wall wall wall wall empty empty empty \n wall\
+      \ wall wall wall empty empty empty \n wall wall wall wall key_blue empty empty"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall empty agent_left \n wall wall wall wall wall empty empty \n wall\
+      \ wall wall wall wall empty empty \n wall wall wall wall wall key_blue empty"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall agent_left \n wall wall wall wall wall wall empty \n wall wall\
+      \ wall wall wall wall empty \n wall wall wall wall wall wall key_blue"
+- action: 2
+  mission: you must fetch a blue key
+  observation:
+    direction: North
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall key_blue empty empty ball_grey \n wall\
+      \ wall wall empty empty empty empty \n wall wall wall agent_up empty empty empty"
+  observation_history:
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ empty empty empty agent_left \n wall wall wall empty empty empty empty \n\
+      \ wall wall wall empty empty empty empty \n wall wall wall key_blue empty empty\
+      \ ball_grey"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall empty empty agent_left \n wall wall wall wall empty empty empty \n wall\
+      \ wall wall wall empty empty empty \n wall wall wall wall key_blue empty empty"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall empty agent_left \n wall wall wall wall wall empty empty \n wall\
+      \ wall wall wall wall empty empty \n wall wall wall wall wall key_blue empty"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall agent_left \n wall wall wall wall wall wall empty \n wall wall\
+      \ wall wall wall wall empty \n wall wall wall wall wall wall key_blue"
+  - direction: North
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ key_blue empty empty ball_grey \n wall wall wall empty empty empty empty \n\
+      \ wall wall wall empty empty empty empty \n wall wall wall agent_up empty empty\
+      \ empty"
+- action: 3
+  mission: you must fetch a blue key
+  observation:
+    direction: North
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ key_blue empty empty ball_grey \n wall wall wall agent_up empty empty empty"
+  observation_history:
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall empty empty agent_left \n wall wall wall wall empty empty empty \n wall\
+      \ wall wall wall empty empty empty \n wall wall wall wall key_blue empty empty"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall empty agent_left \n wall wall wall wall wall empty empty \n wall\
+      \ wall wall wall wall empty empty \n wall wall wall wall wall key_blue empty"
+  - direction: West
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall agent_left \n wall wall wall wall wall wall empty \n wall wall\
+      \ wall wall wall wall empty \n wall wall wall wall wall wall key_blue"
+  - direction: North
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ key_blue empty empty ball_grey \n wall wall wall empty empty empty empty \n\
+      \ wall wall wall empty empty empty empty \n wall wall wall agent_up empty empty\
+      \ empty"
+  - direction: North
+    mission: you must fetch a blue key
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall key_blue empty empty ball_grey \n wall\
+      \ wall wall empty empty empty empty \n wall wall wall agent_up empty empty empty"

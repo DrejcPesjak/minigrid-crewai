@@ -1,0 +1,631 @@
+- action: 0
+  mission: go to the purple box
+  observation:
+    direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down empty wall unseen \n unseen\
+      \ unseen wall wall door_blue_closed wall unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history: []
+- action: 2
+  mission: go to the purple box
+  observation:
+    direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall unseen unseen unseen unseen \n empty empty wall unseen unseen\
+      \ unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall\
+      \ door_blue_closed wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down empty wall unseen \n unseen\
+      \ unseen wall wall door_blue_closed wall unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 1
+  mission: go to the purple box
+  observation:
+    direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n door_blue_closed\
+      \ wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down empty wall unseen \n unseen\
+      \ unseen wall wall door_blue_closed wall unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall unseen unseen unseen unseen \n empty empty wall unseen unseen\
+      \ unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall\
+      \ door_blue_closed wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 5
+  mission: go to the purple box
+  observation:
+    direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_closed wall unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down empty wall unseen \n unseen\
+      \ unseen wall wall door_blue_closed wall unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall unseen unseen unseen unseen \n empty empty wall unseen unseen\
+      \ unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall\
+      \ door_blue_closed wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n door_blue_closed\
+      \ wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the purple box
+  observation:
+    direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_open wall unseen unseen \n unseen wall empty empty wall\
+      \ unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n\
+      \ unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down empty wall unseen \n unseen\
+      \ unseen wall wall door_blue_closed wall unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall unseen unseen unseen unseen \n empty empty wall unseen unseen\
+      \ unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall\
+      \ door_blue_closed wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n door_blue_closed\
+      \ wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_closed wall unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the purple box
+  observation:
+    direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down wall unseen unseen \n\
+      \ unseen wall empty empty wall unseen unseen \n unseen wall empty empty door_red_closed\
+      \ unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down empty wall unseen \n unseen\
+      \ unseen wall wall door_blue_closed wall unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall unseen unseen unseen unseen \n empty empty wall unseen unseen\
+      \ unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall\
+      \ door_blue_closed wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n door_blue_closed\
+      \ wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_closed wall unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_open wall unseen unseen \n unseen wall empty empty wall\
+      \ unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n\
+      \ unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the purple box
+  observation:
+    direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall wall unseen unseen unseen unseen \n empty empty wall unseen unseen\
+      \ unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall\
+      \ door_blue_closed wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n door_blue_closed\
+      \ wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_closed wall unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_open wall unseen unseen \n unseen wall empty empty wall\
+      \ unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n\
+      \ unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down wall unseen unseen \n\
+      \ unseen wall empty empty wall unseen unseen \n unseen wall empty empty door_red_closed\
+      \ unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 0
+  mission: go to the purple box
+  observation:
+    direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down door_red_closed unseen\
+      \ unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n door_blue_closed\
+      \ wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_closed wall unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_open wall unseen unseen \n unseen wall empty empty wall\
+      \ unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n\
+      \ unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down wall unseen unseen \n\
+      \ unseen wall empty empty wall unseen unseen \n unseen wall empty empty door_red_closed\
+      \ unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 5
+  mission: go to the purple box
+  observation:
+    direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right door_red_closed unseen unseen unseen unseen unseen\
+      \ \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_closed wall unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_open wall unseen unseen \n unseen wall empty empty wall\
+      \ unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n\
+      \ unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down wall unseen unseen \n\
+      \ unseen wall empty empty wall unseen unseen \n unseen wall empty empty door_red_closed\
+      \ unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down door_red_closed unseen\
+      \ unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the purple box
+  observation:
+    direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall wall door_purple_closed wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n agent_right door_red_open empty empty wall unseen unseen\
+      \ \n wall wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall wall door_blue_open wall unseen unseen \n unseen wall empty empty wall\
+      \ unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n\
+      \ unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down wall unseen unseen \n\
+      \ unseen wall empty empty wall unseen unseen \n unseen wall empty empty door_red_closed\
+      \ unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down door_red_closed unseen\
+      \ unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right door_red_closed unseen unseen unseen unseen unseen\
+      \ \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the purple box
+  observation:
+    direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall door_purple_closed wall unseen unseen unseen \n wall empty empty\
+      \ wall unseen unseen unseen \n agent_right empty empty wall unseen unseen unseen\
+      \ \n wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen wall agent_down wall unseen unseen \n\
+      \ unseen wall empty empty wall unseen unseen \n unseen wall empty empty door_red_closed\
+      \ unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen\
+      \ unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen\
+      \ unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down door_red_closed unseen\
+      \ unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right door_red_closed unseen unseen unseen unseen unseen\
+      \ \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall wall door_purple_closed wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n agent_right door_red_open empty empty wall unseen unseen\
+      \ \n wall wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the purple box
+  observation:
+    direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall door_purple_closed wall unseen unseen unseen unseen \n empty empty wall\
+      \ unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen\
+      \ unseen \n wall wall wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down wall unseen unseen \n unseen\
+      \ wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen\
+      \ unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down door_red_closed unseen\
+      \ unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right door_red_closed unseen unseen unseen unseen unseen\
+      \ \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall wall door_purple_closed wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n agent_right door_red_open empty empty wall unseen unseen\
+      \ \n wall wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall door_purple_closed wall unseen unseen unseen \n wall empty empty\
+      \ wall unseen unseen unseen \n agent_right empty empty wall unseen unseen unseen\
+      \ \n wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 0
+  mission: go to the purple box
+  observation:
+    direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ door_purple_closed wall unseen unseen unseen unseen unseen \n empty wall unseen\
+      \ unseen unseen unseen unseen \n agent_right wall unseen unseen unseen unseen\
+      \ unseen \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: go to the purple box
+    observation_grid_string: "unseen wall empty agent_down door_red_closed unseen\
+      \ unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right door_red_closed unseen unseen unseen unseen unseen\
+      \ \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall wall door_purple_closed wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n agent_right door_red_open empty empty wall unseen unseen\
+      \ \n wall wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall door_purple_closed wall unseen unseen unseen \n wall empty empty\
+      \ wall unseen unseen unseen \n agent_right empty empty wall unseen unseen unseen\
+      \ \n wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall door_purple_closed wall unseen unseen unseen unseen \n empty empty wall\
+      \ unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen\
+      \ unseen \n wall wall wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: go to the purple box
+  observation:
+    direction: North
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall wall door_purple_closed wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n empty door_red_open empty agent_up wall unseen unseen"
+  observation_history:
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n agent_right door_red_closed unseen unseen unseen unseen unseen\
+      \ \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall wall door_purple_closed wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n agent_right door_red_open empty empty wall unseen unseen\
+      \ \n wall wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall door_purple_closed wall unseen unseen unseen \n wall empty empty\
+      \ wall unseen unseen unseen \n agent_right empty empty wall unseen unseen unseen\
+      \ \n wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall door_purple_closed wall unseen unseen unseen unseen \n empty empty wall\
+      \ unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen\
+      \ unseen \n wall wall wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ door_purple_closed wall unseen unseen unseen unseen unseen \n empty wall unseen\
+      \ unseen unseen unseen unseen \n agent_right wall unseen unseen unseen unseen\
+      \ unseen \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 5
+  mission: go to the purple box
+  observation:
+    direction: North
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen wall wall door_purple_closed\
+      \ wall unseen unseen \n unseen wall empty agent_up wall unseen unseen"
+  observation_history:
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall wall door_purple_closed wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n agent_right door_red_open empty empty wall unseen unseen\
+      \ \n wall wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen\
+      \ unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall door_purple_closed wall unseen unseen unseen \n wall empty empty\
+      \ wall unseen unseen unseen \n agent_right empty empty wall unseen unseen unseen\
+      \ \n wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall door_purple_closed wall unseen unseen unseen unseen \n empty empty wall\
+      \ unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen\
+      \ unseen \n wall wall wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ door_purple_closed wall unseen unseen unseen unseen unseen \n empty wall unseen\
+      \ unseen unseen unseen unseen \n agent_right wall unseen unseen unseen unseen\
+      \ unseen \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: North
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall wall door_purple_closed wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n empty door_red_open empty agent_up wall unseen unseen"
+- action: 2
+  mission: go to the purple box
+  observation:
+    direction: North
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen wall wall wall\
+      \ wall unseen unseen \n unseen wall empty empty wall unseen unseen \n unseen\
+      \ wall empty box_purple wall unseen unseen \n unseen wall wall door_purple_open\
+      \ wall unseen unseen \n unseen wall empty agent_up wall unseen unseen"
+  observation_history:
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall door_purple_closed wall unseen unseen unseen \n wall empty empty\
+      \ wall unseen unseen unseen \n agent_right empty empty wall unseen unseen unseen\
+      \ \n wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall door_purple_closed wall unseen unseen unseen unseen \n empty empty wall\
+      \ unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen\
+      \ unseen \n wall wall wall unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: East
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ door_purple_closed wall unseen unseen unseen unseen unseen \n empty wall unseen\
+      \ unseen unseen unseen unseen \n agent_right wall unseen unseen unseen unseen\
+      \ unseen \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: North
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n door_blue_open\
+      \ wall wall door_purple_closed wall unseen unseen \n empty wall empty empty\
+      \ wall unseen unseen \n empty door_red_open empty agent_up wall unseen unseen"
+  - direction: North
+    mission: go to the purple box
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen wall wall door_purple_closed\
+      \ wall unseen unseen \n unseen wall empty agent_up wall unseen unseen"

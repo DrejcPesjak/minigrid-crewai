@@ -1,0 +1,53 @@
+- action: 2
+  mission: you must fetch a grey ball
+  observation:
+    direction: East
+    mission: you must fetch a grey ball
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n empty ball_grey empty empty wall wall wall \n agent_right\
+      \ empty empty empty wall wall wall \n empty empty empty empty wall wall wall\
+      \ \n empty empty key_blue empty wall wall wall \n wall wall wall wall wall wall\
+      \ wall"
+  observation_history: []
+- action: 0
+  mission: you must fetch a grey ball
+  observation:
+    direction: East
+    mission: you must fetch a grey ball
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n ball_grey empty empty wall wall wall wall \n agent_right\
+      \ empty empty wall wall wall wall \n empty empty empty wall wall wall wall \n\
+      \ empty key_blue empty wall wall wall wall \n wall wall wall wall wall wall\
+      \ wall"
+  observation_history:
+  - direction: East
+    mission: you must fetch a grey ball
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n empty ball_grey empty empty wall wall wall \n agent_right\
+      \ empty empty empty wall wall wall \n empty empty empty empty wall wall wall\
+      \ \n empty empty key_blue empty wall wall wall \n wall wall wall wall wall wall\
+      \ wall"
+- action: 3
+  mission: you must fetch a grey ball
+  observation:
+    direction: North
+    mission: you must fetch a grey ball
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall empty\
+      \ ball_grey empty empty wall \n wall wall empty agent_up empty empty wall"
+  observation_history:
+  - direction: East
+    mission: you must fetch a grey ball
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n empty ball_grey empty empty wall wall wall \n agent_right\
+      \ empty empty empty wall wall wall \n empty empty empty empty wall wall wall\
+      \ \n empty empty key_blue empty wall wall wall \n wall wall wall wall wall wall\
+      \ wall"
+  - direction: East
+    mission: you must fetch a grey ball
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n ball_grey empty empty wall wall wall wall \n agent_right\
+      \ empty empty wall wall wall wall \n empty empty empty wall wall wall wall \n\
+      \ empty key_blue empty wall wall wall wall \n wall wall wall wall wall wall\
+      \ wall"

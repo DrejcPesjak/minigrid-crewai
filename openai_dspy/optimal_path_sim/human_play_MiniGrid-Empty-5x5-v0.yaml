@@ -1,0 +1,110 @@
+- action: 2
+  mission: get to the green goal square
+  observation:
+    direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right empty\
+      \ empty wall wall wall wall \n empty empty empty wall wall wall wall \n empty\
+      \ empty goal_green wall wall wall wall \n wall wall wall wall wall wall wall"
+  observation_history: []
+- action: 2
+  mission: get to the green goal square
+  observation:
+    direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right empty\
+      \ wall wall wall wall wall \n empty empty wall wall wall wall wall \n empty\
+      \ goal_green wall wall wall wall wall \n wall wall wall wall wall wall wall"
+  observation_history:
+  - direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right empty\
+      \ empty wall wall wall wall \n empty empty empty wall wall wall wall \n empty\
+      \ empty goal_green wall wall wall wall \n wall wall wall wall wall wall wall"
+- action: 1
+  mission: get to the green goal square
+  observation:
+    direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right wall\
+      \ wall wall wall wall wall \n empty wall wall wall wall wall wall \n goal_green\
+      \ wall wall wall wall wall wall \n wall wall wall wall wall wall wall"
+  observation_history:
+  - direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right empty\
+      \ empty wall wall wall wall \n empty empty empty wall wall wall wall \n empty\
+      \ empty goal_green wall wall wall wall \n wall wall wall wall wall wall wall"
+  - direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right empty\
+      \ wall wall wall wall wall \n empty empty wall wall wall wall wall \n empty\
+      \ goal_green wall wall wall wall wall \n wall wall wall wall wall wall wall"
+- action: 2
+  mission: get to the green goal square
+  observation:
+    direction: South
+    mission: get to the green goal square
+    observation_grid_string: "wall empty empty agent_down wall wall wall \n wall empty\
+      \ empty empty wall wall wall \n wall empty empty goal_green wall wall wall \n\
+      \ wall wall wall wall wall wall wall \n wall wall wall wall wall wall wall \n\
+      \ wall wall wall wall wall wall wall \n wall wall wall wall wall wall wall"
+  observation_history:
+  - direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right empty\
+      \ empty wall wall wall wall \n empty empty empty wall wall wall wall \n empty\
+      \ empty goal_green wall wall wall wall \n wall wall wall wall wall wall wall"
+  - direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right empty\
+      \ wall wall wall wall wall \n empty empty wall wall wall wall wall \n empty\
+      \ goal_green wall wall wall wall wall \n wall wall wall wall wall wall wall"
+  - direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right wall\
+      \ wall wall wall wall wall \n empty wall wall wall wall wall wall \n goal_green\
+      \ wall wall wall wall wall wall \n wall wall wall wall wall wall wall"
+- action: 2
+  mission: get to the green goal square
+  observation:
+    direction: South
+    mission: get to the green goal square
+    observation_grid_string: "wall empty empty agent_down wall wall wall \n wall empty\
+      \ empty goal_green wall wall wall \n wall wall wall wall wall wall wall \n wall\
+      \ wall wall wall wall wall wall \n wall wall wall wall wall wall wall \n wall\
+      \ wall wall wall wall wall wall \n wall wall wall wall wall wall wall"
+  observation_history:
+  - direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right empty\
+      \ empty wall wall wall wall \n empty empty empty wall wall wall wall \n empty\
+      \ empty goal_green wall wall wall wall \n wall wall wall wall wall wall wall"
+  - direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right empty\
+      \ wall wall wall wall wall \n empty empty wall wall wall wall wall \n empty\
+      \ goal_green wall wall wall wall wall \n wall wall wall wall wall wall wall"
+  - direction: East
+    mission: get to the green goal square
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n agent_right wall\
+      \ wall wall wall wall wall \n empty wall wall wall wall wall wall \n goal_green\
+      \ wall wall wall wall wall wall \n wall wall wall wall wall wall wall"
+  - direction: South
+    mission: get to the green goal square
+    observation_grid_string: "wall empty empty agent_down wall wall wall \n wall empty\
+      \ empty empty wall wall wall \n wall empty empty goal_green wall wall wall \n\
+      \ wall wall wall wall wall wall wall \n wall wall wall wall wall wall wall \n\
+      \ wall wall wall wall wall wall wall \n wall wall wall wall wall wall wall"

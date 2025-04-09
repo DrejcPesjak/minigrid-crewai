@@ -1,0 +1,40 @@
+{
+  "predict": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Generate a plan with reasoning and a valid action for the current state.\n System Message: You are an intelligent agent designed to play Minigrid games. \nNavigate through the Minigrid environment efficiently by taking optimal actions to complete objectives. \nMake decisions based on the dynamic 7x7 observation grid relative to your position and orientation.\n \n Task Message: Play the Minigrid environment by taking optimal actions based on observations.\n\nObservation Grid:\n- A 7x7 grid dynamically generated relative to your position and orientation.\n- Your position is marked as \"agent_X\", where X is your orientation with respect to current observation grid.\n- The direction is according to the global map.\n- The grid uses the format <object>_<color>_<state>.\n- Tiles labeled unseen are outside your visible range.\n- And \"lava\" tiles will kill you if you step on them.\n\nActions:\n- 0: Turn left\n- 1: Turn right\n- 2: Move forward\n- 3: Pickup object\n- 4: Drop object\n- 5: Toggle (e.g., open doors)\n- 6: Done (e.g., finish the game)\n\nRules:\n- Use only valid actions (0-6).\n- PICKUP (3) works only if the target object is directly in front of you.\n- TOGGLE (5) works only for interactable objects (e.g., doors).\n\n\n    ",
+      "fields": [
+        {
+          "prefix": "Mission:",
+          "description": "Current mission or goal"
+        },
+        {
+          "prefix": "Observation:",
+          "description": "Readable description of the current observation"
+        },
+        {
+          "prefix": "Observation History:",
+          "description": "Recent observations for context"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Chain-of-thought reasoning for the decision"
+        },
+        {
+          "prefix": "Action:",
+          "description": "The selected action number (0-6)"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "2.6.16",
+      "cloudpickle": "3.1"
+    }
+  }
+}

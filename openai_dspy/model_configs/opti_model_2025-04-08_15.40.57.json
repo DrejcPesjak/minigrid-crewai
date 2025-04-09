@@ -1,0 +1,447 @@
+{
+  "predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "mission": "go to the green box",
+        "observation": {
+          "direction": "North",
+          "mission": "go to the green box",
+          "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall unseen unseen \n empty empty empty empty wall unseen unseen \n empty empty box_blue empty wall unseen unseen \n empty empty empty agent_up wall unseen unseen"
+        },
+        "observation_history": [],
+        "reasoning": "Since there is no previous observation to build upon, we can start from scratch. The current observation shows that the agent is facing North and sees an empty box in front of it. A valid action would be to move towards the box.",
+        "action": 0
+      },
+      {
+        "augmented": true,
+        "mission": "go to the blue key",
+        "observation": {
+          "direction": "North",
+          "mission": "go to the blue key",
+          "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall wall unseen \n wall empty empty empty key_blue wall unseen \n wall empty key_yellow empty box_yellow wall unseen \n wall empty box_purple agent_up empty wall unseen"
+        },
+        "observation_history": [
+          {
+            "direction": "West",
+            "mission": "go to the blue key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen wall wall wall wall \n unseen unseen unseen wall empty empty agent_left \n unseen unseen unseen wall empty box_purple empty \n unseen unseen unseen wall empty key_yellow empty \n unseen unseen unseen wall empty empty empty"
+          },
+          {
+            "direction": "North",
+            "mission": "go to the blue key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall wall unseen \n wall empty empty empty key_blue wall unseen \n wall empty key_yellow empty box_yellow wall unseen \n wall empty box_purple empty empty wall unseen \n wall empty empty agent_up empty wall unseen"
+          }
+        ],
+        "reasoning": "Since we are currently facing the blue key, our next action should be to move forward to pick it up.",
+        "action": 2
+      },
+      {
+        "augmented": true,
+        "mission": "go to the blue key",
+        "observation": {
+          "direction": "North",
+          "mission": "go to the blue key",
+          "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall wall unseen \n wall empty empty agent_up key_blue wall unseen"
+        },
+        "observation_history": [
+          {
+            "direction": "West",
+            "mission": "go to the blue key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen wall wall wall wall \n unseen unseen unseen wall empty empty agent_left \n unseen unseen unseen wall empty box_purple empty \n unseen unseen unseen wall empty key_yellow empty \n unseen unseen unseen wall empty empty empty"
+          },
+          {
+            "direction": "North",
+            "mission": "go to the blue key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall wall unseen \n wall empty empty empty key_blue wall unseen \n wall empty key_yellow empty box_yellow wall unseen \n wall empty box_purple empty empty wall unseen \n wall empty empty agent_up empty wall unseen"
+          },
+          {
+            "direction": "North",
+            "mission": "go to the blue key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall wall unseen \n wall empty empty empty key_blue wall unseen \n wall empty key_yellow empty box_yellow wall unseen \n wall empty box_purple agent_up empty wall unseen"
+          },
+          {
+            "direction": "North",
+            "mission": "go to the blue key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall wall unseen \n wall empty empty empty key_blue wall unseen \n wall empty key_yellow agent_up box_yellow wall unseen"
+          }
+        ],
+        "reasoning": "The agent needs to move up to reach the blue key. The current observation shows that the key is directly above the agent, making it the most efficient action.",
+        "action": 1
+      },
+      {
+        "augmented": true,
+        "mission": "go to the blue key",
+        "observation": {
+          "direction": "West",
+          "mission": "go to the blue key",
+          "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen wall wall wall wall \n unseen unseen unseen wall empty empty agent_left \n unseen unseen unseen wall empty box_purple empty \n unseen unseen unseen wall empty key_yellow empty \n unseen unseen unseen wall empty empty empty"
+        },
+        "observation_history": [],
+        "reasoning": "Since there is no previous observation to build upon, we can only rely on the current observation. The agent is facing West and sees the blue key directly in front of it. Therefore, the most logical action would be to move forward.",
+        "action": 1
+      },
+      {
+        "mission": "go to a purple key",
+        "observation": {
+          "direction": "East",
+          "mission": "go to a purple key",
+          "observation_grid_string": "wall wall wall wall wall wall wall \n empty wall empty empty empty empty empty \n empty wall empty empty empty empty empty \n agent_right door_purple_open empty empty empty empty empty \n empty wall empty empty key_green empty empty \n empty wall empty empty empty empty empty \n empty wall empty empty empty empty empty"
+        },
+        "observation_history": [
+          {
+            "direction": "East",
+            "mission": "go to a purple key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall wall wall \n empty wall empty empty empty empty empty \n agent_right wall empty empty empty empty empty \n empty door_purple_open empty empty empty empty empty \n empty wall empty empty key_green empty empty \n empty wall empty empty empty empty empty"
+          },
+          {
+            "direction": "South",
+            "mission": "go to a purple key",
+            "observation_grid_string": "empty empty empty agent_down wall unseen unseen \n box_red empty empty empty door_purple_open empty empty \n ball_blue empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n wall wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall empty empty"
+          },
+          {
+            "direction": "West",
+            "mission": "go to a purple key",
+            "observation_grid_string": "wall empty empty empty empty empty empty \n wall empty key_blue ball_blue empty empty empty \n wall empty ball_green box_red empty empty empty \n wall empty empty empty empty empty agent_left \n wall empty empty empty empty empty empty \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "South",
+            "mission": "go to a purple key",
+            "observation_grid_string": "empty empty empty agent_down wall unseen unseen \n box_red empty empty empty door_purple_open empty empty \n ball_blue empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n wall wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall empty empty"
+          },
+          {
+            "direction": "South",
+            "mission": "go to a purple key",
+            "observation_grid_string": "box_red empty empty agent_down door_purple_open empty empty \n ball_blue empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n wall wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall empty empty"
+          }
+        ],
+        "action": 2
+      },
+      {
+        "mission": "go to the purple box",
+        "observation": {
+          "direction": "East",
+          "mission": "go to the purple box",
+          "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n door_blue_closed wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+        },
+        "observation_history": [
+          {
+            "direction": "South",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen wall agent_down empty wall unseen \n unseen unseen wall wall door_blue_closed wall unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall door_blue_closed wall unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          }
+        ],
+        "action": 1
+      },
+      {
+        "mission": "go to the grey key",
+        "observation": {
+          "direction": "East",
+          "mission": "go to the grey key",
+          "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen \n key_grey wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen"
+        },
+        "observation_history": [
+          {
+            "direction": "North",
+            "mission": "go to the grey key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen wall wall wall wall wall \n unseen unseen wall agent_up empty empty empty"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the grey key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty empty empty empty wall unseen unseen \n empty empty empty key_grey wall unseen unseen \n box_yellow empty empty empty wall unseen unseen"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the grey key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen unseen unseen \n agent_right empty empty wall unseen unseen unseen \n empty empty empty wall unseen unseen unseen \n empty empty key_grey wall unseen unseen unseen \n empty empty empty wall unseen unseen unseen"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the grey key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen unseen \n empty key_grey wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen unseen"
+          }
+        ],
+        "action": 1
+      },
+      {
+        "mission": "go to the red ball",
+        "observation": {
+          "direction": "West",
+          "mission": "go to the red ball",
+          "observation_grid_string": "wall empty empty empty empty empty empty \n wall empty empty empty empty empty empty \n wall empty empty empty empty empty empty \n wall empty empty empty empty empty agent_left \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+        },
+        "observation_history": [],
+        "action": 0
+      },
+      {
+        "mission": "go to a purple key",
+        "observation": {
+          "direction": "East",
+          "mission": "go to a purple key",
+          "observation_grid_string": "empty empty empty empty empty empty wall \n empty ball_yellow empty empty empty empty wall \n empty empty empty empty empty empty wall \n agent_right empty empty empty empty empty wall \n empty empty empty empty empty empty wall \n empty empty empty empty empty empty wall \n wall door_red_open wall wall wall wall wall"
+        },
+        "observation_history": [
+          {
+            "direction": "South",
+            "mission": "go to a purple key",
+            "observation_grid_string": "empty empty empty agent_down wall unseen unseen \n key_green empty empty ball_purple door_green_open empty empty \n empty empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n wall wall wall wall wall wall door_red_open \n unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall key_purple empty"
+          },
+          {
+            "direction": "South",
+            "mission": "go to a purple key",
+            "observation_grid_string": "empty empty empty agent_down wall unseen unseen \n key_green empty empty empty door_green_open empty empty \n empty empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n wall wall wall wall wall wall door_red_open \n unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall key_purple empty"
+          },
+          {
+            "direction": "South",
+            "mission": "go to a purple key",
+            "observation_grid_string": "key_green empty empty agent_down door_green_open empty empty \n empty empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n wall wall wall wall wall wall door_red_open \n unseen unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall key_purple empty \n unseen unseen unseen unseen wall empty empty"
+          },
+          {
+            "direction": "East",
+            "mission": "go to a purple key",
+            "observation_grid_string": "empty wall empty empty empty empty empty \n empty wall empty ball_yellow empty empty empty \n empty wall empty empty empty empty empty \n agent_right door_green_open empty empty empty empty empty \n empty wall empty empty empty empty empty \n empty wall empty empty empty empty empty \n wall wall wall door_red_open wall wall wall"
+          },
+          {
+            "direction": "East",
+            "mission": "go to a purple key",
+            "observation_grid_string": "unseen empty empty empty empty empty empty \n unseen empty ball_yellow empty empty empty empty \n wall empty empty empty empty empty empty \n agent_right empty empty empty empty empty empty \n wall empty empty empty empty empty empty \n unseen empty empty empty empty empty empty \n unseen wall door_red_open wall wall wall wall"
+          }
+        ],
+        "action": 2
+      },
+      {
+        "mission": "go to the purple box",
+        "observation": {
+          "direction": "North",
+          "mission": "go to the purple box",
+          "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen \n door_blue_open wall wall door_purple_closed wall unseen unseen \n empty wall empty empty wall unseen unseen \n empty door_red_open empty agent_up wall unseen unseen"
+        },
+        "observation_history": [
+          {
+            "direction": "East",
+            "mission": "go to the purple box",
+            "observation_grid_string": "empty wall unseen unseen unseen unseen unseen \n door_blue_open wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen \n agent_right door_red_closed unseen unseen unseen unseen unseen \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the purple box",
+            "observation_grid_string": "empty wall unseen unseen unseen unseen unseen \n door_blue_open wall wall door_purple_closed wall unseen unseen \n empty wall empty empty wall unseen unseen \n agent_right door_red_open empty empty wall unseen unseen \n wall wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen wall door_purple_closed wall unseen unseen unseen \n wall empty empty wall unseen unseen unseen \n agent_right empty empty wall unseen unseen unseen \n wall wall wall wall unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall door_purple_closed wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall wall wall unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n door_purple_closed wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n wall wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          }
+        ],
+        "action": 2
+      },
+      {
+        "mission": "go to the green box",
+        "observation": {
+          "direction": "West",
+          "mission": "go to the green box",
+          "observation_grid_string": "unseen unseen unseen wall empty empty empty \n unseen unseen unseen wall empty empty ball_blue \n unseen unseen unseen wall empty box_green empty \n unseen unseen unseen wall empty empty agent_left \n unseen unseen unseen wall key_grey key_red empty \n unseen unseen unseen wall empty empty empty \n unseen unseen unseen wall wall wall wall"
+        },
+        "observation_history": [
+          {
+            "direction": "North",
+            "mission": "go to the green box",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall unseen unseen \n empty empty empty empty wall unseen unseen \n empty empty box_blue empty wall unseen unseen \n empty empty empty agent_up wall unseen unseen"
+          },
+          {
+            "direction": "West",
+            "mission": "go to the green box",
+            "observation_grid_string": "wall empty empty empty ball_grey empty ball_blue \n wall empty empty ball_blue empty empty key_blue \n wall empty box_green empty empty empty empty \n wall empty empty empty empty empty agent_left \n wall key_grey key_red empty empty box_blue empty \n wall empty empty empty empty empty empty \n wall wall wall wall wall wall wall"
+          },
+          {
+            "direction": "West",
+            "mission": "go to the green box",
+            "observation_grid_string": "unseen wall empty empty empty ball_grey empty \n unseen wall empty empty ball_blue empty empty \n unseen wall empty box_green empty empty empty \n unseen wall empty empty empty empty agent_left \n unseen wall key_grey key_red empty empty box_blue \n unseen wall empty empty empty empty empty \n unseen wall wall wall wall wall wall"
+          },
+          {
+            "direction": "West",
+            "mission": "go to the green box",
+            "observation_grid_string": "unseen unseen wall empty empty empty ball_grey \n unseen unseen wall empty empty ball_blue empty \n unseen unseen wall empty box_green empty empty \n unseen unseen wall empty empty empty agent_left \n unseen unseen wall key_grey key_red empty empty \n unseen unseen wall empty empty empty empty \n unseen unseen wall wall wall wall wall"
+          }
+        ],
+        "action": 2
+      },
+      {
+        "mission": "go to the purple box",
+        "observation": {
+          "direction": "East",
+          "mission": "go to the purple box",
+          "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall door_blue_closed wall unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+        },
+        "observation_history": [
+          {
+            "direction": "South",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen wall agent_down empty wall unseen \n unseen unseen wall wall door_blue_closed wall unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          }
+        ],
+        "action": 2
+      },
+      {
+        "mission": "go to the grey key",
+        "observation": {
+          "direction": "North",
+          "mission": "go to the grey key",
+          "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall unseen unseen \n empty key_grey empty agent_up wall unseen unseen"
+        },
+        "observation_history": [
+          {
+            "direction": "North",
+            "mission": "go to the grey key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall unseen unseen \n empty key_grey empty empty wall unseen unseen \n empty empty empty agent_up wall unseen unseen"
+          }
+        ],
+        "action": 0
+      },
+      {
+        "mission": "go to the purple box",
+        "observation": {
+          "direction": "South",
+          "mission": "go to the purple box",
+          "observation_grid_string": "unseen wall empty agent_down door_red_closed unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+        },
+        "observation_history": [
+          {
+            "direction": "East",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n door_blue_closed wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "South",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen wall empty agent_down wall unseen unseen \n unseen wall wall door_blue_closed wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "South",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen wall empty agent_down wall unseen unseen \n unseen wall wall door_blue_open wall unseen unseen \n unseen wall empty empty wall unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "South",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen wall agent_down wall unseen unseen \n unseen wall empty empty wall unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "South",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen wall empty agent_down wall unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          }
+        ],
+        "action": 0
+      },
+      {
+        "mission": "go to the purple box",
+        "observation": {
+          "direction": "South",
+          "mission": "go to the purple box",
+          "observation_grid_string": "unseen wall empty agent_down wall unseen unseen \n unseen wall wall door_blue_open wall unseen unseen \n unseen wall empty empty wall unseen unseen \n unseen wall empty empty door_red_closed unseen unseen \n unseen wall wall wall wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+        },
+        "observation_history": [
+          {
+            "direction": "South",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen wall agent_down empty wall unseen \n unseen unseen wall wall door_blue_closed wall unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen unseen \n agent_right empty wall unseen unseen unseen unseen \n wall door_blue_closed wall unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "East",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen unseen \n agent_right wall unseen unseen unseen unseen unseen \n door_blue_closed wall unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          },
+          {
+            "direction": "South",
+            "mission": "go to the purple box",
+            "observation_grid_string": "unseen wall empty agent_down wall unseen unseen \n unseen wall wall door_blue_closed wall unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen"
+          }
+        ],
+        "action": 2
+      },
+      {
+        "mission": "go to a purple key",
+        "observation": {
+          "direction": "South",
+          "mission": "go to a purple key",
+          "observation_grid_string": "empty empty empty agent_down wall unseen unseen \n box_red empty empty empty door_purple_open empty empty \n ball_blue empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n wall wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall empty empty"
+        },
+        "observation_history": [
+          {
+            "direction": "East",
+            "mission": "go to a purple key",
+            "observation_grid_string": "unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall wall wall \n empty wall empty empty empty empty empty \n agent_right wall empty empty empty empty empty \n empty door_purple_open empty empty empty empty empty \n empty wall empty empty key_green empty empty \n empty wall empty empty empty empty empty"
+          },
+          {
+            "direction": "South",
+            "mission": "go to a purple key",
+            "observation_grid_string": "empty empty empty agent_down wall unseen unseen \n box_red empty empty empty door_purple_open empty empty \n ball_blue empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n empty empty empty empty wall empty empty \n wall wall wall wall wall door_red_open wall \n unseen unseen unseen unseen wall empty empty"
+          },
+          {
+            "direction": "West",
+            "mission": "go to a purple key",
+            "observation_grid_string": "wall empty empty empty empty empty empty \n wall empty key_blue ball_blue empty empty empty \n wall empty ball_green box_red empty empty empty \n wall empty empty empty empty empty agent_left \n wall empty empty empty empty empty empty \n wall wall wall wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+          }
+        ],
+        "action": 2
+      }
+    ],
+    "signature": {
+      "instructions": "Generate a plan with reasoning and a valid action for the current state.\n System Message: You are an intelligent agent designed to play Minigrid games, but your spaceship has just landed on a hostile alien planet. The only way to escape is to navigate through the treacherous terrain and collect three ancient artifacts within 30 minutes or face certain doom!\nNavigate through the 7x7 observation grid relative to your position and orientation to reach the artifacts.\n Make decisions based on the dynamic observation grid, taking into account the position of lava pits, alien creatures, and other obstacles that can hinder your progress.\n\nObservation Grid:\n- A 7x7 grid dynamically generated relative to your position and orientation, with some tiles labeled as \"lava\" which will kill you if stepped on.\n- Your position is marked as \"agent_X\", where X is your orientation with respect to the current observation grid.\n- The direction is according to the global map.\n- The grid uses the format <object>_<color>_<state>.\n- Tiles labeled \"unseen\" are outside your visible range.\n\nActions:\n- 0: Turn left\n- 1: Turn right\n- 2: Move forward\n- 3: Pickup object\n- 4: Drop object\n- 5: Toggle (e.g., open doors)\n- 6: Done (e.g., finish the game)\n\nRules:\n- Use only valid actions (0-6).\n- PICKUP (3) works only if the target object is directly in front of you.\n- TOGGLE (5) works only for interactable objects (e.g., doors).",
+      "fields": [
+        {
+          "prefix": "Mission:",
+          "description": "Current mission or goal"
+        },
+        {
+          "prefix": "Observation:",
+          "description": "Readable description of the current observation"
+        },
+        {
+          "prefix": "Observation History:",
+          "description": "Recent observations for context"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Chain-of-thought reasoning for the decision"
+        },
+        {
+          "prefix": "Action:",
+          "description": "The selected action number (0-6)"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "2.6.16",
+      "cloudpickle": "3.1"
+    }
+  }
+}

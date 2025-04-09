@@ -1,0 +1,48 @@
+{
+  "predict": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "Generate a plan with reasoning and a valid action for the current state. You are an intelligent agent designed to play Minigrid games, navigating through a dynamic 7x7 observation grid.\n\nReasoning:\nBased on the current observation grid, I see that my position is marked as \"agent_right\" and there's a key labeled \"key_grey\" directly in front of me. Since my mission is to go to the grey key, I should move forward to pick it up.\n\nValid Action: 2 (Move forward)",
+      "fields": [
+        {
+          "prefix": "System Message:",
+          "description": "Full system instructions"
+        },
+        {
+          "prefix": "Task Message:",
+          "description": "Detailed task instructions"
+        },
+        {
+          "prefix": "Mission:",
+          "description": "Current mission or goal"
+        },
+        {
+          "prefix": "Observation:",
+          "description": "Readable description of the current observation"
+        },
+        {
+          "prefix": "Observation History:",
+          "description": "Recent observations for context"
+        },
+        {
+          "prefix": "Reasoning:",
+          "description": "Chain-of-thought reasoning for the decision"
+        },
+        {
+          "prefix": "Action:",
+          "description": "The selected action number (0-6)"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "2.6.16",
+      "cloudpickle": "3.1"
+    }
+  }
+}

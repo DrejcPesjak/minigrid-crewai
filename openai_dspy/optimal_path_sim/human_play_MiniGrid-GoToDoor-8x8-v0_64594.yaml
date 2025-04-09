@@ -1,0 +1,86 @@
+- action: 1
+  mission: go to the green door
+  observation:
+    direction: North
+    mission: go to the green door
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall door_red_closed \n wall wall wall empty empty empty empty \n\
+      \ wall wall door_grey_closed empty empty empty empty \n wall wall wall agent_up\
+      \ empty empty empty"
+  observation_history: []
+- action: 2
+  mission: go to the green door
+  observation:
+    direction: East
+    mission: go to the green door
+    observation_grid_string: "wall wall wall door_red_closed wall wall wall \n empty\
+      \ empty empty empty empty empty wall \n empty empty empty empty empty empty\
+      \ door_blue_closed \n agent_right empty empty empty empty empty wall \n wall\
+      \ door_green_closed wall wall wall wall wall \n empty empty empty empty empty\
+      \ empty empty \n empty empty empty empty empty empty empty"
+  observation_history:
+  - direction: North
+    mission: go to the green door
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall door_red_closed \n wall wall wall empty empty empty empty \n\
+      \ wall wall door_grey_closed empty empty empty empty \n wall wall wall agent_up\
+      \ empty empty empty"
+- action: 1
+  mission: go to the green door
+  observation:
+    direction: East
+    mission: go to the green door
+    observation_grid_string: "wall wall door_red_closed wall wall wall wall \n empty\
+      \ empty empty empty empty wall wall \n empty empty empty empty empty door_blue_closed\
+      \ wall \n agent_right empty empty empty empty wall wall \n door_green_closed\
+      \ wall wall wall wall wall wall \n empty empty empty empty empty empty wall\
+      \ \n empty empty empty empty empty empty wall"
+  observation_history:
+  - direction: North
+    mission: go to the green door
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall door_red_closed \n wall wall wall empty empty empty empty \n\
+      \ wall wall door_grey_closed empty empty empty empty \n wall wall wall agent_up\
+      \ empty empty empty"
+  - direction: East
+    mission: go to the green door
+    observation_grid_string: "wall wall wall door_red_closed wall wall wall \n empty\
+      \ empty empty empty empty empty wall \n empty empty empty empty empty empty\
+      \ door_blue_closed \n agent_right empty empty empty empty empty wall \n wall\
+      \ door_green_closed wall wall wall wall wall \n empty empty empty empty empty\
+      \ empty empty \n empty empty empty empty empty empty empty"
+- action: 5
+  mission: go to the green door
+  observation:
+    direction: South
+    mission: go to the green door
+    observation_grid_string: "wall wall empty agent_down empty empty empty \n wall\
+      \ wall wall door_green_closed wall wall wall \n wall empty empty empty empty\
+      \ empty empty \n wall empty empty empty empty empty empty \n wall empty empty\
+      \ empty empty empty empty \n wall wall wall wall wall wall wall \n wall wall\
+      \ wall wall wall wall wall"
+  observation_history:
+  - direction: North
+    mission: go to the green door
+    observation_grid_string: "wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall wall \n wall wall wall wall wall wall wall \n wall wall wall\
+      \ wall wall wall door_red_closed \n wall wall wall empty empty empty empty \n\
+      \ wall wall door_grey_closed empty empty empty empty \n wall wall wall agent_up\
+      \ empty empty empty"
+  - direction: East
+    mission: go to the green door
+    observation_grid_string: "wall wall wall door_red_closed wall wall wall \n empty\
+      \ empty empty empty empty empty wall \n empty empty empty empty empty empty\
+      \ door_blue_closed \n agent_right empty empty empty empty empty wall \n wall\
+      \ door_green_closed wall wall wall wall wall \n empty empty empty empty empty\
+      \ empty empty \n empty empty empty empty empty empty empty"
+  - direction: East
+    mission: go to the green door
+    observation_grid_string: "wall wall door_red_closed wall wall wall wall \n empty\
+      \ empty empty empty empty wall wall \n empty empty empty empty empty door_blue_closed\
+      \ wall \n agent_right empty empty empty empty wall wall \n door_green_closed\
+      \ wall wall wall wall wall wall \n empty empty empty empty empty empty wall\
+      \ \n empty empty empty empty empty empty wall"

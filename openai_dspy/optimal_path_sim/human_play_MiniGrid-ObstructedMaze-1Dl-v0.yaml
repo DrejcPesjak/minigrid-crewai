@@ -1,0 +1,643 @@
+- action: 1
+  mission: pick up the blue ball
+  observation:
+    direction: South
+    mission: pick up the blue ball
+    observation_grid_string: "key_green empty empty agent_down wall unseen unseen\
+      \ \n empty empty empty empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history: []
+- action: 2
+  mission: pick up the blue ball
+  observation:
+    direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen wall wall wall wall wall \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall key_green empty empty agent_left \n unseen unseen wall\
+      \ empty empty empty empty \n unseen unseen wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: pick up the blue ball
+    observation_grid_string: "key_green empty empty agent_down wall unseen unseen\
+      \ \n empty empty empty empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: pick up the blue ball
+  observation:
+    direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen wall wall wall wall \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall key_green empty agent_left \n unseen unseen unseen\
+      \ wall empty empty empty \n unseen unseen unseen wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: pick up the blue ball
+    observation_grid_string: "key_green empty empty agent_down wall unseen unseen\
+      \ \n empty empty empty empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen wall wall wall wall wall \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall key_green empty empty agent_left \n unseen unseen wall\
+      \ empty empty empty empty \n unseen unseen wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+- action: 3
+  mission: pick up the blue ball
+  observation:
+    direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall key_green agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: pick up the blue ball
+    observation_grid_string: "key_green empty empty agent_down wall unseen unseen\
+      \ \n empty empty empty empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen wall wall wall wall wall \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall key_green empty empty agent_left \n unseen unseen wall\
+      \ empty empty empty empty \n unseen unseen wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen wall wall wall wall \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall key_green empty agent_left \n unseen unseen unseen\
+      \ wall empty empty empty \n unseen unseen unseen wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+- action: 1
+  mission: pick up the blue ball
+  observation:
+    direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: South
+    mission: pick up the blue ball
+    observation_grid_string: "key_green empty empty agent_down wall unseen unseen\
+      \ \n empty empty empty empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen wall wall wall wall wall \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall key_green empty empty agent_left \n unseen unseen wall\
+      \ empty empty empty empty \n unseen unseen wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen wall wall wall wall \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall key_green empty agent_left \n unseen unseen unseen\
+      \ wall empty empty empty \n unseen unseen unseen wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall key_green agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 2
+  mission: pick up the blue ball
+  observation:
+    direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall wall wall wall wall wall \n unseen wall empty empty empty empty\
+      \ door_green_locked \n unseen wall empty agent_up empty empty wall"
+  observation_history:
+  - direction: South
+    mission: pick up the blue ball
+    observation_grid_string: "key_green empty empty agent_down wall unseen unseen\
+      \ \n empty empty empty empty wall unseen unseen \n empty empty empty empty wall\
+      \ unseen unseen \n wall wall wall wall wall unseen unseen \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen wall wall wall wall wall \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall key_green empty empty agent_left \n unseen unseen wall\
+      \ empty empty empty empty \n unseen unseen wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen wall wall wall wall \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall key_green empty agent_left \n unseen unseen unseen\
+      \ wall empty empty empty \n unseen unseen unseen wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall key_green agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+- action: 1
+  mission: pick up the blue ball
+  observation:
+    direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen wall wall wall\
+      \ wall wall wall \n unseen wall empty agent_up empty empty door_green_locked"
+  observation_history:
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen wall wall wall wall wall \n unseen unseen\
+      \ wall empty empty empty empty \n unseen unseen wall empty empty empty empty\
+      \ \n unseen unseen wall key_green empty empty agent_left \n unseen unseen wall\
+      \ empty empty empty empty \n unseen unseen wall wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen wall wall wall wall \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall key_green empty agent_left \n unseen unseen unseen\
+      \ wall empty empty empty \n unseen unseen unseen wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall key_green agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall wall wall wall wall wall \n unseen wall empty empty empty empty\
+      \ door_green_locked \n unseen wall empty agent_up empty empty wall"
+- action: 2
+  mission: pick up the blue ball
+  observation:
+    direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty door_green_locked unseen unseen unseen\
+      \ \n empty empty empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+  observation_history:
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen wall wall wall wall \n unseen unseen\
+      \ unseen wall empty empty empty \n unseen unseen unseen wall empty empty empty\
+      \ \n unseen unseen unseen wall key_green empty agent_left \n unseen unseen unseen\
+      \ wall empty empty empty \n unseen unseen unseen wall wall wall wall \n unseen\
+      \ unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall key_green agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall wall wall wall wall wall \n unseen wall empty empty empty empty\
+      \ door_green_locked \n unseen wall empty agent_up empty empty wall"
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen wall wall wall\
+      \ wall wall wall \n unseen wall empty agent_up empty empty door_green_locked"
+- action: 2
+  mission: pick up the blue ball
+  observation:
+    direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty door_green_locked unseen unseen\
+      \ unseen unseen \n empty empty wall unseen unseen unseen unseen \n empty empty\
+      \ wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen\
+      \ unseen"
+  observation_history:
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall key_green agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall wall wall wall wall wall \n unseen wall empty empty empty empty\
+      \ door_green_locked \n unseen wall empty agent_up empty empty wall"
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen wall wall wall\
+      \ wall wall wall \n unseen wall empty agent_up empty empty door_green_locked"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty door_green_locked unseen unseen unseen\
+      \ \n empty empty empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+- action: 5
+  mission: pick up the blue ball
+  observation:
+    direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_green_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  observation_history:
+  - direction: West
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen wall wall wall \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ empty empty \n unseen unseen unseen unseen wall empty agent_left \n unseen\
+      \ unseen unseen unseen wall empty empty \n unseen unseen unseen unseen wall\
+      \ wall wall \n unseen unseen unseen unseen unseen unseen unseen"
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall wall wall wall wall wall \n unseen wall empty empty empty empty\
+      \ door_green_locked \n unseen wall empty agent_up empty empty wall"
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen wall wall wall\
+      \ wall wall wall \n unseen wall empty agent_up empty empty door_green_locked"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty door_green_locked unseen unseen unseen\
+      \ \n empty empty empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty door_green_locked unseen unseen\
+      \ unseen unseen \n empty empty wall unseen unseen unseen unseen \n empty empty\
+      \ wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen\
+      \ unseen"
+- action: 2
+  mission: pick up the blue ball
+  observation:
+    direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right door_green_open empty empty empty empty wall \n empty\
+      \ wall empty empty empty empty wall \n empty wall ball_blue empty empty empty\
+      \ wall \n empty wall empty empty empty empty wall"
+  observation_history:
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen wall wall wall wall wall wall \n unseen wall empty empty empty empty\
+      \ door_green_locked \n unseen wall empty agent_up empty empty wall"
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen wall wall wall\
+      \ wall wall wall \n unseen wall empty agent_up empty empty door_green_locked"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty door_green_locked unseen unseen unseen\
+      \ \n empty empty empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty door_green_locked unseen unseen\
+      \ unseen unseen \n empty empty wall unseen unseen unseen unseen \n empty empty\
+      \ wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_green_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+- action: 2
+  mission: pick up the blue ball
+  observation:
+    direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n wall empty\
+      \ empty empty empty wall unseen \n unseen ball_blue empty empty empty wall unseen\
+      \ \n unseen empty empty empty empty wall unseen"
+  observation_history:
+  - direction: North
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen unseen unseen unseen\
+      \ unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n unseen wall wall wall\
+      \ wall wall wall \n unseen wall empty agent_up empty empty door_green_locked"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty door_green_locked unseen unseen unseen\
+      \ \n empty empty empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty door_green_locked unseen unseen\
+      \ unseen unseen \n empty empty wall unseen unseen unseen unseen \n empty empty\
+      \ wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_green_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right door_green_open empty empty empty empty wall \n empty\
+      \ wall empty empty empty empty wall \n empty wall ball_blue empty empty empty\
+      \ wall \n empty wall empty empty empty empty wall"
+- action: 4
+  mission: pick up the blue ball
+  observation:
+    direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n ball_blue empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen"
+  observation_history:
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall unseen\
+      \ unseen unseen \n agent_right empty empty door_green_locked unseen unseen unseen\
+      \ \n empty empty empty wall unseen unseen unseen \n empty empty empty wall unseen\
+      \ unseen unseen \n empty empty empty wall unseen unseen unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty door_green_locked unseen unseen\
+      \ unseen unseen \n empty empty wall unseen unseen unseen unseen \n empty empty\
+      \ wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_green_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right door_green_open empty empty empty empty wall \n empty\
+      \ wall empty empty empty empty wall \n empty wall ball_blue empty empty empty\
+      \ wall \n empty wall empty empty empty empty wall"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n wall empty\
+      \ empty empty empty wall unseen \n unseen ball_blue empty empty empty wall unseen\
+      \ \n unseen empty empty empty empty wall unseen"
+- action: 1
+  mission: pick up the blue ball
+  observation:
+    direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right key_green empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n ball_blue empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen"
+  observation_history:
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall unseen\
+      \ unseen unseen unseen \n agent_right empty door_green_locked unseen unseen\
+      \ unseen unseen \n empty empty wall unseen unseen unseen unseen \n empty empty\
+      \ wall unseen unseen unseen unseen \n empty empty wall unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_green_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right door_green_open empty empty empty empty wall \n empty\
+      \ wall empty empty empty empty wall \n empty wall ball_blue empty empty empty\
+      \ wall \n empty wall empty empty empty empty wall"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n wall empty\
+      \ empty empty empty wall unseen \n unseen ball_blue empty empty empty wall unseen\
+      \ \n unseen empty empty empty empty wall unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n ball_blue empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen"
+- action: 2
+  mission: pick up the blue ball
+  observation:
+    direction: South
+    mission: pick up the blue ball
+    observation_grid_string: "empty empty door_green_open agent_down key_green empty\
+      \ empty \n empty empty wall empty empty empty empty \n empty empty wall ball_blue\
+      \ empty empty empty \n empty empty wall empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall unseen unseen\
+      \ unseen unseen unseen \n agent_right door_green_locked unseen unseen unseen\
+      \ unseen unseen \n empty wall unseen unseen unseen unseen unseen \n empty wall\
+      \ unseen unseen unseen unseen unseen \n empty wall unseen unseen unseen unseen\
+      \ unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right door_green_open empty empty empty empty wall \n empty\
+      \ wall empty empty empty empty wall \n empty wall ball_blue empty empty empty\
+      \ wall \n empty wall empty empty empty empty wall"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n wall empty\
+      \ empty empty empty wall unseen \n unseen ball_blue empty empty empty wall unseen\
+      \ \n unseen empty empty empty empty wall unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n ball_blue empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right key_green empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n ball_blue empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen"
+- action: 3
+  mission: pick up the blue ball
+  observation:
+    direction: South
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen wall agent_down empty empty empty \n unseen\
+      \ unseen wall ball_blue empty empty empty \n unseen unseen wall empty empty\
+      \ empty empty \n unseen unseen wall wall wall wall wall \n unseen unseen unseen\
+      \ unseen unseen unseen unseen \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
+  observation_history:
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall wall \n agent_right door_green_open empty empty empty empty wall \n empty\
+      \ wall empty empty empty empty wall \n empty wall ball_blue empty empty empty\
+      \ wall \n empty wall empty empty empty empty wall"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ wall unseen \n agent_right empty empty empty empty wall unseen \n wall empty\
+      \ empty empty empty wall unseen \n unseen ball_blue empty empty empty wall unseen\
+      \ \n unseen empty empty empty empty wall unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right empty empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n ball_blue empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen"
+  - direction: East
+    mission: pick up the blue ball
+    observation_grid_string: "unseen unseen unseen unseen unseen unseen unseen \n\
+      \ unseen unseen unseen unseen unseen unseen unseen \n wall wall wall wall wall\
+      \ unseen unseen \n agent_right key_green empty empty wall unseen unseen \n empty\
+      \ empty empty empty wall unseen unseen \n ball_blue empty empty empty wall unseen\
+      \ unseen \n empty empty empty empty wall unseen unseen"
+  - direction: South
+    mission: pick up the blue ball
+    observation_grid_string: "empty empty door_green_open agent_down key_green empty\
+      \ empty \n empty empty wall empty empty empty empty \n empty empty wall ball_blue\
+      \ empty empty empty \n empty empty wall empty empty empty empty \n wall wall\
+      \ wall wall wall wall wall \n unseen unseen unseen unseen unseen unseen unseen\
+      \ \n unseen unseen unseen unseen unseen unseen unseen"
