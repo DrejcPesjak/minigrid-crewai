@@ -1,0 +1,144 @@
+2025-04-09 17:29:20,586 - INFO - === SESSION START ===
+2025-04-09 17:29:20,586 - INFO - Task Name: cupcake
+2025-04-09 17:29:20,586 - INFO - Task Description: Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+2025-04-09 17:29:20,586 - INFO - Model Name: gpt-4o
+2025-04-09 17:29:20,586 - INFO - Datetime Stamp: 20250409_172920
+2025-04-09 17:29:20,586 - INFO - Sending initial prompt to LLM:
+2025-04-09 17:29:20,586 - INFO - You are an expert in PDDL planning. Given the following task description:
+
+Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+
+Please generate a JSON object with exactly two keys: 'domain' and 'problem'. The value of 'domain' should be a complete PDDL DOMAIN file, and the value of 'problem' should be a complete PDDL PROBLEM file. Ensure that predicates and variable names match between the two files.
+2025-04-09 17:29:29,225 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 17:29:29,249 - INFO - Received response from LLM:
+2025-04-09 17:29:29,249 - INFO - {"domain":"(define (domain cupcake_world)\n  (:requirements :strips)\n  (:predicates\n    (gripper_empty)\n    (on_cupcake_table)\n    (on_cupcake_plate)\n    (holding_cupcake)\n  )\n  \n  (:action pick_up_cupcake\n    :precondition (and (gripper_empty) (on_cupcake_table))\n    :effect (and (holding_cupcake) (not (on_cupcake_table)) (not (gripper_empty)))\n  )\n\n  (:action place_cupcake_on_plate\n    :precondition (holding_cupcake)\n    :effect (and (on_cupcake_plate) (gripper_empty) (not (holding_cupcake)))\n  )\n)","problem":"(define (problem cupcake_on_plate)\n  (:domain cupcake_world)\n\n  (:objects\n    table\n    cupcake\n    plate\n  )\n  \n  (:init\n    (gripper_empty)\n    (on_cupcake_table)\n  )\n\n  (:goal\n    (and (on_cupcake_plate))\n  )\n)"}
+2025-04-09 17:29:29,249 - INFO - PDDL files saved.
+2025-04-09 17:29:29,489 - INFO - Parsing PDDL files...
+2025-04-09 17:29:29,494 - ERROR - Error during planning/validation:
+2025-04-09 17:29:29,494 - ERROR - Expected ':parameters', found ':'  (at char 198), (line:11, col:5)
+2025-04-09 17:29:29,494 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:29:29,494 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected ':parameters', found ':'  (at char 198), (line:11, col:5)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(define (domain cupcake_world)
+  (:requirements :strips)
+  (:predicates
+    (gripper_empty)
+    (on_cupcake_table)
+    (on_cupcake_plate)
+    (holding_cupcake)
+  )
+  
+  (:action pick_up_cupcake
+    :precondition (and (gripper_empty) (on_cupcake_table))
+    :effect (and (holding_cupcake) (not (on_cupcake_table)) (not (gripper_empty)))
+  )
+
+  (:action place_cupcake_on_plate
+    :precondition (holding_cupcake)
+    :effect (and (on_cupcake_plate) (gripper_empty) (not (holding_cupcake)))
+  )
+)
+
+PROBLEM file:
+(define (problem cupcake_on_plate)
+  (:domain cupcake_world)
+
+  (:objects
+    table
+    cupcake
+    plate
+  )
+  
+  (:init
+    (gripper_empty)
+    (on_cupcake_table)
+  )
+
+  (:goal
+    (and (on_cupcake_plate))
+  )
+)
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 17:29:33,376 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 17:29:33,380 - INFO - Received response from LLM:
+2025-04-09 17:29:33,380 - INFO - {"domain":"(define (domain cupcake_world)\n  (:requirements :strips)\n  (:predicates\n    (gripper_empty)\n    (on_cupcake_table)\n    (on_cupcake_plate)\n    (holding_cupcake)\n  )\n  \n  (:action pick_up_cupcake\n    :parameters ()\n    :precondition (and (gripper_empty) (on_cupcake_table))\n    :effect (and (holding_cupcake) (not (on_cupcake_table)) (not (gripper_empty)))\n  )\n\n  (:action place_cupcake_on_plate\n    :parameters ()\n    :precondition (holding_cupcake)\n    :effect (and (on_cupcake_plate) (gripper_empty) (not (holding_cupcake)))\n  )\n)","problem":"(define (problem cupcake_on_plate)\n  (:domain cupcake_world)\n\n  (:objects\n    table\n    cupcake\n    plate\n  )\n  \n  (:init\n    (gripper_empty)\n    (on_cupcake_table)\n  )\n\n  (:goal\n    (and (on_cupcake_plate))\n  )\n)"}
+2025-04-09 17:29:33,380 - INFO - PDDL files saved.
+2025-04-09 17:29:33,387 - INFO - Parsing PDDL files...
+2025-04-09 17:29:33,402 - ERROR - Error during planning/validation:
+2025-04-09 17:29:33,402 - ERROR - 'object'
+2025-04-09 17:29:33,402 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:29:33,402 - INFO - The following error occurred during planning/validation of the PDDL files:
+'object'
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(define (domain cupcake_world)
+  (:requirements :strips)
+  (:predicates
+    (gripper_empty)
+    (on_cupcake_table)
+    (on_cupcake_plate)
+    (holding_cupcake)
+  )
+  
+  (:action pick_up_cupcake
+    :parameters ()
+    :precondition (and (gripper_empty) (on_cupcake_table))
+    :effect (and (holding_cupcake) (not (on_cupcake_table)) (not (gripper_empty)))
+  )
+
+  (:action place_cupcake_on_plate
+    :parameters ()
+    :precondition (holding_cupcake)
+    :effect (and (on_cupcake_plate) (gripper_empty) (not (holding_cupcake)))
+  )
+)
+
+PROBLEM file:
+(define (problem cupcake_on_plate)
+  (:domain cupcake_world)
+
+  (:objects
+    table
+    cupcake
+    plate
+  )
+  
+  (:init
+    (gripper_empty)
+    (on_cupcake_table)
+  )
+
+  (:goal
+    (and (on_cupcake_plate))
+  )
+)
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 17:29:40,140 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 17:29:40,142 - INFO - Received response from LLM:
+2025-04-09 17:29:40,142 - INFO - {"domain":"(define (domain cupcake_world)\n  (:requirements :strips)\n  (:predicates\n    (gripper_empty)\n    (on ?x ?y)\n    (holding ?x)\n  )\n  \n  (:action pick_up\n    :parameters (?obj ?from)\n    :precondition (and (gripper_empty) (on ?obj ?from))\n    :effect (and (holding ?obj) (not (on ?obj ?from)) (not (gripper_empty)))\n  )\n\n  (:action place\n    :parameters (?obj ?to)\n    :precondition (holding ?obj)\n    :effect (and (on ?obj ?to) (gripper_empty) (not (holding ?obj)))\n  )\n)","problem":"(define (problem cupcake_on_plate)\n  (:domain cupcake_world)\n\n  (:objects\n    cupcake table plate\n  )\n  \n  (:init\n    (gripper_empty)\n    (on cupcake table)\n  )\n\n  (:goal\n    (and (on cupcake plate))\n  )\n)"}
+2025-04-09 17:29:40,142 - INFO - PDDL files saved.
+2025-04-09 17:29:40,148 - INFO - Parsing PDDL files...
+2025-04-09 17:29:40,164 - INFO - PDDL files parsed successfully.
+2025-04-09 17:29:40,164 - INFO - Starting planner...
+2025-04-09 17:29:40,289 - INFO - Planner finished execution.
+2025-04-09 17:29:40,289 - INFO - Validating plan...
+2025-04-09 17:29:40,299 - INFO - Plan validation finished.
+2025-04-09 17:29:40,299 - INFO - Plan found successfully!
+2025-04-09 17:29:40,299 - INFO - Plan: SequentialPlan:
+    pick_up(cupcake, table)
+    place(cupcake, plate)
+2025-04-09 17:29:40,299 - INFO - === FINAL PLAN STATUS ===
+2025-04-09 17:29:40,299 - INFO - Plan is viable: True
+2025-04-09 17:29:40,299 - INFO - Plan is feasible: True
+2025-04-09 17:29:40,299 - INFO - Plan is satisficing: True
+2025-04-09 17:29:40,299 - INFO - Plan is optimal: False
+2025-04-09 17:29:40,299 - INFO - Overall Result: Success (Satisficing)
+2025-04-09 17:29:40,299 - INFO - === SESSION END ===

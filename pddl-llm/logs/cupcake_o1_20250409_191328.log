@@ -1,0 +1,90 @@
+2025-04-09 19:13:28,448 - INFO - === SESSION START ===
+2025-04-09 19:13:28,449 - INFO - Task Name: cupcake
+2025-04-09 19:13:28,449 - INFO - Task Description: Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+2025-04-09 19:13:28,449 - INFO - Model Name: o1
+2025-04-09 19:13:28,449 - INFO - Datetime Stamp: 20250409_191328
+2025-04-09 19:13:28,449 - INFO - Sending initial prompt to LLM:
+2025-04-09 19:13:28,449 - INFO - You are an expert in PDDL planning. Given the following task description:
+
+Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+
+Please generate a JSON object with exactly two keys: 'domain' and 'problem'. The value of 'domain' should be a complete PDDL DOMAIN file, and the value of 'problem' should be a complete PDDL PROBLEM file. Ensure that predicates and variable names match between the two files.
+2025-04-09 19:14:09,862 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 19:14:09,880 - INFO - Received response from LLM:
+2025-04-09 19:14:09,881 - INFO - {"domain":"(define (domain cupcake-domain)\n  (:requirements :strips :typing)\n  (:types robot object)\n  (:predicates\n    (empty ?r - robot)\n    (holding ?r - robot ?o - object)\n    (on-table ?o - object)\n    (on-plate ?o - object)\n  )\n\n  (:action pick-up\n    :parameters (?r - robot ?o - object)\n    :precondition (and (empty ?r) (on-table ?o))\n    :effect (and (holding ?r ?o)\n                 (not (empty ?r))\n                 (not (on-table ?o)))\n  )\n\n  (:action put-on-plate\n    :parameters (?r - robot ?o - object)\n    :precondition (and (holding ?r ?o))\n    :effect (and (on-plate ?o)\n                 (empty ?r)\n                 (not (holding ?r ?o))))\n)","problem":"(define (problem cupcake-problem)\n  (:domain cupcake-domain)\n  (:objects\n    gripper - robot\n    cupcake - object\n    plate - object\n  )\n  (:init\n    (empty gripper)\n    (on-table cupcake)\n  )\n  (:goal\n    (on-plate cupcake)\n  )\n)"}
+2025-04-09 19:14:09,881 - INFO - PDDL files saved.
+2025-04-09 19:14:10,108 - INFO - Parsing PDDL files...
+2025-04-09 19:14:10,127 - ERROR - Error during planning/validation:
+2025-04-09 19:14:10,127 - ERROR - maximum recursion depth exceeded
+2025-04-09 19:14:10,127 - INFO - Sending refinement prompt to LLM:
+2025-04-09 19:14:10,127 - INFO - The following error occurred during planning/validation of the PDDL files:
+maximum recursion depth exceeded
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(define (domain cupcake-domain)
+  (:requirements :strips :typing)
+  (:types robot object)
+  (:predicates
+    (empty ?r - robot)
+    (holding ?r - robot ?o - object)
+    (on-table ?o - object)
+    (on-plate ?o - object)
+  )
+
+  (:action pick-up
+    :parameters (?r - robot ?o - object)
+    :precondition (and (empty ?r) (on-table ?o))
+    :effect (and (holding ?r ?o)
+                 (not (empty ?r))
+                 (not (on-table ?o)))
+  )
+
+  (:action put-on-plate
+    :parameters (?r - robot ?o - object)
+    :precondition (and (holding ?r ?o))
+    :effect (and (on-plate ?o)
+                 (empty ?r)
+                 (not (holding ?r ?o))))
+)
+
+PROBLEM file:
+(define (problem cupcake-problem)
+  (:domain cupcake-domain)
+  (:objects
+    gripper - robot
+    cupcake - object
+    plate - object
+  )
+  (:init
+    (empty gripper)
+    (on-table cupcake)
+  )
+  (:goal
+    (on-plate cupcake)
+  )
+)
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 19:15:31,609 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 19:15:31,614 - INFO - Received response from LLM:
+2025-04-09 19:15:31,614 - INFO - {"domain":"(define (domain cupcake-domain)\n  (:requirements :strips :typing)\n  (:types robot cupcake-type plate-type)\n\n  (:predicates\n    (empty ?r - robot)\n    (holding ?r - robot ?c - cupcake-type)\n    (on-table ?c - cupcake-type)\n    (on-plate ?c - cupcake-type)\n  )\n\n  (:action pick-up\n    :parameters (?r - robot ?c - cupcake-type)\n    :precondition (and (empty ?r) (on-table ?c))\n    :effect (and (holding ?r ?c)\n                 (not (empty ?r))\n                 (not (on-table ?c)))\n  )\n\n  (:action put-on-plate\n    :parameters (?r - robot ?c - cupcake-type)\n    :precondition (and (holding ?r ?c))\n    :effect (and (on-plate ?c)\n                 (empty ?r)\n                 (not (holding ?r ?c))))\n)","problem":"(define (problem cupcake-problem)\n  (:domain cupcake-domain)\n  (:objects\n    gripper - robot\n    the-cupcake - cupcake-type\n    the-plate - plate-type\n  )\n\n  (:init\n    (empty gripper)\n    (on-table the-cupcake)\n  )\n\n  (:goal (on-plate the-cupcake))\n)"}
+2025-04-09 19:15:31,614 - INFO - PDDL files saved.
+2025-04-09 19:15:31,623 - INFO - Parsing PDDL files...
+2025-04-09 19:15:31,641 - INFO - PDDL files parsed successfully.
+2025-04-09 19:15:31,641 - INFO - Starting planner...
+2025-04-09 19:15:31,739 - INFO - Planner finished execution.
+2025-04-09 19:15:31,739 - INFO - Validating plan...
+2025-04-09 19:15:31,742 - INFO - Plan validation finished.
+2025-04-09 19:15:31,742 - INFO - Plan found successfully!
+2025-04-09 19:15:31,742 - INFO - Plan: SequentialPlan:
+    pick-up(gripper, the-cupcake)
+    put-on-plate(gripper, the-cupcake)
+2025-04-09 19:15:31,742 - INFO - === FINAL PLAN STATUS ===
+2025-04-09 19:15:31,742 - INFO - Plan is viable: True
+2025-04-09 19:15:31,742 - INFO - Plan is feasible: True
+2025-04-09 19:15:31,742 - INFO - Plan is satisficing: True
+2025-04-09 19:15:31,742 - INFO - Plan is optimal: False
+2025-04-09 19:15:31,742 - INFO - Overall Result: Success (Satisficing)
+2025-04-09 19:15:31,742 - INFO - === SESSION END ===

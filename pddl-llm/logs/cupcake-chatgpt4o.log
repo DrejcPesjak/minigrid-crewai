@@ -1,0 +1,75 @@
+Enter planning task description: Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+PDDL files saved to 'domain.pddl' and 'problem.pddl'.
+Parsed PDDL files successfully.
+NOTE: To disable printing of planning engine credits, add this line to your code: `up.shortcuts.get_environment().credits_stream = None`
+  *** Credits ***
+  * In operation mode `OneshotPlanner` at line 45 of `/home/drew99/School/MastersT/crewai-gym/pddl-llm/chatgpt_pddl3.py`, you are using the following planning engine:
+  * Engine name: Fast Downward
+  * Developers:  Uni Basel team and contributors (cf. https://github.com/aibasel/downward/blob/main/README.md)
+  * Description: Fast Downward is a domain-independent classical planning system.
+
+  *** Credits ***
+  * In operation mode `PlanValidator` at line 48 of `/home/drew99/School/MastersT/crewai-gym/pddl-llm/chatgpt_pddl3.py`, you are using the following planning engine:
+  * Engine name: Tamer
+  * Developers:  FBK Tamer Development Team
+  * Description: Tamer offers the capability to generate a plan for classical, numerical and temporal problems.
+  *              For those kind of problems tamer also offers the possibility of validating a submitted plan.
+
+Plan generation result: status: SOLVED_SATISFICING
+engine: Fast Downward
+plan: SequentialPlan:
+    pick-up(gripper, cupcake)
+    put-down(gripper, cupcake)
+Plan validation result: status: VALID
+engine: Tamer
+
+Plan found successfully!
+Plan: SequentialPlan:
+    pick-up(gripper, cupcake)
+    put-down(gripper, cupcake)
+
+
+
+```domain.pddl
+(define (domain CupcakeDomain)
+  (:predicates
+    (empty ?gripper)
+    (on-table ?object)
+    (on-plate ?object)
+    (holding ?gripper ?object)
+  )
+
+  (:action pick-up
+    :parameters (?gripper ?object)
+    :precondition (and (empty ?gripper) (on-table ?object))
+    :effect (and (not (empty ?gripper)) (not (on-table ?object)) (holding ?gripper ?object))
+  )
+
+  (:action put-down
+    :parameters (?gripper ?object)
+    :precondition (holding ?gripper ?object)
+    :effect (and (empty ?gripper) (not (holding ?gripper ?object)) (on-plate ?object))
+  )
+)
+```
+
+```problem.pddl
+(define (problem CupcakeTask)
+  (:domain CupcakeDomain)
+
+  (:objects
+    gripper
+    cupcake
+    plate
+  )
+
+  (:init
+    (empty gripper)
+    (on-table cupcake)
+  )
+
+  (:goal
+    (on-plate cupcake)
+  )
+)
+```

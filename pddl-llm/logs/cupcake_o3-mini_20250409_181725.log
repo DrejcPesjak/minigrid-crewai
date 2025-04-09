@@ -1,0 +1,407 @@
+2025-04-09 18:17:25,125 - INFO - === SESSION START ===
+2025-04-09 18:17:25,125 - INFO - Task Name: cupcake
+2025-04-09 18:17:25,125 - INFO - Task Description: Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+2025-04-09 18:17:25,125 - INFO - Model Name: o3-mini
+2025-04-09 18:17:25,126 - INFO - Datetime Stamp: 20250409_181725
+2025-04-09 18:17:25,126 - INFO - Sending initial prompt to LLM:
+2025-04-09 18:17:25,126 - INFO - You are an expert in PDDL planning. Given the following task description:
+
+Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+
+Please generate a JSON object with exactly two keys: 'domain' and 'problem'. The value of 'domain' should be a complete PDDL DOMAIN file, and the value of 'problem' should be a complete PDDL PROBLEM file. Ensure that predicates and variable names match between the two files.
+2025-04-09 18:17:36,571 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 18:17:36,589 - INFO - Received response from LLM:
+2025-04-09 18:17:36,589 - INFO - {"domain":"(define (domain cupcake-domain)\n  (:requirements :strips :typing)\n  (:types gripper object)\n  (:predicates\n    (holding ?g - gripper ?o - object)\n    (empty ?g - gripper)\n    (on ?o - object ?support - object)\n  )\n\n  (:action pick-up\n    :parameters (?g - gripper ?o - object ?support - object)\n    :precondition (and (empty ?g) (on ?o ?support))\n    :effect (and\n              (holding ?g ?o)\n              (not (on ?o ?support))\n              (not (empty ?g))\n            )\n  )\n\n  (:action place\n    :parameters (?g - gripper ?o - object ?target - object)\n    :precondition (holding ?g ?o)\n    :effect (and\n              (on ?o ?target)\n              (empty ?g)\n              (not (holding ?g ?o))\n            )\n  )\n)","problem":"(define (problem cupcake-problem)\n  (:domain cupcake-domain)\n  (:objects\n    gripper1 - gripper\n    cupcake1 plate1 table1 - object\n  )\n  (:init\n    (empty gripper1)\n    (on cupcake1 table1)\n  )\n  (:goal (on cupcake1 plate1))\n)"}
+2025-04-09 18:17:36,590 - INFO - PDDL files saved.
+2025-04-09 18:17:36,822 - INFO - Parsing PDDL files...
+2025-04-09 18:17:36,841 - ERROR - Error during planning/validation:
+2025-04-09 18:17:36,841 - ERROR - maximum recursion depth exceeded
+2025-04-09 18:17:36,841 - INFO - Sending refinement prompt to LLM:
+2025-04-09 18:17:36,841 - INFO - The following error occurred during planning/validation of the PDDL files:
+maximum recursion depth exceeded
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(define (domain cupcake-domain)
+  (:requirements :strips :typing)
+  (:types gripper object)
+  (:predicates
+    (holding ?g - gripper ?o - object)
+    (empty ?g - gripper)
+    (on ?o - object ?support - object)
+  )
+
+  (:action pick-up
+    :parameters (?g - gripper ?o - object ?support - object)
+    :precondition (and (empty ?g) (on ?o ?support))
+    :effect (and
+              (holding ?g ?o)
+              (not (on ?o ?support))
+              (not (empty ?g))
+            )
+  )
+
+  (:action place
+    :parameters (?g - gripper ?o - object ?target - object)
+    :precondition (holding ?g ?o)
+    :effect (and
+              (on ?o ?target)
+              (empty ?g)
+              (not (holding ?g ?o))
+            )
+  )
+)
+
+PROBLEM file:
+(define (problem cupcake-problem)
+  (:domain cupcake-domain)
+  (:objects
+    gripper1 - gripper
+    cupcake1 plate1 table1 - object
+  )
+  (:init
+    (empty gripper1)
+    (on cupcake1 table1)
+  )
+  (:goal (on cupcake1 plate1))
+)
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 18:17:48,039 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 18:17:48,044 - INFO - Received response from LLM:
+2025-04-09 18:17:48,044 - INFO - {"domain":"(define (domain cupcake-domain)\n  (:requirements :strips :typing)\n  (:types gripper object surface)\n  (:predicates\n    (holding ?g - gripper ?o - object)\n    (empty ?g - gripper)\n    (on ?o - object ?s - surface)\n  )\n\n  (:action pick-up\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (and (empty ?g) (on ?o ?s))\n    :effect (and\n              (holding ?g ?o)\n              (not (on ?o ?s))\n              (not (empty ?g))\n            )\n  )\n\n  (:action place\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (holding ?g ?o)\n    :effect (and\n              (on ?o ?s)\n              (empty ?g)\n              (not (holding ?g ?o))\n            )\n  )\n)","problem":"(define (problem cupcake-problem)\n  (:domain cupcake-domain)\n  (:objects\n    gripper1 - gripper\n    cupcake1 - object\n    plate1 table1 - surface\n  )\n  (:init\n    (empty gripper1)\n    (on cupcake1 table1)\n  )\n  (:goal (on cupcake1 plate1))\n)"}
+2025-04-09 18:17:48,044 - INFO - PDDL files saved.
+2025-04-09 18:17:48,055 - INFO - Parsing PDDL files...
+2025-04-09 18:17:48,072 - ERROR - Error during planning/validation:
+2025-04-09 18:17:48,072 - ERROR - maximum recursion depth exceeded
+2025-04-09 18:17:48,073 - INFO - Sending refinement prompt to LLM:
+2025-04-09 18:17:48,073 - INFO - The following error occurred during planning/validation of the PDDL files:
+maximum recursion depth exceeded
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(define (domain cupcake-domain)
+  (:requirements :strips :typing)
+  (:types gripper object surface)
+  (:predicates
+    (holding ?g - gripper ?o - object)
+    (empty ?g - gripper)
+    (on ?o - object ?s - surface)
+  )
+
+  (:action pick-up
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (and (empty ?g) (on ?o ?s))
+    :effect (and
+              (holding ?g ?o)
+              (not (on ?o ?s))
+              (not (empty ?g))
+            )
+  )
+
+  (:action place
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (holding ?g ?o)
+    :effect (and
+              (on ?o ?s)
+              (empty ?g)
+              (not (holding ?g ?o))
+            )
+  )
+)
+
+PROBLEM file:
+(define (problem cupcake-problem)
+  (:domain cupcake-domain)
+  (:objects
+    gripper1 - gripper
+    cupcake1 - object
+    plate1 table1 - surface
+  )
+  (:init
+    (empty gripper1)
+    (on cupcake1 table1)
+  )
+  (:goal (on cupcake1 plate1))
+)
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 18:18:11,385 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 18:18:11,388 - INFO - Received response from LLM:
+2025-04-09 18:18:11,388 - INFO - {"domain":"(define (domain cupcake-domain)\n  (:requirements :strips :typing)\n  (:types gripper object surface)\n  (:predicates\n    (holding ?g - gripper ?o - object)\n    (empty ?g - gripper)\n    (on ?o - object ?s - surface)\n    (clear ?s - surface)\n  )\n\n  (:action pick-up\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (and\n                    (empty ?g)\n                    (on ?o ?s)\n                   )\n    :effect (and\n              (holding ?g ?o)\n              (not (on ?o ?s))\n              (not (empty ?g))\n              (clear ?s)\n             )\n  )\n\n  (:action place\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (and\n                    (holding ?g ?o)\n                    (clear ?s)\n                   )\n    :effect (and\n              (on ?o ?s)\n              (empty ?g)\n              (not (holding ?g ?o))\n              (not (clear ?s))\n             )\n  )\n)\n","problem":"(define (problem cupcake-problem)\n  (:domain cupcake-domain)\n  (:objects\n    gripper1 - gripper\n    cupcake1 - object\n    table1 - surface\n    plate1 - surface\n  )\n  (:init\n    (empty gripper1)\n    (on cupcake1 table1)\n    (clear plate1)\n  )\n  (:goal (on cupcake1 plate1))\n)\n"}
+2025-04-09 18:18:11,388 - INFO - PDDL files saved.
+2025-04-09 18:18:11,397 - INFO - Parsing PDDL files...
+2025-04-09 18:18:11,416 - ERROR - Error during planning/validation:
+2025-04-09 18:18:11,416 - ERROR - maximum recursion depth exceeded
+2025-04-09 18:18:11,416 - INFO - Sending refinement prompt to LLM:
+2025-04-09 18:18:11,416 - INFO - The following error occurred during planning/validation of the PDDL files:
+maximum recursion depth exceeded
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(define (domain cupcake-domain)
+  (:requirements :strips :typing)
+  (:types gripper object surface)
+  (:predicates
+    (holding ?g - gripper ?o - object)
+    (empty ?g - gripper)
+    (on ?o - object ?s - surface)
+    (clear ?s - surface)
+  )
+
+  (:action pick-up
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (and
+                    (empty ?g)
+                    (on ?o ?s)
+                   )
+    :effect (and
+              (holding ?g ?o)
+              (not (on ?o ?s))
+              (not (empty ?g))
+              (clear ?s)
+             )
+  )
+
+  (:action place
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (and
+                    (holding ?g ?o)
+                    (clear ?s)
+                   )
+    :effect (and
+              (on ?o ?s)
+              (empty ?g)
+              (not (holding ?g ?o))
+              (not (clear ?s))
+             )
+  )
+)
+
+PROBLEM file:
+(define (problem cupcake-problem)
+  (:domain cupcake-domain)
+  (:objects
+    gripper1 - gripper
+    cupcake1 - object
+    table1 - surface
+    plate1 - surface
+  )
+  (:init
+    (empty gripper1)
+    (on cupcake1 table1)
+    (clear plate1)
+  )
+  (:goal (on cupcake1 plate1))
+)
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 18:18:32,885 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 18:18:32,888 - INFO - Received response from LLM:
+2025-04-09 18:18:32,888 - INFO - {"domain":"(define (domain cupcake-domain)\n  (:requirements :strips :typing)\n  (:types gripper object surface)\n  (:predicates\n    (holding ?g - gripper ?o - object)\n    (empty ?g - gripper)\n    (on ?o - object ?s - surface)\n  )\n\n  (:action pick-up\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (and (empty ?g) (on ?o ?s))\n    :effect (and\n              (holding ?g ?o)\n              (not (on ?o ?s))\n              (not (empty ?g))\n            )\n  )\n\n  (:action place\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (holding ?g ?o)\n    :effect (and\n              (on ?o ?s)\n              (empty ?g)\n              (not (holding ?g ?o))\n            )\n  )\n)","problem":"(define (problem cupcake-problem)\n  (:domain cupcake-domain)\n  (:objects\n    gripper1 - gripper\n    cupcake1 - object\n    table1 plate1 - surface\n  )\n  (:init\n    (empty gripper1)\n    (on cupcake1 table1)\n  )\n  (:goal (on cupcake1 plate1))\n)"}
+2025-04-09 18:18:32,888 - INFO - PDDL files saved.
+2025-04-09 18:18:32,961 - INFO - Parsing PDDL files...
+2025-04-09 18:18:32,978 - ERROR - Error during planning/validation:
+2025-04-09 18:18:32,978 - ERROR - maximum recursion depth exceeded
+2025-04-09 18:18:32,978 - INFO - Sending refinement prompt to LLM:
+2025-04-09 18:18:32,978 - INFO - The following error occurred during planning/validation of the PDDL files:
+maximum recursion depth exceeded
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(define (domain cupcake-domain)
+  (:requirements :strips :typing)
+  (:types gripper object surface)
+  (:predicates
+    (holding ?g - gripper ?o - object)
+    (empty ?g - gripper)
+    (on ?o - object ?s - surface)
+  )
+
+  (:action pick-up
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (and (empty ?g) (on ?o ?s))
+    :effect (and
+              (holding ?g ?o)
+              (not (on ?o ?s))
+              (not (empty ?g))
+            )
+  )
+
+  (:action place
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (holding ?g ?o)
+    :effect (and
+              (on ?o ?s)
+              (empty ?g)
+              (not (holding ?g ?o))
+            )
+  )
+)
+
+PROBLEM file:
+(define (problem cupcake-problem)
+  (:domain cupcake-domain)
+  (:objects
+    gripper1 - gripper
+    cupcake1 - object
+    table1 plate1 - surface
+  )
+  (:init
+    (empty gripper1)
+    (on cupcake1 table1)
+  )
+  (:goal (on cupcake1 plate1))
+)
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 18:18:47,219 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 18:18:47,221 - INFO - Received response from LLM:
+2025-04-09 18:18:47,221 - INFO - {"domain":"(define (domain cupcake-domain)\n  (:requirements :strips :typing)\n  (:types gripper surface - object)\n  \n  (:predicates\n    (holding ?g - gripper ?o - object)\n    (empty ?g - gripper)\n    (on ?o - object ?s - surface)\n  )\n\n  (:action pick-up\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (and (empty ?g) (on ?o ?s))\n    :effect (and\n              (holding ?g ?o)\n              (not (on ?o ?s))\n              (not (empty ?g))\n            )\n  )\n\n  (:action place\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (holding ?g ?o)\n    :effect (and\n              (on ?o ?s)\n              (empty ?g)\n              (not (holding ?g ?o))\n            )\n  )\n)","problem":"(define (problem cupcake-problem)\n  (:domain cupcake-domain)\n  (:objects\n    gripper1 - gripper\n    cupcake1 - object\n    table1 plate1 - surface\n  )\n  (:init\n    (empty gripper1)\n    (on cupcake1 table1)\n  )\n  (:goal (on cupcake1 plate1))\n)"}
+2025-04-09 18:18:47,221 - INFO - PDDL files saved.
+2025-04-09 18:18:47,228 - INFO - Parsing PDDL files...
+2025-04-09 18:18:47,244 - INFO - PDDL files parsed successfully.
+2025-04-09 18:18:47,244 - INFO - Starting planner...
+2025-04-09 18:18:47,340 - INFO - Planner finished execution.
+2025-04-09 18:18:47,340 - INFO - Validating plan...
+2025-04-09 18:18:47,345 - ERROR - Error during planning/validation:
+2025-04-09 18:18:47,345 - ERROR - TypeCheckingError: Found a fluent reference having non-compatible children: holding(gripper1, gripper1) type of parameter 2 is gripper while it should be object
+2025-04-09 18:18:47,345 - INFO - Sending refinement prompt to LLM:
+2025-04-09 18:18:47,345 - INFO - The following error occurred during planning/validation of the PDDL files:
+TypeCheckingError: Found a fluent reference having non-compatible children: holding(gripper1, gripper1) type of parameter 2 is gripper while it should be object
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(define (domain cupcake-domain)
+  (:requirements :strips :typing)
+  (:types gripper surface - object)
+  
+  (:predicates
+    (holding ?g - gripper ?o - object)
+    (empty ?g - gripper)
+    (on ?o - object ?s - surface)
+  )
+
+  (:action pick-up
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (and (empty ?g) (on ?o ?s))
+    :effect (and
+              (holding ?g ?o)
+              (not (on ?o ?s))
+              (not (empty ?g))
+            )
+  )
+
+  (:action place
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (holding ?g ?o)
+    :effect (and
+              (on ?o ?s)
+              (empty ?g)
+              (not (holding ?g ?o))
+            )
+  )
+)
+
+PROBLEM file:
+(define (problem cupcake-problem)
+  (:domain cupcake-domain)
+  (:objects
+    gripper1 - gripper
+    cupcake1 - object
+    table1 plate1 - surface
+  )
+  (:init
+    (empty gripper1)
+    (on cupcake1 table1)
+  )
+  (:goal (on cupcake1 plate1))
+)
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 18:19:05,240 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 18:19:05,241 - INFO - Received response from LLM:
+2025-04-09 18:19:05,241 - INFO - {"domain":"(define (domain cupcake-domain)\n  (:requirements :strips :typing)\n  (:types gripper object surface)\n  (:predicates\n    (holding ?g - gripper ?o - object)\n    (empty ?g - gripper)\n    (on ?o - object ?s - surface)\n  )\n\n  (:action pick-up\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (and (empty ?g) (on ?o ?s))\n    :effect (and\n              (holding ?g ?o)\n              (not (on ?o ?s))\n              (not (empty ?g))\n            )\n  )\n\n  (:action place\n    :parameters (?g - gripper ?o - object ?s - surface)\n    :precondition (holding ?g ?o)\n    :effect (and\n              (on ?o ?s)\n              (empty ?g)\n              (not (holding ?g ?o))\n            )\n  )\n)","problem":"(define (problem cupcake-problem)\n  (:domain cupcake-domain)\n  (:objects\n    gripper1 - gripper\n    cupcake1 - object\n    table1 plate1 - surface\n  )\n  (:init\n    (empty gripper1)\n    (on cupcake1 table1)\n  )\n  (:goal (on cupcake1 plate1))\n)"}
+2025-04-09 18:19:05,242 - INFO - PDDL files saved.
+2025-04-09 18:19:05,248 - INFO - Parsing PDDL files...
+2025-04-09 18:19:05,264 - ERROR - Error during planning/validation:
+2025-04-09 18:19:05,264 - ERROR - maximum recursion depth exceeded
+2025-04-09 18:19:05,264 - INFO - Sending refinement prompt to LLM:
+2025-04-09 18:19:05,264 - INFO - The following error occurred during planning/validation of the PDDL files:
+maximum recursion depth exceeded
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(define (domain cupcake-domain)
+  (:requirements :strips :typing)
+  (:types gripper object surface)
+  (:predicates
+    (holding ?g - gripper ?o - object)
+    (empty ?g - gripper)
+    (on ?o - object ?s - surface)
+  )
+
+  (:action pick-up
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (and (empty ?g) (on ?o ?s))
+    :effect (and
+              (holding ?g ?o)
+              (not (on ?o ?s))
+              (not (empty ?g))
+            )
+  )
+
+  (:action place
+    :parameters (?g - gripper ?o - object ?s - surface)
+    :precondition (holding ?g ?o)
+    :effect (and
+              (on ?o ?s)
+              (empty ?g)
+              (not (holding ?g ?o))
+            )
+  )
+)
+
+PROBLEM file:
+(define (problem cupcake-problem)
+  (:domain cupcake-domain)
+  (:objects
+    gripper1 - gripper
+    cupcake1 - object
+    table1 plate1 - surface
+  )
+  (:init
+    (empty gripper1)
+    (on cupcake1 table1)
+  )
+  (:goal (on cupcake1 plate1))
+)
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 18:19:21,929 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 18:19:21,931 - INFO - Received response from LLM:
+2025-04-09 18:19:21,932 - INFO - {"domain":"(define (domain cupcake-domain)\n  (:requirements :strips :typing)\n  (:types gripper movable surface)\n  \n  (:predicates\n    (holding ?g - gripper ?o - movable)\n    (empty ?g - gripper)\n    (on ?o - movable ?s - surface)\n  )\n\n  (:action pick-up\n    :parameters (?g - gripper ?o - movable ?s - surface)\n    :precondition (and (empty ?g) (on ?o ?s))\n    :effect (and\n              (holding ?g ?o)\n              (not (on ?o ?s))\n              (not (empty ?g))\n            )\n  )\n\n  (:action place\n    :parameters (?g - gripper ?o - movable ?s - surface)\n    :precondition (holding ?g ?o)\n    :effect (and\n              (on ?o ?s)\n              (empty ?g)\n              (not (holding ?g ?o))\n            )\n  )\n)\n","problem":"(define (problem cupcake-problem)\n  (:domain cupcake-domain)\n  (:objects\n    gripper1 - gripper\n    cupcake1 - movable\n    table1 plate1 - surface\n  )\n  (:init\n    (empty gripper1)\n    (on cupcake1 table1)\n  )\n  (:goal (on cupcake1 plate1))\n)\n"}
+2025-04-09 18:19:21,932 - INFO - PDDL files saved.
+2025-04-09 18:19:21,941 - INFO - Parsing PDDL files...
+2025-04-09 18:19:21,959 - INFO - PDDL files parsed successfully.
+2025-04-09 18:19:21,959 - INFO - Starting planner...
+2025-04-09 18:19:22,059 - INFO - Planner finished execution.
+2025-04-09 18:19:22,059 - INFO - Validating plan...
+2025-04-09 18:19:22,062 - INFO - Plan validation finished.
+2025-04-09 18:19:22,062 - INFO - Plan found successfully!
+2025-04-09 18:19:22,062 - INFO - Plan: SequentialPlan:
+    pick-up(gripper1, cupcake1, table1)
+    place(gripper1, cupcake1, plate1)
+2025-04-09 18:19:22,062 - INFO - === FINAL PLAN STATUS ===
+2025-04-09 18:19:22,062 - INFO - Plan is viable: True
+2025-04-09 18:19:22,062 - INFO - Plan is feasible: True
+2025-04-09 18:19:22,062 - INFO - Plan is satisficing: True
+2025-04-09 18:19:22,062 - INFO - Plan is optimal: False
+2025-04-09 18:19:22,062 - INFO - Overall Result: Success (Satisficing)
+2025-04-09 18:19:22,062 - INFO - === SESSION END ===

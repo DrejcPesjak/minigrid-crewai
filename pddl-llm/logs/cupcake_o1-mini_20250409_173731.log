@@ -1,0 +1,75 @@
+2025-04-09 17:37:31,758 - INFO - === SESSION START ===
+2025-04-09 17:37:31,758 - INFO - Task Name: cupcake
+2025-04-09 17:37:31,758 - INFO - Task Description: Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+2025-04-09 17:37:31,758 - INFO - Model Name: o1-mini
+2025-04-09 17:37:31,758 - INFO - Datetime Stamp: 20250409_173731
+2025-04-09 17:37:31,758 - INFO - Sending initial prompt to LLM:
+2025-04-09 17:37:31,758 - INFO - You are an expert in PDDL planning. Given the following task description:
+
+Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+
+Please generate a JSON object with exactly two keys: 'domain' and 'problem'. The value of 'domain' should be a complete PDDL DOMAIN file, and the value of 'problem' should be a complete PDDL PROBLEM file. Ensure that predicates and variable names match between the two files.
+2025-04-09 17:37:33,389 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-04-09 17:37:33,390 - ERROR - Error during planning/validation:
+2025-04-09 17:37:33,390 - ERROR - Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2025-04-09 17:37:33,390 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:37:33,390 - INFO - The following error occurred during planning/validation of the PDDL files:
+Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 17:37:34,930 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-04-09 17:37:34,931 - ERROR - Error during planning/validation:
+2025-04-09 17:37:34,931 - ERROR - Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2025-04-09 17:37:34,931 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:37:34,931 - INFO - The following error occurred during planning/validation of the PDDL files:
+Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 17:37:36,570 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-04-09 17:37:36,570 - ERROR - Error during planning/validation:
+2025-04-09 17:37:36,571 - ERROR - Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2025-04-09 17:37:36,571 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:37:36,571 - INFO - The following error occurred during planning/validation of the PDDL files:
+Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 17:37:37,797 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-04-09 17:37:37,797 - ERROR - Error during planning/validation:
+2025-04-09 17:37:37,797 - ERROR - Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2025-04-09 17:37:37,797 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:37:37,798 - INFO - The following error occurred during planning/validation of the PDDL files:
+Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 17:37:39,848 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-04-09 17:37:39,849 - ERROR - Error during planning/validation:
+2025-04-09 17:37:39,849 - ERROR - Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2025-04-09 17:37:39,849 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:37:39,849 - INFO - The following error occurred during planning/validation of the PDDL files:
+Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 17:37:41,280 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-04-09 17:37:41,281 - ERROR - Error during planning/validation:
+2025-04-09 17:37:41,281 - ERROR - Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2025-04-09 17:37:41,281 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:37:41,281 - INFO - The following error occurred during planning/validation of the PDDL files:
+Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 17:37:42,522 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-04-09 17:37:42,523 - ERROR - Error during planning/validation:
+2025-04-09 17:37:42,523 - ERROR - Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2025-04-09 17:37:42,523 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:37:42,523 - INFO - The following error occurred during planning/validation of the PDDL files:
+Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-09 17:37:43,947 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2025-04-09 17:37:43,948 - ERROR - Error during planning/validation:
+2025-04-09 17:37:43,948 - ERROR - Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+2025-04-09 17:37:43,948 - INFO - Sending refinement prompt to LLM:
+2025-04-09 17:37:43,948 - INFO - The following error occurred during planning/validation of the PDDL files:
+Error code: 400 - {'error': {'message': "Invalid parameter: 'response_format' of type 'json_schema' is not supported with this model. Learn more about supported models at the Structured Outputs guide: https://platform.openai.com/docs/guides/structured-outputs", 'type': 'invalid_request_error', 'param': None, 'code': None}}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.

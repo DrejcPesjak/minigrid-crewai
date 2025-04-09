@@ -1,0 +1,82 @@
+Enter planning task description: Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+Parsing PDDL files...
+
+Error during planning/validation: maximum recursion depth exceeded
+Parsing PDDL files...
+
+Error during planning/validation: maximum recursion depth exceeded
+Parsing PDDL files...
+
+Error during planning/validation: maximum recursion depth exceeded
+Parsing PDDL files...
+
+Error during planning/validation: maximum recursion depth exceeded
+Parsing PDDL files...
+
+Error during planning/validation: maximum recursion depth exceeded
+Parsing PDDL files...
+PDDL files parsed.
+Starting planner...
+NOTE: To disable printing of planning engine credits, add this line to your code: `up.shortcuts.get_environment().credits_stream = None`
+  *** Credits ***
+  * In operation mode `OneshotPlanner` at line 59 of `/home/drew99/School/MastersT/crewai-gym/pddl-llm/chatgpt_pddl3.py`, you are using the following planning engine:
+  * Engine name: Fast Downward
+  * Developers:  Uni Basel team and contributors (cf. https://github.com/aibasel/downward/blob/main/README.md)
+  * Description: Fast Downward is a domain-independent classical planning system.
+
+Planner finished.
+Validating plan...
+  *** Credits ***
+  * In operation mode `PlanValidator` at line 64 of `/home/drew99/School/MastersT/crewai-gym/pddl-llm/chatgpt_pddl3.py`, you are using the following planning engine:
+  * Engine name: Tamer
+  * Developers:  FBK Tamer Development Team
+  * Description: Tamer offers the capability to generate a plan for classical, numerical and temporal problems.
+  *              For those kind of problems tamer also offers the possibility of validating a submitted plan.
+
+Validation finished.
+
+Plan found successfully!
+Plan: SequentialPlan:
+    pickup(grippy, cupcake)
+    place-on-plate(grippy, cupcake)
+
+```domain.pddl
+(define (domain cupcake-world)
+  (:requirements :strips :typing)
+  (:types 
+    gripper 
+    item)
+
+  (:predicates 
+    (gripper-empty ?g - gripper)
+    (holding ?g - gripper ?i - item)
+    (on-table ?i - item)
+    (on-plate ?i - item))
+
+  (:action pickup
+    :parameters (?g - gripper ?i - item)
+    :precondition (and (gripper-empty ?g) (on-table ?i))
+    :effect (and (holding ?g ?i) (not (gripper-empty ?g)) (not (on-table ?i))))
+
+  (:action place-on-plate
+    :parameters (?g - gripper ?i - item)
+    :precondition (holding ?g ?i)
+    :effect (and (on-plate ?i) (gripper-empty ?g) (not (holding ?g ?i))))
+)
+```
+
+```problem.pddl
+(define (problem cupcake-task)
+  (:domain cupcake-world)
+  (:objects
+    grippy - gripper
+    cupcake - item)
+
+  (:init
+    (gripper-empty grippy)
+    (on-table cupcake))
+
+  (:goal
+    (and (on-plate cupcake) (gripper-empty grippy))))
+
+```

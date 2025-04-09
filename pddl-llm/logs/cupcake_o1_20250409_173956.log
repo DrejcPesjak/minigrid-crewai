@@ -1,0 +1,32 @@
+2025-04-09 17:39:56,710 - INFO - === SESSION START ===
+2025-04-09 17:39:56,710 - INFO - Task Name: cupcake
+2025-04-09 17:39:56,710 - INFO - Task Description: Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+2025-04-09 17:39:56,710 - INFO - Model Name: o1
+2025-04-09 17:39:56,710 - INFO - Datetime Stamp: 20250409_173956
+2025-04-09 17:39:56,710 - INFO - Sending initial prompt to LLM:
+2025-04-09 17:39:56,710 - INFO - You are an expert in PDDL planning. Given the following task description:
+
+Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+
+Please generate a JSON object with exactly two keys: 'domain' and 'problem'. The value of 'domain' should be a complete PDDL DOMAIN file, and the value of 'problem' should be a complete PDDL PROBLEM file. Ensure that predicates and variable names match between the two files.
+2025-04-09 17:40:19,393 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-09 17:40:19,408 - INFO - Received response from LLM:
+2025-04-09 17:40:19,408 - INFO - {"domain":"(define (domain robot-domain)\n  (:requirements :strips)\n  (:predicates\n    (gripper-empty)\n    (holding ?o)\n    (on-table ?o)\n    (on ?o ?destination)\n  )\n\n  (:action pick-up\n    :parameters (?obj)\n    :precondition (and (gripper-empty) (on-table ?obj))\n    :effect (and\n      (not (gripper-empty))\n      (holding ?obj)\n      (not (on-table ?obj))\n    )\n  )\n\n  (:action put-down\n    :parameters (?obj ?dest)\n    :precondition (and (holding ?obj))\n    :effect (and\n      (not (holding ?obj))\n      (on ?obj ?dest)\n      (gripper-empty)\n    )\n  )\n)\n","problem":"(define (problem robot-problem)\n  (:domain robot-domain)\n  (:objects cupcake plate)\n  (:init\n    (gripper-empty)\n    (on-table cupcake)\n  )\n  (:goal (on cupcake plate))\n)\n"}
+2025-04-09 17:40:19,409 - INFO - PDDL files saved.
+2025-04-09 17:40:19,639 - INFO - Parsing PDDL files...
+2025-04-09 17:40:19,658 - INFO - PDDL files parsed successfully.
+2025-04-09 17:40:19,659 - INFO - Starting planner...
+2025-04-09 17:40:19,761 - INFO - Planner finished execution.
+2025-04-09 17:40:19,761 - INFO - Validating plan...
+2025-04-09 17:40:19,764 - INFO - Plan validation finished.
+2025-04-09 17:40:19,765 - INFO - Plan found successfully!
+2025-04-09 17:40:19,765 - INFO - Plan: SequentialPlan:
+    pick-up(cupcake)
+    put-down(cupcake, plate)
+2025-04-09 17:40:19,765 - INFO - === FINAL PLAN STATUS ===
+2025-04-09 17:40:19,765 - INFO - Plan is viable: True
+2025-04-09 17:40:19,765 - INFO - Plan is feasible: True
+2025-04-09 17:40:19,765 - INFO - Plan is satisficing: True
+2025-04-09 17:40:19,765 - INFO - Plan is optimal: False
+2025-04-09 17:40:19,765 - INFO - Overall Result: Success (Satisficing)
+2025-04-09 17:40:19,765 - INFO - === SESSION END ===

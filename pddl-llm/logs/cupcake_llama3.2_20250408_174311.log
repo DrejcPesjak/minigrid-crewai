@@ -1,0 +1,308 @@
+2025-04-08 17:43:11,182 - INFO - === SESSION START ===
+2025-04-08 17:43:11,182 - INFO - Task Name: cupcake
+2025-04-08 17:43:11,182 - INFO - Task Description: Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+2025-04-08 17:43:11,182 - INFO - Model Name: llama3.2
+2025-04-08 17:43:11,182 - INFO - Datetime Stamp: 20250408_174311
+2025-04-08 17:43:11,182 - INFO - Sending initial prompt to LLM:
+2025-04-08 17:43:11,182 - INFO - You are an expert in PDDL planning. Given the following task description:
+
+Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+
+Please generate a JSON object with exactly two keys: 'domain' and 'problem'. The value of 'domain' should be a complete PDDL DOMAIN file, and the value of 'problem' should be a complete PDDL PROBLEM file. Ensure that predicates and variable names match between the two files.
+2025-04-08 17:43:12,427 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:12,446 - INFO - Received response from LLM:
+2025-04-08 17:43:12,446 - INFO - {"domain":"{\n  prefix: \",\n  types : :state,\nat,\ngrippt : \",\npriorpt :\",&quot;plate\n","problem":"{\n  init : (grippt empty ?robot)   \n  reqs : (\ngrippt !?robot plate)   \n  domain : :cupcake-on-plate\n  objects : [cupcake Plate]\n}"}
+2025-04-08 17:43:12,447 - INFO - PDDL files saved.
+2025-04-08 17:43:12,788 - INFO - Parsing PDDL files...
+2025-04-08 17:43:12,792 - ERROR - Error during planning/validation:
+2025-04-08 17:43:12,792 - ERROR - Expected '(', found '{'  (at char 0), (line:1, col:1)
+2025-04-08 17:43:12,792 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:12,792 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected '(', found '{'  (at char 0), (line:1, col:1)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+{
+  prefix: ",
+  types : :state,
+at,
+grippt : ",
+priorpt :",&quot;plate
+
+PROBLEM file:
+{
+  init : (grippt empty ?robot)   
+  reqs : (
+grippt !?robot plate)   
+  domain : :cupcake-on-plate
+  objects : [cupcake Plate]
+}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:14,720 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:14,724 - INFO - Received response from LLM:
+2025-04-08 17:43:14,724 - INFO - {"domain":"((prefix \" prefix=\" \nitypes (:state) (at) (grippt) (priorpt) (plate)))(","problem":"(init ((grippt empty ?robot))) (reqs ((grippt !?robot plate))) (domain :cupcake-on-plate) (objects ([cupcake Plate])))"}
+2025-04-08 17:43:14,724 - INFO - PDDL files saved.
+2025-04-08 17:43:14,732 - INFO - Parsing PDDL files...
+2025-04-08 17:43:14,736 - ERROR - Error during planning/validation:
+2025-04-08 17:43:14,736 - ERROR - Expected 'define', found '('  (at char 1), (line:1, col:2)
+2025-04-08 17:43:14,736 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:14,736 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected 'define', found '('  (at char 1), (line:1, col:2)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+((prefix " prefix=" 
+itypes (:state) (at) (grippt) (priorpt) (plate)))(
+
+PROBLEM file:
+(init ((grippt empty ?robot))) (reqs ((grippt !?robot plate))) (domain :cupcake-on-plate) (objects ([cupcake Plate])))
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:17,843 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:17,844 - INFO - Received response from LLM:
+2025-04-08 17:43:17,844 - INFO - {"domain":"[prefix = \" \n    types := [:state, :at, :grippt, :priorpt, :plate] \n](\n","problem":"(defProblem cupcake-on-plate)\ninits : (\n  grippt empty ?robot) \nreqs : (\n  grippt !?robot plate)\ndefobject (cupcake Plate)\ndefinitereq (grippt ?robot ?object) \ndefstatesetup\n(grippt ?, plate)\nsimplifystate\n(!grippt ?robot) \ndefineobjects(cupcake, Plate)\ndefgoal done\n(defineaction pick-up)(\n(definecondition pre (\n\t grasp ?x\n))(define action effect (\n\t grippt !?robot ?x\n))) (defineinitiate(\n\t pick-up\n))  }"}
+2025-04-08 17:43:17,844 - INFO - PDDL files saved.
+2025-04-08 17:43:17,851 - INFO - Parsing PDDL files...
+2025-04-08 17:43:17,855 - ERROR - Error during planning/validation:
+2025-04-08 17:43:17,855 - ERROR - Expected '(', found '['  (at char 0), (line:1, col:1)
+2025-04-08 17:43:17,855 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:17,855 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected '(', found '['  (at char 0), (line:1, col:1)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+[prefix = " 
+    types := [:state, :at, :grippt, :priorpt, :plate] 
+](
+
+PROBLEM file:
+(defProblem cupcake-on-plate)
+inits : (
+  grippt empty ?robot) 
+reqs : (
+  grippt !?robot plate)
+defobject (cupcake Plate)
+definitereq (grippt ?robot ?object) 
+defstatesetup
+(grippt ?, plate)
+simplifystate
+(!grippt ?robot) 
+defineobjects(cupcake, Plate)
+defgoal done
+(defineaction pick-up)(
+(definecondition pre (
+	 grasp ?x
+))(define action effect (
+	 grippt !?robot ?x
+))) (defineinitiate(
+	 pick-up
+))  }
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:20,210 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:20,212 - INFO - Received response from LLM:
+2025-04-08 17:43:20,212 - INFO - {"domain":"(defdomain cupcake-on-plate\n(prefix ?prefix)\n(type :state :at :grippt :priorpt :plate)\ndefines (\ngrippt (and (= ?x ?y) (= ?y ?z)))\ndefrecord plate()\ndefrecord cupcake()","problem":"{ init ((?:grippt empty ?robot)))\n(reqs ((:grippt !?robot plate)))\n(domain :cupcake-on-plate)\n(objects (cupcake plate))) ("}
+2025-04-08 17:43:20,212 - INFO - PDDL files saved.
+2025-04-08 17:43:20,219 - INFO - Parsing PDDL files...
+2025-04-08 17:43:20,222 - ERROR - Error during planning/validation:
+2025-04-08 17:43:20,222 - ERROR - Expected 'define', found 'defdomain'  (at char 1), (line:1, col:2)
+2025-04-08 17:43:20,222 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:20,222 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected 'define', found 'defdomain'  (at char 1), (line:1, col:2)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(defdomain cupcake-on-plate
+(prefix ?prefix)
+(type :state :at :grippt :priorpt :plate)
+defines (
+grippt (and (= ?x ?y) (= ?y ?z)))
+defrecord plate()
+defrecord cupcake()
+
+PROBLEM file:
+{ init ((?:grippt empty ?robot)))
+(reqs ((:grippt !?robot plate)))
+(domain :cupcake-on-plate)
+(objects (cupcake plate))) (
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:22,631 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:22,632 - INFO - Received response from LLM:
+2025-04-08 17:43:22,632 - INFO - {"domain":"$(defdomain cupcake-on-plate\n(prefix ?prefix)\n(type :state :at :grippt :priorpt :plate)\ndefines (\ngrippt (and (= ?x ?y) (= ?y ?z))\ndefrecord plate()\ndefrecord cupcake()$)","problem":"$(defproblem cupcake-on-plate\n initiating state :\ngrippt empty ?robot$)\nrequiring state :\ngrippt !?robot plate$)\n(objects (cupcake plate))$}"}
+2025-04-08 17:43:22,633 - INFO - PDDL files saved.
+2025-04-08 17:43:22,639 - INFO - Parsing PDDL files...
+2025-04-08 17:43:22,643 - ERROR - Error during planning/validation:
+2025-04-08 17:43:22,643 - ERROR - Expected '(', found '$'  (at char 0), (line:1, col:1)
+2025-04-08 17:43:22,643 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:22,643 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected '(', found '$'  (at char 0), (line:1, col:1)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+$(defdomain cupcake-on-plate
+(prefix ?prefix)
+(type :state :at :grippt :priorpt :plate)
+defines (
+grippt (and (= ?x ?y) (= ?y ?z))
+defrecord plate()
+defrecord cupcake()$)
+
+PROBLEM file:
+$(defproblem cupcake-on-plate
+ initiating state :
+grippt empty ?robot$)
+requiring state :
+grippt !?robot plate$)
+(objects (cupcake plate))$}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:24,920 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:24,925 - INFO - Received response from LLM:
+2025-04-08 17:43:24,925 - INFO - {"domain":"(defdomain cupcake-on-plate\n(prefix ?prefix)\n(type :state :at :grippt :priorpt :plate)\n(define (grippt ?x ?y) (= ?x ?y))\ndefrecord plate()\ndefrecord cupcake())","problem":"(defproblem cupcake-on-plate\n(initial-state :init (\n     grippt.empty robot)\n    reqs (:req (grippt !robot plate))))"}
+2025-04-08 17:43:24,925 - INFO - PDDL files saved.
+2025-04-08 17:43:24,932 - INFO - Parsing PDDL files...
+2025-04-08 17:43:24,936 - ERROR - Error during planning/validation:
+2025-04-08 17:43:24,936 - ERROR - Expected 'define', found 'defdomain'  (at char 1), (line:1, col:2)
+2025-04-08 17:43:24,936 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:24,936 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected 'define', found 'defdomain'  (at char 1), (line:1, col:2)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(defdomain cupcake-on-plate
+(prefix ?prefix)
+(type :state :at :grippt :priorpt :plate)
+(define (grippt ?x ?y) (= ?x ?y))
+defrecord plate()
+defrecord cupcake())
+
+PROBLEM file:
+(defproblem cupcake-on-plate
+(initial-state :init (
+     grippt.empty robot)
+    reqs (:req (grippt !robot plate))))
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:27,453 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:27,454 - INFO - Received response from LLM:
+2025-04-08 17:43:27,454 - INFO - {"domain":"$defdomain cupcake-on-plate\n$define\n(type :state)\n(type :at)\n(type :grippt)\n(type :priorpt)\n(type :plate)\n(define (grippt ?x ?y) (= ?x ?y))\n$defrecord plate()\n$defrecord cupcake()","problem":"$defproblem cupcake-on-plate\n(inital-state :init (grippt.empty robot))\n(reqs (:req (grippt !robot plate)))\n(objects (cupcake plate))"}
+2025-04-08 17:43:27,454 - INFO - PDDL files saved.
+2025-04-08 17:43:27,461 - INFO - Parsing PDDL files...
+2025-04-08 17:43:27,465 - ERROR - Error during planning/validation:
+2025-04-08 17:43:27,465 - ERROR - Expected '(', found '$'  (at char 0), (line:1, col:1)
+2025-04-08 17:43:27,465 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:27,465 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected '(', found '$'  (at char 0), (line:1, col:1)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+$defdomain cupcake-on-plate
+$define
+(type :state)
+(type :at)
+(type :grippt)
+(type :priorpt)
+(type :plate)
+(define (grippt ?x ?y) (= ?x ?y))
+$defrecord plate()
+$defrecord cupcake()
+
+PROBLEM file:
+$defproblem cupcake-on-plate
+(inital-state :init (grippt.empty robot))
+(reqs (:req (grippt !robot plate)))
+(objects (cupcake plate))
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:29,753 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:29,755 - INFO - Received response from LLM:
+2025-04-08 17:43:29,755 - INFO - {"domain":"(defdomain cupcake-on-plate\n(prefix ?prefix)\n(type :state :at :grippt :priorpt :plate)\n(define (grippt ?x ?y) (= ?x ?y))\ndefrecord plate()\ndefrecord cupcake())","problem":"(defproblem cupcake-on-plate\n(inital-state :init (grippt.empty robot))\n(reqs (:req (grippt !robot plate))))"}
+2025-04-08 17:43:29,755 - INFO - PDDL files saved.
+2025-04-08 17:43:29,762 - INFO - Parsing PDDL files...
+2025-04-08 17:43:29,766 - ERROR - Error during planning/validation:
+2025-04-08 17:43:29,766 - ERROR - Expected 'define', found 'defdomain'  (at char 1), (line:1, col:2)
+2025-04-08 17:43:29,766 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:29,766 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected 'define', found 'defdomain'  (at char 1), (line:1, col:2)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+(defdomain cupcake-on-plate
+(prefix ?prefix)
+(type :state :at :grippt :priorpt :plate)
+(define (grippt ?x ?y) (= ?x ?y))
+defrecord plate()
+defrecord cupcake())
+
+PROBLEM file:
+(defproblem cupcake-on-plate
+(inital-state :init (grippt.empty robot))
+(reqs (:req (grippt !robot plate))))
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:32,023 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:32,024 - INFO - Received response from LLM:
+2025-04-08 17:43:32,024 - INFO - {"domain":"$(defdomain cupcake-on-plate \n  (prefix ?p) \n  (type :state :at :grippt :priorpt :plate) \n  (define (grippt ?x ?y) (= ?x ?y)))$","problem":"{ init (:init (grippt.empty ?:robot)) reqs (:req (grippt !?:robot ?.object)) objects ([?.object cupcake Plate]))}"}
+2025-04-08 17:43:32,025 - INFO - PDDL files saved.
+2025-04-08 17:43:32,089 - INFO - Parsing PDDL files...
+2025-04-08 17:43:32,092 - ERROR - Error during planning/validation:
+2025-04-08 17:43:32,092 - ERROR - Expected '(', found '$'  (at char 0), (line:1, col:1)
+2025-04-08 17:43:32,092 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:32,092 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected '(', found '$'  (at char 0), (line:1, col:1)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+$(defdomain cupcake-on-plate 
+  (prefix ?p) 
+  (type :state :at :grippt :priorpt :plate) 
+  (define (grippt ?x ?y) (= ?x ?y)))$
+
+PROBLEM file:
+{ init (:init (grippt.empty ?:robot)) reqs (:req (grippt !?:robot ?.object)) objects ([?.object cupcake Plate]))}
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:34,546 - INFO - HTTP Request: POST http://localhost:11434/v1/chat/completions "HTTP/1.1 200 OK"
+2025-04-08 17:43:34,548 - INFO - Received response from LLM:
+2025-04-08 17:43:34,548 - INFO - {"domain":"$defdomain cupcake-on-plate\n(prefix ?p)\n(type :state :at :grippt :priorpt :plate)\n(define (grasp ?x ?y) (= ?x ?y))\ndefrecord plate()\ndefrecord cupcake()\n$","problem":"$defproblem cupcake-on-plate\n(inital-state :init (grasp.empty ?:robot))\n(reqs (:req (grasp !?:robot ?.object)))\n(objects ([?:obj cupcake Plate]))"}
+2025-04-08 17:43:34,548 - INFO - PDDL files saved.
+2025-04-08 17:43:34,555 - INFO - Parsing PDDL files...
+2025-04-08 17:43:34,558 - ERROR - Error during planning/validation:
+2025-04-08 17:43:34,558 - ERROR - Expected '(', found '$'  (at char 0), (line:1, col:1)
+2025-04-08 17:43:34,558 - INFO - Sending refinement prompt to LLM:
+2025-04-08 17:43:34,558 - INFO - The following error occurred during planning/validation of the PDDL files:
+Expected '(', found '$'  (at char 0), (line:1, col:1)
+
+Here are the previously generated PDDL files:
+
+DOMAIN file:
+$defdomain cupcake-on-plate
+(prefix ?p)
+(type :state :at :grippt :priorpt :plate)
+(define (grasp ?x ?y) (= ?x ?y))
+defrecord plate()
+defrecord cupcake()
+$
+
+PROBLEM file:
+$defproblem cupcake-on-plate
+(inital-state :init (grasp.empty ?:robot))
+(reqs (:req (grasp !?:robot ?.object)))
+(objects ([?:obj cupcake Plate]))
+
+Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error.
+2025-04-08 17:43:35,560 - INFO - === FINAL PLAN STATUS ===
+2025-04-08 17:43:35,560 - INFO - Plan generation failed after maximum attempts.
+2025-04-08 17:43:35,560 - INFO - Overall Result: Failure
+2025-04-08 17:43:35,560 - INFO - === SESSION END ===

@@ -1,0 +1,50 @@
+Enter planning task description: Let’s imagine we have a robot gripper arm, a cupcake and a plate. The gripper is empty, the cupcake is on the table and we want to put the cupcake on the plate.
+Parsing PDDL files...
+
+Error during planning/validation: Expected '(', found 'gripperarmdom'  (at char 0), (line:1, col:1)
+Parsing PDDL files...
+
+Error during planning/validation: Expected 'domain', found 'gripperarmdom'  (at char 9), (line:1, col:10)
+Parsing PDDL files...
+
+Error during planning/validation: Expected 'domain', found 'gripperarmdomain'  (at char 9), (line:1, col:10)
+Parsing PDDL files...
+
+Error during planning/validation: Expected 'domain', found 'gripperarmdomain'  (at char 9), (line:1, col:10)
+Parsing PDDL files...
+
+Error during planning/validation: Expected 'domain', found 'gripperarmdomain'  (at char 9), (line:1, col:10)
+Parsing PDDL files...
+
+Error during planning/validation: Expected 'domain', found 'gripperarmdomain'  (at char 9), (line:1, col:10)
+Parsing PDDL files...
+
+Error during planning/validation: Expected 'domain', found 'gripperarmdomain'  (at char 9), (line:1, col:10)
+Parsing PDDL files...
+
+Error during planning/validation: Expected 'domain', found 'gripperarmdomain'  (at char 9), (line:1, col:10)
+Parsing PDDL files...
+
+Error during planning/validation: Expected 'domain', found 'gripperarmdomain'  (at char 9), (line:1, col:10)
+Parsing PDDL files...
+
+Error during planning/validation: Expected 'domain', found 'gripperarmdomain'  (at char 9), (line:1, col:10)
+
+Failed to generate a valid plan after 10 attempts.
+
+
+```domain.pddl
+(define (gripperArmDomain)
+(defparam  cupcake-held true
+  table plate)
+defproblem cupcakeOnPlateProblem
+  holds?-cupcake plate
+  cupcake-held ?cupcake
+)
+```
+
+```problem.pddl
+(def_problem cupcakeOnPlateProblem
+  cupcake-on-plate ?cupcake
+)
+```
