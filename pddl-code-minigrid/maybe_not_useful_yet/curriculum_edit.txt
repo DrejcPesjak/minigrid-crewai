@@ -1,0 +1,79 @@
+static_obstacle_navigation == go to object, orient towards the obj, finish no action
+"GoToLocal", - OK
+"GoToObj", - OK
+"GoToDoor", - OK
+"GoToDoorEnv", - need to open door
+"GoToObjDoor", - OK
+"GoToRedBallNoDists", - OK
+"GoToRedBallGrey" - OK
+
+object_selection
+"GoTo", - very complex and big environment, need to pickup keys, unlock doors..., except the target you do not need to pickup 
+"GoToRedBall", - same as static_obstacle_navigation
+"GoToRedBlueBall", - same as static_obstacle_navigation
+"FindObjS5", - traverse many rooms, open doors, pickup final object
+"GoToImpUnlock", - traverse many rooms, pickup keys, unlock doors, go to final object
+"GoToObjectEnv" - simple go to obj, press Done
+
+pickup_only
+"Pickup", - OK
+"OneRoomS8", - OK
+"PickupLoc", - OK
+"PickupDist", - OK
+"PickupAbove", - object always in the room north, need to open doors, and pickup final obj
+"FetchEnv" - OK
+
+
+open_door
+"OpenDoor", - OK
+"OpenRedDoor", - OK
+"Open", - multiroom
+"RedBlueDoorEnv", - two doors, first open one, then the other
+"MultiRoomEnv" - traverse rooms (all unlocked closed doors), reach green goal
+
+
+unlock_door
+"Unlock", - very many rooms, find the right key, pick it up, find the right door, unlock/open
+"UnlockLocal", - OK (simple, one room, no distractions)
+"DoorKeyEnv", - OK (simple, one room, no dist), but after unlock, go to green goal
+"UnlockEnv" - OK (simple, one room, no distractions)
+
+
+unlock_pickup
+"UnlockPickup", - OK
+"UnlockPickupEnv" - OK
+
+obstacle_blocking
+"UnblockPickup", - huge, multiroom, at some point unblock to unlock door, and then pickup obj 
+ObstructedMaze_1Dlhb
+ "MiniGrid-ObstructedMaze-1Dl-v0", - unlock door, pick up ball in next room
+ "MiniGrid-ObstructedMaze-1Dlh-v0", - toggle box to reveal key, unlock door, pickup obj
+ "MiniGrid-ObstructedMaze-1Dlhb-v0", - toggle box to reveal key, unblock door, pickup key, unlock door, pickup obj
+ "MiniGrid-ObstructedMaze-2Dl-v0", - three doors, three rooms behind, unlock the right one, pickup obj
+ "MiniGrid-ObstructedMaze-2Dlh-v0" - same as one before, but now, keys are hidden under the boxes, need to toggle first
+"ObstructedMaze_Full",
+  "MiniGrid-ObstructedMaze-2Dlhb-v1", - same as one before, but now balls blocking doors
+  "MiniGrid-ObstructedMaze-1Q-v1", - same as before but now start in one of the rooms (with unlocked doors)
+  "MiniGrid-ObstructedMaze-2Q-v1" - traverse rooms, toggle boxes to reveal keys, unblock doors, unlock doors, pickup obj
+"ObstructedMaze_Full_V1" - same as the last one, but bigger, 9 rooms
+
+
+obstructed_unlock_pickup  - unblock, pickup key, unlock door, pickup obj in next room
+"BlockedUnlockPickup", - OK
+"BlockedUnlockPickupEnv" - OK
+
+OVERALL:
+"category_name": "goal_navigation",  - OK
+"category_name": "static_obstacle_navigation",
+"category_name": "hazard_avoidance",  - OK
+"category_name": "object_selection",
+"category_name": "pickup_only",
+"category_name": "open_door",
+"category_name": "unlock_door",
+"category_name": "unlock_pickup",
+"category_name": "obstacle_blocking",
+"category_name": "obstructed_unlock_pickup",
+"category_name": "object_placement",  - OK
+"category_name": "memory_ordering",  - OK
+"category_name": "composite_skills",  - OK
+"category_name": "dynamic_obstacle_avoidance",  - OK

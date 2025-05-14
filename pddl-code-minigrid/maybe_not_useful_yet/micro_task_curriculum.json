@@ -1,0 +1,148 @@
+[
+  {
+    "category_name": "goal_navigation",
+    "skill": "Reach a goal location without hazards or obstacles",
+    "levels": [
+      "EmptyEnv",
+      "FourRoomsEnv",
+      "CrossingEnv"
+    ]
+  },
+  {
+    "category_name": "static_obstacle_navigation",
+    "skill": "Navigate around walls to reach a goal or object",
+    "levels": [
+      "GoToLocal",
+      "GoToObj",
+      "GoToDoor",
+      "GoToDoorEnv",
+      "GoToObjDoor",
+      "GoToRedBallNoDists",
+      "GoToRedBallGrey"
+    ]
+  },
+  {
+    "category_name": "hazard_avoidance",
+    "skill": "Reach a goal while avoiding lava or other hazards",
+    "levels": [
+      "LavaGapEnv",
+      "CrossingEnv",
+      "DistShiftEnv"
+    ]
+  },
+  {
+    "category_name": "object_selection",
+    "skill": "Navigate to a described object",
+    "levels": [
+      "GoTo",
+      "GoToRedBall",
+      "GoToRedBlueBall",
+      "FindObjS5",
+      "GoToImpUnlock",
+      "GoToObjectEnv"
+    ]
+  },
+  {
+    "category_name": "pickup_only",
+    "skill": "Pick up a specified object",
+    "levels": [
+      "Pickup",
+      "OneRoomS8",
+      "PickupLoc",
+      "PickupDist",
+      "PickupAbove",
+      "FetchEnv"
+    ]
+  },
+  {
+    "category_name": "open_door",
+    "skill": "Open an unlocked door",
+    "levels": [
+      "OpenDoor",
+      "OpenRedDoor",
+      "Open",
+      "RedBlueDoorEnv",
+      "MultiRoomEnv"
+    ]
+  },
+  {
+    "category_name": "unlock_door",
+    "skill": "Fetch key and unlock a door",
+    "levels": [
+      "Unlock",
+      "UnlockLocal",
+      "DoorKeyEnv",
+      "UnlockEnv"
+    ]
+  },
+  {
+    "category_name": "unlock_pickup",
+    "skill": "Unlock a door and pick up an object",
+    "levels": [
+      "UnlockPickup",
+      "UnlockPickupEnv"
+    ]
+  },
+  {
+    "category_name": "obstacle_blocking",
+    "skill": "Move object(s) blocking key or door",
+    "levels": [
+      "UnblockPickup",
+      "ObstructedMaze_1Dlhb",
+      "ObstructedMaze_Full",
+      "ObstructedMaze_Full_V1"
+    ]
+  },
+  {
+    "category_name": "obstructed_unlock_pickup",
+    "skill": "Move blocker, unlock door, and pick up object",
+    "levels": [
+      "BlockedUnlockPickup",
+      "BlockedUnlockPickupEnv"
+    ]
+  },
+  {
+    "category_name": "object_placement",
+    "skill": "Place one object near another",
+    "levels": [
+      "PutNext",
+      "PutNextLocal",
+      "MoveTwoAcross",
+      "PutNearEnv"
+    ]
+  },
+  {
+    "category_name": "memory_ordering",
+    "skill": "Open doors or pick items in correct sequence with memory",
+    "levels": [
+      "OpenTwoDoors",
+      "OpenDoorsOrder",
+      "MemoryEnv"
+    ]
+  },
+  {
+    "category_name": "composite_skills",
+    "skill": "Execute multiple skills in a combined instruction",
+    "levels": [
+      "Synth",
+      "SynthLoc",
+      "SynthSeq",
+      "BossLevel",
+      "MiniBossLevel",
+      "BossLevelNoUnlock",
+      "LockedRoomEnv",
+      "GoToSeq",
+      "ActionObjDoor",
+      "UnlockToUnlock",
+      "KeyCorridor", 
+      "KeyCorridorEnv"
+    ]
+  },
+  {
+    "category_name": "dynamic_obstacle_avoidance",
+    "skill": "Navigate around moving obstacles",
+    "levels": [
+      "DynamicObstaclesEnv"
+    ]
+  }
+]

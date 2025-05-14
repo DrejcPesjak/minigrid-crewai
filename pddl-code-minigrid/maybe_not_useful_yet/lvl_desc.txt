@@ -1,0 +1,114 @@
+blockedunlockpickup - pick up obstacle, move, drop it, pick up key, unlock door, pick up box
+simplecrossing - walls, find opening, get to goal
+lavacrossing - simplecrossing but with lava
+distshift - avoid lava, get to goal
+doorkey - pick up key, unlock door, get to goal
+dynamic_obst - 2 moving balls dont touch, get to goal
+empty - get to goal
+fetch - pickup _ obj
+four_rooms - get to goal (big)
+gottodoor - get to door, press "done"
+gotoobject - get to obj, press "done"
+keycorridor - move through open door, pikcup key, unlock door, pickup ball
+lavagap - simplecrossing but with lava
+memory - find matching item at the end of a two way very long hallway
+multiroom - unlock door in each following room, get to goal in the last room
+obstructedmazedlhb - A blue ball is hidden in a 2x1 maze. A locked door separates rooms. Doors are obstructed by a ball and keys are hidden in boxes.
+obstructedmazefull - A blue ball is hidden in one of the 4 corners of a 3x3 maze. Doors are locked, doors are obstructed by a ball and keys are hidden in boxes.
+putnear - put one object next to another, there are multiple objects, can be confusing
+redbluedoor - first open this door, than that one, in this specific order
+unlock - open the door
+unlockpickup - pickup key, unlock door, pickup box
+
+
+Navigation & Object Interaction
+
+    GoToRedBallGrey: Navigate to a red ball in a room with grey distractors.
+
+    GoToRedBall: Navigate to a red ball among various colored objects.
+
+    GoToRedBallNoDists: Navigate to a red ball without any distractors.
+
+    GoToObj: Navigate to an object specified by type and color.
+
+    GoToLocal: Navigate to an object located nearby.
+
+    GoTo: Navigate to an object that may be in a different room.
+
+    GoToImpUnlock: Navigate to an object, unlocking doors as needed.
+
+    GoToSeq: Navigate to multiple objects in a specified sequence.
+
+    GoToRedBlueBall: Navigate to either a red or blue ball.
+
+    GoToDoor: Navigate to a specified door.
+
+    GoToObjDoor: Navigate to a door specified by object properties.
+
+🚪 Door Interaction
+
+    Open: Open the door directly in front of the agent.
+
+    OpenRedDoor: Open a red-colored door.
+
+    OpenDoor: Open a specified door.
+
+    OpenTwoDoors: Open two doors, order unspecified.
+
+    OpenDoorsOrder: Open two doors in a specified order.
+
+🎒 Object Manipulation
+
+    Pickup: Pick up a specified object.
+
+    UnblockPickup: Move an object blocking the target, then pick it up.
+
+    PickupLoc: Pick up an object located nearby.
+
+    PickupDist: Pick up an object located farther away.
+
+    PickupAbove: Pick up an object placed above another object.
+
+📦 Object Placement
+
+    PutNextLocal: Place an object next to another nearby object.
+
+    PutNext: Place an object next to another, possibly distant, object.
+
+🔐 Unlocking & Key Interaction
+
+    Unlock: Unlock a door using the appropriate key.
+
+    UnlockLocal: Unlock a nearby door.
+
+    KeyInBox: Retrieve a key placed inside a box.
+
+    UnlockPickup: Unlock a door and pick up the object beyond it.
+
+    BlockedUnlockPickup: Move a blocking object, unlock a door, then pick up the target object.
+
+    UnlockToUnlock: Unlock a door to access another locked door.
+
+🧠 Advanced Tasks
+
+    ActionObjDoor: Perform an action on an object located near a door.
+
+    FindObj: Explore the environment to find a specified object.
+
+    KeyCorridor: Navigate a corridor, retrieve a key, and unlock a door.
+
+    OneRoom: Complete tasks within a single room.
+
+    MoveTwoAcross: Move two objects across rooms.
+
+    Synth: Perform a synthesized task combining multiple objectives.
+
+    SynthLoc: Perform a synthesized task with location-specific objectives.
+
+    SynthSeq: Perform a sequence of synthesized tasks.
+
+    MiniBossLevel: A challenging level combining multiple task types.
+
+    BossLevel: The most complex level, requiring mastery of all skills.
+
+    BossLevelNoUnlock: A complex level without the need to unlock doors
