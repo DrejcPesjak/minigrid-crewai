@@ -1,0 +1,63 @@
+write the SLAM for this openai gym minigrid game
+
+'current_observation': array([['wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall'],
+       ['wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall'],
+       ['wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall'],
+       ['agent', 'empty', 'wall', 'wall', 'wall', 'wall', 'wall'],
+       ['empty', 'empty', 'wall', 'wall', 'wall', 'wall', 'wall'],
+       ['empty', 'goal green', 'wall', 'wall', 'wall', 'wall', 'wall'],
+       ['wall', 'wall', 'wall', 'wall', 'wall', 'wall', 'wall']],
+
+the primitive actions can only contain return [num]
+the agents properties (curr dir, curr obs, full grid, prev act, invet) must all be updated outside of the agent
+and note that in current obs (converted) the agent will always be on one of the edges, eg if its oriented south the agent will be in the first row and the middle of that row, ie it sees 3 left 3 right and 6 ahead (or 7 ahead if you count the row its in)
+but in the full grid, the agent can be anywhere (almost anywhere) and in slam we need to remove agent from the previous frame and put the new "agent" in the full grid (well if it turned, ofc the position in grid does not change, but the grid might have expanded) 
+
+now we have 6 actions , for 3,4,5 we just update the next cell (and in case of pickup and drop, we check if the cell changed and only if it did, we also update inventory of agent)
+now in case of move forward 2 (looking east):
+ - if old_global_x + 7 > old_full_grid_x_len: add column on right
+ - old_global_loc remove "agent"
+ - new_global_loc_x = old_global_loc_x + 1
+ - full_grid[new_loc_x:, new_loc_y-3:new_loc_y+3] = new_obs
+now (there is a chance we hit a wall), in this case, we check if action=2 and old_grid next cell == wall, then global_loc stays the same, but we still update the grid (in case of any dynamic objects)
+now if we added a row above (means we are facing north and going foward, which explores new global positions), think that global_loc stays the same (it would be y-1 but because we got new row, everything shifts, thus the y=y)
+now if we added a col left (facing west, going forward, and old_global_loc-7 < 0, or maybe its -6), the global_loc also stays the same
+now if we added a column on right (facing east, going foward, old_global_loc_x+7 > array_x_len) we just update the global_loc the same as in any other case where there was no overflow (no new global locations discovered)
+and if we added a row below (facing south, going forward, overflow) we also do y+1 as we would in case of no overflow
+note that when we add column or row, 7 values are from new_obs and all other are unseen
+
+now if we turn right 1:
+ if added row above: global_y+1
+ if added column left: global_x+1
+ else global loc stays the same
+and of course update the full_grid accordingly
+
+"local agent is always bottom-center after convert_observation" -> NO
+in the obs.grid aka newg the agent is at one of the edges
+if looking east, the agent will be on the far left, and middle row
+if looking south, agent is first row at the middle of it
+if looking west, agent is far right column, middle of it
+if looking north, agent is in bottom/last row, middle of it
+in the local grid there are only these 4 options, 
+and the orientation of the elements is always global, by that i mean, if :
+ the agent is facing east and there is a ball to the right of him (aka south) and then a green goal one cell further (even souther), 
+ and the agent turns right, the ball will still have lower index of row then the green goal, is that clear?
+
+
+lets just make it clear:
+if initial full grid is 7x7, and we are oriented east (aka right)
+and our action is forward (aka 2) 
+then the new full grid in this case would be 7x8 (7 rows, 8 columns)
+is that clear? 
+
+and the full_grid should not always stay of the size 7x8, only in this instance when we make the first move, i dont know if that is clear
+so in this example we make 2 move forward in direction east
+this means that the full_grid goes from size 7x7 to 7x8 to 7x9 (7rows x N columns)
+then when we turn the go to move south in this our example, there should be rows appended at the bottom of the full_grid
+
+also dont foget the agent current dir and prev actions udpate (do it inside the slam function)
+
+and action 5 (toggle) for which we also must update the next cell (it might not have changed though, but nontheless)
+the full_grid can expand (overflow) also with turning (if we are at the edge and looking in (into the center), and then turning left or right will expand the nearest edge
+
+
