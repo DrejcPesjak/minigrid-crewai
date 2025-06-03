@@ -19,6 +19,7 @@ class ChatGPTClient:
         self.output_format = output_format
 
     def chat_completion(self, messages):
+        print(messages[-2:])
         result = self.client.beta.chat.completions.parse(
             model=self.model_name,
             messages=messages,

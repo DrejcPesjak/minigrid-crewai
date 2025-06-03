@@ -1,190 +1,177 @@
-###
-# chatgpt_pddl3.py with logging
-###
-
+"""
+PDDL generator with repair loop.  Exposes individual action schemas so
+main.py can forward them to the coder.
+"""
 import time
-import os
-import logging
-import datetime
-from openai import OpenAI
+# import logging
+from pathlib import Path
+from typing import Dict, Tuple, List, Set
 from pydantic import BaseModel
+
 from unified_planning.io import PDDLReader
 from unified_planning.shortcuts import OneshotPlanner, PlanValidator
 from unified_planning.engines import PlanGenerationResultStatus
 
 from llmclient import ChatGPTClient
 
-# --- Define a Pydantic model for ChatGPT's response ---
-class PDDLResponse(BaseModel):
+MAX_RETRIES = 8
+TMP_DOMAIN  = Path("domain.pddl")
+TMP_PROBLEM = Path("problem.pddl")
+
+SYSTEM_PROMPT = """
+You are a classical-planning expert writing PDDL for an **OpenAI Gymnasium
+MiniGrid** level.  
+Return **only** a JSON object with exactly two keys:
+
+    { "domain": "<complete PDDL DOMAIN file>",
+      "problem": "<complete PDDL PROBLEM file>" }
+
+No other text - no “```”, no explanations, no plan.
+
+Guidelines
+•  Model the high-level actions the Agent can call.
+•  **Reuse existing method names** exactly when they already exist
+   (move_forward, turn_left, pick_up, …).
+•  If you invent a new high-level action, give it a clear, unique,
+   snake_case name (e.g. cross_lava, move_to).
+•  **Never reference raw (x,y) grid coordinates.**
+   Describe motion and conditions with predicates such as
+   (adjacent ?a ?b), (on ?o ?cell), (facing ?dir), etc.
+   For example prefer  move_to(?obj)  over  move_to_xy.
+•  Think at a human level of abstraction - the coder LLM will translate
+   each new action into Python using numpy and the environment API.
+•  The world contains walls, lava, doors, keys, boxes, balls, goals, etc.
+   The agent must avoid obstacles and fulfill the mission.
+•  All predicates, types and parameters must match between DOMAIN
+   and PROBLEM.
+"""
+
+USER_PROMPT_TEMPLATE = """
+Environment: {env_name}   (level “{level_name}”)
+Category   : {category_name}
+Skill      : {skill}
+
+Level description:
+{level_description}
+
+Current Agent python code:
+{agent_code}
+
+Write DOMAIN and PROBLEM so that a plan exists using *only* the high-level
+actions above (plus any brand-new actions you define following the
+guidelines).  You are encouraged to invent whatever additional actions are
+useful, as long as they obey the naming & abstraction rules.
+"""
+
+REFINEMENT_PROMPT_TEMPLATE = """
+Planning / validation failed.
+
+--- ERROR LOG ---
+{error_log}
+
+Please resend ONE JSON object (keys: domain, problem) that fixes the issue.
+Do not include markdown or extra text.
+""".strip()
+
+class PDDLResp(BaseModel):
     domain: str
     problem: str
 
-# --- Function to save PDDL files ---
-def save_pddl_files(domain_text, problem_text):
-    with open("domain.pddl", "w") as f:
-        f.write(domain_text)
-    with open("problem.pddl", "w") as f:
-        f.write(problem_text)
-
-# --- Function to parse, plan, and validate ---
-def plan_with_unified_planning():
-    reader = PDDLReader()
-    logging.info("Parsing PDDL files...")
-    problem = reader.parse_problem("domain.pddl", "problem.pddl")
-    logging.info("PDDL files parsed successfully.")
-    
-    logging.info("Starting planner...")
-    with OneshotPlanner(problem_kind=problem.kind) as planner:
-        result = planner.solve(problem)
-    logging.info("Planner finished execution.")
-    
-    logging.info("Validating plan...")
-    with PlanValidator(name="tamer") as validator:
-        validation_result = validator.validate(problem, result.plan)
-    logging.info("Plan validation finished.")
-    
-    return result, validation_result
-
-# --- Main pipeline ---
-def main():
-    # Input for task name (sanitized for file naming) and task description
-    task_name = input("Enter planning task name: ").strip()
-    task_description = input("Enter planning task description: ").strip()
-    task_name_sanitized = task_name.replace(" ", "_")
-    
-    # Create a datetime stamp
-    dt_stamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    
-    # Initialize ChatGPT client (model name will be used for logging as well)
-    chat_client = ChatGPTClient(model_name="o1", output_format=PDDLResponse)
-    model_name = chat_client.model_name
-    
-    # Setup logging to file in the ./logs directory
-    logs_dir = "./logs"
-    if not os.path.exists(logs_dir):
-        os.makedirs(logs_dir)
-    log_filename = os.path.join(logs_dir, f"{task_name_sanitized}_{model_name}_{dt_stamp}.log")
-    
-    # Configure logging to both file and console
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s - %(levelname)s - %(message)s",
-        handlers=[
-            logging.FileHandler(log_filename),
-            logging.StreamHandler()
-        ]
-    )
-    
-    # Log initial details
-    logging.info("=== SESSION START ===")
-    logging.info(f"Task Name: {task_name}")
-    logging.info(f"Task Description: {task_description}")
-    logging.info(f"Model Name: {model_name}")
-    logging.info(f"Datetime Stamp: {dt_stamp}")
-    
-    conversation_history = []  # Holds the conversation context
-    
-    # Build initial prompt for PDDL generation
-    initial_prompt = (
-        "You are an expert in PDDL planning. Given the following task description:\n\n"
-        f"{task_description}\n\n"
-        "Please generate a JSON object with exactly two keys: 'domain' and 'problem'. "
-        "The value of 'domain' should be a complete PDDL DOMAIN file, and the value of 'problem' "
-        "should be a complete PDDL PROBLEM file. Ensure that predicates and variable names match between the two files."
-    )
-    conversation_history.append({"role": "user", "content": initial_prompt})
-    
-    # Log the prompt before sending it to the LLM
-    logging.info("Sending initial prompt to LLM:")
-    logging.info(initial_prompt)
-    
-    max_attempts = 10
-    attempt = 1
-    success = False
-    domain_text = ""
-    problem_text = ""
-    final_plan_status = "N/A"
-    
-    while attempt <= max_attempts and not success:
-        try:
-            # Get response from the ChatGPT client
-            response = chat_client.chat_completion(conversation_history.copy())
-            # Log the LLM's output
-            response_json = response.model_dump_json()
-            logging.info("Received response from LLM:")
-            logging.info(response_json)
-            
-            # Retrieve domain and problem texts from the response
-            domain_text = response.domain.strip()
-            problem_text = response.problem.strip()
-            save_pddl_files(domain_text, problem_text)
-            logging.info("PDDL files saved.")
-            
-            # Attempt to plan with the generated PDDL files
-            result, validation_result = plan_with_unified_planning()
-            
-            if result.status in [PlanGenerationResultStatus.SOLVED_SATISFICING, PlanGenerationResultStatus.SOLVED_OPTIMALLY]:
-                logging.info("Plan found successfully!")
-                logging.info(f"Domain:\n{domain_text}")
-                logging.info(f"Problem:\n{problem_text}")
-                logging.info(f"Plan: {result.plan}")
-                success = True
-                final_plan_status = result.status.name
-                break
-            else:
-                raise Exception(f"Plan status not successful: {result.status}")
+class PlannerLLM:
+    def __init__(self):
+        self.client = ChatGPTClient("o1", PDDLResp)
+        # logging.basicConfig(level=logging.INFO,
+        #                     format="%(levelname)s: %(message)s")
         
-        except Exception as e:
-            error_msg = str(e)
-            logging.error("Error during planning/validation:")
-            logging.error(error_msg)
-            print("\nError during planning/validation:", error_msg)
-            
-            # Build refinement prompt based on whether PDDL files are available
-            if domain_text and problem_text:
-                refinement_prompt = (
-                    "The following error occurred during planning/validation of the PDDL files:\n"
-                    f"{error_msg}\n\n"
-                    "Here are the previously generated PDDL files:\n\n"
-                    "DOMAIN file:\n" + domain_text + "\n\n"
-                    "PROBLEM file:\n" + problem_text + "\n\n"
-                    "Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error."
-                )
-            else:
-                refinement_prompt = (
-                    "The following error occurred during planning/validation of the PDDL files:\n"
-                    f"{error_msg}\n\n"
-                    "Please generate a revised JSON object with keys 'domain' and 'problem' containing updated PDDL files that fix the error."
-                )
-            
-            conversation_history.append({"role": "user", "content": refinement_prompt})
-            # Log the refinement prompt for the next attempt
-            logging.info("Sending refinement prompt to LLM:")
-            logging.info(refinement_prompt)
-            attempt += 1
-            time.sleep(1)  # To avoid potential rate limit issues
-
-    # Log final status details
-    if success:
-        if result.status == PlanGenerationResultStatus.SOLVED_SATISFICING:
-            plan_status_detail = "Satisficing"
-        elif result.status == PlanGenerationResultStatus.SOLVED_OPTIMALLY:
-            plan_status_detail = "Optimal"
-        else:
-            plan_status_detail = "Unknown"
-        logging.info("=== FINAL PLAN STATUS ===")
-        logging.info(f"Plan is viable: True")
-        logging.info(f"Plan is feasible: True")
-        logging.info(f"Plan is satisficing: {result.status == PlanGenerationResultStatus.SOLVED_SATISFICING}")
-        logging.info(f"Plan is optimal: {result.status == PlanGenerationResultStatus.SOLVED_OPTIMALLY}")
-        logging.info(f"Overall Result: Success ({plan_status_detail})")
-    else:
-        logging.info("=== FINAL PLAN STATUS ===")
-        logging.info("Plan generation failed after maximum attempts.")
-        logging.info(f"Overall Result: Failure")
+    def plan_with_unified_planning(self) -> Tuple:
+        """
+        Parse PDDL files, plan with Unified Planning, and validate the plan.
+        Returns: (up_result, up_validation)
+        """
+        if not TMP_DOMAIN.exists() or not TMP_PROBLEM.exists():
+            raise FileNotFoundError("PDDL files not found. "
+                                    "Ensure 'domain.pddl' and 'problem.pddl' exist.")
+        # Parse the PDDL files
+        reader = PDDLReader()
+        problem = reader.parse_problem("domain.pddl", "problem.pddl")
+        
+        with OneshotPlanner(problem_kind=problem.kind) as planner:
+            result = planner.solve(problem)
+        
+        with PlanValidator(name="tamer") as validator:
+            validation_result = validator.validate(problem, result.plan)
+        
+        return problem, result, validation_result
     
-    logging.info("=== SESSION END ===")
 
+    def plan(self, meta: Dict):
+        """
+        meta keys: category_name, skill, level_name, level_description, env_name
 
-if __name__ == "__main__":
-    main()
+        Returns: (problem_text, up_result, up_validation)
+        """
+        agent_src = Path(__file__).with_name("agent.py").read_text()
+
+        conversation = [
+            {"role": "system", "content": SYSTEM_PROMPT.strip()},
+            {"role": "user",   "content": USER_PROMPT_TEMPLATE.format(
+                env_name=meta["env_name"],
+                level_name=meta["level_name"],
+                category_name=meta["category_name"],
+                skill=meta["skill"],
+                level_description=meta["level_description"],
+                agent_code=agent_src,
+            )}
+        ]
+
+        # retry-repair loop
+        for attempt in range(1, MAX_RETRIES + 1):
+            resp: PDDLResp = self.client.chat_completion(conversation)
+            dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
+            TMP_DOMAIN.write_text(dom_txt)
+            TMP_PROBLEM.write_text(prob_txt)
+
+            try:
+                up_problem, up_result, up_validation = self.plan_with_unified_planning()
+                if up_result.status in (
+                        PlanGenerationResultStatus.SOLVED_SATISFICING,
+                        PlanGenerationResultStatus.SOLVED_OPTIMALLY):
+                    self._cache_action_schemas(dom_txt)
+                    return prob_txt, up_result, up_validation
+                err = f"Planner status: {up_result.status}"
+            except Exception as exc:
+                err = str(exc)
+
+            # feed error back
+            conversation.extend([
+                {"role": "assistant", "content": resp.model_dump_json()},
+                {"role": "user",      "content": REFINEMENT_PROMPT_TEMPLATE.format(
+                    error_log=err
+                )}
+            ])
+            time.sleep(1) # to avoid rate limits
+
+        raise RuntimeError("PlannerLLM exhausted retries")
+
+    # ------------ helpers ------------
+    def _cache_action_schemas(self, domain_txt: str):
+        """Build dict {action_name: full (:action …) block}."""
+        self._schemas = {}
+        lines = domain_txt.splitlines()
+        buffer = []
+        for ln in lines:
+            if ln.lstrip().startswith("(:action"):
+                buffer = [ln]
+            elif buffer:
+                buffer.append(ln)
+                if ln.rstrip().endswith(")"):
+                    name = buffer[0].split()[1]
+                    self._schemas[name] = "\n".join(buffer)
+                    buffer = []
+
+    def get_action_schema(self, act_name: str) -> str:
+        return self._schemas.get(act_name.replace("_", "-"), "")
+
+    def get_action_schemas(self, act_names: Set[str]) -> Dict[str, str]:
+        return {a: self.get_action_schema(a) for a in act_names}
+

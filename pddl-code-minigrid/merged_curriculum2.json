@@ -1,0 +1,679 @@
+[
+  {
+    "category_name": "goal_navigation",
+    "skill": "Reach a goal location in simple rooms",
+    "levels": [
+      {
+        "sub_link": "EmptyEnv",
+        "name": "Empty",
+        "description": "This environment is an empty room, and the goal of the agent is to reach the\ngreen goal square, which provides a sparse reward. A small penalty is\nsubtracted for the number of steps to reach the goal. This environment is\nuseful, with small rooms, to validate that your RL algorithm works\ncorrectly, and with large rooms to experiment with sparse rewards and\nexploration. The random variants of the environment have the agent starting\nat a random position for each episode, while the regular variants have the\nagent always starting in the corner opposite to the goal.",
+        "configs": [
+          "MiniGrid-Empty-5x5-v0",
+          "MiniGrid-Empty-Random-5x5-v0",
+          "MiniGrid-Empty-6x6-v0",
+          "MiniGrid-Empty-Random-6x6-v0",
+          "MiniGrid-Empty-8x8-v0",
+          "MiniGrid-Empty-16x16-v0"
+        ]
+      },
+      {
+        "sub_link": "FourRoomsEnv",
+        "name": "Four Rooms",
+        "description": "Classic four room reinforcement learning environment. The agent must\nnavigate in a maze composed of four rooms interconnected by 4 gaps in the\nwalls. To obtain a reward, the agent must reach the green goal square. Both\nthe agent and the goal square are randomly placed in any of the four rooms.",
+        "configs": [
+          "MiniGrid-FourRooms-v0"
+        ]
+      },
+      {
+        "sub_link": "CrossingEnv",
+        "name": "Crossing",
+        "description": "The agent has to reach the green goal square on the other corner of the room while avoiding rivers of deadly lava which terminate the episode in failure. Each lava stream runs across the room either horizontally or vertically, and has a single crossing point which can be safely used; Luckily, a path to the goal is guaranteed to exist. This environment is useful for studying safety and safe exploration.",
+        "configs": [
+          "MiniGrid-SimpleCrossingS9N1-v0",
+          "MiniGrid-SimpleCrossingS9N1-v0",
+          "MiniGrid-SimpleCrossingS9N2-v0",
+          "MiniGrid-SimpleCrossingS9N3-v0",
+          "MiniGrid-SimpleCrossingS11N5-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "static_obstacle_navigation",
+    "skill": "Navigate around static obstacles to reach a target",
+    "levels": [
+      {
+        "sub_link": "GoToLocal",
+        "name": "Go To Local",
+        "description": "Go to an object, inside a single room with no doors, no distractors. The\nnaming convention GoToLocalS{X}N{Y} represents a room of size X with\ndistractor number Y.",
+        "configs": [
+          "BabyAI-GoToLocal-v0",
+          "BabyAI-GoToLocalS5N2-v0",
+          "BabyAI-GoToLocalS6N2-v0",
+          "BabyAI-GoToLocalS6N3-v0",
+          "BabyAI-GoToLocalS6N4-v0",
+          "BabyAI-GoToLocalS7N4-v0",
+          "BabyAI-GoToLocalS7N5-v0",
+          "BabyAI-GoToLocalS8N2-v0",
+          "BabyAI-GoToLocalS8N3-v0",
+          "BabyAI-GoToLocalS8N4-v0",
+          "BabyAI-GoToLocalS8N5-v0",
+          "BabyAI-GoToLocalS8N6-v0",
+          "BabyAI-GoToLocalS8N7-v0"
+        ]
+      },
+      {
+        "sub_link": "GoToObj",
+        "name": "Go To Obj",
+        "description": "Go to an object, inside a single room with no doors, no distractors. The\nnaming convention GoToObjS{X} represents a room of size X.",
+        "configs": [
+          "BabyAI-GoToObj-v0",
+          "BabyAI-GoToObjS4-v0",
+          "BabyAI-GoToObjS6-v1"
+        ]
+      },
+      {
+        "sub_link": "GoToDoor",
+        "name": "Go To Door",
+        "description": "Go to a door\n(of a given color, in the current room)\nNo distractors, no language variation",
+        "configs": [
+          "BabyAI-GoToDoor-v0"
+        ]
+      },
+      {
+        "sub_link": "GoToObjDoor",
+        "name": "Go To Obj Door",
+        "description": "Go to an object or door\n(of a given type and color, in the current room)",
+        "configs": [
+          "BabyAI-GoToObjDoor-v0"
+        ]
+      },
+      {
+        "sub_link": "GoToRedBallNoDists",
+        "name": "Go To Red Ball No Dists",
+        "description": "Go to the red ball. No distractors present.",
+        "configs": [
+          "BabyAI-GoToRedBallNoDists-v0"
+        ]
+      },
+      {
+        "sub_link": "GoToRedBallGrey",
+        "name": "Go To Red Ball Grey",
+        "description": "Go to the red ball, single room, with distractors.\nThe distractors are all grey to reduce perceptual complexity.\nThis level has distractors but doesn\u2019t make use of language.",
+        "configs": [
+          "BabyAI-GoToRedBallGrey-v0"
+        ]
+      },
+      {
+        "sub_link": "GoToRedBall",
+        "name": "Go To Red Ball",
+        "description": "Go to the red ball, single room, with distractors.\nThis level has distractors but doesn\u2019t make use of language.",
+        "configs": [
+          "BabyAI-GoToRedBall-v0"
+        ]
+      },
+      {
+        "sub_link": "GoToRedBlueBall",
+        "name": "Go To Red Blue Ball",
+        "description": "Go to the red ball or to the blue ball.\nThere is exactly one red or blue ball, and some distractors.\nThe distractors are guaranteed not to be red or blue balls.\nLanguage is not required to solve this level.",
+        "configs": [
+          "BabyAI-GoToRedBlueBall-v0"
+        ]
+      },
+      {
+        "sub_link": "GoToObjectEnv",
+        "name": "Go To Object",
+        "description": "This environment is a room with colored objects. The agent\nreceives a textual (mission) string as input, telling it which colored object to go\nto, (eg: \u201cgo to the red key\u201d). It receives a positive reward for performing\nthe done action next to the correct object, as indicated in the mission\nstring.",
+        "configs": [
+          "MiniGrid-GoToObject-6x6-N2-v0",
+          "MiniGrid-GoToObject-8x8-N2-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "hazard_avoidance",
+    "skill": "Reach the goal while avoiding hazardous tiles or domain shifts",
+    "levels": [
+      {
+        "sub_link": "LavaGapEnv",
+        "name": "Lava Gap",
+        "description": "The agent has to reach the green goal square at the opposite corner of the\nroom, and must pass through a narrow gap in a vertical strip of deadly lava.\nTouching the lava terminate the episode with a zero reward. This environment\nis useful for studying safety and safe exploration.",
+        "configs": [
+          "MiniGrid-LavaGapS5-v0",
+          "MiniGrid-LavaGapS6-v0",
+          "MiniGrid-LavaGapS7-v0"
+        ]
+      },
+      {
+        "sub_link": "CrossingEnv",
+        "name": "Crossing",
+        "description": "The agent has to reach the green goal square on the other corner of the room while avoiding rivers of deadly lava which terminate the episode in failure. Each lava stream runs across the room either horizontally or vertically, and has a single crossing point which can be safely used; Luckily, a path to the goal is guaranteed to exist. This environment is useful for studying safety and safe exploration.",
+        "configs": [
+          "MiniGrid-LavaCrossingS9N1-v0",
+          "MiniGrid-LavaCrossingS9N2-v0",
+          "MiniGrid-LavaCrossingS9N3-v0",
+          "MiniGrid-LavaCrossingS11N5-v0"
+        ]
+      },
+      {
+        "sub_link": "DistShiftEnv",
+        "name": "Dist Shift",
+        "description": "This environment is based on one of the DeepMind AI safety gridworlds.\nThe agent starts in the\ntop-left corner and must reach the goal which is in the top-right corner,\nbut has to avoid stepping into lava on its way. The aim of this environment\nis to test an agent\u2019s ability to generalize. There are two slightly\ndifferent variants of the environment, so that the agent can be trained on\none variant and tested on the other.",
+        "configs": [
+          "MiniGrid-DistShift1-v0",
+          "MiniGrid-DistShift2-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "pickup_only",
+    "skill": "Pick up a specified object in a simple setting",
+    "levels": [
+      {
+        "sub_link": "Pickup",
+        "name": "Pickup",
+        "description": "Pick up an object, the object may be in another room.",
+        "configs": [
+          "BabyAI-Pickup-v0"
+        ]
+      },
+      {
+        "sub_link": "OneRoomS8",
+        "name": "One Room",
+        "description": "Pick up the ball. Rooms have a size of 8.",
+        "configs": [
+          "BabyAI-OneRoomS8-v0",
+          "BabyAI-OneRoomS12-v0",
+          "BabyAI-OneRoomS16-v0",
+          "BabyAI-OneRoomS20-v0"
+        ]
+      },
+      {
+        "sub_link": "PickupLoc",
+        "name": "Pickup Loc",
+        "description": "Pick up an object which may be described using its location. This is a\nsingle room environment.",
+        "configs": [
+          "BabyAI-PickupLoc-v0"
+        ]
+      },
+      {
+        "sub_link": "PickupDist",
+        "name": "Pickup Dist",
+        "description": "Pick up an object\nThe object to pick up is given by its type only, or\nby its color, or by its type and color.\n(in the current room, with distractors)",
+        "configs": [
+          "BabyAI-PickupDist-v0",
+          "BabyAI-PickupDistDebug-v0"
+        ]
+      },
+      {
+        "sub_link": "FetchEnv",
+        "name": "Fetch",
+        "description": "This environment has multiple objects of assorted types and colors. The\nagent receives a textual string as part of its observation telling it which\nobject to pick up. Picking up the wrong object terminates the episode with\nzero reward.",
+        "configs": [
+          "MiniGrid-Fetch-5x5-N2-v0",
+          "MiniGrid-Fetch-6x6-N2-v0",
+          "MiniGrid-Fetch-8x8-N3-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "open_door",
+    "skill": "Open one or more unlocked doors",
+    "levels": [
+      {
+        "sub_link": "OpenRedDoor",
+        "name": "Open Red Door",
+        "description": "Go to the red door\n(always unlocked, in the current room)\nNote: this level is intentionally meant for debugging and is\nintentionally kept very simple.",
+        "configs": [
+          "BabyAI-OpenRedDoor-v0"
+        ]
+      },
+      {
+        "sub_link": "OpenDoor",
+        "name": "Open Door",
+        "description": "Go to the door\nThe door to open is given by its color or by its location.\n(always unlocked, in the current room)",
+        "configs": [
+          "BabyAI-OpenDoor-v0",
+          "BabyAI-OpenDoorDebug-v0",
+          "BabyAI-OpenDoorColor-v0",
+          "BabyAI-OpenDoorLoc-v0"
+        ]
+      },
+      {
+        "sub_link": "GoToDoorEnv",
+        "name": "Go To Door",
+        "description": "This environment is a room with four doors, one on each wall. The agent\nreceives a textual (mission) string as input, telling it which door to go\nto, (eg: \u201cgo to the red door\u201d). It receives a positive reward for performing\nthe done action next to the correct door, as indicated in the mission\nstring.",
+        "configs": [
+          "MiniGrid-GoToDoor-5x5-v0",
+          "MiniGrid-GoToDoor-6x6-v0",
+          "MiniGrid-GoToDoor-8x8-v0"
+        ]
+      },
+      {
+        "sub_link": "ActionObjDoor",
+        "name": "Action Obj Door",
+        "description": "[pick up an object] or\n[go to an object or door] or\n[open a door]\n(in the current room)",
+        "configs": [
+          "BabyAI-ActionObjDoor-v0"
+        ]
+      },
+      {
+        "sub_link": "PickupAbove",
+        "name": "Pickup Above",
+        "description": "Pick up an object (in the room above)\nThis task requires to use the compass to be solved effectively.",
+        "configs": [
+          "BabyAI-PickupAbove-v0"
+        ]
+      },
+      {
+        "sub_link": "GoTo",
+        "name": "Go To",
+        "description": "Go to an object, the object may be in another room. Many distractors.",
+        "configs": [
+          "BabyAI-GoTo-v0",
+          "BabyAI-GoToOpen-v0",
+          "BabyAI-GoToObjMaze-v0",
+          "BabyAI-GoToObjMazeOpen-v0",
+          "BabyAI-GoToObjMazeS4R2-v0",
+          "BabyAI-GoToObjMazeS4-v0",
+          "BabyAI-GoToObjMazeS5-v0",
+          "BabyAI-GoToObjMazeS6-v0",
+          "BabyAI-GoToObjMazeS7-v0"
+        ]
+      },
+      {
+        "sub_link": "Open",
+        "name": "Open",
+        "description": "Open a door, which may be in another room",
+        "configs": [
+          "BabyAI-Open-v0"
+        ]
+      },
+      {
+        "sub_link": "MultiRoomEnv",
+        "name": "Multi Room",
+        "description": "This environment has a series of connected rooms with doors that must be\nopened in order to get to the next room. The final room has the green goal\nsquare the agent must get to. This environment is extremely difficult to\nsolve using RL alone. However, by gradually increasing the number of rooms\nand building a curriculum, the environment can be solved.",
+        "configs": [
+          "MiniGrid-MultiRoom-N2-S4-v0",
+          "MiniGrid-MultiRoom-N4-S5-v0",
+          "MiniGrid-MultiRoom-N6-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "memory_ordering",
+    "skill": "Execute actions in the correct sequence using memory",
+    "levels": [
+      {
+        "sub_link": "RedBlueDoorEnv",
+        "name": "Red Blue Door",
+        "description": "The agent is randomly placed within a room with one red and one blue door\nfacing opposite directions. The agent has to open the red door and then open\nthe blue door, in that order. Note that, surprisingly, this environment is\nsolvable without memory.",
+        "configs": [
+          "MiniGrid-RedBlueDoors-6x6-v0",
+          "MiniGrid-RedBlueDoors-8x8-v0"
+        ]
+      },
+      {
+        "sub_link": "OpenTwoDoors",
+        "name": "Open Two Doors",
+        "description": "Open door X, then open door Y\nThe two doors are facing opposite directions, so that the agent\nCan\u2019t see whether the door behind him is open.\nThis task requires memory (recurrent policy) to be solved effectively.",
+        "configs": [
+          "BabyAI-OpenTwoDoors-v0",
+          "BabyAI-OpenRedBlueDoors-v0",
+          "BabyAI-OpenRedBlueDoorsDebug-v0"
+        ]
+      },
+      {
+        "sub_link": "OpenDoorsOrder",
+        "name": "Open Doors Order",
+        "description": "Open one or two doors in the order specified.",
+        "configs": [
+          "BabyAI-OpenDoorsOrderN2-v0",
+          "BabyAI-OpenDoorsOrderN4-v0",
+          "BabyAI-OpenDoorsOrderN2Debug-v0",
+          "BabyAI-OpenDoorsOrderN4Debug-v0"
+        ]
+      },
+      {
+        "sub_link": "MemoryEnv",
+        "name": "Memory",
+        "description": "This environment is a memory test. The agent starts in a small room where it\nsees an object. It then has to go through a narrow hallway which ends in a\nsplit. At each end of the split there is an object, one of which is the same\nas the object in the starting room. The agent has to remember the initial\nobject, and go to the matching object at split.",
+        "configs": [
+          "MiniGrid-MemoryS17Random-v0",
+          "MiniGrid-MemoryS13Random-v0",
+          "MiniGrid-MemoryS13-v0",
+          "MiniGrid-MemoryS11-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "unlock_door",
+    "skill": "Fetch a key and unlock a locked door",
+    "levels": [
+      {
+        "sub_link": "UnlockLocal",
+        "name": "Unlock Local",
+        "description": "Fetch a key and unlock a door\n(in the current room)",
+        "configs": [
+          "BabyAI-UnlockLocal-v0",
+          "BabyAI-UnlockLocalDist-v0"
+        ]
+      },
+      {
+        "sub_link": "DoorKeyEnv",
+        "name": "Door Key",
+        "description": "This environment has a key that the agent must pick up in order to unlock a\ndoor and then get to the green goal square. This environment is difficult,\nbecause of the sparse reward, to solve using classical RL algorithms. It is\nuseful to experiment with curiosity or curriculum learning.",
+        "configs": [
+          "MiniGrid-DoorKey-5x5-v0",
+          "MiniGrid-DoorKey-6x6-v0",
+          "MiniGrid-DoorKey-8x8-v0",
+          "MiniGrid-DoorKey-16x16-v0"
+        ]
+      },
+      {
+        "sub_link": "UnlockEnv",
+        "name": "Unlock",
+        "description": "The agent has to open a locked door. This environment can be solved without\nrelying on language.",
+        "configs": [
+          "MiniGrid-Unlock-v0"
+        ]
+      },
+      {
+        "sub_link": "LockedRoomEnv",
+        "name": "Locked Room",
+        "description": "The environment has six rooms, one of which is locked. The agent receives\na textual mission string as input, telling it which room to go to in order\nto get the key that opens the locked room. It then has to go into the locked\nroom in order to reach the final goal. This environment is extremely\ndifficult to solve with vanilla reinforcement learning alone.",
+        "configs": [
+          "MiniGrid-LockedRoom-v0"
+        ]
+      },
+      {
+        "sub_link": "Unlock",
+        "name": "Unlock",
+        "description": "Unlock a door.",
+        "configs": [
+          "BabyAI-Unlock-v0"
+        ]
+      },
+      {
+        "sub_link": "GoToImpUnlock",
+        "name": "Go To Imp Unlock",
+        "description": "Go to an object, which may be in a locked room.\nCompetencies: Maze, GoTo, ImpUnlock\nNo unblocking.",
+        "configs": [
+          "BabyAI-GoToImpUnlock-v0"
+        ]
+      },
+      {
+        "sub_link": "KeyInBox",
+        "name": "Key In Box",
+        "description": "Unlock a door. Key is in a box (in the current room).",
+        "configs": [
+          "BabyAI-KeyInBox-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "unlock_pickup",
+    "skill": "Unlock a door and pick up the target object",
+    "levels": [
+      {
+        "sub_link": "UnlockPickup",
+        "name": "Unlock Pickup",
+        "description": "Unlock a door, then pick up a box in another room",
+        "configs": [
+          "BabyAI-UnlockPickup-v0",
+          "BabyAI-UnlockPickupDist-v0"
+        ]
+      },
+      {
+        "sub_link": "UnlockPickupEnv",
+        "name": "Unlock Pickup",
+        "description": "The agent has to pick up a box which is placed in another room, behind a\nlocked door. This environment can be solved without relying on language.",
+        "configs": [
+          "MiniGrid-UnlockPickup-v0"
+        ]
+      },
+      {
+        "sub_link": "UnlockToUnlock",
+        "name": "Unlock To Unlock",
+        "description": "Unlock a door A that requires to unlock a door B before",
+        "configs": [
+          "BabyAI-UnlockToUnlock-v0"
+        ]
+      },
+      {
+        "sub_link": "FindObjS5",
+        "name": "Find Obj",
+        "description": "Pick up an object (in a random room)\nRooms have a size of 5\nThis level requires potentially exhaustive exploration",
+        "configs": [
+          "BabyAI-FindObjS5-v0",
+          "BabyAI-FindObjS6-v0",
+          "BabyAI-FindObjS7-v0"
+        ]
+      },
+      {
+        "sub_link": "KeyCorridorEnv",
+        "name": "Key Corridor",
+        "description": "This environment is similar to the locked room environment, but there are\nmultiple registered environment configurations of increasing size,\nmaking it easier to use curriculum learning to train an agent to solve it.\nThe agent has to pick up an object which is behind a locked door. The key is\nhidden in another room, and the agent has to explore the environment to find\nit. The mission string does not give the agent any clues as to where the\nkey is placed. This environment can be solved without relying on language.",
+        "configs": [
+          "MiniGrid-KeyCorridorS3R1-v0",
+          "MiniGrid-KeyCorridorS3R2-v0",
+          "MiniGrid-KeyCorridorS3R3-v0",
+          "MiniGrid-KeyCorridorS4R3-v0",
+          "MiniGrid-KeyCorridorS5R3-v0",
+          "MiniGrid-KeyCorridorS6R3-v0"
+        ]
+      },
+      {
+        "sub_link": "KeyCorridor",
+        "name": "Key Corridor",
+        "description": "A ball is behind a locked door, the key is placed in a\nrandom room.",
+        "configs": [
+          "BabyAI-KeyCorridor-v0",
+          "BabyAI-KeyCorridorS3R1-v0",
+          "BabyAI-KeyCorridorS3R2-v0",
+          "BabyAI-KeyCorridorS3R3-v0",
+          "BabyAI-KeyCorridorS4R3-v0",
+          "BabyAI-KeyCorridorS5R3-v0",
+          "BabyAI-KeyCorridorS6R3-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "obstacle_blocking",
+    "skill": "Clear blockers, unlock access, then retrieve the goal",
+    "levels": [
+      {
+        "sub_link": "BlockedUnlockPickup",
+        "name": "Blocked Unlock Pickup",
+        "description": "Unlock a door blocked by a ball, then pick up a box\nin another room",
+        "configs": [
+          "BabyAI-BlockedUnlockPickup-v0"
+        ]
+      },
+      {
+        "sub_link": "BlockedUnlockPickupEnv",
+        "name": "Blocked Unlock Pickup",
+        "description": "The agent has to pick up a box which is placed in another room, behind a\nlocked door. The door is also blocked by a ball which the agent has to move\nbefore it can unlock the door. Hence, the agent has to learn to move the\nball, pick up the key, open the door and pick up the object in the other\nroom. This environment can be solved without relying on language.",
+        "configs": [
+          "MiniGrid-BlockedUnlockPickup-v0"
+        ]
+      },
+      {
+        "sub_link": "UnblockPickup",
+        "name": "Unblock Pickup",
+        "description": "Pick up an object, the object may be in another room. The path may\nbe blocked by one or more obstructors.",
+        "configs": [
+          "BabyAI-UnblockPickup-v0"
+        ]
+      },
+      {
+        "sub_link": "ObstructedMaze_1Dlhb",
+        "name": "Obstructed Maze Dlhb",
+        "description": "A blue ball is hidden in a 2x1 maze. A locked door separates rooms. Doors are obstructed by a ball and keys are hidden in boxes.",
+        "configs": [
+          "MiniGrid-ObstructedMaze-1Dl-v0",
+          "MiniGrid-ObstructedMaze-1Dlh-v0",
+          "MiniGrid-ObstructedMaze-1Dlhb-v0",
+          "MiniGrid-ObstructedMaze-2Dl-v0",
+          "MiniGrid-ObstructedMaze-2Dlh-v0"
+        ]
+      },
+      {
+        "sub_link": "ObstructedMaze_Full",
+        "name": "Obstructed Maze Full",
+        "description": "A blue ball is hidden in one of the 4 corners of a 3x3 maze. Doors are locked, doors are obstructed by a ball and keys are hidden in boxes.",
+        "configs": [
+          "MiniGrid-ObstructedMaze-2Dlhb-v1",
+          "MiniGrid-ObstructedMaze-1Q-v1",
+          "MiniGrid-ObstructedMaze-2Q-v1"
+        ]
+      },
+      {
+        "sub_link": "ObstructedMaze_Full_V1",
+        "name": "Obstructed Maze Full",
+        "description": "A blue ball is hidden in one of the 4 corners of a 3x3 maze. Doors are locked, doors are obstructed by a ball and keys are hidden in boxes.\n All doors and their corresponding blocking balls will be added first, followed by the boxes containing the keys",
+        "configs": [
+          "MiniGrid-ObstructedMaze-Full-v1"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "object_placement",
+    "skill": "Place one object next to another as instructed",
+    "levels": [
+      {
+        "sub_link": "PutNextLocal",
+        "name": "Put Next Local",
+        "description": "Put an object next to another object, inside a single room\nwith no doors, no distractors",
+        "configs": [
+          "BabyAI-PutNextLocal-v0",
+          "BabyAI-PutNextLocalS5N3-v0"
+        ]
+      },
+      {
+        "sub_link": "PutNext",
+        "name": "Put Next",
+        "description": "Task of the form: move the A next to the B and the C next to the D.\nThis task is structured to have a very large number of possible\ninstructions.",
+        "configs": [
+          "BabyAI-PutNextS4N1-v0",
+          "BabyAI-PutNextS5N2-v0",
+          "BabyAI-PutNextS5N1-v0",
+          "BabyAI-PutNextS6N3-v0",
+          "BabyAI-PutNextS7N4-v0",
+          "BabyAI-PutNextS5N2Carrying-v0",
+          "BabyAI-PutNextS6N3Carrying-v0",
+          "BabyAI-PutNextS7N4Carrying-v0"
+        ]
+      },
+      {
+        "sub_link": "MoveTwoAcross",
+        "name": "Move Two Across",
+        "description": "Task of the form: move the A next to the B and the C next to the D.\nThis task is structured to have a very large number of possible\ninstructions.",
+        "configs": [
+          "BabyAI-MoveTwoAcrossS5N2-v0",
+          "BabyAI-MoveTwoAcrossS8N9-v0"
+        ]
+      },
+      {
+        "sub_link": "PutNearEnv",
+        "name": "Put Near",
+        "description": "The agent is instructed through a textual string to pick up an object and\nplace it next to another object. This environment is easy to solve with two\nobjects, but difficult to solve with more, as it involves both textual\nunderstanding and spatial reasoning involving multiple objects.",
+        "configs": [
+          "MiniGrid-PutNear-6x6-N2-v0",
+          "MiniGrid-PutNear-8x8-N3-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "composite_skills",
+    "skill": "Follow multi-step instructions combining navigation and manipulation",
+    "levels": [
+      {
+        "sub_link": "GoToSeq",
+        "name": "Go To Seq",
+        "description": "Sequencing of go-to-object commands.",
+        "configs": [
+          "BabyAI-GoToSeq-v0",
+          "BabyAI-GoToSeqS5R2-v0"
+        ]
+      },
+      {
+        "sub_link": "Synth",
+        "name": "Synth",
+        "description": "Union of all instructions from PutNext, Open, Goto and PickUp.\nThe agent may need to move objects around. The agent may have\nto unlock the door, but only if it is explicitly referred by\nthe instruction.",
+        "configs": [
+          "BabyAI-Synth-v0",
+          "BabyAI-SynthS5R2-v0"
+        ]
+      },
+      {
+        "sub_link": "SynthLoc",
+        "name": "Synth Loc",
+        "description": "Like Synth, but a significant share of object descriptions involves\nlocation language like in PickUpLoc. No implicit unlocking.",
+        "configs": [
+          "BabyAI-SynthLoc-v0"
+        ]
+      },
+      {
+        "sub_link": "SynthSeq",
+        "name": "Synth Seq",
+        "description": "Like SynthLoc, but now with multiple commands, combined just like in GoToSeq.\nNo implicit unlocking.",
+        "configs": [
+          "BabyAI-SynthSeq-v0"
+        ]
+      },
+      {
+        "sub_link": "MiniBossLevel",
+        "name": "Mini Boss Level",
+        "description": "Command can be any sentence drawn from the Baby Language grammar.\nUnion of all competencies. This level is a superset of all other levels.\nCompared to BossLevel this has a smaller room and a lower probability of\nlocked rooms.",
+        "configs": [
+          "BabyAI-MiniBossLevel-v0"
+        ]
+      },
+      {
+        "sub_link": "BossLevelNoUnlock",
+        "name": "Boss Level No Unlock",
+        "description": "Command can be any sentence drawn from the Baby Language grammar.\nUnion of all competencies. This level is a superset of all other levels.\nNo implicit unlocking.",
+        "configs": [
+          "BabyAI-BossLevelNoUnlock-v0"
+        ]
+      },
+      {
+        "sub_link": "BossLevel",
+        "name": "Boss Level",
+        "description": "Command can be any sentence drawn from the Baby Language grammar.\nUnion of all competencies. This level is a superset of all other levels.",
+        "configs": [
+          "BabyAI-BossLevel-v0"
+        ]
+      }
+    ]
+  },
+  {
+    "category_name": "dynamic_obstacle_avoidance",
+    "skill": "Navigate while avoiding moving obstacles",
+    "levels": [
+      {
+        "sub_link": "DynamicObstaclesEnv",
+        "name": "Dynamic Obstacles",
+        "description": "This environment is an empty room with moving obstacles.\nThe goal of the agent is to reach the green goal square without colliding\nwith any obstacle. A large penalty is subtracted if the agent collides with\nan obstacle and the episode finishes. This environment is useful to test\nDynamic Obstacle Avoidance for mobile robots with Reinforcement Learning in\nPartial Observability.",
+        "configs": [
+          "MiniGrid-Dynamic-Obstacles-5x5-v0",
+          "MiniGrid-Dynamic-Obstacles-Random-5x5-v0",
+          "MiniGrid-Dynamic-Obstacles-6x6-v0",
+          "MiniGrid-Dynamic-Obstacles-Random-6x6-v0",
+          "MiniGrid-Dynamic-Obstacles-8x8-v0",
+          "MiniGrid-Dynamic-Obstacles-16x16-v0"
+        ]
+      }
+    ]
+  }
+]

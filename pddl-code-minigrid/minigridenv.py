@@ -281,23 +281,17 @@ class MiniGridEnv:
                 for code in codes:
                     obs, reward, terminated, truncated, info = self.play_episode(code)
                     agent_state = {
-                        "current_observation": self.agent.current_observation,
+                        # "current_observation": self.agent.current_observation,
                         # "full_grid": self.agent.full_grid,
                         "current_dir": self.agent.current_dir,
                         "previous_actions": self.agent.previous_actions,
                         "inventory": self.agent.inventory,
                     }
-                    # print(agent_state)
+                    print(agent_state)
                     import pandas as pd
                     df = pd.DataFrame(self.agent.full_grid)
                     print(df.to_string(index=False, header=False))
-                    # print(self.agent.full_grid)
-                    print(self.agent.full_grid.shape)
-                    print(self.agent.current_observation)
-                    print(self.agent.current_dir)
-                    print(self.agent.previous_actions)
-                    print(self.agent.inventory)
-                    time.sleep(2) # for demo purposes
+                    # time.sleep(2) # for demo purposes
                     if (terminated or truncated):
                         if reward > 0:
                             return "success"
