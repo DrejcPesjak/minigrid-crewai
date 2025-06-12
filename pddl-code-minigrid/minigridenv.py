@@ -18,7 +18,7 @@ class MiniGridEnv:
     def start_env(self):
         # Initialize the environment
         self.env = gym.make(self.level_name, render_mode="human")
-        obs, info = self.env.reset(seed=42) # later will be random
+        obs, info = self.env.reset()#seed=42) # later will be random
         obs['image'][3][6][0] = 10
         obs_converted = self.convert_observation(obs)
         self.init_full_grid(obs_converted)        
@@ -300,7 +300,7 @@ class MiniGridEnv:
                     import pandas as pd
                     df = pd.DataFrame(self.agent.full_grid)
                     print(df.to_string(index=False, header=False))
-                    # time.sleep(2) # for demo purposes
+                    time.sleep(1.0) # for demo purposes
                     # ---------------------------------------------------
 
                     agent_state = {
@@ -338,18 +338,34 @@ class MiniGridEnv:
 
 
 if __name__ == "__main__":
-    env = MiniGridEnv("MiniGrid-Empty-5x5-v0")
-    action_sequence = "[move-forward(), move-forward(), turn-right(), move-forward(), move-forward()]"
-    # env = MiniGridEnv("MiniGrid-Empty-5x5-v0") # solved
-    # action_sequence = "[turn-right(), move-forward(), move-forward(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward()]"
-    # env = MiniGridEnv("MiniGrid-MemoryS11-v0") # solved
-    # action_sequence = "[turn-right(), turn-right(), turn-right(), turn-right(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), turn-left(), move-forward(), move-forward(), move-forward(), pick-up()]"
-    # env = MiniGridEnv("BabyAI-UnlockPickup-v0") # solved
-    # action_sequence = "[turn-left(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward(), turn-right(), move-forward(), toggle(), move-forward(), move-forward(), move-forward(), move-forward(), drop(), turn-right(), move-forward(), move-forward(), move-forward(), turn-left(), pick-up()]"
-    # env = MiniGridEnv("MiniGrid-LavaGapS6-v0") # solved
-    # env = MiniGridEnv("MiniGrid-LavaCrossingS9N2-v0") # solved
-    # env = MiniGridEnv("MiniGrid-LavaCrossingS11N5-v0") # solved
-    # action_sequence = "[cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava()]"
-    result = env.run_sim(action_sequence)
-    print(result)
-    env.end_env()
+    # env = MiniGridEnv("MiniGrid-Empty-5x5-v0")
+    # action_sequence = "[move-forward(), move-forward(), turn-right(), move-forward(), move-forward()]"
+    # # env = MiniGridEnv("MiniGrid-Empty-5x5-v0") # solved
+    # # action_sequence = "[turn-right(), move-forward(), move-forward(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward()]"
+    # # env = MiniGridEnv("MiniGrid-MemoryS11-v0") # solved
+    # # action_sequence = "[turn-right(), turn-right(), turn-right(), turn-right(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), turn-left(), move-forward(), move-forward(), move-forward(), pick-up()]"
+    # # env = MiniGridEnv("BabyAI-UnlockPickup-v0") # solved
+    # # action_sequence = "[turn-left(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward(), turn-right(), move-forward(), toggle(), move-forward(), move-forward(), move-forward(), move-forward(), drop(), turn-right(), move-forward(), move-forward(), move-forward(), turn-left(), pick-up()]"
+    # # env = MiniGridEnv("MiniGrid-LavaGapS6-v0") # solved
+    # # env = MiniGridEnv("MiniGrid-LavaCrossingS9N2-v0") # solved
+    # # env = MiniGridEnv("MiniGrid-LavaCrossingS11N5-v0") # solved
+    # # action_sequence = "[cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava()]"
+    # result = env.run_sim(action_sequence)
+    # print(result)
+    # env.end_env()
+
+    first_set = [
+        "MiniGrid-Empty-5x5-v0",
+        # "MiniGrid-Empty-Random-5x5-v0",
+        # "MiniGrid-Empty-6x6-v0",
+        # "MiniGrid-Empty-Random-6x6-v0",
+        "MiniGrid-Empty-8x8-v0",
+        # "MiniGrid-Empty-16x16-v0"
+    ]
+    for level_name in first_set:
+        print(f"Running level: {level_name}")
+        env = MiniGridEnv(level_name)
+        action_sequence = "[move_to_goal(agent1, goal1)]"
+        result = env.run_sim(action_sequence)
+        print(result)
+        env.end_env()

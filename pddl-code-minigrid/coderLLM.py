@@ -36,12 +36,24 @@ Hard rules
 • Implement every high-level action given, plus any helper predicates the
   PDDL preconditions/effects require.
 • Re-use existing helpers when possible (am_next_to, lava_ahead, …).
-• Keep method names identical to the PDDL `:action` names, converting
-  kebab-case → snake_case.
-• Each action must return `List[int]` of primitive codes the environment
-  expects.
-• Do **not** modify unrelated parts of the file unless a feedback turn
-  explicitly calls out a bug there.
+• All **actions** must return either a `list[int]` or be a generator
+  (`yield` / `yield from`) producing primitive codes one by one.
+• Use `yield from` whenever the code needs to re-inspect `full_grid`
+  between moves (e.g. chase, explore, corridor following).
+• Never mutate `full_grid`, `current_observation`, `current_dir`,
+  `agent_pos`, or `prev_underlying`. Read-only only.
+• Predicates return `bool`.
+
+Guidelines
+• Prefer `np.where(...)` over hard-coded offsets.
+• Avoid infinite loops: the runner aborts the **entire program** if no
+  cell change is detected for 5 consecutive steps.
+• For multi-step actions that **don't** need fresh perception, just
+  `return [2, 2, 1, 2]`.
+• Always sanitise PDDL strings: convert kebab-case → snake_case and drop
+  colour suffixes when matching object names.
+• Keep helper predicates small and reusable (`is_door`, `is_goal`, …).
+
 """
 
 CODER_INITIAL_TEMPLATE = """
@@ -59,8 +71,8 @@ Implement **all** of the following PDDL actions:
 The plan that must succeed is:
 {plan_str}
 
-Output only the added or modified `def` blocks (actions + any new
-predicates), each correctly indented for class scope.
+Output only the added or modified `def` blocks.
+Each function must start at column-0 (no leading spaces, no class wrapper).
 """.strip()
 
 CODER_FEEDBACK_TEMPLATE = """
@@ -69,10 +81,10 @@ The plan failed to execute.
 --- ERROR / TRACE ---
 {error_log}
 
-Produce a *complete replacement* for the previously returned code block,
-adhering to the same formatting rules (raw Python, class-level
-indentation).  Fix every issue revealed by the error.
-""".strip()
+Produce a *complete replacement* for the previously returned code block.
+Start every `def` at column-0 (no leading spaces).
+Fix every issue revealed by the error.
+""".strip() 
 
 # Implement **all** of the following PDDL actions (the number of parameters must match):
 # {schemas_text}
