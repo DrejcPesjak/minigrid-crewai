@@ -15,13 +15,14 @@ import textwrap
 from pathlib import Path
 from typing import Dict, Set
 
+import importlib, agent_tmp
+
 from llmclient import ChatGPTClient
 from pydantic import BaseModel
-from minigridenv import MiniGridEnv
 
 AGENT_FILE = Path(__file__).with_name("agent.py")
 TMP_FILE   = Path(__file__).with_name("agent_tmp.py")
-MAX_ROUNDS = 8
+MAX_ROUNDS = 15
 
 CODER_SYSTEM_PROMPT = """
 You are augmenting the Python `Agent` class that controls an OpenAI
@@ -29,8 +30,9 @@ Gymnasium MiniGrid agent.
 
 Hard rules
 • **Return only raw Python source** - never wrap in markdown.
-• New code must live *inside* the existing `Agent` class, so indent every
-  new line one extra level (8 spaces or 1 tab relative to top level).
+• Output plain Python.  Start every `def` at column-0 (no extra indent,
+  no class wrapper).  The merge script will insert each def into the
+  Agent class automatically.
 • Implement every high-level action given, plus any helper predicates the
   PDDL preconditions/effects require.
 • Re-use existing helpers when possible (am_next_to, lava_ahead, …).
@@ -72,6 +74,9 @@ adhering to the same formatting rules (raw Python, class-level
 indentation).  Fix every issue revealed by the error.
 """.strip()
 
+# Implement **all** of the following PDDL actions (the number of parameters must match):
+# {schemas_text}
+# The plan that must succeed is: {plan_str}
 
 class CodeResp(BaseModel):
     code: str
@@ -79,7 +84,9 @@ class CodeResp(BaseModel):
 
 class CoderLLM:
     def __init__(self):
-        self.client = ChatGPTClient("o1", CodeResp)
+        # gpt-4.1-mini, gpt-4.1-nano, gpt-4o-mini, o1-mini, o3-mini, o4-mini, and codex-mini-latest
+        # self.client = ChatGPTClient("o1", CodeResp)
+        self.client = ChatGPTClient("codex-mini-latest", CodeResp)
 
     # -------------------------------------------------- public ------------
     def implement_actions(
@@ -100,23 +107,6 @@ class CoderLLM:
         agent_src = TMP_FILE.read_text()
         schemas_text = "\n\n".join(pddl_schemas[a] for a in actions)
 
-        # conversation = [
-        #     {"role": "system",
-        #      "content": (
-        #          "You extend the MiniGrid Agent class. "
-        #          "Return ONLY python code (no markdown) containing NEW "
-        #          "method definitions and any helper predicates. "
-        #          "Each def must have a concise docstring."
-        #      )},
-        #     {"role": "user",
-        #      "content": (
-        #          f"Agent code so far:\n```\n{agent_src}\n```\n\n"
-        #          "Implement ALL of the following PDDL actions, keeping the "
-        #          "semantics faithful:\n\n"
-        #          "```pddl\n" + schemas_text + "\n```\n\n"
-        #          f"The full plan you must support is:\n{plan_str}"
-        #      )},
-        # ]
         conversation = [
             {"role": "system", "content": CODER_SYSTEM_PROMPT.strip()},
             {"role": "user",   "content": CODER_INITIAL_TEMPLATE.format(
@@ -128,15 +118,22 @@ class CoderLLM:
 
         current_src = agent_src
         for round_ in range(1, MAX_ROUNDS + 1):
+            print(conversation[-1])
             patch: CodeResp = self.client.chat_completion(conversation)
+            print(patch)
             new_src = self._merge(current_src, patch.code.strip())
-            TMP_FILE.write_text(new_src)
 
-            outcome = self._test_full_plan(plan_str, test_env)
-            if outcome == "success":
-                shutil.copy(TMP_FILE, AGENT_FILE)
-                print("✓ All actions implemented")
-                return
+            if new_src.startswith("Error"):
+                outcome = new_src
+            else:
+                TMP_FILE.write_text(new_src)
+                importlib.reload(agent_tmp)
+
+                outcome = self._test_full_plan(plan_str, test_env)
+                if outcome == "success":
+                    shutil.copy(TMP_FILE, AGENT_FILE)
+                    print("✓ All actions implemented")
+                    return
 
             # feedback & retry
             conversation.extend([
@@ -144,28 +141,52 @@ class CoderLLM:
                 {"role": "user",      "content": CODER_FEEDBACK_TEMPLATE.format(
                     error_log=outcome)}
             ])
-            current_src = new_src
+            # conversation = [
+            #     conversation[0],                       # system
+            #     {"role": "assistant", "content": patch.code},          # last patch only
+            #     {"role": "user",      "content": CODER_FEEDBACK_TEMPLATE.format(
+            #         error_log=outcome,
+            #         schemas_text=schemas_text,
+            #         plan_str=plan_str
+            #     )}
+            # ]
+            # current_src = new_src
 
         raise RuntimeError("CoderLLM exhausted retries")
 
     # ------------------------------------------------ helpers ------------
     def _merge(self, original: str, patch: str) -> str:
-        """Replace or append every FunctionDef found in `patch`."""
-        o_ast, p_ast = ast.parse(original), ast.parse(patch)
-        repl = {n.name: n for n in p_ast.body if isinstance(n, ast.FunctionDef)}
+        """Insert / replace defs INSIDE class Agent."""
+        try:
+            patch = textwrap.dedent(patch)           # <-- new
+            o_ast  = ast.parse(original)
+            p_ast  = ast.parse(patch)
 
-        new_body = []
-        for node in o_ast.body:
-            if isinstance(node, ast.FunctionDef) and node.name in repl:
-                new_body.append(repl.pop(node.name))
-            else:
-                new_body.append(node)
-        new_body.extend(repl.values())
-        o_ast.body = new_body
-        return ast.unparse(o_ast)
+            # collect new defs
+            repl = {n.name: n for n in p_ast.body if isinstance(n, ast.FunctionDef)}
+
+            # find the Agent class node
+            agent_cls = next(n for n in o_ast.body if isinstance(n, ast.ClassDef) and n.name == "Agent")
+
+            # build a new body for the class
+            new_body = []
+            for node in agent_cls.body:
+                if isinstance(node, ast.FunctionDef) and node.name in repl:
+                    new_body.append(repl.pop(node.name))
+                else:
+                    new_body.append(node)
+            new_body.extend(repl.values())
+            agent_cls.body = new_body
+
+            return ast.unparse(o_ast)
+        
+        except Exception as exc:
+            return f"Error merging patch: {exc}"
 
     def _test_full_plan(self, plan_str: str, env_name: str) -> str:
+        from minigridenv import MiniGridEnv
         env = MiniGridEnv(env_name)
         result = env.run_sim(plan_str)
+        print(f"Plan execution result: {result}")
         env.end_env()
         return result

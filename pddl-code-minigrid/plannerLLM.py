@@ -19,31 +19,38 @@ TMP_DOMAIN  = Path("domain.pddl")
 TMP_PROBLEM = Path("problem.pddl")
 
 SYSTEM_PROMPT = """
-You are a classical-planning expert writing PDDL for an **OpenAI Gymnasium
-MiniGrid** level.  
-Return **only** a JSON object with exactly two keys:
+You are a classical-planning expert for an **OpenAI Gymnasium MiniGrid** agent.
 
-    { "domain": "<complete PDDL DOMAIN file>",
-      "problem": "<complete PDDL PROBLEM file>" }
+Return one JSON object only:
 
-No other text - no “```”, no explanations, no plan.
+    { "domain": "<full PDDL DOMAIN>",
+      "problem": "<full PDDL PROBLEM>" }
 
-Guidelines
-•  Model the high-level actions the Agent can call.
-•  **Reuse existing method names** exactly when they already exist
-   (move_forward, turn_left, pick_up, …).
-•  If you invent a new high-level action, give it a clear, unique,
-   snake_case name (e.g. cross_lava, move_to).
-•  **Never reference raw (x,y) grid coordinates.**
-   Describe motion and conditions with predicates such as
-   (adjacent ?a ?b), (on ?o ?cell), (facing ?dir), etc.
-   For example prefer  move_to(?obj)  over  move_to_xy.
-•  Think at a human level of abstraction - the coder LLM will translate
-   each new action into Python using numpy and the environment API.
-•  The world contains walls, lava, doors, keys, boxes, balls, goals, etc.
-   The agent must avoid obstacles and fulfill the mission.
-•  All predicates, types and parameters must match between DOMAIN
-   and PROBLEM.
+No markdown, no plan, no commentary.
+
+Abstraction rules
+•  Stay semantic - don't enumerate every grid cell or (x,y) coordinate.
+•  You still need a **minimal type system** (e.g. agent, target) and at
+   least one constant of each; otherwise the PDDL won't parse.
+•  State is expressed only through high-level predicates about the agent
+   and named objects (goal, key1, door1, …), e.g.
+        (at_goal) (holding ?o) (door_open ?d) (safe) …
+•  The Agent already supports: move_forward, turn_left, turn_right,
+   pick_up, drop, toggle, done, safe_forward, pick_up_obj.
+•  If a needed capability is missing, invent a new *snake_case* action
+   that the coder will later implement (e.g. cross_lava, move_to_goal).
+•  Keep DOMAIN compact - a handful of predicates and actions.
+•  All predicate / parameter names must match between DOMAIN and PROBLEM.
+
+Syntax constraints (very important)
+•  **Do NOT use `(not …)`** in preconditions/effects unless you also add
+   `:negative-preconditions` to `:requirements`.  Simpler: just avoid `not`.
+•  Do **not** include comments or semicolons in the PDDL.
+•  If a precondition or effect is empty, write `()` — never `(and)`.
+•  The `:requirements` list must exactly match the features you use
+   (typically just `:strips :typing`; add `:negative-preconditions`
+   *only* if you actually use `not`).
+•  Declare at least one object for every type you introduce.
 """
 
 USER_PROMPT_TEMPLATE = """
@@ -61,6 +68,10 @@ Write DOMAIN and PROBLEM so that a plan exists using *only* the high-level
 actions above (plus any brand-new actions you define following the
 guidelines).  You are encouraged to invent whatever additional actions are
 useful, as long as they obey the naming & abstraction rules.
+Remember:
+* Declare :types and at least one object per type.
+* No comments, no `(and)` empty blocks.
+* Avoid `not` (or add :negative-preconditions if you really need it).
 """
 
 REFINEMENT_PROMPT_TEMPLATE = """
@@ -79,7 +90,7 @@ class PDDLResp(BaseModel):
 
 class PlannerLLM:
     def __init__(self):
-        self.client = ChatGPTClient("o1", PDDLResp)
+        self.client = ChatGPTClient("o3", PDDLResp)
         # logging.basicConfig(level=logging.INFO,
         #                     format="%(levelname)s: %(message)s")
         
@@ -126,10 +137,11 @@ class PlannerLLM:
 
         # retry-repair loop
         for attempt in range(1, MAX_RETRIES + 1):
-            resp: PDDLResp = self.client.chat_completion(conversation)
-            dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
-            TMP_DOMAIN.write_text(dom_txt)
-            TMP_PROBLEM.write_text(prob_txt)
+            # resp: PDDLResp = self.client.chat_completion(conversation)
+            # dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
+            # TMP_DOMAIN.write_text(dom_txt)
+            # TMP_PROBLEM.write_text(prob_txt)
+            dom_txt, prob_txt = TMP_DOMAIN.read_text().strip(), TMP_PROBLEM.read_text().strip()
 
             try:
                 up_problem, up_result, up_validation = self.plan_with_unified_planning()
@@ -142,13 +154,13 @@ class PlannerLLM:
             except Exception as exc:
                 err = str(exc)
 
-            # feed error back
-            conversation.extend([
-                {"role": "assistant", "content": resp.model_dump_json()},
-                {"role": "user",      "content": REFINEMENT_PROMPT_TEMPLATE.format(
-                    error_log=err
-                )}
-            ])
+            # # feed error back
+            # conversation.extend([
+            #     {"role": "assistant", "content": resp.model_dump_json()},
+            #     {"role": "user",      "content": REFINEMENT_PROMPT_TEMPLATE.format(
+            #         error_log=err
+            #     )}
+            # ])
             time.sleep(1) # to avoid rate limits
 
         raise RuntimeError("PlannerLLM exhausted retries")
@@ -168,9 +180,11 @@ class PlannerLLM:
                     name = buffer[0].split()[1]
                     self._schemas[name] = "\n".join(buffer)
                     buffer = []
-
+    
     def get_action_schema(self, act_name: str) -> str:
-        return self._schemas.get(act_name.replace("_", "-"), "")
+        # try both snake_case and kebab-case
+        return (self._schemas.get(act_name)
+                or self._schemas.get(act_name.replace("_", "-"), ""))
 
     def get_action_schemas(self, act_names: Set[str]) -> Dict[str, str]:
         return {a: self.get_action_schema(a) for a in act_names}

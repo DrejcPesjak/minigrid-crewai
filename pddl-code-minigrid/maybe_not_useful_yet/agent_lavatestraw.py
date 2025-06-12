@@ -76,6 +76,23 @@ class Agent():
         return []
     
     # --------------------------------------------------
+    def is_wall_ahead(self) -> bool:
+        x, y = self._front_coords()
+        return self.current_observation[x, y] == 'wall'
+    
+    def level_empty(self):
+        """
+        Example action for MiniGrid-Empty-5x5-v0.
+        The yiel from allows for imidiate execution of the action,
+        and consequently always refreshed observation.
+        """
+        for _ in range(6):
+            if self.is_wall_ahead():
+                yield from self.turn_right()
+            else:
+                yield from self.move_forward()
+    
+    # --------------------------------------------------
     def _global_pos(self) -> tuple[int, int]:
         loc = np.argwhere(self.full_grid == "agent")
         if loc.size == 0:

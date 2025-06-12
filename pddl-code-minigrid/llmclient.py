@@ -19,10 +19,20 @@ class ChatGPTClient:
         self.output_format = output_format
 
     def chat_completion(self, messages):
-        print(messages[-2:])
-        result = self.client.beta.chat.completions.parse(
-            model=self.model_name,
-            messages=messages,
-            response_format=self.output_format,
-        )
-        return result.choices[0].message.parsed
+        # print(messages[-2:])
+        if not self.model_name == "codex-mini-latest":
+            result = self.client.beta.chat.completions.parse(
+                model=self.model_name,
+                messages=messages,
+                response_format=self.output_format,
+            )
+            return result.choices[0].message.parsed
+        else:
+            # https://platform.openai.com/docs/guides/structured-outputs?api-mode=responses
+            response = self.client.responses.parse(
+                model=self.model_name,
+                input=messages,
+                text_format=self.output_format,
+            )
+            return response.output[-1].content[-1].parsed
+            

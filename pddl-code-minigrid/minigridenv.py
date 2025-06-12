@@ -2,11 +2,11 @@ import time
 import numpy as np
 np.set_printoptions(linewidth=200)
 import gymnasium as gym
-from agent_tmp import Agent
+import agent_tmp
 
 class MiniGridEnv:
     def __init__(self, level_name: str= "MiniGrid-Empty-5x5-v0"):
-        self.agent = Agent()
+        self.agent = agent_tmp.Agent()
         self.level_name = level_name
         self.env = None
         # Track agent global position
@@ -269,51 +269,77 @@ class MiniGridEnv:
         # Return "success" if the goal is reached, otherwise return an error message
 
         try:
+            print(action_sequence)
             calls = self.parse_actions(action_sequence)
+            print(calls)
+            print(dir(self.agent))
+            agent_state = vars(self.agent)
+            grid_history = []
+            history_limit = 6 # allowed 4 turns plus 1 forward move, so 5 actions in total
 
             for method_name, args in calls:
                 if not hasattr(self.agent, method_name):
                     raise AttributeError(f"No Agent method {method_name}")
                 # run the high-level action
                 codes = getattr(self.agent, method_name)(*args)  # -> List[int]
+                print(codes)
                 print(f"→ {method_name}({', '.join(args)}) returned {codes}")
                 # actually execute those primitive codes in your env
                 for code in codes:
                     obs, reward, terminated, truncated, info = self.play_episode(code)
-                    agent_state = {
+
+                    # ------------- for debugging purposes ------------- 
+                    a = {
                         # "current_observation": self.agent.current_observation,
                         # "full_grid": self.agent.full_grid,
                         "current_dir": self.agent.current_dir,
                         "previous_actions": self.agent.previous_actions,
                         "inventory": self.agent.inventory,
                     }
-                    print(agent_state)
+                    print(a)
                     import pandas as pd
                     df = pd.DataFrame(self.agent.full_grid)
                     print(df.to_string(index=False, header=False))
                     # time.sleep(2) # for demo purposes
+                    # ---------------------------------------------------
+
+                    agent_state = {
+                        "current_dir": self.agent.current_dir,
+                        "current_observation": self.agent.current_observation,
+                        "full_grid": self.agent.full_grid,
+                        "previous_actions": self.agent.previous_actions,
+                        "inventory": self.agent.inventory,
+                    }
+
+                    if len(grid_history) >= history_limit:
+                        grid_history.pop(0)
+                    grid_history.append(self.agent.full_grid.copy())
+
                     if (terminated or truncated):
                         if reward > 0:
                             return "success"
                         else:
-                            agent_state = {
-                                "current_dir": self.agent.current_dir,
-                                "current_observation": self.agent.current_observation,
-                                "full_grid": self.agent.full_grid,
-                                "previous_actions": self.agent.previous_actions,
-                                "inventory": self.agent.inventory,
-                            }
                             return f"Failed with reward {reward}, last action {code}, agent state {agent_state}"
-                    #elif stuck: # 5 actions and still at the same place
-                    #     return f"stuck...."
+                    #stuck: # 5 actions and still at the same place , aka grid_history the same
+                    elif len(grid_history) >= history_limit and all(np.array_equal(grid_history[-1], grid) for grid in grid_history):
+                        # if all grids are the same as the last one, then they are all the same
+                        return f"Agent is stuck, last action {code}, agent state {agent_state}"
+            
+            return f"Executed all actions successfully, but did not reach the goal. Last agent state: {agent_state}"
     
         except Exception as e:
             return f"Error: {str(e)}"
+        
+        finally:
+            # Clean up the environment
+            self.end_env()
+            print("Environment closed.")
+            self.agent = None
 
 
 if __name__ == "__main__":
-    # env = MiniGridEnv("MiniGrid-Empty-5x5-v0")
-    # action_sequence = "[move-forward(), move-forward(), turn-right(), move-forward(), move-forward()]"
+    env = MiniGridEnv("MiniGrid-Empty-5x5-v0")
+    action_sequence = "[move-forward(), move-forward(), turn-right(), move-forward(), move-forward()]"
     # env = MiniGridEnv("MiniGrid-Empty-5x5-v0") # solved
     # action_sequence = "[turn-right(), move-forward(), move-forward(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward()]"
     # env = MiniGridEnv("MiniGrid-MemoryS11-v0") # solved
@@ -322,8 +348,8 @@ if __name__ == "__main__":
     # action_sequence = "[turn-left(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward(), turn-right(), move-forward(), toggle(), move-forward(), move-forward(), move-forward(), move-forward(), drop(), turn-right(), move-forward(), move-forward(), move-forward(), turn-left(), pick-up()]"
     # env = MiniGridEnv("MiniGrid-LavaGapS6-v0") # solved
     # env = MiniGridEnv("MiniGrid-LavaCrossingS9N2-v0") # solved
-    env = MiniGridEnv("MiniGrid-LavaCrossingS11N5-v0") # solved
-    action_sequence = "[cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava()]"
+    # env = MiniGridEnv("MiniGrid-LavaCrossingS11N5-v0") # solved
+    # action_sequence = "[cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava()]"
     result = env.run_sim(action_sequence)
     print(result)
     env.end_env()

@@ -6,7 +6,7 @@ For every MiniGrid level in merged_curriculum2.json:
     2. Collect high-level action names from that plan.
     3. If any are missing in Agent, call CoderLLM once with:
          • the full missing-action set
-         • each action’s PDDL schema
+         • each action's PDDL schema
          • the exact textual plan
          • the level name (for testing)
     4. Execute the finished plan; abort at first failure.
@@ -14,8 +14,9 @@ For every MiniGrid level in merged_curriculum2.json:
 from pathlib import Path
 import json
 import importlib
+import datetime
 
-from agent import Agent
+import agent
 from minigridenv import MiniGridEnv
 from plannerLLM import PlannerLLM
 from coderLLM import CoderLLM
@@ -23,15 +24,41 @@ from coderLLM import CoderLLM
 CURRIC_FILE = Path(__file__).with_name("merged_curriculum2.json")
 
 def reset():
+    # If syntax errors occur in agent.py or agent_tmp.py, 
+    # this should be run before importing Agent, or MiniGridEnv.
     import subprocess
     bash_command = """
     if ! diff -q ./maybe_not_useful_yet/agent_start-latest.py ./agent.py &>/dev/null; then
         cp ./maybe_not_useful_yet/agent_start-latest.py ./agent.py
-        cp ./maybe_not_useful_yet/agent_start-latest.py ./agent_tmp.py
     fi
-    rm -f ./domain.pddl ./problem.pddl
+    cp ./agent.py ./agent_tmp.py
     """
+    #rm -f ./domain.pddl ./problem.pddl
+    
     subprocess.run(bash_command, shell=True, check=True)
+    print("Reset agent.py and agent_tmp.py to their initial state.")
+
+def prompt_log():
+    from plannerLLM import SYSTEM_PROMPT, USER_PROMPT_TEMPLATE, REFINEMENT_PROMPT_TEMPLATE
+    from coderLLM import CODER_SYSTEM_PROMPT, CODER_INITIAL_TEMPLATE, CODER_FEEDBACK_TEMPLATE
+
+    blocks = {
+        "## PLANNER - system": SYSTEM_PROMPT,
+        "## PLANNER - user template": USER_PROMPT_TEMPLATE,
+        "## PLANNER - refinement template": REFINEMENT_PROMPT_TEMPLATE,
+        "## CODER - system": CODER_SYSTEM_PROMPT,
+        "## CODER - initial template": CODER_INITIAL_TEMPLATE,
+        "## CODER - feedback template": CODER_FEEDBACK_TEMPLATE,
+    }
+
+    datetime_str = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    log_dir = Path(__file__).parent / "logs"
+    log_dir.mkdir(parents=True, exist_ok=True)
+    log_file = log_dir / f"prompt_log_{datetime_str}.md"
+
+    with log_file.open("w", encoding="utf-8") as f:
+        for header, text in blocks.items():
+            f.write(f"{header}\n\n{text.strip()}\n\n---\n\n")
 
 def plan_to_string(up_plan) -> str:
     """Return MiniGridEnv-ready string '[foo(), bar(obj)]'."""
@@ -47,7 +74,9 @@ def plan_to_string(up_plan) -> str:
 
 
 def main():
-    reset()
+    # reset()
+    prompt_log()
+
     curriculum = json.loads(CURRIC_FILE.read_text())
     planner = PlannerLLM()
     coder   = CoderLLM()
@@ -74,7 +103,7 @@ def main():
 
                 # ---------- 2 · IMPLEMENT MISSING ACTIONS ---------------
                 print("🔍 checking Agent for missing actions...")
-                missing = high_level_names - set(dir(Agent))
+                missing = high_level_names - set(dir(agent.Agent))
                 if missing:
                     schemas = planner.get_action_schemas(missing)
                     coder.implement_actions(
@@ -83,7 +112,7 @@ def main():
                         plan_str=plan_str,
                         test_env=env_name,
                     )
-                    importlib.reload(Agent)  # hot-reload new methods
+                    importlib.reload(agent)  # hot-reload new methods
 
                 # ---------- 3 · RUN FULL PLAN ---------------------------
                 print("🚀 running full plan...")
