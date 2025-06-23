@@ -37,10 +37,15 @@ Abstraction rules
         (at_goal) (holding ?o) (door_open ?d) (safe) …
 •  The Agent already supports: move_forward, turn_left, turn_right,
    pick_up, drop, toggle, done, safe_forward, pick_up_obj.
-•  If a needed capability is missing, invent a new *snake_case* action
+•  From the **Environment / Category / Skill / Level description**, decide 
+   whether the **currently available high-level actions are sufficient**; 
+   reuse them only if they can solve the mission exactly. 
+   If none fully fit, invent one or more new *snake_case* actions that do,
    that the coder will later implement (e.g. cross_lava, move_to_goal).
 •  Keep DOMAIN compact - a handful of predicates and actions.
 •  All predicate / parameter names must match between DOMAIN and PROBLEM.
+•  If several versions of an action exist (e.g. move_to_goal, move_to_goal_v2, move_to_goal_v3), 
+   always reference the highest-numbered suffix currently present in the Agent code.
 
 Syntax constraints (very important)
 •  **Do NOT use `(not …)`** in preconditions/effects unless you also add
@@ -63,6 +68,8 @@ Level description:
 
 Current Agent python code:
 {agent_code}
+
+{prev_pddls}
 
 Write DOMAIN and PROBLEM so that a plan exists using *only* the high-level
 actions above (plus any brand-new actions you define following the
@@ -90,7 +97,8 @@ class PDDLResp(BaseModel):
 
 class PlannerLLM:
     def __init__(self):
-        self.client = ChatGPTClient("o3", PDDLResp)
+        self.client = ChatGPTClient("openai/o3", PDDLResp)
+        # self.client = ChatGPTClient("ollama/deepseek-r1:8b", PDDLResp)
         # logging.basicConfig(level=logging.INFO,
         #                     format="%(levelname)s: %(message)s")
         
@@ -123,6 +131,12 @@ class PlannerLLM:
         """
         agent_src = Path(__file__).with_name("agent.py").read_text()
 
+        prev_pddls = ""
+        if TMP_DOMAIN.exists() and TMP_PROBLEM.exists():
+            prev_pddls = f"Previous PDDL files:\nDomain:\n{TMP_DOMAIN.read_text()}\nProblem:\n{TMP_PROBLEM.read_text()}\n"
+        # else:
+        #     prev_pddls = "Note: atleast 1 action must precisely match the Category name! \n"
+
         conversation = [
             {"role": "system", "content": SYSTEM_PROMPT.strip()},
             {"role": "user",   "content": USER_PROMPT_TEMPLATE.format(
@@ -132,16 +146,19 @@ class PlannerLLM:
                 skill=meta["skill"],
                 level_description=meta["level_description"],
                 agent_code=agent_src,
+                prev_pddls=prev_pddls
             )}
         ]
 
         # retry-repair loop
         for attempt in range(1, MAX_RETRIES + 1):
-            # resp: PDDLResp = self.client.chat_completion(conversation)
-            # dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
-            # TMP_DOMAIN.write_text(dom_txt)
-            # TMP_PROBLEM.write_text(prob_txt)
-            dom_txt, prob_txt = TMP_DOMAIN.read_text().strip(), TMP_PROBLEM.read_text().strip()
+            print(conversation[-1])
+            resp: PDDLResp = self.client.chat_completion(conversation)
+            print("\n", resp.model_dump_json(indent=2))
+            dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
+            TMP_DOMAIN.write_text(dom_txt)
+            TMP_PROBLEM.write_text(prob_txt)
+            # dom_txt, prob_txt = TMP_DOMAIN.read_text().strip(), TMP_PROBLEM.read_text().strip()
 
             try:
                 up_problem, up_result, up_validation = self.plan_with_unified_planning()
@@ -154,13 +171,13 @@ class PlannerLLM:
             except Exception as exc:
                 err = str(exc)
 
-            # # feed error back
-            # conversation.extend([
-            #     {"role": "assistant", "content": resp.model_dump_json()},
-            #     {"role": "user",      "content": REFINEMENT_PROMPT_TEMPLATE.format(
-            #         error_log=err
-            #     )}
-            # ])
+            # feed error back
+            conversation.extend([
+                {"role": "assistant", "content": resp.model_dump_json()},
+                {"role": "user",      "content": REFINEMENT_PROMPT_TEMPLATE.format(
+                    error_log=err
+                )}
+            ])
             time.sleep(1) # to avoid rate limits
 
         raise RuntimeError("PlannerLLM exhausted retries")

@@ -1,8 +1,12 @@
+import re
+from collections import deque
 import numpy as np
 from typing import List, Optional, Tuple, Union, Dict, Set
 
 class Agent():
     def __init__(self):
+        # Mission: a string describing the task
+        self.mission: str = ""
         # Orientation: one of "East", "South", "West", "North"
         self.current_dir: str = ""
         # Local view & global map just placeholders (updated externally)

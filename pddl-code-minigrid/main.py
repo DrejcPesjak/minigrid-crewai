@@ -32,11 +32,21 @@ def reset():
         cp ./maybe_not_useful_yet/agent_start-latest.py ./agent.py
     fi
     cp ./agent.py ./agent_tmp.py
-    """
-    #rm -f ./domain.pddl ./problem.pddl
     
+    #rm -f ./domain.pddl ./problem.pddl
+    """
     subprocess.run(bash_command, shell=True, check=True)
+    importlib.reload(agent)  # reload Agent class
     print("Reset agent.py and agent_tmp.py to their initial state.")
+
+def reset_pddl():
+    """Reset PDDL files to their initial state."""
+    import subprocess
+    bash_command = """
+    rm -f ./domain.pddl ./problem.pddl
+    """
+    subprocess.run(bash_command, shell=True, check=True)
+    print("Reset domain.pddl and problem.pddl to their initial state.")
 
 def prompt_log():
     from plannerLLM import SYSTEM_PROMPT, USER_PROMPT_TEMPLATE, REFINEMENT_PROMPT_TEMPLATE
@@ -73,8 +83,43 @@ def plan_to_string(up_plan) -> str:
     return "[" + ", ".join(parts) + "]"
 
 
+def new_action_name(high_level_names, plan_str, schemas):
+
+    import re
+    def next_unused_name(name, existing_names):
+        """
+        If `name` is foo            → returns foo_v2, foo_v3, …              (first free)
+        If `name` is foo_v3         → returns foo_v4, foo_v5, …              (first free)
+        Works so long as every versioned name follows `<base>_v<digits>`.
+        """
+        m = re.match(r"^(.*?)(?:_v(\d+))?$", name)
+        base   = m.group(1)
+        suffix = m.group(2)
+
+        i = int(suffix) + 1 if suffix else 2      # 2 if no suffix, else next int
+        while f"{base}_v{i}" in existing_names:
+            i += 1
+        return f"{base}_v{i}"
+
+    # compute new names
+    name_map = {old: next_unused_name(old, high_level_names)
+                for old in high_level_names}
+
+    # set of new names only
+    high_level_names_new = set(name_map.values())
+
+    schemas_new = {name_map[old]: schemas[old].replace(f"(:action {old}",
+                                                    f"(:action {name_map[old]}") for old in high_level_names}
+
+    plan_str_new = plan_str
+    for old, new in name_map.items():
+        plan_str_new = plan_str_new.replace(f"{old}(", f"{new}(")
+
+    return high_level_names_new, plan_str_new, schemas_new
+
 def main():
-    # reset()
+    reset()
+    reset_pddl()
     prompt_log()
 
     curriculum = json.loads(CURRIC_FILE.read_text())
@@ -82,7 +127,9 @@ def main():
     coder   = CoderLLM()
 
     for cat in curriculum:
+        reset_pddl()  # reset PDDL files for each category
         for lvl in cat["levels"]:
+            
             for env_name in lvl["configs"]:
                 print(f"\n=== {env_name} ===")
 
@@ -98,8 +145,10 @@ def main():
                     }
                 )
                 plan_str = plan_to_string(up_result.plan)
+                print(f"Plan: {plan_str}")
                 high_level_names = {s.action.name.replace("-", "_")
                                     for s in up_result.plan.actions}
+                
 
                 # ---------- 2 · IMPLEMENT MISSING ACTIONS ---------------
                 print("🔍 checking Agent for missing actions...")
@@ -114,14 +163,39 @@ def main():
                     )
                     importlib.reload(agent)  # hot-reload new methods
 
-                # ---------- 3 · RUN FULL PLAN ---------------------------
-                print("🚀 running full plan...")
-                env = MiniGridEnv(env_name)
-                outcome = env.run_sim(plan_str)
-                env.end_env()
-                if outcome != "success":
-                    raise RuntimeError(f"❌ level {env_name} failed: {outcome}")
-                print("✓ solved")
+                else:
+
+                    # ---------- 3 · RUN FULL PLAN ---------------------------
+                    print("🚀 running full plan...")
+                    env = MiniGridEnv(env_name)
+                    outcome = env.run_sim(plan_str)
+                    print(f"Plan execution result: {outcome}")
+                    env.end_env()
+
+                    # ---------- 4 · EDIT AGENT IF NEEDED ------------------------
+                    if outcome != "success":
+                        print(f"❌ level {env_name}")# failed: {outcome}")
+
+                        # Implement v2 of functions, and append code (not replace).
+                        print("🔄 implementing v2 actions...")
+                        schemas = planner.get_action_schemas(high_level_names)
+
+                        high_level_names_new, plan_str_new, schemas_new = new_action_name(
+                            high_level_names, plan_str, schemas)
+                        
+                        # print(f"New all: {high_level_names_new};; {plan_str_new};; {schemas_new}")
+                        
+                        coder.implement_actions(
+                            actions=high_level_names_new,
+                            pddl_schemas=schemas_new,
+                            plan_str=plan_str_new,
+                            test_env=env_name,
+                        )
+                        importlib.reload(agent)
+                    
+                    # else:
+                    #     print(f"✅ level {env_name} solved with actions: {', '.join(high_level_names)}")
+
 
     print("\n🏁  All curriculum levels solved.")
 

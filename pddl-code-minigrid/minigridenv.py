@@ -18,7 +18,7 @@ class MiniGridEnv:
     def start_env(self):
         # Initialize the environment
         self.env = gym.make(self.level_name, render_mode="human")
-        obs, info = self.env.reset()#seed=42) # later will be random
+        obs, info = self.env.reset(seed=0) # later will be random
         obs['image'][3][6][0] = 10
         obs_converted = self.convert_observation(obs)
         self.init_full_grid(obs_converted)        
@@ -26,6 +26,7 @@ class MiniGridEnv:
     def end_env(self):
         # Close the environment
         if self.env:
+            print(self.level_name)
             self.env.close()
         self.env = None
         self.agent = None
@@ -141,6 +142,7 @@ class MiniGridEnv:
         # sync agent state
         self.agent.current_observation = newg
         self.agent.current_dir         = orient
+        self.agent.mission            = obs['mission']
 
         # agent_state = {
         #     "current_dir": self.agent.current_dir,
@@ -150,7 +152,7 @@ class MiniGridEnv:
         #     "inventory": self.agent.inventory,
         # }
         # print(agent_state)
-        print(self.agent.full_grid)
+        # print(self.agent.full_grid)
     
 
     def SLAM(self, obs: dict, action: int):
@@ -175,14 +177,29 @@ class MiniGridEnv:
         loc_pos = {"East":(h//2,0), "South":(0,w//2), "West":(h//2,w-1), "North":(h-1,w//2)}
         la_r, la_c = loc_pos[new_dir]
 
-        # forward blocked?
+        # --- forward blocked? -----------------------------------------
+        def _is_passable_str(cell_str: str) -> bool:
+            """
+            True ↦ the agent can occupy this tile
+            """
+            if cell_str is None:
+                return False
+            words = cell_str.split()
+            obj = words[0] if words else "unseen"
+
+            if obj in {"unseen", "empty", "floor", "goal", "lava"}:
+                return True
+            if obj == "door":
+                return "open" in words          # only open doors are walkable
+            return False
+        
         blocked = False
         if action == 2:
             pr, pc = {"East":(prev_obs.shape[0]//2,1),
                     "West":(prev_obs.shape[0]//2,prev_obs.shape[1]-2),
                     "South":(1,prev_obs.shape[1]//2),
                     "North":(prev_obs.shape[0]-2,prev_obs.shape[1]//2)}[prev_dir]
-            blocked = (prev_obs[pr, pc] == "wall")
+            blocked = not _is_passable_str(prev_obs[pr, pc])
 
         # remove old agent marker
         self.agent.full_grid[prev_r, prev_c] = self.prev_underlying
@@ -263,47 +280,71 @@ class MiniGridEnv:
         self.SLAM(obs_converted, action)
 
         return obs, reward, terminated, truncated, info
+    
+    def _map_without_agent(self, grid: np.ndarray) -> np.ndarray:
+        g = grid.copy()
+        g[g == "agent"] = self.prev_underlying
+        return g
+   
+    def _two_cycle(self, actions: list, min_actions:int=10) -> bool:
+        """Only few specific patterns are considered cycles"""
+        if len(actions) < min_actions or min_actions % 2:
+            return False
+        # 0) Half-length cycle full (if first half == second half)
+        if len(actions) % 2 == 0:
+            l = len(actions)
+            if actions[:l//2] == actions[l//2:l]:
+                return True
+        window = actions[-min_actions:]
+        # 1) Half-length cycle (e.g., XXXXXYYYYY)
+        half = min_actions // 2
+        if window[:half] == window[half:]:
+            return True
+        # 2) 2-element cycle (e.g., ABABABABAB)
+        return all(window[i] == window[i % 2] for i in range(min_actions))
 
     def run_sim(self, action_sequence: list):
         # Simulate the environment with the given agent code and action sequence
         # Return "success" if the goal is reached, otherwise return an error message
 
         try:
-            print(action_sequence)
+            # print(action_sequence)
             calls = self.parse_actions(action_sequence)
-            print(calls)
-            print(dir(self.agent))
+            # print(calls)
+            # print(dir(self.agent))
             agent_state = vars(self.agent)
             grid_history = []
-            history_limit = 6 # allowed 4 turns plus 1 forward move, so 5 actions in total
+            # history_limit = 6 # allowed 4 turns plus 1 forward move, so 5 actions in total
+            history_limit = 15 # allows backtracking
 
             for method_name, args in calls:
                 if not hasattr(self.agent, method_name):
                     raise AttributeError(f"No Agent method {method_name}")
                 # run the high-level action
                 codes = getattr(self.agent, method_name)(*args)  # -> List[int]
-                print(codes)
-                print(f"→ {method_name}({', '.join(args)}) returned {codes}")
+                # print(codes)
+                # print(f"→ {method_name}({', '.join(args)}) returned {codes}")
                 # actually execute those primitive codes in your env
                 for code in codes:
                     obs, reward, terminated, truncated, info = self.play_episode(code)
 
                     # ------------- for debugging purposes ------------- 
-                    a = {
-                        # "current_observation": self.agent.current_observation,
-                        # "full_grid": self.agent.full_grid,
-                        "current_dir": self.agent.current_dir,
-                        "previous_actions": self.agent.previous_actions,
-                        "inventory": self.agent.inventory,
-                    }
-                    print(a)
-                    import pandas as pd
-                    df = pd.DataFrame(self.agent.full_grid)
-                    print(df.to_string(index=False, header=False))
-                    time.sleep(1.0) # for demo purposes
+                    # a = {
+                    #     # "current_observation": self.agent.current_observation,
+                    #     # "full_grid": self.agent.full_grid,
+                    #     "current_dir": self.agent.current_dir,
+                    #     "previous_actions": self.agent.previous_actions,
+                    #     "inventory": self.agent.inventory,
+                    # }
+                    # print(a)
+                    # import pandas as pd
+                    # df = pd.DataFrame(self.agent.full_grid)
+                    # print(df.to_string(index=False, header=False))
+                    time.sleep(0.2) # for demo purposes
                     # ---------------------------------------------------
 
                     agent_state = {
+                        "mission": self.agent.mission,
                         "current_dir": self.agent.current_dir,
                         "current_observation": self.agent.current_observation,
                         "full_grid": self.agent.full_grid,
@@ -311,17 +352,23 @@ class MiniGridEnv:
                         "inventory": self.agent.inventory,
                     }
 
+                    # for determining if the agent is stuck
                     if len(grid_history) >= history_limit:
                         grid_history.pop(0)
-                    grid_history.append(self.agent.full_grid.copy())
+                    grid_history.append(self._map_without_agent(self.agent.full_grid))
+                    # without agent, if he walks in circles, the grid will not change
 
                     if (terminated or truncated):
                         if reward > 0:
                             return "success"
                         else:
                             return f"Failed with reward {reward}, last action {code}, agent state {agent_state}"
+                        
                     #stuck: # 5 actions and still at the same place , aka grid_history the same
-                    elif len(grid_history) >= history_limit and all(np.array_equal(grid_history[-1], grid) for grid in grid_history):
+                    elif (len(grid_history) >= history_limit and \
+                        all(np.array_equal(grid_history[-1], grid) for grid in grid_history)) or \
+                        (self._two_cycle(self.agent.previous_actions, min_actions=10) and \
+                        all(g.shape == grid_history[-1].shape for g in grid_history)):
                         # if all grids are the same as the last one, then they are all the same
                         return f"Agent is stuck, last action {code}, agent state {agent_state}"
             
@@ -340,32 +387,39 @@ class MiniGridEnv:
 if __name__ == "__main__":
     # env = MiniGridEnv("MiniGrid-Empty-5x5-v0")
     # action_sequence = "[move-forward(), move-forward(), turn-right(), move-forward(), move-forward()]"
-    # # env = MiniGridEnv("MiniGrid-Empty-5x5-v0") # solved
-    # # action_sequence = "[turn-right(), move-forward(), move-forward(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward()]"
-    # # env = MiniGridEnv("MiniGrid-MemoryS11-v0") # solved
-    # # action_sequence = "[turn-right(), turn-right(), turn-right(), turn-right(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), turn-left(), move-forward(), move-forward(), move-forward(), pick-up()]"
-    # # env = MiniGridEnv("BabyAI-UnlockPickup-v0") # solved
-    # # action_sequence = "[turn-left(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward(), turn-right(), move-forward(), toggle(), move-forward(), move-forward(), move-forward(), move-forward(), drop(), turn-right(), move-forward(), move-forward(), move-forward(), turn-left(), pick-up()]"
-    # # env = MiniGridEnv("MiniGrid-LavaGapS6-v0") # solved
-    # # env = MiniGridEnv("MiniGrid-LavaCrossingS9N2-v0") # solved
-    # # env = MiniGridEnv("MiniGrid-LavaCrossingS11N5-v0") # solved
-    # # action_sequence = "[cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava()]"
+    # env = MiniGridEnv("MiniGrid-Empty-5x5-v0") # solved
+    # action_sequence = "[turn-right(), move-forward(), move-forward(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward()]"
+    # env = MiniGridEnv("MiniGrid-MemoryS11-v0") # solved
+    # action_sequence = "[turn-right(), turn-right(), turn-right(), turn-right(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), move-forward(), turn-left(), move-forward(), move-forward(), move-forward(), pick-up()]"
+    # env = MiniGridEnv("BabyAI-UnlockPickup-v0") # solved
+    # action_sequence = "[turn-left(), move-forward(), pick-up(), turn-left(), move-forward(), move-forward(), turn-right(), move-forward(), toggle(), move-forward(), move-forward(), move-forward(), move-forward(), drop(), turn-right(), move-forward(), move-forward(), move-forward(), turn-left(), pick-up()]"
+    # env = MiniGridEnv("MiniGrid-LavaGapS6-v0") # solved
+    # env = MiniGridEnv("MiniGrid-LavaCrossingS9N2-v0") # solved
+    # env = MiniGridEnv("MiniGrid-LavaCrossingS11N5-v0") # solved
+    # action_sequence = "[cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava(), cross-lava()]"
     # result = env.run_sim(action_sequence)
     # print(result)
     # env.end_env()
 
     first_set = [
         "MiniGrid-Empty-5x5-v0",
-        # "MiniGrid-Empty-Random-5x5-v0",
-        # "MiniGrid-Empty-6x6-v0",
-        # "MiniGrid-Empty-Random-6x6-v0",
+        "MiniGrid-Empty-Random-5x5-v0",
+        "MiniGrid-Empty-6x6-v0",
+        "MiniGrid-Empty-Random-6x6-v0",
         "MiniGrid-Empty-8x8-v0",
-        # "MiniGrid-Empty-16x16-v0"
+        "MiniGrid-Empty-16x16-v0",
+        # "MiniGrid-FourRooms-v0",
+        # "BabyAI-GoToLocalS6N4-v0",
+        # "BabyAI-GoToLocalS6N2-v0",
+        # "BabyAI-MiniBossLevel-v0"
     ]
     for level_name in first_set:
         print(f"Running level: {level_name}")
         env = MiniGridEnv(level_name)
-        action_sequence = "[move_to_goal(agent1, goal1)]"
+        # action_sequence = "[move_to_goal(agent1, goal1)]"
+        # action_sequence = "[turn-left(), move-forward(), turn-right(), move-forward(), move-forward(), move-forward(), move-forward()]"
+        action_sequence = "[move-forward(), move-forward(), move-forward(),move-forward(),move-forward(),move-forward(),move-forward(),move-forward(),move-forward(),move-forward(), turn-right(), move-forward(), move-forward()]"
+        # action_sequence = "[move-to-goal-v5(a,t)]"
         result = env.run_sim(action_sequence)
         print(result)
         env.end_env()
