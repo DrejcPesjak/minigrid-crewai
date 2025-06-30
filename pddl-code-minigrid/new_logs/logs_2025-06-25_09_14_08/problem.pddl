@@ -1,0 +1,5 @@
+(define (problem goto_local_p1)
+ (:domain goto_local)
+  (:objects agent1 - agent)
+   (:init (is_agent agent1))
+    (:goal (at_goal)))

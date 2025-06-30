@@ -1,0 +1,6 @@
+(define (problem pickup_only_problem)
+  (:domain pickup_only_domain)
+  (:objects agent1 - agent item1 - item)
+  (:init (available item1))
+  (:goal (holding agent1 item1))
+)

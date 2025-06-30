@@ -18,7 +18,7 @@ class MiniGridEnv:
     def start_env(self):
         # Initialize the environment
         self.env = gym.make(self.level_name, render_mode="human")
-        obs, info = self.env.reset(seed=0) # later will be random
+        obs, info = self.env.reset(seed=42) # later will be random
         obs['image'][3][6][0] = 10
         obs_converted = self.convert_observation(obs)
         self.init_full_grid(obs_converted)        
@@ -401,25 +401,42 @@ if __name__ == "__main__":
     # print(result)
     # env.end_env()
 
-    first_set = [
-        "MiniGrid-Empty-5x5-v0",
-        "MiniGrid-Empty-Random-5x5-v0",
-        "MiniGrid-Empty-6x6-v0",
-        "MiniGrid-Empty-Random-6x6-v0",
-        "MiniGrid-Empty-8x8-v0",
-        "MiniGrid-Empty-16x16-v0",
-        # "MiniGrid-FourRooms-v0",
-        # "BabyAI-GoToLocalS6N4-v0",
-        # "BabyAI-GoToLocalS6N2-v0",
-        # "BabyAI-MiniBossLevel-v0"
-    ]
-    for level_name in first_set:
-        print(f"Running level: {level_name}")
-        env = MiniGridEnv(level_name)
-        # action_sequence = "[move_to_goal(agent1, goal1)]"
-        # action_sequence = "[turn-left(), move-forward(), turn-right(), move-forward(), move-forward(), move-forward(), move-forward()]"
-        action_sequence = "[move-forward(), move-forward(), move-forward(),move-forward(),move-forward(),move-forward(),move-forward(),move-forward(),move-forward(),move-forward(), turn-right(), move-forward(), move-forward()]"
-        # action_sequence = "[move-to-goal-v5(a,t)]"
-        result = env.run_sim(action_sequence)
-        print(result)
-        env.end_env()
+    # first_set = [
+    #     "MiniGrid-Empty-5x5-v0",
+    #     "MiniGrid-Empty-Random-5x5-v0",
+    #     "MiniGrid-Empty-6x6-v0",
+    #     "MiniGrid-Empty-Random-6x6-v0",
+    #     "MiniGrid-Empty-8x8-v0",
+    #     "MiniGrid-Empty-16x16-v0",
+    #     # "MiniGrid-FourRooms-v0",
+    #     # "BabyAI-GoToLocalS6N4-v0",
+    #     # "BabyAI-GoToLocalS6N2-v0",
+    #     # "BabyAI-MiniBossLevel-v0"
+    # ]
+    # for level_name in first_set:
+    #     print(f"Running level: {level_name}")
+    #     env = MiniGridEnv(level_name)
+    #     # action_sequence = "[move_to_goal(agent1, goal1)]"
+    #     # action_sequence = "[turn-left(), move-forward(), turn-right(), move-forward(), move-forward(), move-forward(), move-forward()]"
+    #     action_sequence = "[move-forward(), move-forward(), move-forward(),move-forward(),move-forward(),move-forward(),move-forward(),move-forward(),move-forward(),move-forward(), turn-right(), move-forward(), move-forward()]"
+    #     # action_sequence = "[move-to-goal-v5(a,t)]"
+    #     result = env.run_sim(action_sequence)
+    #     print(result)
+    #     env.end_env()
+    
+    from pathlib import Path
+    import json
+    CURRIC_FILE = Path(__file__).with_name("merged_curriculum2.json")
+    curriculum = json.loads(CURRIC_FILE.read_text())
+    i = 0
+    for cat in curriculum:
+        if cat["category_name"] == "open_door":
+            for lvl in cat["levels"]:
+                for env_name in lvl["configs"]:
+                    print(f"\n=== {env_name} ===")
+                    i += 1
+                    env = MiniGridEnv(env_name)
+                    action_sequence = "[move-forward()]"
+                    result = env.run_sim(action_sequence)
+                    # print(result)
+                    env.end_env()

@@ -70,6 +70,7 @@ class Agent():
     
     # ---------- new actions ----------
     def safe_forward_infinite(self):
+        """Warning: this is an infinite loop! Do not call directly."""
         while not self.lava_ahead():
             yield from self.move_forward()
     

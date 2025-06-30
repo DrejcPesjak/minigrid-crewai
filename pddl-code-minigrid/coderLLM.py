@@ -145,7 +145,8 @@ class CoderLLM:
 
         current_src = agent_src
         for round_ in range(1, MAX_ROUNDS + 1):
-            print(conversation[-1])
+            # print(conversation[-1])
+            print(f"CoderLLM tokens approx: {2 * sum(len(m['content'].split()) for m in conversation)}")
             patch: CodeResp = self.client.chat_completion(conversation)
             print("\n", patch)
             new_src = self._merge(current_src, patch.code.strip())
@@ -221,6 +222,7 @@ class CoderLLM:
     def _test_full_plan(self, plan_str: str, env_name: str) -> str:
         from minigridenv import MiniGridEnv
         env = MiniGridEnv(env_name)
+        print(f"Plan to execute in {env_name}:\n{plan_str}")
         result = env.run_sim(plan_str)
         print(f"Plan execution result: {result}")
         env.end_env()

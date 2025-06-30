@@ -70,6 +70,20 @@ def prompt_log():
         for header, text in blocks.items():
             f.write(f"{header}\n\n{text.strip()}\n\n---\n\n")
 
+def end_log():
+    # Save both pddls, and agent_tmp.py
+    log_dir = Path(__file__).parent / "new_logs"
+    log_dir.mkdir(parents=True, exist_ok=True)
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")#.strftime("%Y%m%d_%H%M%S")
+    log_subdir = log_dir / f"logs_{timestamp}"
+    log_subdir.mkdir(parents=True, exist_ok=True)
+
+    (log_subdir / "domain.pddl").write_text(Path("domain.pddl").read_text())
+    (log_subdir / "problem.pddl").write_text(Path("problem.pddl").read_text())
+    (log_subdir / "agent_tmp.py").write_text(Path("agent_tmp.py").read_text())
+
+    print(f"Logs saved to {log_subdir}")
+
 def plan_to_string(up_plan) -> str:
     """Return MiniGridEnv-ready string '[foo(), bar(obj)]'."""
     parts = []
@@ -118,8 +132,16 @@ def new_action_name(high_level_names, plan_str, schemas):
     return high_level_names_new, plan_str_new, schemas_new
 
 def main():
-    reset()
-    reset_pddl()
+    # checkpoint_cat = None
+    # checkpoint_reached = True
+    checkpoint_cat = "pickup_only" # category_name or None
+    checkpoint_reached = False
+
+    if not checkpoint_cat:
+        print("No checkpoint category specified, running from the start.")
+        reset()
+        reset_pddl()
+
     prompt_log()
 
     curriculum = json.loads(CURRIC_FILE.read_text())
@@ -127,7 +149,14 @@ def main():
     coder   = CoderLLM()
 
     for cat in curriculum:
-        reset_pddl()  # reset PDDL files for each category
+        if cat["category_name"] == checkpoint_cat:
+            checkpoint_reached = True
+        
+        if not checkpoint_reached:
+            print(f"Skipping category {cat['category_name']} until checkpoint is reached.")
+            continue
+        
+        # reset_pddl()  # reset PDDL files for each category
         for lvl in cat["levels"]:
             
             for env_name in lvl["configs"]:
@@ -185,20 +214,40 @@ def main():
                         
                         # print(f"New all: {high_level_names_new};; {plan_str_new};; {schemas_new}")
                         
-                        coder.implement_actions(
-                            actions=high_level_names_new,
-                            pddl_schemas=schemas_new,
-                            plan_str=plan_str_new,
-                            test_env=env_name,
-                        )
-                        importlib.reload(agent)
+                        try:
+                            coder.implement_actions(
+                                actions=high_level_names_new,
+                                pddl_schemas=schemas_new,
+                                plan_str=plan_str_new,
+                                test_env=env_name,
+                            )
+                            importlib.reload(agent)
+
+                        except RuntimeError as exc:
+                            # if 60% of configs solved, continue to next level
+                            if len(lvl["configs"]) < 3 or lvl["configs"].index(env_name) >= 0.6 * len(lvl["configs"]):
+                                print("Continuing to next level due to partial success.")
+                                continue
+                            else:
+                                end_log()
+                                print("Exiting due to failure in CoderLLM.")
+                                return
                     
-                    # else:
-                    #     print(f"✅ level {env_name} solved with actions: {', '.join(high_level_names)}")
+                    else:
+                        print(f"✅ level {env_name} solved with actions: {', '.join(high_level_names)}")
 
 
     print("\n🏁  All curriculum levels solved.")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt as e:
+        # Handle Ctrl+C gracefully
+        print(f"\n🛑 Execution interrupted by user: {e}")
+    except Exception as e:
+        print(f"\n❗ An error occurred: {e}")
+    finally:
+        end_log()
+        print("Logs saved. Exiting.")

@@ -39,12 +39,13 @@ Abstraction rules
    pick_up, drop, toggle, done, safe_forward, pick_up_obj.
 •  From the **Environment / Category / Skill / Level description**, decide 
    whether the **currently available high-level actions are sufficient**; 
-   reuse them only if they can solve the mission exactly. 
+   reuse them only if they can solve the mission exactly,
+   precisely match number of parameters (skip the self param). 
    If none fully fit, invent one or more new *snake_case* actions that do,
-   that the coder will later implement (e.g. cross_lava, move_to_goal).
+   that the coder will later implement.
 •  Keep DOMAIN compact - a handful of predicates and actions.
 •  All predicate / parameter names must match between DOMAIN and PROBLEM.
-•  If several versions of an action exist (e.g. move_to_goal, move_to_goal_v2, move_to_goal_v3), 
+•  If several versions of an action exist (e.g. action_name, action_name_v2, action_name_v3), 
    always reference the highest-numbered suffix currently present in the Agent code.
 
 Syntax constraints (very important)
@@ -79,6 +80,7 @@ Remember:
 * Declare :types and at least one object per type.
 * No comments, no `(and)` empty blocks.
 * Avoid `not` (or add :negative-preconditions if you really need it).
+* Atleast 1 action name must precisely match current Category name (use the latest version)!
 """
 
 REFINEMENT_PROMPT_TEMPLATE = """
@@ -97,7 +99,8 @@ class PDDLResp(BaseModel):
 
 class PlannerLLM:
     def __init__(self):
-        self.client = ChatGPTClient("openai/o3", PDDLResp)
+        # self.client = ChatGPTClient("openai/o3", PDDLResp)
+        self.client = ChatGPTClient("openai/o4-mini", PDDLResp)
         # self.client = ChatGPTClient("ollama/deepseek-r1:8b", PDDLResp)
         # logging.basicConfig(level=logging.INFO,
         #                     format="%(levelname)s: %(message)s")
@@ -135,7 +138,7 @@ class PlannerLLM:
         if TMP_DOMAIN.exists() and TMP_PROBLEM.exists():
             prev_pddls = f"Previous PDDL files:\nDomain:\n{TMP_DOMAIN.read_text()}\nProblem:\n{TMP_PROBLEM.read_text()}\n"
         # else:
-        #     prev_pddls = "Note: atleast 1 action must precisely match the Category name! \n"
+        #     prev_pddls = "Note: atleast 1 action name must precisely match current Category name! \n"
 
         conversation = [
             {"role": "system", "content": SYSTEM_PROMPT.strip()},
@@ -152,7 +155,8 @@ class PlannerLLM:
 
         # retry-repair loop
         for attempt in range(1, MAX_RETRIES + 1):
-            print(conversation[-1])
+            # print(conversation[-1])
+            print(f"PlannerLLM tokens approx: {2 * sum(len(m['content'].split()) for m in conversation)}")
             resp: PDDLResp = self.client.chat_completion(conversation)
             print("\n", resp.model_dump_json(indent=2))
             dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
