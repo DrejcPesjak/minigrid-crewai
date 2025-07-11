@@ -27,7 +27,7 @@ from pydantic import BaseModel
 AGENT_FILE = Path(__file__).with_name("agent.py")
 TMP_FILE   = Path(__file__).with_name("agent_tmp.py")
 
-MAX_ROUNDS = 10
+MAX_ROUNDS = 5
 
 CODER_SYSTEM_PROMPT = """
 You are updating the Python `Agent` class for a MiniGrid agent.
@@ -119,7 +119,7 @@ class CoderLLM:
             {"role": "system", "content": CODER_SYSTEM_PROMPT},
             {"role": "user",   "content": CODER_INITIAL_TEMPLATE.format(
                 agent_src   = agent_src,
-                agent_state = self._pretty_state(agent_state),
+                agent_state = agent_state,
                 schemas_text= schemas_txt,
                 plan_str    = plan_str,
             )}
@@ -134,7 +134,7 @@ class CoderLLM:
         current_src = agent_src
 
         for rnd in range(1, MAX_ROUNDS + 1):
-            print(conversation[-1])  # debug: print last user prompt
+            # print(conversation[-1])  # debug: print last user prompt
             print(f"CoderLLM: round {rnd}, prompt tokens~{2*sum(len(m['content'].split()) for m in conversation)}")
             patch: CodeResp = self.client.chat_completion(conversation)
 
@@ -146,7 +146,6 @@ class CoderLLM:
                 TMP_FILE.write_text(merged)
                 try:
                     importlib.reload(agent_tmp)
-                    shutil.copy(TMP_FILE, AGENT_FILE)      # success!
                     return CoderResult("ok")
                 except Exception as exc:
                     status = "reload_error"
@@ -158,63 +157,57 @@ class CoderLLM:
                 {"role": "user",      "content": CODER_FEEDBACK_TEMPLATE.format(
                     error_log=err)}
             ])
-            current_src = merged       # even if bad, keep context
+            # current_src = merged       # even if bad, keep context
 
         return CoderResult("exhausted", trace="exceeded MAX_ROUNDS")
 
-    # ------------------------------------------------------------------ #
-
-    @staticmethod
-    def _pretty_state(st: dict, max_len: int = 600) -> str:
-        """
-        Serialise small snapshot for the prompt; truncate huge numpy arrays.
-        """
-        import pprint, textwrap
-        s = pprint.pformat(st, width=100, compact=True)
-        if len(s) > max_len:
-            s = s[:max_len] + " …"
-        return textwrap.indent(s, "    ")
 
     # ---------------- AST merge ----------------------------------------
 
     def _merge(self, original: str, patch: str) -> str:
-        """
-        Merge new defs & imports into the existing agent source.
-        Returns new source *or* error message starting with "Error".
-        """
-        try:
-            patch_ast = ast.parse(textwrap.dedent(patch))
-            base_ast  = ast.parse(original)
+      try:
+          patch_ast = ast.parse(textwrap.dedent(patch))
+          base_ast  = ast.parse(original)
 
-            new_funcs = {n.name: n for n in patch_ast.body
-                         if isinstance(n, ast.FunctionDef)}
-            patch_imps = [n for n in patch_ast.body
+          # ── split patch into defs vs. imports ────────────────────────────
+          new_funcs   = {n.name: n for n in patch_ast.body
+                        if isinstance(n, ast.FunctionDef)}
+          patch_imps  = [n for n in patch_ast.body
+                        if isinstance(n, (ast.Import, ast.ImportFrom))]
+
+          # ── update Agent class body ──────────────────────────────────────
+          agent_cls = next(n for n in base_ast.body
+                          if isinstance(n, ast.ClassDef) and n.name == "Agent")
+
+          updated_body = []
+          for node in agent_cls.body:
+              if isinstance(node, ast.FunctionDef) and node.name in new_funcs:
+                  updated_body.append(new_funcs.pop(node.name))   # overwrite
+              else:
+                  updated_body.append(node)
+          updated_body.extend(new_funcs.values())                 # append brand-new
+          agent_cls.body = updated_body
+
+          # ── merge imports without duplicates ────────────────────────────
+          def _key(n): return ast.dump(n, annotate_fields=False)
+          existing_imps = [n for n in base_ast.body
                           if isinstance(n, (ast.Import, ast.ImportFrom))]
+          exists = {_key(n) for n in existing_imps}
 
-            agent_cls = next(n for n in base_ast.body
-                             if isinstance(n, ast.ClassDef) and n.name == "Agent")
+          for imp in patch_imps:
+              if _key(imp) not in exists:
+                  existing_imps.append(imp)
+                  exists.add(_key(imp))
 
-            updated_body = []
-            for node in agent_cls.body:
-                if isinstance(node, ast.FunctionDef) and node.name in new_funcs:
-                    updated_body.append(new_funcs.pop(node.name))   # overwrite
-                else:
-                    updated_body.append(node)
-            updated_body.extend(new_funcs.values())                 # brand-new defs
-            agent_cls.body = updated_body
+          # keep original non-import top-level nodes
+          rest = [n for n in base_ast.body
+                  if not isinstance(n, (ast.Import, ast.ImportFrom))]
 
-            def _sig(n): return ast.dump(n, annotate_fields=False)
-            existing_imps = [n for n in base_ast.body
-                             if isinstance(n, (ast.Import, ast.ImportFrom))]
-            seen = {_sig(n) for n in existing_imps}
-            for imp in patch_imps:
-                if _sig(imp) not in seen:
-                    existing_imps.append(imp); seen.add(_sig(imp))
+          base_ast.body = existing_imps + rest
+          return ast.unparse(base_ast)
 
-            rest = [n for n in base_ast.body
-                    if not isinstance(n, (ast.Import, ast.ImportFrom))]
-            base_ast.body = existing_imps + rest
-            return ast.unparse(base_ast)
-
-        except Exception as exc:
-            return f"Error merging patch: {exc}\n{traceback.format_exc()}"
+      except Exception as exc:
+          tb_str = traceback.format_exc()
+          print(tb_str)
+          return f"Error merging patch: {exc}"
+    

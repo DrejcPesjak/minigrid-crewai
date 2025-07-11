@@ -48,6 +48,7 @@ Abstraction rules
    precisely match number of parameters (skip the self param). 
    If none fully fit, invent one or more new *snake_case* actions that do,
    that the coder will later implement.
+•  In PROBLEM, match object names precisely, use **snake_case** (e.g. `door_red_locked`).
 •  Keep DOMAIN compact - a handful of predicates and actions.
 •  All predicate / parameter names must match between DOMAIN and PROBLEM.
 •  If several versions of an action exist (e.g. action_name, action_name_v2, action_name_v3), 
@@ -78,7 +79,8 @@ Current snapshot
 Mission   : {mission};
 Direction : {direction};
 Inventory : {inventory};
-Visible objects : {visible_objects};
+Visible grid:
+{visible_grid}
 
 Current Agent code (stripped)
 -----------------------------
@@ -92,8 +94,20 @@ Remember:
 * Declare :types and at least one object per type.
 * No comments, no `(and)` empty blocks.
 * Avoid `not` (or add :negative-preconditions if you really need it).
-* Atleast 1 action name must precisely match current Category name (use the latest version)!
 """.strip()
+#* Atleast 1 action name must precisely match current Category name (use the latest version)!
+
+USER_PROMPT_TEMPLATE_PDDL = """
+{ctx_header}
+Previous DOMAIN:
+```
+{prev_domain}
+```
+Previous PROBLEM:
+```
+{prev_problem}
+```
+"""
 
 USER_PROMPT_TEMPLATE_REPAIR = """
 Previous DOMAIN / PROBLEM caused planning failure.
@@ -103,15 +117,6 @@ Previous DOMAIN / PROBLEM caused planning failure.
 
 Below are the previous PDDL files; resend **both** fixed files as ONE JSON
 object (keys: domain, problem).  No markdown.
-
-Previous DOMAIN:
-```
-{prev_domain}
-```
-Previous PROBLEM:
-```
-{prev_problem}
-```
 """.strip()
 
 # --------------------------------------------------------------------------- #
@@ -136,7 +141,7 @@ class PlanBundle(BaseModel):
 # --------------------------------------------------------------------------- #
 
 def _grid_to_string(grid) -> str:
-    return "\n".join(" ".join(row) for row in grid)
+    return "\n".join(", ".join(row) for row in grid)
 
 def _strip_agent_code(src: str) -> str:
     """Keep only defs (with self) and their docstrings to fit prompt budget."""
@@ -168,6 +173,10 @@ class PlannerLLM:
         self.small_model = "openai/o4-mini"
         self.client      = ChatGPTClient(self.big_model, PDDLResp)
         self._schemas    = {}          # cached after a success
+    
+    def _set_model(self, model_name: str):
+        if self.client.model_name != model_name.split("/")[-1]:
+            self.client = ChatGPTClient(model_name, PDDLResp)
 
     # ---------------------------------- public API ------------------------
 
@@ -175,7 +184,9 @@ class PlannerLLM:
         self,
         snapshot: dict,                       # mission, direction, inventory, visible_grid …
         meta: Dict[str, str],                 # category_name, skill, level_name, level_description, env_name
-        prev_pddl: Optional[Tuple[str,str]] = None
+        pddl_hint: Optional[Tuple[str, str]] = None,  # (domain, problem)
+        pddl_trusted: bool = False,           # whether to trust the hint
+        plan_failed: bool = False,            # whether the previous plan failed
     ) -> PlanBundle:
         """
         Generate (domain, problem), run UP, repair until solved.
@@ -186,7 +197,28 @@ class PlannerLLM:
         if len(agent_src.split()) > 12_000:               # prompt safety
             agent_src = _strip_agent_code(agent_src)
 
-        # ---------- build first prompt -----------------------------------
+           
+        # ---------- mode & model selection ------------------------------
+        if pddl_hint is None:               # first level in category
+            mode       = "fresh"
+            self._set_model(self.big_model)
+            ctx_header = ""
+        elif not pddl_trusted:              # abstraction still unproven
+            mode       = "repair"
+            self._set_model(self.big_model)
+            ctx_header = "Previous DOMAIN / PROBLEM caused planning failure."
+        elif plan_failed:                   # abstraction ok, plan bad
+            mode       = "replan"
+            self._set_model(self.small_model)
+            ctx_header = ("DOMAIN / PROBLEM below parse correctly, but the resulting "
+                          "planner-generated plan failed in simulation. ")
+        else:                               # steady reuse
+            mode       = "reuse"
+            self._set_model(self.small_model)
+            ctx_header = ("DOMAIN / PROBLEM below already solved a level in "
+                          "this category.")
+
+        # ---------- build user prompt ------------------------------------
         
         user_msg = USER_PROMPT_TEMPLATE_FIRST.format(
             env_name         = meta["env_name"],
@@ -197,8 +229,8 @@ class PlannerLLM:
             mission          = snapshot["mission"],
             direction        = snapshot["direction"],
             inventory        = snapshot.get("inventory"),
-            # visible_grid     = _grid_to_string(snapshot["visible_grid"]),
-            visible_objects  = ", ".join(snapshot.get("visible_objects", [])),
+            visible_grid     = _grid_to_string(snapshot["visible_grid"]),
+            # visible_objects  = ", ".join(snapshot.get("visible_objects", [])),
             agent_code       = agent_src,
         )
         conversation = [
@@ -206,16 +238,14 @@ class PlannerLLM:
             {"role": "user",   "content": user_msg}
         ]
 
-        if prev_pddl is not None:
-            prev_domain, prev_problem = prev_pddl
-            user_msg = USER_PROMPT_TEMPLATE_REPAIR.format(
-                error_log    = "Initial attempt failed, please fix.",   # filled later
+        # append context if we have a previous PDDL
+        if pddl_hint is not None:
+            prev_domain, prev_problem = pddl_hint
+            conversation.append({"role": "user", "content": USER_PROMPT_TEMPLATE_PDDL.format(
+                ctx_header   = ctx_header,
                 prev_domain  = prev_domain,
                 prev_problem = prev_problem
-            )
-            conversation.append(
-                {"role": "user", "content": user_msg}
-            )
+            )})
 
         # ---------- repair loop -----------------------------------------
         for attempt in range(1, MAX_RETRIES + 1):
@@ -224,6 +254,7 @@ class PlannerLLM:
             dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
             TMP_DOMAIN.write_text(dom_txt)
             TMP_PROBLEM.write_text(prob_txt)
+            # dom_txt, prob_txt = TMP_DOMAIN.read_text().strip(), TMP_PROBLEM.read_text().strip()
 
             try:
                 up_problem, up_result, up_validation = self._solve_and_validate()
@@ -254,7 +285,7 @@ class PlannerLLM:
                     prev_problem = prob_txt
                 )}
             ])
-            # self.client = ChatGPTClient(self.big_model, PDDLResp)
+            self._set_model(self.big_model)
             time.sleep(1)
 
         raise RuntimeError("PlannerLLM exhausted retries")

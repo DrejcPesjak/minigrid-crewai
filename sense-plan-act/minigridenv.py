@@ -81,7 +81,7 @@ class MiniGridEnv:
             "mission"      : self.agent.mission,
             "direction"    : self.agent.current_dir,
             "inventory"    : self.agent.inventory,
-            # "visible_grid" : self.agent.full_grid.tolist(),
+            "visible_grid" : self.agent.full_grid.tolist(),
             "visible_objects": _cells_to_objs(self.agent.current_observation),
         }
         return snap
@@ -93,6 +93,10 @@ class MiniGridEnv:
 
     def replay_checkpoint(self):
         """Reset env and fast-forward all previously executed primitive codes."""
+        # if len(self._checkpoint) == 0:
+        #     print("No checkpoint to replay")
+        #     return
+        
         print(f"Replaying {len(self._checkpoint)} checkpoint codes")
         saved_codes = self._checkpoint.copy()
         self.__init__(self.level_name, seed=self.seed)    # fresh env + agent
@@ -322,10 +326,10 @@ class MiniGridEnv:
 
     def run_sim(self, plan_str:str) -> Outcome:
         try:
-            calls          = list(self.parse_actions(plan_str))
+            calls          = self.parse_actions(plan_str)
             grid_history   : List[np.ndarray] = []
             history_limit  = 15
-
+            
             for meth, args in calls:
                 if not hasattr(self.agent, meth):
                     return Outcome("missing_method",
@@ -339,9 +343,6 @@ class MiniGridEnv:
                                    f"{meth} raised {e}",
                                    self._agent_state(),
                                    traceback.format_exc())
-
-                # if not isinstance(codes, list):
-                #     codes = list(codes)           # allow generators
 
                 for code in codes:
                     self.save_primitive(code)

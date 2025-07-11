@@ -56,6 +56,16 @@ class Agent():
         r, c = self._agent_coords()
         dr, dc = DIR[self.current_dir]
         return r + dr, c + dc
+    
+    def _parse_name(self, name: str) -> str:
+        """Convert a name like 'door_red_locked' to "door red locked".
+        Convert snake_case or kebab-case to space-separated words.
+        Also removes numbers.
+        """
+        name = re.sub(r"[_-]", " ", name)
+        name = re.sub(r"\d+", "", name)  # remove numbers
+        name = name.strip()  # remove leading/trailing spaces
+        return name
 
     # ---------- predicates ----------
     def am_next_to(self, obj: str) -> bool:
