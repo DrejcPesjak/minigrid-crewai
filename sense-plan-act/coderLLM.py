@@ -30,16 +30,52 @@ TMP_FILE   = Path(__file__).with_name("agent_tmp.py")
 MAX_ROUNDS = 5
 
 CODER_SYSTEM_PROMPT = """
-You are updating the Python `Agent` class for a MiniGrid agent.
+You are augmenting the Python `Agent` class that controls an OpenAI
+Gymnasium MiniGrid agent.
 
 Hard rules
-----------
-• Return **raw Python only** – no markdown fences.  
-• Start every `def` at column-0; no wrapper classes.  
-• Implement *all* requested high-level actions plus any helper predicates.  
-• Actions must return a `list[int]` or be a generator yielding ints.  
-• Never mutate `full_grid` or other state vars; read-only.  
-• Add required `import …` lines at column-0 if a new std-lib symbol is used.  
+• **Return only raw Python source** - never wrap in markdown.
+• Output plain Python.  Start every `def` at column-0 (no extra indent,
+  no class wrapper).  The merge script will insert each def into the
+  Agent class automatically.
+• Never run shell commands, subprocess calls, or print diagnostics.
+• Implement every high-level action given, plus any helper predicates the
+  PDDL preconditions/effects require.
+• Each generated action **must include every parameter that appears in the
+  PDDL schema** (keep the same order). If a parameter isn't used inside
+  the body, keep it anyway (you can prefix its name with “_” to silence
+  linters).
+• Re-use existing helpers when possible (am_next_to, lava_ahead, …).
+• All **actions** must return either a `list[int]` or be a generator
+  (`yield` / `yield from`) producing primitive codes one by one.
+• Use `yield from` whenever the code needs to re-inspect `full_grid`
+  between moves (e.g. chase, explore, corridor following).
+• Never mutate `full_grid`, `current_observation`, `current_dir`,
+  `agent_pos`, or `prev_underlying`. Read-only only.
+• Predicates return `bool`.
+• If you reference a new symbol from any library (e.g. deque, heapq, 
+  Callable), add the corresponding `import …` at column-0.
+
+Guidelines
+• **Perception model** - `current_observation` is the agent's 7 x 7 egocentric
+  view at the *current* step; `full_grid` is an ever-growing global map that
+  is padded/updated after every primitive move, and many objects or targets 
+  won't be visible at the start.  Plan path-finding or loop conditions against 
+  `full_grid`, but be ready to re-query it between moves.
+• Prefer `np.where(...)` over hard-coded offsets.
+• Avoid infinite loops: the runner aborts the **entire program** if no
+  cell change is detected for 5 consecutive steps.
+• For multi-step actions that **don't** need fresh perception, just
+  `return [2, 2, 1, 2]`.
+• Always sanitise PDDL strings: convert kebab-case → snake_case and drop
+  colour suffixes when matching object names.
+• Keep helper predicates small and reusable (`is_door`, `is_goal`, …).
+• **Grid vocabulary** - every cell string is a space-separated combo of  
+  OBJECT ∈ {unseen, empty, wall, floor, door, key, ball, box, goal, lava, agent}  
+  + optional COLOR ∈ {red, green, blue, purple, yellow, grey}  
+  + optional STATE ∈ {open, closed, locked}.  
+  No other words ever appear, and the order is always “object [color] [state]”.
+
 """.strip()
 
 CODER_INITIAL_TEMPLATE = """
@@ -57,6 +93,8 @@ The plan that must succeed is:
 {plan_str}
 
 Output only the added or modified `def` blocks.
+Each function must start at column-0 (no leading spaces, no class wrapper).
+Never search the repo — assume the method is absent and implement it.
 """.strip()
 
 CODER_FEEDBACK_TEMPLATE = """
@@ -65,8 +103,9 @@ Previous patch failed.
 --- ERROR / TRACE ----------------------------------
 {error_log}
 
-Please output a full replacement for the previously sent code block.
-Only raw Python.
+Produce a *complete replacement* for the previously returned code block.
+Start every `def` at column-0 (no leading spaces).
+Fix every issue revealed by the error.
 """.strip()
 
 # --------------------------------------------------------------------------- #

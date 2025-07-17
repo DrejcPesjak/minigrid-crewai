@@ -7,6 +7,7 @@ MiniGridEnv wrapper with
 
 from __future__ import annotations
 
+import copy
 import time
 import traceback
 from dataclasses import dataclass
@@ -90,6 +91,14 @@ class MiniGridEnv:
 
     def save_primitive(self, code: int):
         self._checkpoint.append(code)
+    
+    def reload_agent(self):
+        """Reload the agent from the tmp file, preserving its state."""
+        prev_agent_state = copy.deepcopy(self.agent.__dict__)
+        # importlib.reload(agent_tmp)  # should be done by main()
+        self.agent = agent_tmp.Agent()
+        for k, v in prev_agent_state.items():
+            setattr(self.agent, k, v)
 
     def replay_checkpoint(self):
         """Reset env and fast-forward all previously executed primitive codes."""

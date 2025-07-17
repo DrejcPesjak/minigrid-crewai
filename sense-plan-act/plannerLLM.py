@@ -199,24 +199,29 @@ class PlannerLLM:
 
            
         # ---------- mode & model selection ------------------------------
-        if pddl_hint is None:               # first level in category
-            mode       = "fresh"
+        if pddl_hint is None:
+            print("PlannerLLM: fresh PDDL")
+            mode      = "fresh"
             self._set_model(self.big_model)
             ctx_header = ""
-        elif not pddl_trusted:              # abstraction still unproven
-            mode       = "repair"
+        elif pddl_trusted:
+            print("PlannerLLM: reusing PDDL")
+            mode      = "reuse"
+            self._set_model(self.small_model)
+            ctx_header = "DOMAIN / PROBLEM below already solved a level in this category."
+        elif plan_failed:
+            print("PlannerLLM: repairing PDDL")
+            mode      = "replan"
             self._set_model(self.big_model)
-            ctx_header = "Previous DOMAIN / PROBLEM caused planning failure."
-        elif plan_failed:                   # abstraction ok, plan bad
-            mode       = "replan"
-            self._set_model(self.small_model)
             ctx_header = ("DOMAIN / PROBLEM below parse correctly, but the resulting "
-                          "planner-generated plan failed in simulation. ")
-        else:                               # steady reuse
-            mode       = "reuse"
-            self._set_model(self.small_model)
-            ctx_header = ("DOMAIN / PROBLEM below already solved a level in "
-                          "this category.")
+                          "planner-generated plan failed in simulation. "
+                          "Make drastic changes to the PDDL. Make up new actions if needed.")
+        else: # if previous level failed completely
+            print("PlannerLLM: go from scratch")
+            mode      = "else"
+            self._set_model(self.big_model)
+            ctx_header = ""
+            pddl_hint = None  # reset hint to avoid reusing it
 
         # ---------- build user prompt ------------------------------------
         
@@ -281,10 +286,12 @@ class PlannerLLM:
                 {"role": "assistant", "content": resp.model_dump_json()},
                 {"role": "user",      "content": USER_PROMPT_TEMPLATE_REPAIR.format(
                     error_log    = err_msg,
-                    prev_domain  = dom_txt,
-                    prev_problem = prob_txt
+                    # # These are already in the "role: assistant" message
+                    # prev_domain  = dom_txt,
+                    # prev_problem = prob_txt
                 )}
             ])
+            mode = "syntax repair"
             self._set_model(self.big_model)
             time.sleep(1)
 

@@ -1,0 +1,6 @@
+(define (problem goto_green_ball)
+ (:domain babyai_goto)
+ (:objects me - agent ball_green - target goal_room - region)
+ (:init (ready me))
+ (:goal (at_goal me))
+)

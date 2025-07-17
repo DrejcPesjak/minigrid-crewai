@@ -1,0 +1,5 @@
+(define (problem gotolocal-problem)
+ (:domain gotolocal)
+ (:objects start key_yellow - region)
+ (:init (at start))
+ (:goal (and (at key_yellow))))

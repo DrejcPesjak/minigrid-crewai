@@ -1,0 +1,5 @@
+(define (problem doorkey_instance)
+  (:domain doorkey_highlevel)
+  (:objects agent1 - agent door_yellow_locked - door region_goal - region)
+  (:init)
+  (:goal (at_goal agent1)))

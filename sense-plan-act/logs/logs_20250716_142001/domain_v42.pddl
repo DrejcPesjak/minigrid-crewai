@@ -1,0 +1,20 @@
+(define (domain babyai_goto)
+ (:requirements :strips :typing)
+ (:types agent door target region)
+ (:constants door_green - door)
+ (:predicates
+  (ready ?a - agent)
+  (door_open ?d - door)
+  (at_goal ?a - agent)
+ )
+ (:action open_door
+  :parameters (?a - agent ?d - door)
+  :precondition (ready ?a)
+  :effect (door_open ?d)
+ )
+ (:action go_to_target
+  :parameters (?a - agent ?t - target ?r - region)
+  :precondition (and (ready ?a) (door_open door_green))
+  :effect (at_goal ?a)
+ )
+)

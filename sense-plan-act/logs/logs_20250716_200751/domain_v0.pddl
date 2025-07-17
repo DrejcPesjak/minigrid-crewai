@@ -1,0 +1,20 @@
+(define (domain red_blue_doors)
+ (:requirements :strips :typing)
+ (:types agent door)
+ (:predicates
+  (door_open ?d - door)
+  (is_red ?d - door)
+  (is_blue ?d - door)
+  (red_opened)
+ )
+ (:action open_red_door
+  :parameters (?a - agent ?d - door)
+  :precondition (is_red ?d)
+  :effect (and (door_open ?d) (red_opened))
+ )
+ (:action open_blue_door
+  :parameters (?a - agent ?d - door)
+  :precondition (and (is_blue ?d) (red_opened))
+  :effect (door_open ?d)
+ )
+)
