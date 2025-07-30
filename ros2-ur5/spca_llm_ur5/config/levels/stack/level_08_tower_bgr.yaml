@@ -1,0 +1,22 @@
+task_group: stack
+task_id: stack_bgr_tower
+title: "Stack BGR tower (blue is base)"
+description: "Place the green cube on top of the blue cube, then stack the red cube on top of the green cube."
+difficulty: 3
+time_limit_s: 180
+
+success:
+  collisions_true:
+    - [box_green, box_blue]        # green on blue
+    - [box_red, box_green]         # red on green
+    - [box_blue, table_lightgray]  # blue cube is base on table
+  collisions_false:
+    - [box_red, table_lightgray]   # red should not touch table directly
+    - [box_green, table_lightgray]  # green should not touch table directly
+
+fail:
+  collisions_true:
+    - [box_red, ground_plane]
+    - [box_green, ground_plane]
+    - [box_blue, ground_plane]
+  collisions_false: []

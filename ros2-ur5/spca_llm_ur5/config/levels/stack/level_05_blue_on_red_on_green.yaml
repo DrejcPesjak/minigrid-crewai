@@ -1,0 +1,22 @@
+task_group: stack
+task_id: stack_blue_on_red_on_green
+title: "Stack blue cube on red cube on green cube"
+description: "Place red cube on top of green cube, then stack blue cube on red cube."
+difficulty: 3
+time_limit_s: 180
+
+success:
+  collisions_true:
+    - [box_red, box_green]        # red on green
+    - [box_blue, box_red]         # blue on red
+    - [box_green, table_lightgray]  # green cube is base on table
+  collisions_false:
+    - [box_blue, table_lightgray]  # blue should not touch table directly
+    - [box_red, table_lightgray]   # red should not touch table directly
+
+fail:
+  collisions_true:
+    - [box_blue, ground_plane]
+    - [box_red, ground_plane]
+    - [box_green, ground_plane]
+  collisions_false: []

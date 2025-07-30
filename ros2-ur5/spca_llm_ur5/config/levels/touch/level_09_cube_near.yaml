@@ -1,0 +1,17 @@
+# config/levels/touch/level_09_cube_near.yaml
+task_group: touch
+task_id: touch_near_cube
+title: "Touch the nearest cube"
+description: "Move the gripper to make contact with the nearest cube."
+difficulty: 3
+time_limit_s: 120
+
+success:
+  collisions_true:
+    - [cobot, box_blue]
+  collisions_false: []
+
+fail:
+  collisions_true:
+    - [box_blue, ground_plane]   # fell off the table
+  collisions_false: []

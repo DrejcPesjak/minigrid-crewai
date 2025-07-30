@@ -1,0 +1,23 @@
+task_group: pick_and_place
+task_id: place_all_three
+title: "Place each cube on the correct plate"
+description: "Pick the red cube and place it on the red plate, then pick the green cube and place it on the green plate, then pick the blue cube and place it on the blue plate."
+difficulty: 3
+time_limit_s: 150
+
+success:
+  collisions_true:
+    - [box_red, plate_red]
+    - [box_green, plate_green]
+    - [box_blue, plate_blue]
+  collisions_false:
+    - [box_red, table_lightgray]
+    - [box_green, table_lightgray]
+    - [box_blue, table_lightgray]
+
+fail:
+  collisions_true: # i really should do 'or'
+    - [box_red, ground_plane]
+    - [box_green, ground_plane]
+    - [box_blue, ground_plane]
+  collisions_false: []

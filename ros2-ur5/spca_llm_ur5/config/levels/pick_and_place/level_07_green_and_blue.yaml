@@ -1,0 +1,20 @@
+task_group: pick_and_place
+task_id: place_green_and_blue
+title: "Place green cube and blue cube correctly"
+description: "Pick the green cube and place it on the green plate, then pick the blue cube and place it on the blue plate."
+difficulty: 3
+time_limit_s: 150
+
+success:
+  collisions_true:
+    - [box_green, plate_green]
+    - [box_blue, plate_blue]
+  collisions_false:
+    - [box_green, table_lightgray]
+    - [box_blue, table_lightgray]
+
+fail:
+  collisions_true:
+    - [box_green, ground_plane]
+    - [box_blue, ground_plane]
+  collisions_false: []

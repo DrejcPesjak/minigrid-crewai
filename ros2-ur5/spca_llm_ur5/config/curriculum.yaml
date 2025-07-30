@@ -1,0 +1,62 @@
+groups:
+  - name: touch
+    levels:
+      # - levels/touch/level_01_cube.yaml
+      # - levels/touch/level_02_cube_red.yaml
+      - levels/touch/level_03_cube_blue.yaml
+      - levels/touch/level_04_cube_green.yaml
+      - levels/touch/level_05_cube_left.yaml
+      - levels/touch/level_06_cube_middle.yaml
+      - levels/touch/level_07_cube_right.yaml
+      # - levels/touch/level_08_cube_far.yaml
+      - levels/touch/level_09_cube_near.yaml
+      # - levels/touch/level_10_cube_any.yaml
+
+      # touch red plate
+
+  - name: pickup
+    levels:
+      # - levels/pickup/level_01_cube.yaml
+      - levels/pickup/level_02_cube_red.yaml
+      - levels/pickup/level_03_cube_blue.yaml
+      - levels/pickup/level_04_cube_green.yaml
+      - levels/pickup/level_05_cube_left.yaml
+      - levels/pickup/level_06_cube_middle.yaml
+      - levels/pickup/level_07_cube_right.yaml
+      # - levels/pickup/level_08_cube_any.yaml
+      # - levels/pickup/level_09_from_table.yaml
+      # - levels/pickup/level_10_from_plate.yaml
+
+  - name: pick_and_place
+    levels:
+      - levels/pick_and_place/level_01_red_on_red.yaml
+      - levels/pick_and_place/level_02_blue_on_blue.yaml
+      - levels/pick_and_place/level_03_green_on_green.yaml
+      - levels/pick_and_place/level_04_red_on_blue.yaml
+      - levels/pick_and_place/level_05_blue_on_red.yaml
+      # - levels/pick_and_place/level_06_any_on_matching.yaml
+      - levels/pick_and_place/level_07_green_and_blue.yaml
+      - levels/pick_and_place/level_08_all_three.yaml
+      - levels/pick_and_place/level_09_blue_touching_red.yaml
+      # - levels/pick_and_place/level_10_shuffle_all.yaml
+
+      # place all three cubes on red plate
+      # discard red cube == red cube and ground plane touching
+      # place on edge == red cube on red plate and on table
+
+  - name: stack
+    levels:
+      - levels/stack/level_01_red_on_blue.yaml
+      - levels/stack/level_02_blue_on_red.yaml
+      - levels/stack/level_03_green_on_red.yaml
+      - levels/stack/level_04_red_on_blue_on_green.yaml
+      - levels/stack/level_05_blue_on_red_on_green.yaml
+      - levels/stack/level_06_green_on_blue_on_red.yaml
+      - levels/stack/level_07_tower_rgb.yaml
+      - levels/stack/level_08_tower_bgr.yaml
+      # - levels/stack/level_09_two_high_any.yaml
+      - levels/stack/level_10_tower_rgb_on_red_plate.yaml
+
+      # red cube must not touch anything that is not a cube == stack red on blue or green
+      # bridge red on blue and green == blue and green together, red on top touching both
+

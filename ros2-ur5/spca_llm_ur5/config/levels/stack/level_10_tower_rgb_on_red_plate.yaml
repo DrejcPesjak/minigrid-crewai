@@ -1,0 +1,24 @@
+task_group: stack
+task_id: stack_tower_rgb_on_red_plate
+title: "Stack RGB tower on red plate"
+description: "Place the red cube on the red plate, then stack the green cube on top of the red cube, and finally stack the blue cube on top of the green cube."
+difficulty: 3
+time_limit_s: 180
+
+success:
+  collisions_true:
+    - [box_red, red_plate]        # red on red plate
+    - [box_green, box_red]        # green on red
+    - [box_blue, box_green]       # blue on green
+    - [red_plate, table_lightgray]  # red plate is base on table
+  collisions_false:
+    - [box_blue, table_lightgray]   # blue should not touch table directly
+    - [box_green, table_lightgray]  # green should not touch table directly
+    - [box_red, table_lightgray]     # red should not touch table directly
+
+fail:
+  collisions_true:
+    - [box_blue, ground_plane]
+    - [box_red, ground_plane]
+    - [box_green, ground_plane]
+  collisions_false: []

@@ -1,0 +1,17 @@
+# config/levels/touch/level_05_cube_left.yaml
+task_group: touch
+task_id: touch_left_cube
+title: "Touch the left cube"
+description: "Move the gripper to make contact with the left cube."
+difficulty: 3
+time_limit_s: 120
+
+success:
+  collisions_true:
+    - [cobot, box_green]
+  collisions_false: []
+
+fail:
+  collisions_true:
+    - [box_green, ground_plane]   # fell off the table
+  collisions_false: []

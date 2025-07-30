@@ -1,0 +1,17 @@
+task_group: pick_and_place
+task_id: place_red_on_blue_plate
+title: "Place red cube on blue plate"
+description: "Pick the red cube and place it on the blue plate."
+difficulty: 3
+time_limit_s: 150
+
+success:
+  collisions_true:
+    - [box_red, plate_blue]
+  collisions_false:
+    - [box_red, table_lightgray]
+
+fail:
+  collisions_true:
+    - [box_red, ground_plane]
+  collisions_false: []

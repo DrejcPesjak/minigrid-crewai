@@ -1,0 +1,17 @@
+task_group: pick_and_place
+task_id: place_green_on_green_plate
+title: "Place green cube on green plate"
+description: "Pick the green cube and place it on the green plate."
+difficulty: 3
+time_limit_s: 150
+
+success:
+  collisions_true:
+    - [box_green, plate_green]
+  collisions_false:
+    - [box_green, table_lightgray]
+
+fail:
+  collisions_true:
+    - [box_green, ground_plane]
+  collisions_false: []

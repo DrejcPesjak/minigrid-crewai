@@ -1,0 +1,17 @@
+task_group: pick_and_place
+task_id: place_blue_by_red_cube
+title: "Place blue cube adjacent to red cube"
+description: "Pick the blue cube and place it adjacent to the red cube."
+difficulty: 3
+time_limit_s: 150
+
+success:
+  collisions_true:
+    - [box_blue, box_red]
+  collisions_false: []
+
+fail:
+  collisions_true:
+    - [box_blue, ground_plane]
+    - [box_red, ground_plane]
+  collisions_false: []

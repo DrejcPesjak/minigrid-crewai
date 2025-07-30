@@ -1,0 +1,30 @@
+source /opt/ros/humble/setup.bash  
+source ~/ros2_ws/install/setup.bash 
+
+#ros2 launch ur_yt_sim spawn_ur5_camera_gripper_moveit.launch.py world:=$(ros2 pkg prefix ur_yt_sim)/share/ur_yt_sim/worlds/world_rgb_table.world | grep -v "not found in model"
+ros2 launch ur_yt_sim spawn_ur5_camera_gripper_moveit.launch.py world:=$(ros2 pkg prefix ur_yt_sim)/share/ur_yt_sim/worlds/world_rgb_table_light.world | grep -v "not found in model"
+
+
+
+source /opt/ros/humble/setup.bash  
+source ~/ros2_ws/install/setup.bash 
+source ~/humble_moveit_py_ws/install/setup.bash
+
+ros2 run demo_test_pkg moveit_test_node | grep -v "not found in model"
+
+ros2 run demo_test_pkg img_depth_node
+
+
+
+source /opt/ros/humble/setup.bash
+source ~/humble_moveit_py_ws/install/setup.bash
+source ~/ros2_ws/install/setup.bash
+
+#python -c "import sys; print(sys.executable)"
+
+#cd ros2_ws
+#colcon build --packages-select spca_llm_ur5 --symlink-install
+
+ros2 launch spca_llm_ur5 spca_bringup.launch.py 2>&1 | grep -v "not found in model"
+
+

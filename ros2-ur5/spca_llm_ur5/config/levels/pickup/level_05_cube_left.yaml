@@ -1,0 +1,18 @@
+# config/levels/pickup/level_05_cube_left.yaml
+task_group: pickup
+task_id: pickup_left_cube
+title: "Pick up the left cube"
+description: "Grip and lift the left cube so it is no longer touching the table."
+difficulty: 3
+time_limit_s: 120
+
+success:
+  collisions_true:
+    - [cobot, box_green]
+  collisions_false:
+    - [box_green, table_lightgray]
+
+fail:
+  collisions_true:
+    - [box_green, ground_plane]
+  collisions_false: []
