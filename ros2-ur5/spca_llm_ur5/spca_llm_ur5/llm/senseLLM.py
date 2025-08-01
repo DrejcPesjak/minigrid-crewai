@@ -8,7 +8,7 @@ Do not assume which objects exist; describe only what is visible.
 Avoid numeric coordinates; use coarse terms like left/middle/right and near/mid/far.
 Mention which colored items are present, which touch the table or each other,
 whether the gripper is near/above/touching something, and obvious obstacles.
-If uncertain, say "uncertain". Keep it to 4–8 short sentences. Plain text only.
+If uncertain, say "uncertain". Keep it to 4-8 short sentences. Plain text only.
 """.strip()
 
 VISION_USER_TEMPLATE = """

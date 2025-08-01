@@ -14,4 +14,6 @@ success:
 fail:
   collisions_true:
     - [box_red, ground_plane]   # fell off the table
+    - [cobot, table_lightgray]
+    - [cobot, cobot]  # collided with the table
   collisions_false: []

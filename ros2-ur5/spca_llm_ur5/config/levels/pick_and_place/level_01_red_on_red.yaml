@@ -14,4 +14,6 @@ success:
 fail:
   collisions_true:
     - [box_red, ground_plane]
+    - [cobot, table_lightgray]
+    - [cobot, cobot]
   collisions_false: []

@@ -8,7 +8,7 @@ groups:
       - levels/touch/level_05_cube_left.yaml
       - levels/touch/level_06_cube_middle.yaml
       - levels/touch/level_07_cube_right.yaml
-      # - levels/touch/level_08_cube_far.yaml
+      - levels/touch/level_08_cube_far.yaml
       - levels/touch/level_09_cube_near.yaml
       # - levels/touch/level_10_cube_any.yaml
 

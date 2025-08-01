@@ -3,9 +3,12 @@ import os
 import re
 import json
 import shutil
-import rclpy
 import yaml
+import time
 from pathlib import Path
+import subprocess, threading
+
+import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 from std_srvs.srv import Empty
@@ -17,9 +20,10 @@ from spca_llm_ur5.llm.senseLLM   import SenseLLM
 import cv2
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
+from rclpy.qos import qos_profile_sensor_data 
 
 
-from spca_llm_ur5.runtime_paths import BASE_ACTS, TMP_ACTS
+from spca_llm_ur5.scripts.runtime_paths import BASE_ACTS, TMP_ACTS, RESET_SCRIPT
 ACTIONS_FILE     = BASE_ACTS
 ACTIONS_TMP_FILE = TMP_ACTS
 
@@ -40,15 +44,15 @@ class Supervisor(Node):
         self.group_cache = {}  # group -> {"pddl": (dom, prob) | None, "trusted": bool}
 
         # pubs/subs
-        self.plan_pub        = self.create_publisher(String, '/planner/plan', 10)
-        self.code_pub        = self.create_publisher(String, '/coder/script', 10)       # reload trigger only
-        self.ref_lvl_pub     = self.create_publisher(String, '/referee/set_level', 10)
-        self.exec_cancel_pub = self.create_publisher(String, '/executor/cancel', 10)
+        self.dispatch_pub = self.create_publisher(String, '/task/dispatch', 10)
+        self.exec_cancel_pub   = self.create_publisher(String, '/executor/cancel', 10)
 
-        self.task_status = 'running'   # from referee
-        self.exec_outcome = None       # from executor
+        self.ref_outcome = {'status': 'running', 'reason': ''}
+        self.exec_outcome = {}
+        self.ref_status = 'running'
+        self.exec_status = 'unknown'
         self.create_subscription(String, '/task/status', self._task_cb, 10)
-        self.create_subscription(String, '/executor/outcome', self._exec_cb, 10)
+        self.create_subscription(String, '/executor/status', self._exec_cb, 10)
 
         # world reset
         self.reset_cli = self.create_client(Empty, '/reset_world')
@@ -61,6 +65,8 @@ class Supervisor(Node):
         self.retry_semantic = 0
         self.spa_round = 1
 
+        self.coder_err_log = ""
+
         self.planner = PlannerLLM()
         self.coder   = CoderLLM()
         self.sense   = SenseLLM()
@@ -71,29 +77,64 @@ class Supervisor(Node):
             Image,
             "/camera/image_raw",
             self._image_cb,
-            qos_profile=10) 
+            qos_profile=10#qos_profile_sensor_data
+        )
+
+        self.scene_text = "" 
         
         self.timer = self.create_timer(0.1, self._tick)
 
         self.logger.info(f"Supervisor ready; {len(self.levels)} level(s) loaded.")
+        # time.sleep(10)  # give time for other nodes to start
 
     # -------- helpers ----------
     def _task_cb(self, msg: String):
-        # from referee: running | success | fail | timeout
-        self.task_status = msg.data
+        try:
+            self.ref_outcome = json.loads(msg.data)
+        except Exception:
+            # legacy plain string → wrap it
+            self.ref_outcome = {"status": msg.data, "reason": ""}
 
     def _exec_cb(self, msg: String):
-        # from executor: JSON string with status/msg/trace
         try:
             self.exec_outcome = json.loads(msg.data)
         except Exception:
-            self.exec_outcome = {"status": "parse_error", "msg": msg.data, "trace": ""}
+            self.exec_outcome = {"status": "unknown", "msg": msg.data, "trace": ""}
 
-    # def _reset_world(self):
-    #     if not self.reset_cli.service_is_ready():
-    #         self.reset_cli.wait_for_service(timeout_sec=5.0)
-    #     fut = self.reset_cli.call_async(Empty.Request())
-    #     rclpy.spin_until_future_complete(self, fut)
+    # def _reset_world_async(self):
+    #     if self.reset_world_in_progress:
+    #         return
+    #     self.reset_world_in_progress = True
+    #     self.stage = "resetting"            # wait in _tick
+
+    #     def _runner():
+    #         self.get_logger().info(f"🧹 RESET - running {RESET_SCRIPT} …")
+    #         proc = subprocess.run(
+    #             ["/bin/bash", str(RESET_SCRIPT)],
+    #             capture_output=True, text=True
+    #         )
+    #         # Hand the result back to the rclpy thread:
+    #         rclpy.get_default_context().call_soon_threadsafe(
+    #             self._on_reset_finished, proc
+    #         )
+
+    #     threading.Thread(target=_runner, daemon=True).start()
+
+    # def _on_reset_finished(self, proc: subprocess.CompletedProcess):
+    #     self.reset_world_in_progress = False
+    #     if proc.returncode == 0:
+    #         self.get_logger().info("✅ RESET script finished OK")
+    #         # clear transient state exactly as before
+    #         self.ref_outcome = {"status": "running", "reason": ""}
+    #         self.exec_outcome = {}
+    #         self.retry_semantic = 0
+    #         self.spa_round = 1
+    #         self.stage = "sense"             # carry on
+    #     else:
+    #         self.get_logger().error(
+    #             f"❌ RESET script failed ({proc.returncode}):\n{proc.stderr}"
+    #         )
+    #         self.stage = "idle"              # try again / skip
 
     def _reset_world_async(self):
         if self.reset_world_in_progress:
@@ -125,11 +166,11 @@ class Supervisor(Node):
             self.logger.info("Reset world service call completed.")
             # Now that reset is done, transition to the next stage
             # This is crucial: the stage change happens *after* the service completes
-            self.task_status = 'running' # Reset task status after world reset
-            self.exec_outcome = None
+            self.ref_outcome = {'status': 'running', 'reason': ''}
+            self.exec_outcome = {}
             self.retry_semantic = 0
             self.spa_round = 1
-            self.stage = 'plan'
+            self.stage = 'sense'
         except Exception as e:
             self.logger.error(f"Reset world service call failed: {e}")
             # Handle error: perhaps retry or skip level
@@ -162,28 +203,6 @@ class Supervisor(Node):
                 out.append({'group': 'default', 'path': lvl_path, 'doc': lvl_doc})
         return out
 
-    # def _get_img(self, timeout: float = 1.0):
-    #     """Fetch a single /camera/image_raw frame. Returns BGR np.uint8 or None."""
-    #     box = {"bgr": None}
-    #     self.logger.info(f"Waiting for camera image (timeout={timeout}s)...")
-
-    #     def _cb(msg: Image):
-    #         try:
-    #             box["bgr"] = self._bridge.imgmsg_to_cv2(msg, "bgr8")
-    #         except Exception:
-    #             box["bgr"] = None
-
-    #     sub = self.create_subscription(Image, "/camera/image_raw", _cb, 10)
-    #     try:
-    #         end = self.get_clock().now().nanoseconds + int(timeout * 1e9)
-    #         while box["bgr"] is None and self.get_clock().now().nanoseconds < end:
-    #             rclpy.spin_once(self, timeout_sec=1.05)
-    #             self.logger.info("Waiting for image...")
-    #     finally:
-    #         self.destroy_subscription(sub)
-
-    #     return box["bgr"]
-
     def _image_cb(self, msg: Image):
         try:
             img = self._bridge.imgmsg_to_cv2(msg, desired_encoding="passthrough")
@@ -201,7 +220,7 @@ class Supervisor(Node):
         # Otherwise wait up to wait_s for the first frame
         end = self.get_clock().now() + rclpy.time.Duration(seconds=wait_s)
         while self.last_image_bgr is None and self.get_clock().now() < end:
-            rclpy.spin_once(self, timeout_sec=0.05)
+            rclpy.spin_once(self, timeout_sec=0.5)
             self.logger.info("Waiting for camera image...")
         return self.last_image_bgr 
 
@@ -231,222 +250,227 @@ class Supervisor(Node):
             self.group_cache[group] = {"pddl": None, "trusted": False}
 
     # -------- SPA loop ----------
+
+    # self.stage ∈ {"idle", "resetting", "sense", "plan", "code", "wait_exec"}
     def _tick(self):
-        self.logger.info(f"Tick: idx={self.idx}, stage={self.stage}, spa_round={self.spa_round}, retry_semantic={self.retry_semantic}")
+        self.logger.info(f"🔄 SPA TICK {self.idx}/{len(self.levels)} - stage: {self.stage}, round: {self.spa_round}")
+        # 0. finished?
         if self.idx >= len(self.levels):
             return
+        
+        self._ensure_group_cache(self.levels[self.idx]["group"])
 
-        lvl_entry = self.levels[self.idx]
-        lvl_path  = lvl_entry['path']
-        group     = lvl_entry['group']
-        lvl_doc   = lvl_entry['doc'] or {}
-        self._ensure_group_cache(group)
-
-        # Extract meta from level doc (minimal contract)
-        meta = {
-            "task_group": group,
-            "task_id": lvl_doc.get("task_id", Path(lvl_path).stem),
-            "title": lvl_doc.get("title", ""),
-            "description": lvl_doc.get("description", ""),
-        }
-
-        if self.stage == 'idle':
-            self.logger.info(f"IDLE → waiting for next level")
-            self.logger.info(f"=== [{group}] {self.idx+1}/{len(self.levels)}: {lvl_path}")
-            # reset world and counters
+        # 1. ------------------------------------------------ idle ------------
+        if self.stage == "idle":
+            # reset world → async future; when done we’ll enter "sense"
             self._reset_world_async()
-            # self._reset_world()
-            # self.task_status = 'running'
-            # self.exec_outcome = None
-            # self.retry_semantic = 0
-            # self.spa_round = 1
-            # self.stage = 'plan'
+            self.stage = "resetting"
+            return
+        
+        # 1.1 ------------------------------------------ resetting -----------
+        if self.stage == "resetting": return # wait until _reset_world_response_cb flips stage
+
+        # 2. --------------------------------------------- sense -------------
+        if self.stage == "sense":
+            self.logger.info("👁️  SENSE - capturing scene and describing environment…")
+            img = self._get_img(wait_s=10.0)            # blocking ≤10 s
+            # self.scene_text = self.sense.describe(      # may return ""
+            #     title=self.levels[self.idx]["doc"].get("title", ""),
+            #     description=self.levels[self.idx]["doc"].get("description", ""),
+            #     bgr_image=img)
+            self.scene_text =  'The image shows a workspace with objects arranged in a row. In the top row, there are four colored circles: blue, red, green, and another red. In the bottom row, there are three colored shapes: a green square on the left, a blue cube in the middle, and a red cube on the right. The gripper is positioned near the bottom of the image but is not touching any objects. The objective is to move the gripper to make contact with the blue cube in the middle of the bottom row.'
+            self.logger.info(f"Scene text: {self.scene_text[:100]}...")  # log first 100 chars
+            self.stage = "plan"
             return
 
-        if self.stage == 'plan':
-            # —— SENSE (once per SPA round) —— #
-            self.logger.info(f"SENSE → {meta['task_id']}")
-            img = self._get_img(wait_s=10.0)
-            if img is None:
-                self.logger.warn("No camera frame; proceeding with empty scene_text.")
-            else:
-                self.logger.info(f"Got camera image of shape {img.shape}")
+        # 3. ---------------------------------------------- plan -------------
+        if self.stage == "plan":
+            self.logger.info(f"🧩 PLAN  (SPA {self.spa_round}) - asking LLM for PDDL + plan…")
+            cache = self.group_cache[self.levels[self.idx]["group"]]
             try:
-                scene_text = self.sense.describe(
-                    title=meta['title'],
-                    description=meta['description'],
-                    bgr_image=img
-                )
-                self.logger.info(f"Scene text: {scene_text}")
-            except Exception as e:
-                self.logger.warn(f"SenseLLM failed: {e}; using empty scene_text.")
-                scene_text = ""
-
-            # —— PLAN (LLM/PDDL) —— #
-            self.logger.info(f"PLAN → {meta['task_id']}")
-            cache = self.group_cache[group]
-            try:
-                bundle = self.planner.plan(
-                    snapshot={"scene_text": scene_text},
-                    meta=meta,
+                self.bundle = self.planner.plan(
+                    snapshot={"scene_text": self.scene_text},
+                    meta     = {
+                        "task_group": self.levels[self.idx]["group"],
+                        "task_id": self.levels[self.idx]["doc"].get("task_id", Path(self.levels[self.idx]["path"]).stem),
+                        "title": self.levels[self.idx]["doc"].get("title", ""),
+                        "description": self.levels[self.idx]["doc"].get("description", ""),
+                    },
                     pddl_hint=cache["pddl"],
                     pddl_trusted=cache["trusted"],
                     plan_failed=(self.retry_semantic >= MAX_CODER_RETRIES)
                 )
-            except Exception as e:
-                self.logger.error(f"PlannerLLM error: {e}")
-                # Treat as replan next tick
-                self.stage = 'plan'
-                return
+                self.plan_str  = self.bundle.plan_str
+                self.logger.info(f"📜 PLAN: {self.plan_str}")
+                self.act_names = self._parse_plan_names(self.plan_str)
+                self.stage = "code"
+            except Exception:                # PDDL syntax or LLM failure
+                self.bundle = None
+                self.plan_str=""
+                self.act_names=set()
+                self._bump_spa_round(plan_failed=True)
+            return
 
-            plan_str = bundle.plan_str
-            self.logger.info(f"Plan: {plan_str}")
-            # self.plan_pub.publish(String(data=plan_str))  # for debugging visibility
-            self.current_bundle = bundle
-            self.current_plan   = plan_str
-            self.current_names  = self._parse_plan_names(plan_str)
+        # 4. ----------------------------------------------- code ------------
+        if self.stage == "code":
+            self.logger.info("🛠️  CODE - (re)generating / hot-reloading missing actions…")
+            have = self._function_names_from_file(ACTIONS_TMP_FILE if ACTIONS_TMP_FILE.exists()
+                                            else ACTIONS_FILE)
+            missing = self.act_names - have
+            if self.coder_err_log:
+                missing = self.act_names  # re-implement all to allow upgrades
 
-            # —— Pre-flight Coder: add any missing actions before ACT —— #
-            have = self._function_names_from_file(ACTIONS_TMP_FILE if ACTIONS_TMP_FILE.exists() else ACTIONS_FILE)
-            self.logger.info(f"Current actions in tmp: {sorted(have)} from {ACTIONS_TMP_FILE if ACTIONS_TMP_FILE.exists() else ACTIONS_FILE}")
-            missing = self.current_names - have
             if missing:
                 self.logger.info(f"Missing actions → coder: {sorted(missing)}")
-                try:
-                    res = self.coder.implement_actions(
-                        actions       = missing,
-                        pddl_schemas  = bundle.action_schemas,
-                        plan_str      = plan_str,
-                        agent_state   = {"scene_text": scene_text},
-                        past_error_log= None
-                    )
-                except Exception as e:
-                    self.logger.error(f"CoderLLM call failed: {e}")
-                    self._after_coder_failure(group)
+                res = self.coder.implement_actions(
+                        actions=missing,
+                        pddl_schemas=self.bundle.action_schemas,
+                        plan_str=self.plan_str,
+                        agent_state={"scene_text": self.scene_text},
+                        past_error_log=self.coder_err_log)
+                self.logger.info(f"Coder result: {res}")
+                if res.status != "ok":              # merge/syntax failed
+                    self._bump_spa_round(coder_failed=True)
                     return
 
-                if res.status != "ok":
-                    self.logger.warn(f"CoderLLM merge/syntax failed: {res.status}")
-                    self._after_coder_failure(group)
-                    return
+            self.coder_err_log = ""  # reset error log
+            # nothing missing or coder succeeded → execute
 
-                # notify executor to hot-reload tmp actions
-                self.code_pub.publish(String(data='reload'))
+            # start executor with plan, and send level to referee)
+            lvl_path = self.levels[self.idx]["path"]
+            payload = json.dumps({
+                "level_path": lvl_path,
+                "plan":       self.plan_str,
+            })
+            self.dispatch_pub.publish(String(data=payload))
 
-            # tell Referee which level to score
-            self.ref_lvl_pub.publish(String(data=lvl_path))
-            # Now dispatch to executor
-            self.logger.info(f"Dispatching plan to executor: {meta['task_id']}")
-            self.plan_pub.publish(String(data=plan_str)) 
-            self.stage = 'wait_exec'
+            self.stage = "wait_exec"
             return
 
-        if self.stage == 'wait_exec':
-            self.logger.info(f"WAIT_EXEC → {meta['task_id']}")
+        # 5. ------------------------------------------- wait_exec -----------
+        if self.stage == "wait_exec":
+            # # update cached statuses if new messages arrived
+            # if self.exec_outcome:                # /executor/outcome
+            #     self.exec_status = self.exec_outcome.get("status", "unknown")
+            # if self.ref_outcome:                 # /task/status
+            #     self.ref_status = self.ref_outcome.get("status", "unknown")
 
-            self.logger.info(f"Task status: {self.task_status}, exec outcome: {self.exec_outcome}")
+            self.exec_status = self.exec_outcome.get("status","unknown") if self.exec_outcome else "unknown"
+            self.ref_status = self.ref_outcome .get("status","running")
 
-            # wait for referee result
-            if self.task_status == 'running':
+            # # still waiting for either side?
+            # if self.exec_status is None or self.ref_status is None:
+            #     return
+            # we do not need both sides (if one fails, throw imidiately, dont wait for the other)
+            
+            # if self.ref_status == "running":
+            #     self.logger.info("Referee still running; waiting...")
+            #     return
+            # what if executor fails? or even finishes successfully? 
+            # - just ref running will ignore both and we will have to wait for timeout
+
+            # ----- SUCCESS path --------------------------------------------
+            if self.ref_status == "success":
+                self.logger.info("🏆 REFEREE - ✅ level success! committing code & advancing…")
+                self._commit_tmp_to_main()
+                self._trust_pddl_for_group()
+                self.idx   += 1                   # next level
+                self.stage  = "idle"
                 return
-
-            # stop executor regardless of result
-            self.exec_cancel_pub.publish(String(data='cancel'))
-
-            # ----- SUCCESS -----
-            if self.task_status == 'success':
-                self.logger.info("✅ success → commit tmp→main, next level")
-                try:
-                    if ACTIONS_TMP_FILE.exists():
-                        shutil.copy2(ACTIONS_TMP_FILE, ACTIONS_FILE)
-                except Exception as e:
-                    self.logger.warn(f"Failed to commit tmp→main: {e}")
-                # trust PDDL for this task group
-                self.group_cache[lvl_entry['group']]["pddl"] = (
-                    self.current_bundle.domain, self.current_bundle.problem
-                )
-                self.group_cache[lvl_entry['group']]["trusted"] = True
-
-                # advance
-                self.idx += 1
-                self.stage = 'idle'
+            
+            if self.ref_status == "running" and self.exec_status == "unknown":
+                # self.logger.info("Referee still running; waiting...")
                 return
-
-            # ----- FAIL / TIMEOUT -----
-            # Decide coder-retry vs re-plan using executor outcome
-            exec_status = (self.exec_outcome or {}).get("status", "unknown")
-            exec_trace  = (self.exec_outcome or {}).get("trace", "")
-            # classify as coder-related?
-            coder_related = exec_status in {"missing_method", "syntax_error", "runtime_error", "stuck"}
-
-            if coder_related and self.retry_semantic < MAX_CODER_RETRIES:
+            
+            # if self.ref_status in ("fail", "timeout") 
+            #     go to error handling
+            # if self.exec_status not in ("success", "unknown"):
+            #     go to error handling
+            
+            # ----- FAILURE / RETRY ----------------------------------------
+            # if self.exec_status == "success":
+            #     # Executed all actions successfully, but referee did not confirm success - we did not reach the goal state
+            #     self.logger.warn("Executor success but referee did not confirm success.")
+            #     # re-plan
+            #     self.retry_semantic = 0
+            #     self._bump_spa_round(plan_failed=True)
+            #     return
+            # if exec success, can also go into coder semantic retry
+            
+            if self.retry_semantic < MAX_CODER_RETRIES:
+                self.logger.info(f"🔄 SEMANTIC RETRY {self.retry_semantic}/{MAX_CODER_RETRIES} - refining code on same plan…")
+                self.coder_err_log = ""
+                if self.ref_status in ("fail", "timeout"):
+                    self.logger.warn(f"❌ REFEREE - {self.ref_status} level outcome.")
+                    self.exec_cancel_pub.publish(String(data=json.dumps({"status": "cancelled"})))
+                    self.coder_err_log = "Referee outcome:\n" + json.dumps(self.ref_outcome, indent=2)
+                if self.exec_status not in ("success", "unknown"):
+                    self.logger.warn(f"❌ EXECUTOR - {self.exec_status} level outcome.")
+                    self.coder_err_log += "\nExecutor outcome:\n" + json.dumps(self.exec_outcome, indent=2)
+                self.logger.info(f"Error log: {self.coder_err_log}")
                 self.retry_semantic += 1
-                self.logger.info(f"🔧 coder retry {self.retry_semantic}/{MAX_CODER_RETRIES} (executor={exec_status})")
-                # Ask coder to (re)implement all actions referenced by the plan
-                missing = self.current_names  # re-implement all to allow upgrades
-                try:
-                    res = self.coder.implement_actions(
-                        actions       = missing,
-                        pddl_schemas  = self.current_bundle.action_schemas,
-                        plan_str      = self.current_plan,
-                        agent_state   = {},
-                        past_error_log= (self.exec_outcome or {}).get("msg","") + "\n" + exec_trace
-                    )
-                except Exception as e:
-                    self.logger.error(f"CoderLLM call failed: {e}")
-                    # fall through to re-plan
-                    self._after_coder_failure(lvl_entry['group'])
-                    return
+                self.stage = "code"               # re-run coder on same plan
 
-                if res.status == "ok":
-                    self.code_pub.publish(String(data='reload'))
-                    # re-plan (state may have shifted) and try again
-                    self.stage = 'plan'
-                    return
-                else:
-                    self.logger.warn(f"CoderLLM merge/syntax failed: {res.status}")
-                    self._after_coder_failure(lvl_entry['group'])
-                    return
+                # stop referee and executor
+                self.exec_cancel_pub.publish(String(data=json.dumps({"status": "cancelled"})))
+                self.dispatch_pub.publish(String(data=json.dumps({
+                    "level_path": None,
+                    "plan":       None,
+                })))
+                # reset outcomes
+                self.ref_outcome = {'status': 'running', 'reason': ''}
+                self.exec_outcome = {}
+                return
 
-            # coder retries exhausted or not coder-related → re-plan
-            self.logger.info("♻️ re-planning (coder exhausted or not applicable)")
+            # else: re-plan (semantic mismatch or coder exhausted)
             self.retry_semantic = 0
+            self._bump_spa_round(plan_failed=True)
+            return
+        
+    def _bump_spa_round(self, *, coder_failed=False, plan_failed=False):
+        self.logger.info(f"♻️  SPA ROUND {self.spa_round}/{SPA_ROUNDS} - starting fresh sense→plan cycle…")
+        self.group_cache[self.levels[self.idx]["group"]]["trusted"] = False
+        if plan_failed or coder_failed:
             self.spa_round += 1
             if self.spa_round > SPA_ROUNDS:
-                self.logger.info("⛔ SPA rounds exhausted → skip level; reset tmp from main; clear group cache")
-                # reset tmp from main
-                try:
-                    if ACTIONS_FILE.exists():
-                        shutil.copy2(ACTIONS_FILE, ACTIONS_TMP_FILE)
-                except Exception as e:
-                    self.logger.warn(f"Failed to reset tmp from main: {e}")
-                # clear group cache so next level starts fresh
-                self.group_cache[lvl_entry['group']] = {"pddl": None, "trusted": False}
-                # advance
-                self.idx += 1
-                self.stage = 'idle'
+                # skip level, reset main→tmp etc.
+                self._skip_level()
             else:
-                # hint planner that previous plan failed
-                self.group_cache[lvl_entry['group']]["trusted"] = False
-                self.stage = 'plan'
-            return
+                self.stage = "sense"          # fresh SENSE → PLAN cycle
+    
+    def _skip_level(self):
+        self.logger.warn(f"⛔ Skipping level {self.levels[self.idx]['path']} after {self.spa_round} rounds.")
+        # reset tmp (copy main to tmp)
+        try:
+            shutil.copy2(ACTIONS_FILE, ACTIONS_TMP_FILE)
+        except Exception as e:
+            self.logger.error(f"Failed to reset tmp actions: {e}")
+        # reset world and counters
+        self.coder_err_log=""
+        self.exec_outcome = {}
+        self.ref_outcome = {'status':'running','reason':''}
+        self.stage = 'idle'
+        self.idx += 1
 
-    # ---- small helper on coder failure during pre-flight ----
-    def _after_coder_failure(self, group: str):
-        self.retry_semantic = 0
-        self.group_cache[group]["trusted"] = False
-        self.spa_round += 1
-        if self.spa_round > SPA_ROUNDS:
-            self.logger.info("⛔ SPA rounds exhausted in pre-flight → skip level; reset tmp from main")
-            try:
-                if ACTIONS_FILE.exists():
-                    shutil.copy2(ACTIONS_FILE, ACTIONS_TMP_FILE)
-            except Exception as e:
-                self.logger.warn(f"Failed to reset tmp from main: {e}")
-            self.idx += 1
-            self.stage = 'idle'
-        else:
-            self.stage = 'plan'
+    def _commit_tmp_to_main(self):
+        """Commit tmp actions to main."""
+        try:
+            if ACTIONS_TMP_FILE.exists():
+                shutil.copy2(ACTIONS_TMP_FILE, ACTIONS_FILE)
+                self.logger.info(f"Committed actions from {ACTIONS_TMP_FILE} to {ACTIONS_FILE}.")
+            else:
+                self.logger.warn(f"No tmp actions file found at {ACTIONS_TMP_FILE}.")
+        except Exception as e:
+            self.logger.error(f"Failed to commit tmp→main: {e}")
+    
+    def _trust_pddl_for_group(self):
+        """Trust PDDL for the current task group."""
+        group = self.levels[self.idx]["group"]
+        self.group_cache[group]["trusted"] = True
+        self.group_cache[group]["pddl"] = (
+            self.bundle.domain, self.bundle.problem
+        )
+        self.logger.info(f"Trusted PDDL for group {group}.")
 
 
 def main():

@@ -14,7 +14,7 @@ from unified_planning.shortcuts import OneshotPlanner, PlanValidator
 from unified_planning.engines import PlanGenerationResultStatus
 
 from spca_llm_ur5.llm.llmclient import ChatGPTClient
-from spca_llm_ur5.runtime_paths import RUN_DIR, BASE_ACTS, TMP_ACTS
+from spca_llm_ur5.scripts.runtime_paths import RUN_DIR, BASE_ACTS, TMP_ACTS
 
 # --------------------------------------------------------------------------- #
 #  CONSTANTS / PROMPTS
@@ -41,7 +41,7 @@ Abstraction rules
 •  Stay semantic — do not use numeric coordinates, continuous geometry, or metric time in the PDDL.
 •  You still need a **minimal type system** suited to the language in the task/scene text; declare at least one object per type used.
 •  State is expressed only via concise, boolean predicates derived from the task/scene wording (e.g., grasp status, placement relations, separation relations).
-•  From the **Task Title / Description / Scene text**, decide whether the **currently available high‑level actions are sufficient**; reuse them only if they exactly fit the plan.
+•  From the **Task Title / Description / Scene text**, decide whether the **currently available high-level actions are sufficient**; reuse them only if they exactly fit the plan.
 •  If none fully fit, invent one or more new *snake_case* actions that do, with **string parameters only**; the coder will implement them later.
 •  In PROBLEM, reference **only object names that appear in the task/scene text**, normalized to snake_case (e.g., `cone_green`, `car_blue`).
 •  Keep DOMAIN compact — a handful of predicates and actions tailored to the text.
@@ -252,11 +252,12 @@ class PlannerLLM:
 
         # ---------- repair loop -----------------------------------------
         for attempt in range(1, MAX_RETRIES + 1):
-            print(f"PlannerLLM tokens approx: {2*sum(len(m['content'].split()) for m in conversation)}")
-            resp: PDDLResp = self.client.chat_completion(conversation)
-            dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
-            TMP_DOMAIN.write_text(dom_txt)
-            TMP_PROBLEM.write_text(prob_txt)
+            # print(f"PlannerLLM tokens approx: {2*sum(len(m['content'].split()) for m in conversation)}")
+            # resp: PDDLResp = self.client.chat_completion(conversation)
+            # dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
+            # TMP_DOMAIN.write_text(dom_txt)
+            # TMP_PROBLEM.write_text(prob_txt)
+            dom_txt, prob_txt = TMP_DOMAIN.read_text(encoding="utf-8"), TMP_PROBLEM.read_text(encoding="utf-8")
 
             try:
                 up_problem, up_result, up_validation = self._solve_and_validate()
@@ -278,13 +279,13 @@ class PlannerLLM:
                 err_msg = str(exc)
                 traceback.print_exc()
 
-            # ---- build refinement prompt ----
-            conversation.extend([
-                {"role": "assistant", "content": resp.model_dump_json()},
-                {"role": "user",      "content": USER_PROMPT_TEMPLATE_REPAIR.format(
-                    error_log    = err_msg,
-                )}
-            ])
+            # # ---- build refinement prompt ----
+            # conversation.extend([
+            #     {"role": "assistant", "content": resp.model_dump_json()},
+            #     {"role": "user",      "content": USER_PROMPT_TEMPLATE_REPAIR.format(
+            #         error_log    = err_msg,
+            #     )}
+            # ])
             mode = "syntax repair"
             self._set_model(self.big_model)
             time.sleep(1)

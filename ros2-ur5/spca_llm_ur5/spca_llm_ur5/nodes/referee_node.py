@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import rclpy, yaml, threading, subprocess, re, time
+import rclpy, yaml, threading, subprocess, re, time, json
 from rclpy.node import Node
 from std_msgs.msg import String
 
@@ -32,10 +32,15 @@ class Referee(Node):
 
         self.pub = self.create_publisher(String, '/task/status', 10)
         self.timer = self.create_timer(0.2, self._tick)
-        self.setlvl_sub = self.create_subscription(String, '/referee/set_level', self._set_level, 10)
+        self.create_subscription(String, '/task/dispatch', self._set_level, 10)
 
     def _set_level(self, msg:String):
-        self._load_level(msg.data)
+        data = json.loads(msg.data)
+        lvl = data.get("level_path", "")
+        if lvl:
+            self._load_level(lvl)
+        else:
+            self.level = None
 
     def _load_level(self, path:str):
         with open(path, 'r') as f:
@@ -62,6 +67,10 @@ class Referee(Node):
                     self._last_seen[_key(c1, c2)] = time.monotonic()
                 cur_c1 = None
 
+                # Debug output
+                if {c1, c2}.isdisjoint({"ground_plane", "table_lightgray"}):
+                    self.get_logger().debug(f"contact {c1} ↔ {c2}")
+
     def _snapshot_pairs(self):
         ttl = float(self.get_parameter('contact_stale_s').value)
         now = time.monotonic()
@@ -82,23 +91,45 @@ class Referee(Node):
 
     def _tick(self):
         if not self.level:
-            self.pub.publish(String(data='running'))
+            self.pub.publish(String(data=json.dumps({"status": "running", "reason": "no level loaded"})))
             return
-        if (time.time() - self.start_t) > float(self.level.get('time_limit_s', 120)):
-            self.pub.publish(String(data='timeout')); return
 
-        succ = self.level['success']
-        fail = self.level.get('fail', {'collisions_true': [], 'collisions_false': []})
+        if (time.time() - self.start_t) > float(self.level.get("time_limit_s", 120)):
+            self.pub.publish(String(data=json.dumps({
+                "status": "timeout", "reason": "time limit exceeded"})))
+            return
 
-        # Fail first
-        if not self._require_pairs(fail.get('collisions_false', []), should_exist=False):
-            self.pub.publish(String(data='fail')); return
-        if not self._require_pairs(fail.get('collisions_true', []), should_exist=True):
-            self.pub.publish(String(data='fail')); return
+        cur = self._snapshot_pairs()
+        succ = self.level["success"]
+        fail = self.level.get("fail", {"collisions_true": [], "collisions_false": []})
 
-        ok_true  = self._require_pairs(succ.get('collisions_true', []),  True)
-        ok_false = self._require_pairs(succ.get('collisions_false', []), False)
-        self.pub.publish(String(data='success' if (ok_true and ok_false) else 'running'))
+        # ----------   FAIL first   ----------
+        for a, b in fail.get("collisions_true", []):
+            if _key(a, b) in cur:
+                self.pub.publish(String(data=json.dumps({
+                    "status": "fail",
+                    "reason": f"forbidden collision {a},{b}"})))
+                return
+        for a, b in fail.get("collisions_false", []):
+            if _key(a, b) not in cur:
+                self.pub.publish(String(data=json.dumps({
+                    "status": "fail",
+                    "reason": f"missing required separation {a},{b}"})))
+                return
+
+        # ----------   SUCCESS?   ----------
+        ok_true  = all(_key(a, b) in cur  for a, b in succ.get("collisions_true",  []))
+        ok_false = all(_key(a, b) not in cur for a, b in succ.get("collisions_false", []))
+        
+        # will maybe do full report (each pair:success/failure) later
+
+        if ok_true and ok_false:
+            self.pub.publish(String(data=json.dumps({
+                "status": "success",
+                "reason": "all success conditions satisfied"})))
+        else:
+            self.pub.publish(String(data=json.dumps({"status": "running"})))
+
 
 def main():
     rclpy.init()

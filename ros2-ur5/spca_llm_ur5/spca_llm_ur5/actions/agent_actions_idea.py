@@ -61,7 +61,7 @@ def place_on(ctx, plate_name: str):
     """
     Pseudocode:
       1) move_to_above(ctx, plate_name, 0.12)
-      2) descend 6–8 cm
+      2) descend 6-8 cm
       3) open_gripper(ctx)
       4) retract up
     """

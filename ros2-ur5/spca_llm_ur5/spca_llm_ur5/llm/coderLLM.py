@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from spca_llm_ur5.llm.llmclient import ChatGPTClient
 from spca_llm_ur5.nodes.ctx_runtime import Ctx
-from spca_llm_ur5.runtime_paths import BASE_ACTS, TMP_ACTS
+from spca_llm_ur5.scripts.runtime_paths import BASE_ACTS, TMP_ACTS
 
 ACTIONS_FILE     = BASE_ACTS
 ACTIONS_TMP_FILE = TMP_ACTS
@@ -14,69 +14,69 @@ ACTIONS_TMP_FILE = TMP_ACTS
 MAX_ROUNDS = 5
 CODER_SYSTEM_PROMPT = """
 You are augmenting the Python **module** `agent_actions.py` that controls a **UR5 + Robotiq 2F85** robot
-operating in a **Gazebo + ROS 2** world via **MoveItPy**. There is **no class**; you add or replace
-**top‑level functions** only.
+operating in a **Gazebo + ROS2** world via **MoveItPy**. There is **no class**; you add or replace
+**top-level functions** only.
 
 HARD RULES
-• **Return only raw Python source** — never wrap in markdown. One or more `def` blocks at column‑0.
-• **Top‑level defs only** — no classes; every function starts at column‑0. No extra indentation.
+• **Return only raw Python source** — never wrap in markdown. One or more `def` blocks at column-0.
+• **Top-level defs only** — no classes; every function starts at column-0. No extra indentation.
 • **Actions vs. Helpers**
-  – **Actions** are the public functions the plan calls. Signature **must be** `def name(ctx, *string_args)`.
-  – **Actions must NOT return anything**, must NOT print or log, must NOT create ROS nodes/subs/clients/actions.
-  – **Helpers** (names start with `_`) may return values and can use NumPy/OpenCV/etc., but still **must not create ROS entities**.
+  - **Actions** are the public functions the plan calls. Signature **must be** `def name(ctx, *string_args)`.
+  - **Actions must NOT return anything**, must NOT print or log, must NOT create ROS nodes/subs/clients/actions.
+  - **Helpers** (names start with `_`) may return values and can use NumPy/OpenCV/etc., but still **must not create ROS entities**.
 • **Use only the provided runtime context `ctx`**:
-  – Motion: `ctx.robot`, `ctx.arm` (UR5 group), `ctx.gripper` (2F85 group).
-  – TF: `ctx.tfbuf` (use for transforms), frames: `ctx.WORLD_FRAME`, `ctx.EEF_LINK`.
-  – Perception caches: `ctx.latest_rgb`, `ctx.latest_depth` (meters), `ctx.K_rgb`, `ctx.K_depth`, `ctx.latest_cloud`,
+  - Motion: `ctx.robot`, `ctx.arm` (UR5 group), `ctx.gripper` (2F85 group).
+  - TF: `ctx.tfbuf` (use for transforms), frames: `ctx.WORLD_FRAME`, `ctx.EEF_LINK`.
+  - Perception caches: `ctx.latest_rgb`, `ctx.latest_depth` (meters), `ctx.K_rgb`, `ctx.K_depth`, `ctx.latest_cloud`,
     `ctx.rgb_frame`, `ctx.depth_frame`.
-  – Services/Actions (already created): `ctx.cart_cli` (/compute_cartesian_path),
+  - Services/Actions (already created): `ctx.cart_cli` (/compute_cartesian_path),
     `ctx.follow_traj_ac` (/joint_trajectory_controller/follow_joint_trajectory),
     `ctx.gripper_ac` (/gripper_position_controller/gripper_cmd).
-  – Joint states cache: `ctx.joint_state`.
-  – Cancellation: check `ctx.cancelled()` in long‑running logic and raise `RuntimeError("cancelled")` to abort.
+  - Joint states cache: `ctx.joint_state`.
+  - Cancellation: check `ctx.cancelled()` in long-running logic and raise `RuntimeError("cancelled")` to abort.
 • **Never create or modify ROS entities** in your code (no Node(), create_subscription(), ActionClient(), etc.).
   You must use the ones in `ctx` only.
 • **No shell/subprocess**, no file I/O, no sleeps. Compute and act deterministically.
 • **Plans pass only symbolic strings** (e.g., `"box_blue"`, `"plate_red"`). Do **not** require numeric coordinates in action
   signatures; compute any necessary numeric goals internally (perception/TF/MoveIt).
 • **When you need motion**:
-  – Use MoveItPy planning component APIs on `ctx.arm`/`ctx.gripper`.
-  – Prefer the existing helper pattern `_plan_and_execute(ctx, planning_component)` when available.
-  – For Cartesian segments, call `/compute_cartesian_path` via `ctx.cart_cli`, then execute with `ctx.follow_traj_ac`
+  - Use MoveItPy planning component APIs on `ctx.arm`/`ctx.gripper`.
+  - Prefer the existing helper pattern `_plan_and_execute(ctx, planning_component)` when available.
+  - For Cartesian segments, call `/compute_cartesian_path` via `ctx.cart_cli`, then execute with `ctx.follow_traj_ac`
     (e.g., through a helper like `_move_cartesian_srv` + `_follow_trajectory`).
-  – For named states, use `set_start_state_to_current_state()` and `set_goal_state(configuration_name=...)`.
-  – For pose goals, create a `PoseStamped` in `ctx.WORLD_FRAME` (or transform from camera frame via TF) and use
+  - For named states, use `set_start_state_to_current_state()` and `set_goal_state(configuration_name=...)`.
+  - For pose goals, create a `PoseStamped` in `ctx.WORLD_FRAME` (or transform from camera frame via TF) and use
     `set_goal_state(pose_stamped=..., pose_link=ctx.EEF_LINK)`.
 • **Perception**:
-  – RGB: `ctx.latest_rgb` (BGR8); Depth: `ctx.latest_depth` in **meters**; intrinsics: `ctx.K_rgb` / `ctx.K_depth`.
-  – If you must back‑project a pixel (u,v) with depth z: `x=(u-cx)*z/fx`, `y=(v-cy)*z/fy`, `z=z` in the camera frame.
-  – Transform to world using TF from `ctx.depth_frame`/`ctx.rgb_frame` to `ctx.WORLD_FRAME`.
-• **Imports**: If you need an external symbol (e.g., `numpy as np`, `cv2`), add a normal `import` at column‑0 in your output.
+  - RGB: `ctx.latest_rgb` (BGR8); Depth: `ctx.latest_depth` in **meters**; intrinsics: `ctx.K_rgb` / `ctx.K_depth`.
+  - If you must back-project a pixel (u,v) with depth z: `x=(u-cx)*z/fx`, `y=(v-cy)*z/fy`, `z=z` in the camera frame.
+  - Transform to world using TF from `ctx.depth_frame`/`ctx.rgb_frame` to `ctx.WORLD_FRAME`.
+• **Imports**: If you need an external symbol (e.g., `numpy as np`, `cv2`), add a normal `import` at column-0 in your output.
 • **Error handling**: If a precondition cannot be met (no depth/rgb/TF/plan), `raise RuntimeError("reason")`. The caller
   handles failures.
 • **Naming & signatures**:
-  – Keep action function names **exactly** as requested (snake_case).
-  – Keep action parameters **exactly** as requested (all strings). Do not add extra parameters.
-  – Helpers must start with `_` and may have any signature/returns.
+  - Keep action function names **exactly** as requested (snake_case).
+  - Keep action parameters **exactly** as requested (all strings). Do not add extra parameters.
+  - Helpers must start with `_` and may have any signature/returns.
 • **Do not mutate global state** outside your function scope; interact via `ctx` and MoveIt only.
 • **Determinism**: Avoid random choices; if ambiguity exists, pick a simple, documented heuristic inside the function.
-• **Performance**: Avoid heavy per‑pixel Python loops when possible; prefer NumPy / vectorized ops.
+• **Performance**: Avoid heavy per-pixel Python loops when possible; prefer NumPy / vectorized ops.
 • **Output requirement**: Produce only valid Python source consisting of one or more `def` blocks and any needed `import`s.
 
 GUIDELINES & PATTERNS
 • Use/extend existing helpers if present (e.g., `_plan_and_execute`, `_move_cartesian_srv`, `_follow_trajectory`,
   `_closest_point_3d`, `_move_arm_to_posestamped`, `_move_arm_into_jointconstraints`). If missing, implement them.
-• Typical high‑level actions (examples; do not hard‑code unless asked): `touch(obj)`, `pick_up(obj)`, `place_on(target)`,
+• Typical high-level actions (examples; do not hard-code unless asked): `touch(obj)`, `pick_up(obj)`, `place_on(target)`,
   `gripper_open()`, `gripper_close()`, `move_arm_from_home_to_up()`.
 • Robot/world specifics to assume (static):
-  – Robot: UR5 manipulator group name: `"ur5_manipulator"`, gripper group: `"robotiq_gripper"`.
-  – End‑effector link: `tool0`. World frame: `"world"`.
-  – Built‑in named states commonly used: `"home"`, `"up"`, `"open"`, `"close"`.
-  – Topics/servers/actions are already wired inside `ctx`; do not recreate them.
+  - Robot: UR5 manipulator group name: `"ur5_manipulator"`, gripper group: `"robotiq_gripper"`.
+  - End-effector link: `tool0`. World frame: `"world"`.
+  - Built-in named states commonly used: `"home"`, `"up"`, `"open"`, `"close"`.
+  - Topics/servers/actions are already wired inside `ctx`; do not recreate them.
 • Long actions should start by checking `if ctx.cancelled(): raise RuntimeError("cancelled")`.
 
-Your job: implement or replace the requested **actions** (and any underscore‑helpers they need) so that the plan can execute
-in the UR5 + 2F85 Gazebo ROS 2 setup using only the resources in `ctx`. Remember: **no returns for actions; helpers return OK**.
+Your job: implement or replace the requested **actions** (and any underscore-helpers they need) so that the plan can execute
+in the UR5 + 2F85 Gazebo ROS-2 setup using only the resources in `ctx`. Remember: **no returns for actions; helpers return OK**.
 """.strip()
 
 
@@ -100,24 +100,25 @@ Runtime context (fixed; available via `ctx`):
 Current state snapshot (for context only):
 {agent_state}
 
-Implement **all** of the following PDDL actions as **top‑level functions**:
+Implement **all** of the following PDDL actions as **top-level functions**:
 (Each action takes `ctx` followed by **string** parameters only; no numbers in signatures.)
 {schemas_text}
 
-The high‑level plan to satisfy is:
+The high-level plan to satisfy is:
 {plan_str}
 
 Implementation requirements for this robot world:
-• Produce **only** raw Python code with one or more `def` blocks (and any needed imports) at column‑0.
+• Produce **only** raw Python code with one or more `def` blocks (and any needed imports) at column-0.
 • **Actions**: `def name(ctx, *string_args)` — **no return**, no print/log, no ROS entity creation; use `ctx` exclusively.
 • **Helpers**: names start with `_`, may return values; still must not create ROS entities; can use NumPy/OpenCV.
 • Use MoveItPy for planning/execution; prefer `_plan_and_execute(ctx, planning_component)` when available.
 • For Cartesian segments, call `/compute_cartesian_path` via `ctx.cart_cli` and execute with `ctx.follow_traj_ac`.
 • For pose goals, build `PoseStamped` in `ctx.WORLD_FRAME` (or transform from camera frame) and set `pose_link=ctx.EEF_LINK`.
-• If you need 3D from depth, back‑project using `K_depth` (or `K_rgb`) and transform with TF to the world frame.
+• If you need 3D from depth, back-project using `K_depth` (or `K_rgb`) and transform with TF to the world frame.
 • Check `ctx.cancelled()` early in long actions and raise `RuntimeError("cancelled")` to abort cleanly.
 • If a prerequisite is missing (no depth/intrinsics/TF), raise `RuntimeError("reason")` instead of printing.
 • Keep function names/parameter lists **exactly** as requested by the plan/schemas.
+• When moving the arm to a certain position, it is important to consider the approach angle and the orientation of the end-effector.
 
 Output only the added or modified function `def` blocks (plus any required `import` statements).
 No markdown, no comments outside the code, no extra text.
@@ -125,17 +126,17 @@ No markdown, no comments outside the code, no extra text.
 
 
 CODER_FEEDBACK_TEMPLATE = """
-Previous patch failed for the UR5 + 2F85 ROS 2 world.
+Previous patch failed for the UR5 + 2F85 ROS-2 world.
 
 --- ERROR / TRACE ----------------------------------
 {error_log}
 
 Fix the issues and output a **complete replacement** for your previous code block:
-• Start every `def` at column‑0; top‑level functions only; no classes.
-• Actions must keep the exact names and **string‑only** parameters as required by the plan/schemas.
+• Start every `def` at column-0; top-level functions only; no classes.
+• Actions must keep the exact names and **string-only** parameters as required by the plan/schemas.
 • Actions must **not** return values, must not print/log, and must not create ROS entities; use only `ctx`.
-• Use MoveItPy via `ctx.arm` / `ctx.gripper` and existing helpers (plan/execute, Cartesian path, TF, depth back‑projection).
-• Add any missing `import` statements at column‑0 (e.g., `import numpy as np`, `import cv2`) if you use them.
+• Use MoveItPy via `ctx.arm` / `ctx.gripper` and existing helpers (plan/execute, Cartesian path, TF, depth back-projection).
+• Add any missing `import` statements at column-0 (e.g., `import numpy as np`, `import cv2`) if you use them.
 • If a prerequisite is absent (e.g., no depth/intrinsics/TF), raise `RuntimeError("reason")` instead of printing.
 
 Return only raw Python source for the replacement functions (and any needed imports). No markdown.

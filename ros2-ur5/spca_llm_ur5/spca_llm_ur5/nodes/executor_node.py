@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # executor_node.py
-import re, traceback
+import time
+import re, traceback, json
 from pathlib import Path
 import importlib.util
 
@@ -9,46 +10,24 @@ from rclpy.node import Node
 from std_msgs.msg import String
 
 from spca_llm_ur5.nodes.ctx_runtime import Ctx
-from spca_llm_ur5.runtime_paths import BASE_ACTS, TMP_ACTS
+from spca_llm_ur5.scripts.runtime_paths import BASE_ACTS, TMP_ACTS
 ACTIONS_FILE     = BASE_ACTS
 ACTIONS_TMP_FILE = TMP_ACTS
 
-def parse_plan(plan_str: str):
-    """
-    Accepts either:
-      - "[move-forward(), pick-up(box_blue)]"  (PDDL→UP→list form)
-      - "move_forward(); gripper_open()"       (semicolon form)
-    Returns: list[(name:str, args:list[str])] with names kebab→snake.
-    Only bare identifier args allowed.
-    """
-    s = plan_str.strip()
-    steps = []
+_action_re = re.compile(r'([a-zA-Z][\w-]*)\s*\(\s*([^)]*?)\s*\)')
 
-    def _parse_call(text: str):
-        m = re.match(r'^([A-Za-z][\w\-]*)\s*\(\s*([^)]*?)\s*\)$', text)
-        if not m:
-            raise ValueError(f'Bad step: {text}')
+def parse_plan(plan: str):
+    """
+    Expects UP bracket form only, e.g.
+    "[move-forward(), pick-up(box_blue)]"
+    Returns list[(name, args)]
+    """
+    result = []
+    for m in _action_re.finditer(plan):
         name = m.group(1).replace('-', '_')
-        argstr = m.group(2).strip()
-        args = [a.strip() for a in argstr.split(',')] if argstr else []
-        for a in args:
-            if not re.match(r'^[A-Za-z_]\w*$', a):
-                raise ValueError(f'Bad arg token: {a}')
-        return name, args
-
-    if s.startswith('[') and s.endswith(']'):
-        body = s[1:-1].strip()
-        tokens = [t.strip() for t in re.split(r'\)\s*,', body) if t.strip()]
-        for t in tokens:
-            if not t.endswith(')'): t += ')'
-            steps.append(_parse_call(t))
-        return steps
-
-    parts = [p.strip() for p in s.split(';') if p.strip()]
-    for p in parts:
-        steps.append(_parse_call(p))
-    return steps
-
+        args = [a.strip() for a in m.group(2).split(',')] if m.group(2) else []
+        result.append((name, args))
+    return result
 
 class Executor(Node):
     def __init__(self):
@@ -62,9 +41,7 @@ class Executor(Node):
         self._load_actions_initial()
 
         # topics
-        self.create_subscription(String, '/planner/plan', self._plan_cb, 10)
-        # TRIGGER only: when any message arrives, reload from disk
-        self.create_subscription(String, '/coder/script', self._reload_trigger_cb, 10)
+        self.create_subscription(String, '/task/dispatch', self._execute_cb, 10)
         self.create_subscription(String, '/executor/cancel', self._cancel_cb, 10)
         self.status_pub = self.create_publisher(String, '/executor/status', 10)
 
@@ -73,6 +50,9 @@ class Executor(Node):
         spec = importlib.util.spec_from_file_location('agent_actions', str(path))
         mod = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(mod)
+        # sanity check, print all functions
+        funcs = [f for f in dir(mod) if callable(getattr(mod, f)) and not f.startswith('_')]
+        self.get_logger().info(f"DEBUG:Loaded actions module from {path}: {len(funcs)} functions: {', '.join(funcs)}")
         return mod
 
     def _choose_actions_path(self) -> Path | None:
@@ -83,6 +63,7 @@ class Executor(Node):
         return None
 
     def _load_actions_initial(self):
+        self.get_logger().info("DEBUG:Loading actions module from disk...")
         path = self._choose_actions_path()
         if path:
             try:
@@ -95,7 +76,8 @@ class Executor(Node):
             self.agent = importlib.util.module_from_spec(spec)
             exec("# empty", self.agent.__dict__)
 
-    def _reload_trigger_cb(self, _msg: String):
+    def _reload_agent(self):
+        self.get_logger().info("DEBUG:Reloading actions module from disk...")
         path = self._choose_actions_path()
         if not path:
             return
@@ -108,22 +90,37 @@ class Executor(Node):
         self.ctx.cancel()
 
     # ---------- plan execution ----------
-    def _plan_cb(self, msg: String):
+    def _execute_cb(self, msg: String):
+        self.get_logger().info(f"DEBUG:Received plan: {msg.data}")
+        plan_str = json.loads(msg.data).get("plan", "")
+        if not plan_str:
+            self.get_logger().warn("Received empty plan; nothing to execute.")
+            return
+        
         self.ctx.clear_cancel()
         try:
-            for name, args in parse_plan(msg.data):
+            self._reload_agent()
+            time.sleep(1.0)  # give time for the module to reload
+
+            for name, args in parse_plan(plan_str):
+                self.get_logger().info(f"Executing action {name}({': '.join(args)})")
+
                 fn = getattr(self.agent, name, None)
+                    
                 if not callable(fn):
                     raise RuntimeError(f"missing action: {name}")
-                # Log function name and arguments
-                self.get_logger().info(f"Executing action: {name} with arguments: {args}")
-                # ACTION signature: ctx + string args only
+                
                 fn(self.ctx, *args)
-            self.status_pub.publish(String(data='success'))
-        except Exception:
-            self.get_logger().error(traceback.format_exc())
-            self.status_pub.publish(String(data='fail'))
+            outcome = {"status": "success", "msg": "", "trace": ""}
+        except Exception as exc:
+            outcome = {
+                "status": type(exc).__name__,
+                "msg": str(exc),
+                "trace": traceback.format_exc(),
+            }
 
+        self.get_logger().info(f"Executor outcome: {outcome['status']}")
+        self.status_pub.publish(String(data=json.dumps(outcome)))
 
 def main():
     rclpy.init()
