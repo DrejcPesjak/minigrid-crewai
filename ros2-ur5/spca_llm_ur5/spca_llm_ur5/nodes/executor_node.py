@@ -45,6 +45,9 @@ class Executor(Node):
         self.create_subscription(String, '/executor/cancel', self._cancel_cb, 10)
         self.status_pub = self.create_publisher(String, '/executor/status', 10)
 
+        self._plan_queue = []
+        self._execution_in_progress = False
+
     # ---------- module loading ----------
     def _load_from_file(self, path: Path):
         spec = importlib.util.spec_from_file_location('agent_actions', str(path))
@@ -89,36 +92,76 @@ class Executor(Node):
     def _cancel_cb(self, _msg: String):
         self.ctx.cancel()
 
-    # ---------- plan execution ----------
+    # ---------- plan execution (revised) ----------
     def _execute_cb(self, msg: String):
         self.get_logger().info(f"DEBUG:Received plan: {msg.data}")
         plan_str = json.loads(msg.data).get("plan", "")
         if not plan_str:
             self.get_logger().warn("Received empty plan; nothing to execute.")
+            self._send_outcome(success=True) # or a neutral status
             return
         
         self.ctx.clear_cancel()
+        self._reload_agent()
+
+        # Start the execution by parsing the plan and putting it into a queue
+        self._plan_queue = parse_plan(plan_str)
+        self._execution_in_progress = True
+        self.get_logger().info(f"Starting execution of {len(self._plan_queue)} actions.")
+        self._run_next_action()
+
+    def _run_next_action(self):
+        # If the queue is empty, we are done
+        if not self._plan_queue:
+            self.get_logger().info("All actions in plan completed.")
+            self._send_outcome(success=True)
+            self._execution_in_progress = False
+            return
+        
+        # Get the next action from the queue
+        name, args = self._plan_queue.pop(0)
+
+        self.get_logger().info(f"---- Executing action -> {name}({', '.join(args)})")
+
+        fn = getattr(self.agent, name, None)
+            
+        if not callable(fn):
+            self.get_logger().error(f"Missing action: {name}")
+            self._send_outcome(success=False, msg=f"Missing action: {name}")
+            self._execution_in_progress = False
+            return
+
         try:
-            self._reload_agent()
-            time.sleep(1.0)  # give time for the module to reload
-
-            for name, args in parse_plan(plan_str):
-                self.get_logger().info(f"---- Executing action -> {name}({', '.join(args)})")
-
-                fn = getattr(self.agent, name, None)
-                    
-                if not callable(fn):
-                    raise RuntimeError(f"missing action: {name}")
-                
-                fn(self.ctx, *args)
-                time.sleep(5.0)
-            outcome = {"status": "success", "msg": "", "trace": ""}
+            # Call the action with a callback to be notified upon completion
+            # This is the crucial change
+            fn(self.ctx, *args, done_callback=self._action_done_cb)
         except Exception as exc:
-            outcome = {
-                "status": type(exc).__name__,
-                "msg": str(exc),
-                "trace": traceback.format_exc(),
-            }
+            self.get_logger().error(f"Error calling action {name}: {exc}")
+            self.get_logger().error(traceback.format_exc())
+            self._send_outcome(success=False, msg=str(exc))
+            self._execution_in_progress = False
+
+    def _action_done_cb(self, success, msg=""):
+        """
+        This callback is triggered by an action when it finishes.
+        """
+        if success:
+            self.get_logger().info(f"Action completed successfully. Running next action.")
+            # Run the next action in the queue
+            self._run_next_action()
+        else:
+            self.get_logger().error(f"Action failed with message: {msg}")
+            self._send_outcome(success=False, msg=msg)
+            self._execution_in_progress = False
+
+    def _send_outcome(self, success: bool, msg: str = ""):
+        """
+        Sends the final outcome message to the /executor/status topic.
+        """
+        if success:
+            outcome = {"status": "success", "msg": msg, "trace": ""}
+        else:
+            outcome = {"status": "failed", "msg": msg, "trace": ""}
 
         self.get_logger().info(f"Executor outcome: {outcome['status']}")
         self.status_pub.publish(String(data=json.dumps(outcome)))

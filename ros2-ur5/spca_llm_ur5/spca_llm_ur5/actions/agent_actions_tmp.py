@@ -17,15 +17,16 @@ from moveit.core.robot_state import robotStateToRobotStateMsg
 # motion / MoveIt (regular + helpers)
 # -----------------------------
 
-def move_to_predefined(ctx):
+def move_to_predefined(ctx, done_callback=None):
     """
     Move UR5 to xyz=(0.1, 0.3, 1.5) with orientation 'down' (x,y,z,w)=(1,0,0,0)    """
     ctx.log.info("_move_xyz")
-    return _move_xyz_down(ctx, 0.1, -0.3, 1.5)
-    # return _move_xyz_down(ctx, 0.7, 0.3, 0.98)
-    # return _move_xyz_down(ctx, 0.74, -0.4, 0.972)
+    _move_xyz_down(ctx, 0.1, 0.3, 1.5, done_callback=done_callback)
+    # _move_xyz_down(ctx, 0.4, 0.3, 1.0, done_callback=done_callback)
+    # _move_xyz_down(ctx, 0.7, 0.3, 0.98, done_callback=done_callback)
+    # _move_xyz_down(ctx, 0.74, -0.4, 0.972, done_callback=done_callback)
 
-def _move_xyz_down(ctx, x, y, z):
+def _move_xyz_down(ctx, x, y, z, done_callback=None):
     """ Move UR5 to xyz=(x,y,z) with orientation 'down' (x,y,z,w)=(1,0,0,0),
     by reusing the PoseStamped planning path.
     """
@@ -42,21 +43,14 @@ def _move_xyz_down(ctx, x, y, z):
     pose_goal.pose.position.y = float(y)
     pose_goal.pose.position.z = float(z)
 
-    # return _move_to_pose_stamped(ctx, pose_goal, link=ctx.EEF_LINK)
+    _move_to_pose_stamped(ctx, pose_goal, link=ctx.EEF_LINK, done_callback=done_callback)
 
-    # return _move_via_ik(ctx, pose_goal.pose, tip=ctx.EEF_LINK) # only one that works
+    # _move_via_ik(ctx, pose_goal.pose, tip=ctx.EEF_LINK, done_callback=done_callback)
 
-    # return _cartesian_runner_async(ctx, x, y, z)
-    traj = _compute_cartesian_path_once(
-        ctx, [pose_goal.pose], group=ctx.ARM_GROUP, max_step=0.01, jump_threshold=0.0
-    )
-    if traj is not None:
-        return _send_follow_joint_trajectory(ctx, traj)
-    else:
-        ctx.log.error("Cartesian path service returned no trajectory")
+    # _cartesian_runner_async(ctx, x, y, z, done_callback=done_callback)
 
 
-def move_ur5_named(ctx, start_name: str, goal_name: str):
+def move_ur5_named(ctx, start_name: str, goal_name: str, done_callback=None):
     """
     Planning UR5 manipulator from a named 'start' to a named 'goal' state.
     Uses SRDF predefined states: 'home', 'up', 'zero' ('zero' is not recommended).
@@ -68,63 +62,49 @@ def move_ur5_named(ctx, start_name: str, goal_name: str):
     ctx.arm.set_goal_state(configuration_name=goal_name)
 
     # plan to goal
-    _plan_and_execute(ctx, ctx.arm, ctx.node.get_logger(), sleep_time=30.0)
+    _plan_and_execute_with_callback(ctx, ctx.arm, ctx.log, done_callback, sleep_time=5.0)
 
 
-def gripper_open(ctx):
+def gripper_open(ctx, done_callback=None):
     """
     Planning gripper to open state (using SRDF 'open').
     """
     ctx.node.get_logger().info("\n\nPlanning gripper to open state")
     ctx.gripper.set_start_state_to_current_state()
     ctx.gripper.set_goal_state(configuration_name="open")
-    _plan_and_execute(ctx, ctx.gripper, ctx.node.get_logger(), sleep_time=30.0)
+    _plan_and_execute_with_callback(ctx, ctx.gripper, ctx.node.get_logger(), done_callback, sleep_time=5.0)
 
-
-def gripper_close(ctx):
+def gripper_close(ctx, done_callback=None):
     """
     Planning gripper to close state (using SRDF 'close').
     """
     ctx.node.get_logger().info("\n\nPlanning gripper to close state")
     ctx.gripper.set_start_state_to_current_state()
     ctx.gripper.set_goal_state(configuration_name="close")
-    _plan_and_execute(ctx, ctx.gripper, ctx.node.get_logger(), sleep_time=30.0)
+    _plan_and_execute_with_callback(ctx, ctx.gripper, ctx.node.get_logger(), done_callback, sleep_time=5.0)
 
-def _plan_and_execute(
-    ctx,
-    planning_component,
-    logger,
-    single_plan_parameters=None,
-    multi_plan_parameters=None,
-    sleep_time: float = 0.0,
-):
-    """Helper function to plan and execute a motion."""
-    # plan to goal
-    logger.info("Planning trajectory")
-    if multi_plan_parameters is not None:
-        plan_result = planning_component.plan(
-            multi_plan_parameters=multi_plan_parameters
-        )
-    elif single_plan_parameters is not None:
-        plan_result = planning_component.plan(
-            single_plan_parameters=single_plan_parameters
-        )
-    else:
+
+def _plan_and_execute_with_callback(ctx, planning_component, logger, done_callback, sleep_time: float):
+    success = False
+    try:
+        logger.info("Planning trajectory")
         plan_result = planning_component.plan()
+        if plan_result:
+            robot_trajectory = plan_result.trajectory
+            group_name = planning_component.planning_group_name
+            ctx.robot.execute(group_name, robot_trajectory)
+            success = True
+        else:
+            logger.error("Planning failed")
+        time.sleep(sleep_time)
+    except Exception as e:
+        logger.error(f"Execution failed: {e}")
+        success = False
+    finally:
+        done_callback(success=success)
 
-    # execute the plan
-    if plan_result:
-        logger.info("Executing plan")
-        robot_trajectory = plan_result.trajectory
-        group_name = planning_component.planning_group_name
-        ctx.robot.execute(group_name, robot_trajectory)
-    else:
-        logger.error("Planning failed")
 
-    time.sleep(sleep_time)
-
-
-def _move_to_pose_stamped(ctx, pose_goal: PoseStamped, link: str = "tool0"):
+def _move_to_pose_stamped(ctx, pose_goal: PoseStamped, link: str = "tool0", done_callback=None):
     """
     Plan to a PoseStamped goal (as in 'Plan 5').
     """
@@ -137,10 +117,10 @@ def _move_to_pose_stamped(ctx, pose_goal: PoseStamped, link: str = "tool0"):
     ctx.arm.set_goal_state(pose_stamped_msg=pose_goal, pose_link=link)
 
     # plan to goal
-    _plan_and_execute(ctx, ctx.arm, ctx.log, sleep_time=30.0)
+    _plan_and_execute_with_callback(ctx, ctx.arm, ctx.log, done_callback, sleep_time=5.0)
 
 
-def _move_with_joint_constraints(ctx, joint_values: dict):
+def _move_with_joint_constraints(ctx, joint_values: dict, done_callback=None):
     """
     Plan with joint constraints (as in 'Plan 6').
     """
@@ -160,10 +140,10 @@ def _move_with_joint_constraints(ctx, joint_values: dict):
     ctx.arm.set_goal_state(motion_plan_constraints=[joint_constraint])
 
     # plan to goal
-    _plan_and_execute(ctx, ctx.arm, ctx.log, sleep_time=30.0)
+    _plan_and_execute_with_callback(ctx, ctx.arm, ctx.log, done_callback, sleep_time=5.0)
 
 
-def _move_via_ik(ctx, pose: Pose, tip: str = "tool0"):
+def _move_via_ik(ctx, pose: Pose, tip: str = "tool0", done_callback=None):
     """
     Compute IK for a specified Cartesian goal, unwrap near seed, then plan/execute.
     Mirrors your first script (IK block) with minor contextual edits.
@@ -195,7 +175,9 @@ def _move_via_ik(ctx, pose: Pose, tip: str = "tool0"):
     if not ik_found:
         logger.error(f"Could not find IK solution for target Cartesian pose: {pose}")
         logger.error("This means the desired Cartesian pose might be out of reach, in a singularity, or the IK solver timed out.")
-        return False
+        if callable(done_callback):
+            done_callback(success=False, msg="IK solution not found.")
+        return
 
     logger.info(f"IK solution found!\n"
                 f"Joint positions: {goal_robot_state.get_joint_group_positions(ctx.arm.planning_group_name)}\n")
@@ -215,8 +197,8 @@ def _move_via_ik(ctx, pose: Pose, tip: str = "tool0"):
     logger.info("Setting goal state with explicit Joint Constraints from IK solution...")
     ctx.arm.set_goal_state(robot_state=goal_robot_state)
 
-    _plan_and_execute(ctx, ctx.arm, logger, sleep_time=5.0)
-    return True
+    # 6. Plan to goal
+    _plan_and_execute_with_callback(ctx, ctx.arm, logger, done_callback, sleep_time=5.0)
 
 
 def _unwrap_to_seed(ctx, rs_goal: RobotState, rs_seed: RobotState, jmg_name: str):
@@ -239,7 +221,7 @@ def _unwrap_to_seed(ctx, rs_goal: RobotState, rs_seed: RobotState, jmg_name: str
 # -----------------------------
 
 
-def _cartesian_runner_async(ctx, x: float, y: float, z: float):
+def _cartesian_runner_async(ctx, x: float, y: float, z: float, done_callback=None):
     """
     Computes a Cartesian path to a target waypoint and executes it, using callbacks.
     This is the new, non-blocking version.
@@ -248,7 +230,6 @@ def _cartesian_runner_async(ctx, x: float, y: float, z: float):
     
     req = GetCartesianPath.Request()
     req.group_name = ctx.ARM_GROUP
-
     waypoint = Pose()
     waypoint.position.x = x
     waypoint.position.y = y
@@ -258,27 +239,32 @@ def _cartesian_runner_async(ctx, x: float, y: float, z: float):
     waypoint.orientation.z = 0.0
     waypoint.orientation.w = 0.0
     req.waypoints.append(waypoint)
-
     req.max_step = 0.01
     req.jump_threshold = 0.0
     
     ctx.cart_cli.wait_for_service()
     future = ctx.cart_cli.call_async(req)
-    future.add_done_callback(lambda future: _cartesian_path_cb(ctx, future))
+    # Pass the done_callback through the chain
+    future.add_done_callback(
+        lambda future: _cartesian_path_cb(ctx, future, done_callback)
+    )
 
-def _cartesian_path_cb(ctx, future):
+def _cartesian_path_cb(ctx, future, done_callback):
     """
     Callback for the GetCartesianPath service.
-    If a trajectory is found, it sends it to the action server.
     """
     res = future.result()
     if res and res.solution.joint_trajectory.points:
         ctx.log.info("Cartesian path computed successfully. Sending to action server.")
-        _send_follow_joint_trajectory_async(ctx, res.solution.joint_trajectory)
+        # Pass the done_callback to the next function
+        _send_follow_joint_trajectory_async(ctx, res.solution.joint_trajectory, done_callback)
     else:
         ctx.log.error("Cartesian path service returned no trajectory.")
+        # If no trajectory, consider this action failed and call the done_callback
+        if callable(done_callback):
+            done_callback(success=False, msg="No Cartesian path found.")
         
-def _send_follow_joint_trajectory_async(ctx, traj):
+def _send_follow_joint_trajectory_async(ctx, traj, done_callback=None):
     """
     Sends a trajectory to the FollowJointTrajectory action server.
     """
@@ -288,63 +274,42 @@ def _send_follow_joint_trajectory_async(ctx, traj):
     goal.trajectory.header.stamp = ctx.node.get_clock().now().to_msg()
     ctx.node.get_logger().info('Sending goal')
     send_goal_future = ctx.follow_traj_ac.send_goal_async(goal)
-    send_goal_future.add_done_callback(lambda gh_fut: _follow_traj_cb(ctx, gh_fut))
-
-def _follow_traj_cb(ctx, future):
+    # Pass the done_callback to the next function
+    send_goal_future.add_done_callback(
+        lambda gh_fut: _follow_traj_cb(ctx, gh_fut, done_callback)
+    )
+    
+def _follow_traj_cb(ctx, future, done_callback):
     """
     Callback for the FollowJointTrajectory action server.
-    Logs the result of the action.
     """
     goal_handle = future.result()
     if not goal_handle.accepted:
         ctx.log.error("Goal rejected by action server.")
+        if callable(done_callback):
+            done_callback(success=False, msg="Goal rejected.")
         return
     
     ctx.log.info("Goal accepted by action server.")
     get_result_future = goal_handle.get_result_async()
-    get_result_future.add_done_callback(lambda gr_fut: _follow_traj_result_cb(ctx, gr_fut))
+    # Pass the done_callback to the final result callback
+    get_result_future.add_done_callback(
+        lambda gr_fut: _follow_traj_result_cb(ctx, gr_fut, done_callback)
+    )
     
-def _follow_traj_result_cb(ctx, future):
+def _follow_traj_result_cb(ctx, future, done_callback):
     """
     Callback for the result of the FollowJointTrajectory action.
+    This is the final step, so it calls the main executor's done_callback.
     """
     status = future.result().status
     result = future.result().result
     ctx.log.info(f"Action finished with status: {status}, result: {result}")
-
-
-def _compute_cartesian_path_once(ctx, waypoints, group: str = "ur5_manipulator", max_step: float = 0.01, jump_threshold: float = 0.0):
-    """
-    Call /compute_cartesian_path once and return the resulting joint_trajectory.
-    Based closely on CartRunner.__init__ in your script (minor sync wait).
-    """
-    # Prepare request
-    req = GetCartesianPath.Request()
-    req.group_name = group
-    for wp in waypoints:
-        req.waypoints.append(wp)
-    req.max_step = max_step
-    req.jump_threshold = jump_threshold
-
-    # Call service (async, then wait)
-    ctx.cart_cli.wait_for_service()
-    future = ctx.cart_cli.call_async(req)
-    rclpy.spin_until_future_complete(ctx.node, future)
-    res = future.result()
-    return res.solution.joint_trajectory if res is not None else None
-
-
-def _send_follow_joint_trajectory(ctx, traj):
-    """
-    Send a trajectory to /joint_trajectory_controller/follow_joint_trajectory.
-    Mirrors CartRunner.cb from your script.
-    """
-    ctx.follow_traj_ac.wait_for_server()
-    goal = FollowJointTrajectory.Goal()
-    goal.trajectory = traj
-    goal.trajectory.header.stamp = ctx.node.get_clock().now().to_msg()
-    ctx.node.get_logger().info('Sending goal')
-    ctx.follow_traj_ac.send_goal_async(goal)
+    
+    if callable(done_callback):
+        # Determine success based on the action result
+        success = (status == 4)  # GoalStatus.SUCCEEDED
+        done_callback(success=success, msg=f"Action finished with status {status}")
 
 
 # -----------------------------

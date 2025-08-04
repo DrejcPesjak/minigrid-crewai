@@ -340,7 +340,7 @@ class Supervisor(Node):
             # start executor with plan, and send level to referee)
             lvl_path = self.levels[self.idx]["path"]
             # edit_plan = "[gripper_open()]"#, " + self.plan_str[1:]
-            edit_plan = "[move_to_predefined()]"
+            edit_plan = "[gripper_open(), move_to_predefined()]"
             payload = json.dumps({
                 "level_path": lvl_path,
                 "plan":       edit_plan,
