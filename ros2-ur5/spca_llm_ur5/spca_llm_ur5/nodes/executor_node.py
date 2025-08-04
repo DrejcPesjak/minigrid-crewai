@@ -38,7 +38,7 @@ class Executor(Node):
 
         # load actions module from disk (tmp preferred)
         self.agent = None
-        self._load_actions_initial()
+        # self._load_actions_initial()
 
         # topics
         self.create_subscription(String, '/task/dispatch', self._execute_cb, 10)
@@ -103,7 +103,7 @@ class Executor(Node):
             time.sleep(1.0)  # give time for the module to reload
 
             for name, args in parse_plan(plan_str):
-                self.get_logger().info(f"Executing action {name}({': '.join(args)})")
+                self.get_logger().info(f"---- Executing action -> {name}({', '.join(args)})")
 
                 fn = getattr(self.agent, name, None)
                     
@@ -111,6 +111,7 @@ class Executor(Node):
                     raise RuntimeError(f"missing action: {name}")
                 
                 fn(self.ctx, *args)
+                time.sleep(5.0)
             outcome = {"status": "success", "msg": "", "trace": ""}
         except Exception as exc:
             outcome = {

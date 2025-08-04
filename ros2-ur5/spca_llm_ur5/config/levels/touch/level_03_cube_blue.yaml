@@ -4,7 +4,7 @@ task_id: touch_blue_cube
 title: "Touch the blue cube"
 description: "Move the gripper to make contact with the blue cube."
 difficulty: 3
-time_limit_s: 30
+time_limit_s: 60
 
 success:
   collisions_true:

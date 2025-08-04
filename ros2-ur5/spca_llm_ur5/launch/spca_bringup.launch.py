@@ -32,6 +32,8 @@ def generate_launch_description():
     moveit_params_dict.update({'use_sim_time': True})
     # moveit_params_dict.pop('sensors', None)
     # moveit_params_dict.pop('default_sensor', None)
+    moveit_params_dict['octomap_frame'] = 'world'
+    moveit_params_dict['octomap_resolution'] = 0.02
 
     params_file = create_params_file_from_dict(moveit_params_dict, "/**")
 

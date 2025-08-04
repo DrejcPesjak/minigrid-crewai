@@ -42,9 +42,23 @@ class Ctx:
         self.arm     = self.robot.get_planning_component(self.ARM_GROUP)
         self.gripper = self.robot.get_planning_component(self.GRIPPER_GROUP)
 
+
+        self.psm = self.robot.get_planning_scene_monitor()
+        try:
+            self.tem = self.robot.get_trajectory_execution_manager()
+        except Exception:
+            self.tem = None
+
+        self.log = node.get_logger()
+        self.planning_frame = self.robot.get_robot_model().model_frame
+
+        self.latest_rgb_header = None
+        self.latest_depth_header = None
+
+
         # TF
         self.tfbuf = tf2_ros.Buffer()
-        self.tfl   = tf2_ros.TransformListener(self.tfbuf, node, spin_thread=True)
+        self.tfl   = tf2_ros.TransformListener(self.tfbuf, node, spin_thread=False)
 
         # Perception caches
         self.bridge = CvBridge()
@@ -84,9 +98,10 @@ class Ctx:
     def _depth_info(self, msg: CameraInfo):
         self.K_depth = np.array(msg.k, dtype=np.float32).reshape(3,3)
         self.depth_frame = msg.header.frame_id
-
+    
     def _rgb_cb(self, msg: Image):
         self.latest_rgb = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
+        self.latest_rgb_header = msg.header
 
     def _depth_cb(self, msg: Image):
         d = self.bridge.imgmsg_to_cv2(msg, 'passthrough')
@@ -94,6 +109,7 @@ class Ctx:
         if arr.dtype != np.float32 and arr.max() > 1000:
             arr = arr.astype(np.float32) * 0.001
         self.latest_depth = arr
+        self.latest_depth_header = msg.header
 
     def _cloud_cb(self, msg: PointCloud2):
         try:
@@ -104,3 +120,17 @@ class Ctx:
 
     def _js_cb(self, msg: JointState):
         self.joint_state = msg
+    
+    # ---- helpers ----
+    def wait_for_current_state(self, timeout_s=2.0):
+        now = self.node.get_clock().now()
+        return self.psm.wait_for_current_robot_state(now, float(timeout_s))
+
+    def wait_for_interfaces(self):
+        self.cart_cli.wait_for_service()
+        self.follow_traj_ac.wait_for_server()
+        self.gripper_ac.wait_for_server()
+
+    def stop_motion(self):
+        if self.tem:
+            self.tem.stop_execution() 

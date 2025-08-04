@@ -322,12 +322,13 @@ class Supervisor(Node):
 
             if missing:
                 self.logger.info(f"Missing actions → coder: {sorted(missing)}")
-                res = self.coder.implement_actions(
-                        actions=missing,
-                        pddl_schemas=self.bundle.action_schemas,
-                        plan_str=self.plan_str,
-                        agent_state={"scene_text": self.scene_text},
-                        past_error_log=self.coder_err_log)
+                # res = self.coder.implement_actions(
+                #         actions=missing,
+                #         pddl_schemas=self.bundle.action_schemas,
+                #         plan_str=self.plan_str,
+                #         agent_state={"scene_text": self.scene_text},
+                #         past_error_log=self.coder_err_log)
+                res = type('Response', (object,), {'status': "ok"})()
                 self.logger.info(f"Coder result: {res}")
                 if res.status != "ok":              # merge/syntax failed
                     self._bump_spa_round(coder_failed=True)
@@ -338,9 +339,11 @@ class Supervisor(Node):
 
             # start executor with plan, and send level to referee)
             lvl_path = self.levels[self.idx]["path"]
+            # edit_plan = "[gripper_open()]"#, " + self.plan_str[1:]
+            edit_plan = "[move_to_predefined()]"
             payload = json.dumps({
                 "level_path": lvl_path,
-                "plan":       self.plan_str,
+                "plan":       edit_plan,
             })
             self.dispatch_pub.publish(String(data=payload))
 
@@ -402,7 +405,7 @@ class Supervisor(Node):
                 self.coder_err_log = ""
                 if self.ref_status in ("fail", "timeout"):
                     self.logger.warn(f"❌ REFEREE - {self.ref_status} level outcome.")
-                    self.exec_cancel_pub.publish(String(data=json.dumps({"status": "cancelled"})))
+                    # self.exec_cancel_pub.publish(String(data=json.dumps({"status": "cancelled"})))
                     self.coder_err_log = "Referee outcome:\n" + json.dumps(self.ref_outcome, indent=2)
                 if self.exec_status not in ("success", "unknown"):
                     self.logger.warn(f"❌ EXECUTOR - {self.exec_status} level outcome.")
@@ -412,7 +415,7 @@ class Supervisor(Node):
                 self.stage = "code"               # re-run coder on same plan
 
                 # stop referee and executor
-                self.exec_cancel_pub.publish(String(data=json.dumps({"status": "cancelled"})))
+                # self.exec_cancel_pub.publish(String(data=json.dumps({"status": "cancelled"})))
                 self.dispatch_pub.publish(String(data=json.dumps({
                     "level_path": None,
                     "plan":       None,

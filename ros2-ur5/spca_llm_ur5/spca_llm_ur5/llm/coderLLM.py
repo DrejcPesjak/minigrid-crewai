@@ -68,12 +68,19 @@ GUIDELINES & PATTERNS
   `_closest_point_3d`, `_move_arm_to_posestamped`, `_move_arm_into_jointconstraints`). If missing, implement them.
 • Typical high-level actions (examples; do not hard-code unless asked): `touch(obj)`, `pick_up(obj)`, `place_on(target)`,
   `gripper_open()`, `gripper_close()`, `move_arm_from_home_to_up()`.
+• Long actions should start by checking `if ctx.cancelled(): raise RuntimeError("cancelled")`.
+
+• Ensure the start state is explicitly set before planning.
+• Use the `set_start_state_to_current_state()` method to set the start state before planning.
+• Normalize all joint angles to the range [-π, π] radians using modulo-2π arithmetic before setting the goal state.
+• Explicitly ensure that the shoulder_lift_joint angle is not within the range [0, π] radians. Instead, it should fall within either [-π, 0] radians or [π, 2π] radians.
+• Only elbow_joint is really limited to [-π, π] radians.
+
 • Robot/world specifics to assume (static):
   - Robot: UR5 manipulator group name: `"ur5_manipulator"`, gripper group: `"robotiq_gripper"`.
   - End-effector link: `tool0`. World frame: `"world"`.
   - Built-in named states commonly used: `"home"`, `"up"`, `"open"`, `"close"`.
   - Topics/servers/actions are already wired inside `ctx`; do not recreate them.
-• Long actions should start by checking `if ctx.cancelled(): raise RuntimeError("cancelled")`.
 
 Your job: implement or replace the requested **actions** (and any underscore-helpers they need) so that the plan can execute
 in the UR5 + 2F85 Gazebo ROS-2 setup using only the resources in `ctx`. Remember: **no returns for actions; helpers return OK**.
@@ -193,7 +200,7 @@ class CoderLLM:
         if not ACTIONS_TMP_FILE.exists():
             shutil.copy2(ACTIONS_FILE, ACTIONS_TMP_FILE)
         
-        base_src = ACTIONS_TMP_FILE.read_text(encoding="utf-8")
+        base_src = ACTIONS_TMP_FILE.read_text()#encoding="utf-8")
 
         # --- build conversation ---
         schemas_txt = "\n\n".join(pddl_schemas.get(a, "") for a in actions)

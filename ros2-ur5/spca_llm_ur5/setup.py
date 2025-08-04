@@ -31,7 +31,7 @@ setup(
         "pydantic>=2.9.2",
         "python-dotenv>=1.0.1",
 
-        # Classical‑planning stack
+        # Classical-planning stack
         "unified-planning[fast-downward,tamer]>=1.2.0",
     ],
     zip_safe=True,
