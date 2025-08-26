@@ -1,4 +1,4 @@
-# MiniGrid CrewAI: Multi-Paradigm AI Agent Research Platform
+# Multimodal planning in robotics
 
 A comprehensive research platform exploring different approaches to embodied AI and robotic manipulation, from simulation to real-world deployment. This project systematically compares neural, symbolic, and hybrid approaches to AI agent development across multiple frameworks.
 
@@ -17,6 +17,8 @@ The project follows a **Sense-Plan-Code-Act** paradigm across all implementation
 
 ## 📁 Folder Structure & Approaches
 
+**Note**: The final version of the system is in the `sense-plan-act/` and `ros2-ur5/` folders. Other folders represent early prototypes and alternative approaches. A polished version of these two will be released soon.
+
 ### 🤖 Pure Neural Approaches
 
 #### [`openai/`](openai/)
@@ -26,9 +28,6 @@ The project follows a **Sense-Plan-Code-Act** paradigm across all implementation
 - Structured output parsing for actions
 - Comprehensive logging and analysis
 
-```bash
-cd openai && python main.py
-```
 
 #### [`openai_dspy/`](openai_dspy/)
 **Self-Optimizing LLM Agent**
@@ -37,9 +36,6 @@ cd openai && python main.py
 - Few-shot learning from successful patterns
 - Optimal path simulation and comparison
 
-```bash
-cd openai_dspy && python main.py
-```
 
 ### 👥 Multi-Agent Systems
 
@@ -50,9 +46,16 @@ cd openai_dspy && python main.py
 - Task delegation and coordination
 - Distributed problem-solving
 
-```bash
-cd crewai && python -m src.crewai_gym.main
-```
+
+### 🔧 Pure Symbolic
+
+#### [`pddl-llm/`](pddl-llm/)
+**Classical AI Planning**
+- Pure PDDL domain definitions
+- Traditional planning algorithms
+- LLM-assisted domain and problem generation
+- Plan validation and optimization
+
 
 ### 🧠 Hybrid Symbolic-Neural
 
@@ -63,28 +66,14 @@ cd crewai && python -m src.crewai_gym.main
 - Progressive difficulty through BabyAI/MiniGrid tasks
 - Dynamic code injection and hot reloading
 
-```bash
-cd sense-plan-act && python main.py
-```
 
 #### [`pddl-code-minigrid/`](pddl-code-minigrid/)
 **PDDL + Code Generation**
 - Classical planning with modern LLM code generation
 - Symbolic reasoning for robust problem-solving
 - Failure-driven replanning and code regeneration
+- Similar to sense-plan-act but LLM does blind planning
 
-```bash
-cd pddl-code-minigrid && python main.py
-```
-
-### 🔧 Pure Symbolic
-
-#### [`pddl-llm/`](pddl-llm/)
-**Classical AI Planning**
-- Pure PDDL domain definitions
-- Traditional planning algorithms
-- LLM-assisted domain and problem generation
-- Plan validation and optimization
 
 ### 🦾 Real-World Deployment
 
@@ -102,44 +91,7 @@ cd ros2-ur5
 source working_commands.sh
 ```
 
-## 🚀 Quick Start
-
-### Prerequisites
-```bash
-# Python dependencies
-pip install crewai gymnasium minigrid openai dspy-ai unified-planning
-
-# For ROS2 (Ubuntu 22.04)
-# See ros2-ur5/ros-install_pretty2.sh for complete setup
-```
-
-### Running Different Approaches
-
-1. **Start with simple LLM approach**:
-```bash
-cd openai && python main.py
-```
-
-2. **Try optimized learning**:
-```bash
-cd openai_dspy && python main.py
-```
-
-3. **Explore multi-agent collaboration**:
-```bash
-cd crewai && python -m src.crewai_gym.main
-```
-
-4. **Test hybrid planning**:
-```bash
-cd sense-plan-act && python main.py
-```
-
-5. **Deploy to real robot**:
-```bash
-cd ros2-ur5 && ./working_commands.sh
-```
-
+<!-- 
 ## 📊 Comparison Framework
 
 All approaches are evaluated on:
@@ -148,71 +100,32 @@ All approaches are evaluated on:
 - **Generalization**: Performance on unseen tasks
 - **Robustness**: Handling of edge cases and failures
 - **Interpretability**: Understanding of decision-making process
-- **Real-world Transfer**: Simulation-to-reality gap
+- **Real-world Transfer**: Simulation-to-reality gap -->
 
 ## 🔬 Research Insights
 
 ### Key Findings
 1. **Pure Neural**: Fast prototyping, but limited systematic reasoning
 2. **Multi-Agent**: Better task decomposition, improved robustness
-3. **Hybrid**: Best of both worlds - systematic planning + flexible execution
-4. **Pure Symbolic**: Most interpretable, but requires extensive domain knowledge
+3. **Pure Symbolic**: Most interpretable, but requires extensive domain knowledge
+4. **Hybrid**: Best of both worlds - systematic planning + flexible execution
 5. **Real Robot**: Validates simulation findings, reveals practical constraints
 
-### Evolution Path
-```
-Simple LLM → Optimized LLM → Multi-Agent → Hybrid → Symbolic → Real Robot
-   ↓              ↓              ↓           ↓         ↓         ↓
-Learning    Self-Improvement  Collaboration Planning  Logic   Validation
-```
-
-## 🛠️ Development
-
-### Adding New Approaches
-1. Create new folder following naming convention
-2. Implement Sense-Plan-Code-Act interface
-3. Add evaluation metrics
-4. Update this README
-
-### Common Utilities
-- Environment wrappers in each folder
-- Shared evaluation metrics
-- Logging and visualization tools
-- Configuration management
-
-## 📈 Future Directions
-
-- **Foundation Models**: Integration with larger, more capable models
-- **Multimodal**: Vision-language integration for richer perception
-- **Transfer Learning**: Cross-domain knowledge transfer
-- **Hierarchical Planning**: Multi-level abstraction and planning
-- **Human-AI Collaboration**: Interactive learning and correction
-
+<!-- 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details. -->
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📚 Citation
 
 If you use this work in your research, please cite:
 
 ```bibtex
-@misc{minigrid-crewai-2025,
-  title={MiniGrid CrewAI: Multi-Paradigm AI Agent Research Platform},
-  author={Your Name},
+@misc{pesjak2025multimodal,
+  title={Multimodal planning in robotics},
+  author={Drejc Pesjak},
   year={2025},
-  url={https://github.com/your-username/minigrid-crewai}
+  url={https://github.com/DrejcPesjak/minigrid-crewai}
 }
 ```
-
----
-
-**Note**: This is an active research project. Individual components may be in different stages of development. Check individual folder READMEs for specific setup instructions and current status.
