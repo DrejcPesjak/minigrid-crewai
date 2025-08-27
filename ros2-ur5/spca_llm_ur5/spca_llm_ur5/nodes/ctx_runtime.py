@@ -1,8 +1,12 @@
 # ctx_runtime.py
-import threading, numpy as np
+import time, threading, numpy as np
 import rclpy
 from rclpy.node import Node
 import tf2_ros
+from rosgraph_msgs.msg import Clock
+from rclpy.duration import Duration
+from rclpy.time import Time as RosTime
+from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 
 from moveit.planning import MoveItPy
 
@@ -55,10 +59,29 @@ class Ctx:
         self.latest_rgb_header = None
         self.latest_depth_header = None
 
-
         # TF
         self.tfbuf = tf2_ros.Buffer()
         self.tfl   = tf2_ros.TransformListener(self.tfbuf, node, spin_thread=False)
+
+        # # Sim-time reset detection
+        # clock_qos = QoSProfile(depth=1)
+        # clock_qos.reliability = ReliabilityPolicy.BEST_EFFORT
+        # clock_qos.durability  = DurabilityPolicy.VOLATILE
+
+        # self._last_clock = None
+        # self._cooldown_deadline = 0.0
+        # self.node.create_subscription(Clock, '/clock', self._clock_cb, qos_profile=clock_qos)
+
+        # self.tfbuf = tf2_ros.Buffer(cache_time=Duration(seconds=0.3))
+        # self._make_tf_listener()  # creates self._tf_node + self.tfl
+
+        # clock_qos = QoSProfile(depth=1)
+        # clock_qos.reliability = ReliabilityPolicy.BEST_EFFORT   # << keep BEST_EFFORT
+        # clock_qos.durability  = DurabilityPolicy.VOLATILE
+        # self._last_clock = None
+        # self._cooldown_deadline = 0.0
+        # self._need_tf_recreate = False
+        # self.node.create_subscription(Clock, '/clock', self._clock_cb, qos_profile=clock_qos)
 
         # Perception caches
         self.bridge = CvBridge()
@@ -121,6 +144,17 @@ class Ctx:
     def _js_cb(self, msg: JointState):
         self.joint_state = msg
     
+
+    # def _clock_cb(self, msg: Clock):
+    #     t = msg.clock.sec + msg.clock.nanosec * 1e-9
+    #     if self._last_clock is not None and t < self._last_clock - 1e-6:
+    #         self.log.warn("Sim time jumped backwards; resetting TF and cooling down")
+    #         # Recreate TF to avoid stale data
+    #         self.tfbuf = tf2_ros.Buffer()
+    #         self.tfl   = tf2_ros.TransformListener(self.tfbuf, self.node, spin_thread=False)
+    #         self._cooldown_deadline = time.monotonic() + 2.0  # small grace period
+    #     self._last_clock = t
+    
     # ---- helpers ----
     def wait_for_current_state(self, timeout_s=2.0):
         now = self.node.get_clock().now()
@@ -134,3 +168,106 @@ class Ctx:
     def stop_motion(self):
         if self.tem:
             self.tem.stop_execution() 
+
+    # ---- TF ----
+    
+    # def _have_recent_joint_states(self, max_age=1.0):
+    #     js = self.joint_state
+    #     if js is None:
+    #         return False
+    #     now = self.node.get_clock().now().nanoseconds * 1e-9
+    #     js_t = js.header.stamp.sec + js.header.stamp.nanosec * 1e-9
+    #     return (now - js_t) < max_age
+    
+    # def _tf_is_fresh(self, max_age=0.5) -> bool:
+    #     try:
+    #         ts = self.tfbuf.lookup_transform(self.WORLD_FRAME, self.EEF_LINK, RosTime())
+    #         now = self.node.get_clock().now().nanoseconds * 1e-9
+    #         t   = ts.header.stamp.sec + ts.header.stamp.nanosec * 1e-9
+    #         return (now - t) < max_age
+    #     except Exception:
+    #         return False
+
+    # def ensure_ready(self, timeout=10.0) -> bool:
+    #     deadline = time.monotonic() + timeout
+    #     while time.monotonic() < deadline and rclpy.ok():
+    #         if time.monotonic() < self._cooldown_deadline:
+    #             rclpy.spin_once(self.node, timeout_sec=0.05)
+    #             continue
+
+    #         if self._need_tf_recreate:
+    #             self._make_tf_listener()
+    #             self._need_tf_recreate = False
+    #             # give it a breath to fill a few samples
+    #             rclpy.spin_once(self.node, timeout_sec=0.1)
+
+    #         # Services / action servers back?
+    #         if not self.cart_cli.service_is_ready():
+    #             self.cart_cli.wait_for_service(timeout_sec=0.5); continue
+    #         if not self.follow_traj_ac.server_is_ready():
+    #             self.follow_traj_ac.wait_for_server(timeout_sec=0.5); continue
+
+    #         # TF chain available "now"?
+    #         try:
+    #             if not self.tfbuf.can_transform(
+    #                     self.WORLD_FRAME, self.EEF_LINK, RosTime(),
+    #                     timeout=Duration(seconds=0.5)):
+    #                 rclpy.spin_once(self.node, timeout_sec=0.05); continue
+    #         except Exception:
+    #             rclpy.spin_once(self.node, timeout_sec=0.05); continue
+
+    #         # Optionally verify freshness
+    #         if not self._tf_is_fresh():  # helper from earlier reply
+    #             rclpy.spin_once(self.node, timeout_sec=0.05); continue
+
+    #         # Joint states & planning scene current?
+    #         if not self._have_recent_joint_states():
+    #             rclpy.spin_once(self.node, timeout_sec=0.05); continue
+    #         if not self.wait_for_current_state(timeout_s=0.5):
+    #             rclpy.spin_once(self.node, timeout_sec=0.05); continue
+
+    #         return True
+    #     return False
+    
+    # def _make_tf_listener(self):
+    #     if hasattr(self, "_tf_node") and self._tf_node is not None:
+    #         try: self._tf_node.destroy_node()
+    #         except Exception: pass
+    #         self._tf_node = None
+    #     self.tfbuf = tf2_ros.Buffer(cache_time=Duration(seconds=0.3))
+    #     self._tf_node = rclpy.create_node(f'ctx_tf_listener_{int(time.time()*1000)}')
+    #     self.tfl = tf2_ros.TransformListener(self.tfbuf, self._tf_node, spin_thread=True)
+
+
+    # def _drop_tf_listener(self):
+    #     try: self.tfl = None
+    #     except Exception: pass
+    #     try:
+    #         if hasattr(self, "_tf_node") and self._tf_node is not None:
+    #             self._tf_node.destroy_node()
+    #             self._tf_node = None
+    #     except Exception: pass
+
+    # def _rebuild_moveit(self):
+    #     # Drop references so the old PSM (and its TF) can die
+    #     try:
+    #         self.arm = self.gripper = self.psm = self.tem = self.robot = None
+    #     except Exception:
+    #         pass
+    #     self.robot   = MoveItPy(node_name=f'llm_actions_moveit_{int(time.time())}')
+    #     self.arm     = self.robot.get_planning_component(self.ARM_GROUP)
+    #     self.gripper = self.robot.get_planning_component(self.GRIPPER_GROUP)
+    #     self.psm     = self.robot.get_planning_scene_monitor()
+    #     try:
+    #         self.tem = self.robot.get_trajectory_execution_manager()
+    #     except Exception:
+    #         self.tem = None
+    
+    # def _clock_cb(self, msg: Clock):
+    #     t = msg.clock.sec + msg.clock.nanosec * 1e-9
+    #     if self._last_clock is not None and t < self._last_clock - 1e-6:
+    #         self.log.warn("Sim time jumped backwards; dropping TF listeners and cooling down")
+    #         self._drop_tf_listener()                           # unsubscribe now
+    #         self._cooldown_deadline = time.monotonic() + 0.6   # > tf_buffer_duration
+    #         self._need_tf_recreate = True
+    #     self._last_clock = t

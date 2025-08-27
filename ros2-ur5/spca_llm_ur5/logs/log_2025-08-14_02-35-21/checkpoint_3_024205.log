@@ -1,0 +1,6 @@
+Current level index: 3
+Stage: wait_exec
+Retry semantic: 1
+SPA round: 1
+Referee outcome: {"status": "success", "reason": "all success conditions satisfied"}
+Executor outcome: {}

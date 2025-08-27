@@ -2,10 +2,12 @@
 from pathlib import Path
 from ament_index_python.packages import get_package_share_directory
 
+WORLD_FILE = Path(get_package_share_directory('ur_yt_sim')) / "worlds" / "world_rgb_table_light.world"
+
 # read-only resources shipped with the package
 PKG_ROOT  = Path(__file__).resolve().parent.parent           # …/spca_llm_ur5
 SEED_ACTS = PKG_ROOT / "actions" / "agent_actions.py"
-
+CTX_PATHS = PKG_ROOT / "nodes" / "ctx_runtime.py"
 RESET_SCRIPT = PKG_ROOT / "scripts" / "reset_env.sh"
 
 PKG_SHARE = Path(get_package_share_directory('spca_llm_ur5'))

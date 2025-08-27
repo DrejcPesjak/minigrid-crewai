@@ -7,6 +7,7 @@ import yaml
 import time
 from pathlib import Path
 import subprocess, threading
+import signal
 
 import rclpy
 from rclpy.node import Node
@@ -21,11 +22,16 @@ import cv2
 from cv_bridge import CvBridge, CvBridgeError
 from sensor_msgs.msg import Image
 from rclpy.qos import qos_profile_sensor_data 
+from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 
-
-from spca_llm_ur5.scripts.runtime_paths import BASE_ACTS, TMP_ACTS, RESET_SCRIPT
+from spca_llm_ur5.scripts.runtime_paths import RUN_DIR, SEED_ACTS, BASE_ACTS, TMP_ACTS, RESET_SCRIPT, WORLD_FILE
 ACTIONS_FILE     = BASE_ACTS
 ACTIONS_TMP_FILE = TMP_ACTS
+DOMAIN_FILE = RUN_DIR / "domain.pddl"
+PROBLEM_FILE = RUN_DIR / "problem.pddl"
+
+LAUNCH_CMD = ["ros2", "launch", "ur_yt_sim", "spawn_ur5_camera_gripper_moveit.launch.py",
+            "world:=" + str(WORLD_FILE)]
 
 SPA_ROUNDS = 5
 MAX_CODER_RETRIES = 5
@@ -36,6 +42,12 @@ class Supervisor(Node):
         self.logger = self.get_logger()
         self.declare_parameter('curriculum_yaml', '')
 
+        self.proc = subprocess.Popen(LAUNCH_CMD, preexec_fn=os.setsid)  # own process group
+        time.sleep(10)  # give time for the process to start
+
+        self.log_dir = RUN_DIR / "logs" / f"log_{time.strftime('%Y-%m-%d_%H-%M-%S')}"
+        self.log_dir.mkdir(parents=True, exist_ok=True)
+
         curr_path = self.get_parameter('curriculum_yaml').get_parameter_value().string_value
         self.levels = self._load_curriculum(curr_path)   # [{group, path, doc}]
         if not self.levels:
@@ -43,8 +55,12 @@ class Supervisor(Node):
         # PDDL cache keyed by task_group
         self.group_cache = {}  # group -> {"pddl": (dom, prob) | None, "trusted": bool}
 
+        qos = QoSProfile(depth=10)
+        qos.reliability = ReliabilityPolicy.RELIABLE
+        qos.durability  = DurabilityPolicy.TRANSIENT_LOCAL
+
         # pubs/subs
-        self.dispatch_pub = self.create_publisher(String, '/task/dispatch', 10)
+        self.dispatch_pub = self.create_publisher(String, '/task/dispatch', qos)
         self.exec_cancel_pub   = self.create_publisher(String, '/executor/cancel', 10)
 
         self.ref_outcome = {'status': 'running', 'reason': ''}
@@ -67,6 +83,10 @@ class Supervisor(Node):
 
         self.coder_err_log = ""
 
+        # wait for Referee
+        self._exec_success_t = None
+        self._ref_grace_s = 5.0
+
         self.planner = PlannerLLM()
         self.coder   = CoderLLM()
         self.sense   = SenseLLM()
@@ -84,8 +104,10 @@ class Supervisor(Node):
         
         self.timer = self.create_timer(0.1, self._tick)
 
-        self.logger.info(f"Supervisor ready; {len(self.levels)} level(s) loaded.")
-        # time.sleep(10)  # give time for other nodes to start
+        checkpoint_level = "cube_near" #"levels/touch/level_07_cube_right.yaml"
+        reuse_agent_actions = True # reuse actions.py from previous run
+        reuse_pddls = True  # reuse PDDL files from previous run
+        self._load_checkpoints(checkpoint_level, reuse_agent_actions, reuse_pddls)
 
     # -------- helpers ----------
     def _task_cb(self, msg: String):
@@ -100,6 +122,30 @@ class Supervisor(Node):
             self.exec_outcome = json.loads(msg.data)
         except Exception:
             self.exec_outcome = {"status": "unknown", "msg": msg.data, "trace": ""}
+    
+    def _hard_reset(self):
+        # 1) graceful stop
+        os.killpg(self.proc.pid, signal.SIGINT)  # Ctrl-C to ros2 launch
+        try:
+            self.proc.wait(timeout=10)
+        except subprocess.TimeoutExpired:
+            os.killpg(self.proc.pid, signal.SIGTERM)
+            try:
+                self.proc.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                os.killpg(self.proc.pid, signal.SIGKILL)
+
+        # 2) (optional) hard cleanup if Gazebo hung
+        os.system("pkill -f gzserver || true; pkill -f gzclient || true")
+
+        # 3) relaunch fresh
+        self.logger.info("Supervisor: wating before relaunch...")
+        time.sleep(5)  # tiny breather so ports/shm clear
+        self.proc = subprocess.Popen(LAUNCH_CMD, preexec_fn=os.setsid)
+        self.logger.info("Supervisor: relaunched Gazebo with UR5, camera, and gripper.")
+        time.sleep(1)  # give time for the process to start
+        self._reset_world_async()
+        self.stage = 'resetting' 
 
     # def _reset_world_async(self):
     #     if self.reset_world_in_progress:
@@ -175,6 +221,13 @@ class Supervisor(Node):
             self.logger.error(f"Reset world service call failed: {e}")
             # Handle error: perhaps retry or skip level
             self.stage = 'idle' # Revert to idle to try again
+    
+    # def wait_for_services(self):
+    #     self.logger.info("Waiting for core services...")
+    #     self.cart_cli.wait_for_service()
+    #     self.follow_traj_ac.wait_for_server()
+    #     self.gripper_ac.wait_for_server()
+    #     self.logger.info("All core services and actions are ready.")
 
     def _abs_from(self, base_file: str, rel: str) -> str:
         return rel if os.path.isabs(rel) else os.path.join(os.path.dirname(base_file), rel)
@@ -202,6 +255,82 @@ class Supervisor(Node):
                     lvl_doc = {}
                 out.append({'group': 'default', 'path': lvl_path, 'doc': lvl_doc})
         return out
+    
+    def _load_checkpoints(self, checkpoint_level: str = None, reuse_agent_actions: bool = False, reuse_pddls: bool = False):
+        """
+        Start simulation from a specified level file.
+        If reuse_agent_actions is True, it will reuse the actions.py file.
+        If reuse_pddls is True, it will reuse PDDL files from previous runs.
+        """
+        if checkpoint_level:
+            self.logger.info(f"Loading checkpoint level: {checkpoint_level}")
+            for i, lvl in enumerate(self.levels):
+                if checkpoint_level in lvl['path']:
+                    self.idx = i
+                    break
+        # else: self.idx = 0  
+
+        # Load agent actions
+        if reuse_agent_actions and ACTIONS_TMP_FILE.exists():
+            # do nothing
+            self.logger.info(f"Reusing agent actions from {ACTIONS_TMP_FILE}")
+        else: # reset to seed
+            shutil.copy(SEED_ACTS, ACTIONS_FILE)
+            shutil.copy(SEED_ACTS, ACTIONS_TMP_FILE)
+            self.logger.info(f"Using seed agent actions from {SEED_ACTS}")
+
+        # Load PDDL files (only current level) - cache for the group
+        if reuse_pddls:
+            if DOMAIN_FILE.exists() and PROBLEM_FILE.exists():
+                self.logger.info(f"Reusing PDDL files: {DOMAIN_FILE}, {PROBLEM_FILE}")
+                group = self.levels[self.idx]["group"]
+                self._ensure_group_cache(group)
+                dom = DOMAIN_FILE.read_text()
+                prob = PROBLEM_FILE.read_text()
+                self.group_cache[group]["pddl"] = (dom, prob)
+                self.group_cache[group]["trusted"] = True
+            else:
+                self.logger.warn("PDDL files not found; will regenerate them.")
+        else:
+            # ignore
+            pass
+    
+    def _save_checkpoints_log(self):
+        """Save the current state of the supervisor to a log file."""
+        # random suffix
+        identifier= f"{self.idx}_{time.strftime('%H%M%S')}"
+        log_path = self.log_dir / f"checkpoint_{identifier}.log"
+        with open(log_path, 'w') as f:
+            f.write(f"Current level index: {self.idx}\n")
+            f.write(f"Stage: {self.stage}\n")
+            f.write(f"Retry semantic: {self.retry_semantic}\n")
+            f.write(f"SPA round: {self.spa_round}\n")
+            f.write(f"Referee outcome: {json.dumps(self.ref_outcome)}\n")
+            f.write(f"Executor outcome: {json.dumps(self.exec_outcome)}\n")
+        self.logger.info(f"Checkpoint saved to {log_path}")
+
+        # Copy agent actions and PDDL files to the log directory
+        if not self.log_dir.exists():
+            self.log_dir.mkdir(parents=True, exist_ok=True)
+
+        self.logger.info(f"Copying checkpoint files to {self.log_dir}...")
+        if not ACTIONS_FILE.exists() or not ACTIONS_TMP_FILE.exists():
+            self.logger.warn("Agent actions files do not exist; skipping copy.")
+        else:
+            shutil.copy(ACTIONS_FILE, self.log_dir / f"agent_actions_{identifier}.py")
+            shutil.copy(ACTIONS_TMP_FILE, self.log_dir / f"agent_actions_tmp_{identifier}.py")
+        if not RUN_DIR.exists():
+            self.logger.warn("Run directory does not exist; skipping PDDL copy.")
+        elif not DOMAIN_FILE.exists() or not PROBLEM_FILE.exists():
+            self.logger.warn("PDDL files do not exist; skipping copy.")
+        else:
+            shutil.copy(DOMAIN_FILE, self.log_dir / f"domain_{identifier}.pddl")
+            shutil.copy(PROBLEM_FILE, self.log_dir / f"problem_{identifier}.pddl")
+        # shutil.copy(ACTIONS_FILE, self.log_dir / f"agent_actions_{identifier}.py")
+        # shutil.copy(ACTIONS_TMP_FILE, self.log_dir / f"agent_actions_tmp_{identifier}.py")
+        # shutil.copy(RUN_DIR / "domain.pddl", self.log_dir / f"domain_{identifier}.pddl")
+        # shutil.copy(RUN_DIR / "problem.pddl", self.log_dir / f"problem_{identifier}.pddl")
+        # self.logger.info("Checkpoint files copied to log directory.")
 
     def _image_cb(self, msg: Image):
         try:
@@ -253,10 +382,13 @@ class Supervisor(Node):
 
     # self.stage ∈ {"idle", "resetting", "sense", "plan", "code", "wait_exec"}
     def _tick(self):
-        self.logger.info(f"🔄 SPA TICK {self.idx}/{len(self.levels)} - stage: {self.stage}, round: {self.spa_round}")
         # 0. finished?
         if self.idx >= len(self.levels):
             return
+        
+        self.logger.info(f"🔄 SPA TICK {self.idx}/31 ({self.levels[self.idx]['doc']['task_id']}) - " \
+                         f"stage: {self.stage}, " \
+                         f"round: {self.spa_round}")
         
         self._ensure_group_cache(self.levels[self.idx]["group"])
 
@@ -273,14 +405,27 @@ class Supervisor(Node):
         # 2. --------------------------------------------- sense -------------
         if self.stage == "sense":
             self.logger.info("👁️  SENSE - capturing scene and describing environment…")
+            time.sleep(5)  # wait for Gazebo to settle
             img = self._get_img(wait_s=10.0)            # blocking ≤10 s
-            # self.scene_text = self.sense.describe(      # may return ""
-            #     title=self.levels[self.idx]["doc"].get("title", ""),
-            #     description=self.levels[self.idx]["doc"].get("description", ""),
-            #     bgr_image=img)
-            self.scene_text =  'The image shows a workspace with objects arranged in a row. In the top row, there are four colored circles: blue, red, green, and another red. In the bottom row, there are three colored shapes: a green square on the left, a blue cube in the middle, and a red cube on the right. The gripper is positioned near the bottom of the image but is not touching any objects. The objective is to move the gripper to make contact with the blue cube in the middle of the bottom row.'
+            self.scene_text = self.sense.describe(      # may return ""
+                title=self.levels[self.idx]["doc"].get("title", ""),
+                description=self.levels[self.idx]["doc"].get("description", ""),
+                bgr_image=img)
+            # self.scene_text =  'The image shows a workspace with objects arranged in a row. In the top row, there are four colored circles: blue, red, green, and another red. In the bottom row, there are three colored shapes: a green square on the left, a blue cube in the middle, and a red cube on the right. The gripper is positioned near the bottom of the image but is not touching any objects. The objective is to move the gripper to make contact with the blue cube in the middle of the bottom row.'
             self.logger.info(f"Scene text: {self.scene_text[:100]}...")  # log first 100 chars
             self.stage = "plan"
+            return
+        
+        if self.stage == "sense_code":
+            self.logger.info("👁️  CODE SENSE - capturing scene and describing environment…")
+            img = self._get_img(wait_s=10.0)            # blocking ≤10 s
+            self.scene_text = self.sense.describe(      # may return ""
+                title=self.levels[self.idx]["doc"].get("title", ""),
+                description=self.levels[self.idx]["doc"].get("description", ""),
+                bgr_image=img)
+            # self.scene_text =  'The image shows a workspace with objects arranged in a row. In the top row, there are four colored circles: blue, red, green, and another red. In the bottom row, there are three colored shapes: a green square on the left, a blue cube in the middle, and a red cube on the right. The gripper is positioned near the bottom of the image but is not touching any objects. The objective is to move the gripper to make contact with the blue cube in the middle of the bottom row.'
+            self.logger.info(f"Scene text: {self.scene_text[:100]}...")  # log first 100 chars
+            self.stage = "code"
             return
 
         # 3. ---------------------------------------------- plan -------------
@@ -322,13 +467,13 @@ class Supervisor(Node):
 
             if missing:
                 self.logger.info(f"Missing actions → coder: {sorted(missing)}")
-                # res = self.coder.implement_actions(
-                #         actions=missing,
-                #         pddl_schemas=self.bundle.action_schemas,
-                #         plan_str=self.plan_str,
-                #         agent_state={"scene_text": self.scene_text},
-                #         past_error_log=self.coder_err_log)
-                res = type('Response', (object,), {'status': "ok"})()
+                res = self.coder.implement_actions(
+                        actions=missing,
+                        pddl_schemas=self.bundle.action_schemas,
+                        plan_str=self.plan_str,
+                        agent_state={"scene_text": self.scene_text},
+                        past_error_log=self.coder_err_log)
+                # res = type('Response', (object,), {'status': "ok"})()
                 self.logger.info(f"Coder result: {res}")
                 if res.status != "ok":              # merge/syntax failed
                     self._bump_spa_round(coder_failed=True)
@@ -339,8 +484,9 @@ class Supervisor(Node):
 
             # start executor with plan, and send level to referee)
             lvl_path = self.levels[self.idx]["path"]
+            edit_plan = self.plan_str
             # edit_plan = "[gripper_open()]"#, " + self.plan_str[1:]
-            edit_plan = "[gripper_open(), move_to_predefined()]"
+            # edit_plan = "[gripper_open(), move_to_predefined()]"
             payload = json.dumps({
                 "level_path": lvl_path,
                 "plan":       edit_plan,
@@ -377,8 +523,19 @@ class Supervisor(Node):
                 self.logger.info("🏆 REFEREE - ✅ level success! committing code & advancing…")
                 self._commit_tmp_to_main()
                 self._trust_pddl_for_group()
+                self._save_checkpoints_log()
+                self.dispatch_pub.publish(String(data=json.dumps({
+                    "level_path": None,
+                    "plan": None,
+                })))
                 self.idx   += 1                   # next level
                 self.stage  = "idle"
+                self.spa_round = 1                # reset round
+                self.ref_outcome = {'status': 'running', 'reason': ''}
+                self.exec_outcome = {}
+                self.retry_semantic = 0
+                self._exec_success_t = None
+                self._hard_reset()  # hard reset world
                 return
             
             if self.ref_status == "running" and self.exec_status == "unknown":
@@ -391,6 +548,15 @@ class Supervisor(Node):
             #     go to error handling
             
             # ----- FAILURE / RETRY ----------------------------------------
+            
+            if self.exec_status == "success" and self.ref_status == "running":
+                if self._exec_success_t is None:
+                    self._exec_success_t = time.monotonic()
+                # give the referee a moment to see final contacts
+                if time.monotonic() - self._exec_success_t < self._ref_grace_s:
+                    return
+                # after grace, if ref still hasn't judged, fall through to retry logic
+
             # if self.exec_status == "success":
             #     # Executed all actions successfully, but referee did not confirm success - we did not reach the goal state
             #     self.logger.warn("Executor success but referee did not confirm success.")
@@ -403,16 +569,25 @@ class Supervisor(Node):
             if self.retry_semantic < MAX_CODER_RETRIES:
                 self.logger.info(f"🔄 SEMANTIC RETRY {self.retry_semantic}/{MAX_CODER_RETRIES} - refining code on same plan…")
                 self.coder_err_log = ""
+                
                 if self.ref_status in ("fail", "timeout"):
                     self.logger.warn(f"❌ REFEREE - {self.ref_status} level outcome.")
                     # self.exec_cancel_pub.publish(String(data=json.dumps({"status": "cancelled"})))
                     self.coder_err_log = "Referee outcome:\n" + json.dumps(self.ref_outcome, indent=2)
+                    self._hard_reset()  # hard reset world
+
                 if self.exec_status not in ("success", "unknown"):
                     self.logger.warn(f"❌ EXECUTOR - {self.exec_status} level outcome.")
                     self.coder_err_log += "\nExecutor outcome:\n" + json.dumps(self.exec_outcome, indent=2)
+
+                if not self.coder_err_log and self.exec_status == "success":
+                    self.logger.warn("Executor reported success, but referee did not confirm success.")
+                    self.coder_err_log = "All actions executed successfully, but referee did not confirm success."
+
                 self.logger.info(f"Error log: {self.coder_err_log}")
                 self.retry_semantic += 1
-                self.stage = "code"               # re-run coder on same plan
+                # self.stage = "code"               # re-run coder on same plan
+                self.stage = "sense_code" 
 
                 # stop referee and executor
                 # self.exec_cancel_pub.publish(String(data=json.dumps({"status": "cancelled"})))
@@ -423,6 +598,7 @@ class Supervisor(Node):
                 # reset outcomes
                 self.ref_outcome = {'status': 'running', 'reason': ''}
                 self.exec_outcome = {}
+                self._exec_success_t = None
                 return
 
             # else: re-plan (semantic mismatch or coder exhausted)
@@ -449,11 +625,19 @@ class Supervisor(Node):
         except Exception as e:
             self.logger.error(f"Failed to reset tmp actions: {e}")
         # reset world and counters
+        self.dispatch_pub.publish(String(data=json.dumps({
+            "level_path": None,
+            "plan": None,
+        })))
         self.coder_err_log=""
         self.exec_outcome = {}
         self.ref_outcome = {'status':'running','reason':''}
         self.stage = 'idle'
         self.idx += 1
+        self.spa_round = 1
+        self.retry_semantic = 0
+        self._exec_success_t = None
+        self._hard_reset()  # hard reset world
 
     def _commit_tmp_to_main(self):
         """Commit tmp actions to main."""

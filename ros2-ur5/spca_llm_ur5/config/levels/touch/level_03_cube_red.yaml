@@ -1,0 +1,19 @@
+# config/levels/touch/level_03_cube_red.yaml
+task_group: touch
+task_id: touch_red_cube
+title: "Touch the red cube"
+description: "Move the gripper to make contact with the red cube."
+difficulty: 3
+time_limit_s: 120
+
+success:
+  collisions_true:
+    - [cobot, box_red]
+  collisions_false: []
+
+fail:
+  collisions_true:
+    - [box_red, ground_plane]   # fell off the table
+    - [cobot, table_lightgray]
+    - [cobot, cobot]  # collided with the table
+  collisions_false: []

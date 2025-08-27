@@ -3,6 +3,7 @@ from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from moveit_configs_utils import MoveItConfigsBuilder
 from moveit.utils import create_params_file_from_dict
+from launch.actions import SetEnvironmentVariable
 import os
 
 
@@ -33,12 +34,16 @@ def generate_launch_description():
     # moveit_params_dict.pop('sensors', None)
     # moveit_params_dict.pop('default_sensor', None)
     moveit_params_dict['octomap_frame'] = 'world'
-    moveit_params_dict['octomap_resolution'] = 0.02
+    moveit_params_dict['octomap_resolution'] = 0.02 # 2 cm resolution
 
     params_file = create_params_file_from_dict(moveit_params_dict, "/**")
 
 
     return LaunchDescription([
+
+        # # Set environment variables for logging - TF suppresses INFO/DEBUG/WARN logs
+        # SetEnvironmentVariable(name='CONSOLE_BRIDGE_LOG_LEVEL', value='ERROR'),
+        # SetEnvironmentVariable(name='RCUTILS_LOGGING_MIN_SEVERITY', value='WARN'),
     
         Node(
             package='spca_llm_ur5', 

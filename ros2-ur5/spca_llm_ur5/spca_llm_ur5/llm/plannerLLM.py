@@ -73,6 +73,10 @@ Environment description (full, verbatim from perception)
 --------------------------------------------------------
 {scene_text}
 
+Available high-level actions (from agent_actions.py)
+-----------------------------
+{actions_outline}
+
 Write DOMAIN and PROBLEM so that a plan exists using *only* the high-level
 actions above (plus any brand-new actions you define following the
 guidelines).  You are encouraged to invent whatever additional actions are
@@ -252,12 +256,12 @@ class PlannerLLM:
 
         # ---------- repair loop -----------------------------------------
         for attempt in range(1, MAX_RETRIES + 1):
-            # print(f"PlannerLLM tokens approx: {2*sum(len(m['content'].split()) for m in conversation)}")
-            # resp: PDDLResp = self.client.chat_completion(conversation)
-            # dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
-            # TMP_DOMAIN.write_text(dom_txt)
-            # TMP_PROBLEM.write_text(prob_txt)
-            dom_txt, prob_txt = TMP_DOMAIN.read_text(encoding="utf-8"), TMP_PROBLEM.read_text(encoding="utf-8")
+            print(f"PlannerLLM tokens approx: {round(sum(len(m['content']) for m in conversation)/3.75)}")
+            resp: PDDLResp = self.client.chat_completion(conversation)
+            dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
+            TMP_DOMAIN.write_text(dom_txt)
+            TMP_PROBLEM.write_text(prob_txt)
+            # dom_txt, prob_txt = TMP_DOMAIN.read_text(encoding="utf-8"), TMP_PROBLEM.read_text(encoding="utf-8")
 
             try:
                 up_problem, up_result, up_validation = self._solve_and_validate()
@@ -279,13 +283,13 @@ class PlannerLLM:
                 err_msg = str(exc)
                 traceback.print_exc()
 
-            # # ---- build refinement prompt ----
-            # conversation.extend([
-            #     {"role": "assistant", "content": resp.model_dump_json()},
-            #     {"role": "user",      "content": USER_PROMPT_TEMPLATE_REPAIR.format(
-            #         error_log    = err_msg,
-            #     )}
-            # ])
+            # ---- build refinement prompt ----
+            conversation.extend([
+                {"role": "assistant", "content": resp.model_dump_json()},
+                {"role": "user",      "content": USER_PROMPT_TEMPLATE_REPAIR.format(
+                    error_log    = err_msg,
+                )}
+            ])
             mode = "syntax repair"
             self._set_model(self.big_model)
             time.sleep(1)

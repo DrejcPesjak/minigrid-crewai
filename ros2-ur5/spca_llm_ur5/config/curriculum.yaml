@@ -2,8 +2,8 @@ groups:
   - name: touch
     levels:
       # - levels/touch/level_01_cube.yaml
-      # - levels/touch/level_02_cube_red.yaml
-      - levels/touch/level_03_cube_blue.yaml
+      - levels/touch/level_02_cube_blue.yaml
+      - levels/touch/level_03_cube_red.yaml
       - levels/touch/level_04_cube_green.yaml
       - levels/touch/level_05_cube_left.yaml
       - levels/touch/level_06_cube_middle.yaml
