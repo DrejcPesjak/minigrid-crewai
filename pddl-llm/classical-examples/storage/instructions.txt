@@ -1,0 +1,2 @@
+We have a hoist in a depot area, a crate in a container, and connected storage and transit areas. The hoist can lift crates from storage areas, carry them while moving through transit areas, and drop them in other storage areas. Storage areas can be clear or occupied, and the hoist must be at a connected area to interact with a storage area. The goal is to move the crate from the container into the depot by navigating through the connected areas. The available actions are lift, drop, move, go-out, and go-in.
+

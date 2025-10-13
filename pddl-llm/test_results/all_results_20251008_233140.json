@@ -1,0 +1,353 @@
+{
+  "openai/gpt-4o": {
+    "results": {
+      "blocksworld": {
+        "parsed": true,
+        "solved": true,
+        "correct": true,
+        "attempts": 1,
+        "plan": "SequentialPlan:\n    pick-up(b)\n    stack(b, a)\n    pick-up(c)\n    stack(c, b)\n    pick-up(d)\n    stack(d, c)",
+        "skipped": false
+      },
+      "gripper": {
+        "parsed": true,
+        "solved": true,
+        "correct": true,
+        "attempts": 1,
+        "plan": "SequentialPlan:\n    pick(ball1, room-a, left)\n    pick(ball2, room-a, right)\n    move(room-a, room-b)\n    drop(ball1, room-b, left)\n    drop(ball2, room-b, right)\n    move(room-b, room-a)\n    pick(ball3, room-a, left)\n    pick(ball4, room-a, right)\n    move(room-a, room-b)\n    drop(ball3, room-b, left)\n    drop(ball4, room-b, right)",
+        "skipped": false
+      },
+      "depot": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 2,
+        "plan": "SequentialPlan:\n    drop(crate1, pallet2, depot)\n    drop(crate2, pallet3, depot)",
+        "skipped": false
+      },
+      "driverlog": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "satellite": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 3,
+        "plan": "SequentialPlan:\n    turn_to(sat1, dir1, dir2)\n    switch_on(sat1, instr1)\n    calibrate(sat1, instr1, dir2)\n    turn_to(sat1, dir2, dir1)\n    take_image(sat1, phenom3, dir1, instr1, thermograph-mode)\n    turn_to(sat1, dir1, dir3)\n    take_image(sat1, phenom1, dir3, instr1, thermograph-mode)\n    turn_to(sat1, dir3, dir4)\n    take_image(sat1, phenom2, dir4, instr1, thermograph-mode)",
+        "skipped": false
+      },
+      "rovers": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 8,
+        "plan": "SequentialPlan:\n    navigate(rover1, wp1, wp2)",
+        "skipped": false
+      },
+      "tyreworld": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 5,
+        "plan": "SequentialPlan:\n    put-on-wheel(spare_wheel, the_hub)\n    inflate(spare_wheel)",
+        "skipped": false
+      },
+      "storage": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "logistics": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 8,
+        "plan": "SequentialPlan:\n    fly-airplane(plane2, location2-air, location2-loc)\n    load-airplane(package3, plane2, location2-loc)\n    fly-airplane(plane2, location2-loc, location2-air)\n    fly-airplane(plane2, location2-air, location3-air)\n    fly-airplane(plane2, location3-air, location4-air)\n    fly-airplane(plane2, location4-air, location4-loc)\n    unload-airplane(package3, plane2, location4-loc)\n    load-airplane(package4, plane2, location4-loc)\n    fly-airplane(plane2, location4-loc, location4-air)\n    fly-airplane(plane2, location4-air, location3-air)\n    fly-airplane(plane2, location3-air, location3-loc)\n    unload-airplane(package4, plane2, location3-loc)\n    load-airplane(package2, plane2, location3-loc)\n    fly-airplane(plane1, location1-air, location1-loc)\n    fly-airplane(plane2, location3-loc, location3-air)\n    fly-airplane(plane2, location3-air, location4-air)\n    fly-airplane(plane2, location4-air, location5-air)\n    fly-airplane(plane2, location5-air, location5-loc)\n    unload-airplane(package2, plane2, location5-loc)\n    fly-airplane(plane2, location5-loc, location5-air)\n    fly-airplane(plane2, location5-air, location4-air)\n    fly-airplane(plane2, location4-air, location3-air)\n    fly-airplane(plane2, location3-air, location2-air)\n    fly-airplane(plane2, location2-air, location2-loc)\n    load-airplane(package1, plane1, location1-loc)\n    fly-airplane(plane1, location1-loc, location1-air)\n    fly-airplane(plane1, location1-air, location2-air)\n    fly-airplane(plane1, location2-air, location3-air)\n    fly-airplane(plane1, location3-air, location4-air)\n    fly-airplane(plane1, location4-air, location5-air)\n    fly-airplane(plane1, location5-air, location6-air)\n    fly-airplane(plane1, location6-air, location6-loc)\n    fly-airplane(plane2, location2-loc, location2-air)\n    fly-airplane(plane2, location2-air, location3-air)\n    unload-airplane(package1, plane1, location6-loc)\n    fly-airplane(plane2, location3-air, location2-air)\n    load-airplane(package5, plane1, location6-loc)\n    fly-airplane(plane1, location6-loc, location6-air)\n    fly-airplane(plane1, location6-air, location5-air)\n    fly-airplane(plane2, location2-air, location1-air)\n    fly-airplane(plane1, location5-air, location5-loc)\n    load-airplane(package6, plane1, location5-loc)\n    fly-airplane(plane1, location5-loc, location5-air)\n    fly-airplane(plane1, location5-air, location4-air)\n    fly-airplane(plane1, location4-air, location3-air)\n    fly-airplane(plane1, location3-air, location2-air)\n    fly-airplane(plane1, location2-air, location2-loc)\n    unload-airplane(package5, plane1, location2-loc)\n    fly-airplane(plane1, location2-loc, location2-air)\n    fly-airplane(plane1, location2-air, location1-air)\n    fly-airplane(plane1, location1-air, location1-loc)\n    unload-airplane(package6, plane1, location1-loc)",
+        "skipped": false
+      },
+      "termes": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "floortile": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 1,
+        "plan": "SequentialPlan:\n    paint-down(robot2, tile9, tile6, black)\n    paint-down(robot2, tile9, tile8, black)\n    change-color(robot2, black, white)\n    move-down(robot2, tile9, tile6)\n    paint-down(robot2, tile6, tile3, white)\n    paint-down(robot2, tile6, tile5, white)\n    paint-down(robot2, tile6, tile9, white)\n    move-down(robot1, tile1, tile4)\n    change-color(robot2, white, black)\n    paint-down(robot1, tile4, tile1, white)\n    paint-down(robot1, tile4, tile7, white)\n    move-down(robot2, tile6, tile5)\n    paint-down(robot2, tile5, tile2, black)\n    paint-down(robot2, tile5, tile4, black)",
+        "skipped": false
+      }
+    },
+    "stats": {
+      "total_problems": 11,
+      "parsed_count": 8,
+      "solved_count": 8,
+      "correct_count": 2,
+      "compared_count": 8,
+      "skipped_count": 0,
+      "solved_at_k": {
+        "1": 3,
+        "2": 4,
+        "3": 5,
+        "4": 5,
+        "5": 6,
+        "6": 6,
+        "7": 6,
+        "8": 8,
+        "9": 8,
+        "10": 8
+      },
+      "total_attempts": 29,
+      "avg_attempts": 3.625,
+      "parsed_pct": 72.72727272727273,
+      "solved_pct": 72.72727272727273,
+      "correct_pct": 25.0
+    }
+  },
+  "openai/o1-mini*": {
+    "results": {
+      "blocksworld": {
+        "parsed": true,
+        "solved": true,
+        "correct": true,
+        "attempts": 7,
+        "plan": "SequentialPlan:\n    pick-up(b)\n    stack(b, a)\n    pick-up(c)\n    stack(c, b)\n    pick-up(d)\n    stack(d, c)",
+        "skipped": false
+      },
+      "gripper": {
+        "parsed": true,
+        "solved": true,
+        "correct": true,
+        "attempts": 1,
+        "plan": "SequentialPlan:\n    pick(left, ball1, a)\n    pick(right, ball2, a)\n    move(a, b)\n    drop(left, ball1, b)\n    drop(right, ball2, b)\n    move(b, a)\n    pick(left, ball3, a)\n    pick(right, ball4, a)\n    move(a, b)\n    drop(left, ball3, b)\n    drop(right, ball4, b)",
+        "skipped": false
+      },
+      "depot": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 1,
+        "plan": "SequentialPlan:\n    lift(truck2, crate2, pallet2, distributor1)\n    drop(truck2, crate2, pallet3, distributor1)\n    lift(truck2, crate1, pallet1, distributor1)\n    drop(truck2, crate1, pallet2, distributor1)",
+        "skipped": false
+      },
+      "driverlog": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 3,
+        "plan": "SequentialPlan:\n    walk(driver1, loc1, loc2)\n    walk(driver1, loc1, loc3)\n    board-truck(driver1, truck1, loc2)\n    drive-truck(truck1, loc2, loc3, driver1)",
+        "skipped": false
+      },
+      "satellite": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 3,
+        "plan": "SequentialPlan:\n    calibrate(direction1)\n    take_image(phenomenon1, thermograph)\n    take_image(phenomenon2, thermograph)\n    take_image(phenomenon3, thermograph)",
+        "skipped": false
+      },
+      "rovers": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 10,
+        "plan": "SequentialPlan:\n    calibrate(rover1, waypointa)\n    sample_rock(rover1, waypointa, rock1)\n    sample_rock(rover1, waypointa, rock2)\n    sample_soil(rover1, waypointa, soil1)\n    sample_soil(rover1, waypointa, soil2)\n    take_image(rover1, waypointa, image1, objective1, mode1)\n    take_image(rover1, waypointa, image2, objective2, mode1)\n    communicate_image_data(rover1, lander1, waypointa, waypointc, image1)\n    communicate_rock_data(rover1, lander1, waypointa, waypointc, rock1)\n    communicate_soil_data(rover1, lander1, waypointa, waypointc, soil1)\n    communicate_soil_data(rover1, lander1, waypointa, waypointc, soil2)\n    communicate_image_data(rover1, lander1, waypointa, waypointc, image2)\n    communicate_rock_data(rover1, lander1, waypointa, waypointc, rock2)",
+        "skipped": false
+      },
+      "tyreworld": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "storage": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "logistics": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 3,
+        "plan": "SequentialPlan:\n    load-truck(pkg6, truck6, loc6r)\n    drive-truck(truck6, loc6r, target-loc6, city6)\n    unload-truck(pkg6, truck6, target-loc6)\n    load-truck(pkg5, truck5, loc5r)\n    drive-truck(truck5, loc5r, target-loc5, city5)\n    unload-truck(pkg5, truck5, target-loc5)\n    load-truck(pkg4, truck4, loc4r)\n    drive-truck(truck4, loc4r, target-loc4, city4)\n    unload-truck(pkg4, truck4, target-loc4)\n    load-truck(pkg3, truck3, loc3r)\n    drive-truck(truck3, loc3r, target-loc3, city3)\n    unload-truck(pkg3, truck3, target-loc3)\n    load-truck(pkg2, truck2, loc2r)\n    drive-truck(truck2, loc2r, target-loc2, city2)\n    unload-truck(pkg2, truck2, target-loc2)\n    load-truck(pkg1, truck1, loc1r)\n    drive-truck(truck1, loc1r, target-loc1, city1)\n    unload-truck(pkg1, truck1, target-loc1)",
+        "skipped": false
+      },
+      "termes": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 3,
+        "plan": "SequentialPlan:\n    move(robot1, depot, pos5)\n    move(robot1, pos5, pos6)\n    create-block(robot1, pos6)\n    place-block(robot1, pos6, pos7)\n    create-block(robot1, pos6)\n    place-block(robot1, pos6, pos7)\n    move(robot1, pos6, pos10)\n    create-block(robot1, pos10)\n    place-block(robot1, pos10, pos14)\n    create-block(robot1, pos10)\n    place-block(robot1, pos10, pos14)\n    create-block(robot1, pos10)\n    place-block(robot1, pos10, pos14)",
+        "skipped": false
+      },
+      "floortile": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 6,
+        "plan": "SequentialPlan:\n    change-color(robot1, black, p1)\n    paint-down(robot1, p1, p2, black)\n    paint-down(robot1, p1, p3, black)",
+        "skipped": false
+      }
+    },
+    "stats": {
+      "total_problems": 11,
+      "parsed_count": 9,
+      "solved_count": 9,
+      "correct_count": 2,
+      "compared_count": 9,
+      "skipped_count": 0,
+      "solved_at_k": {
+        "7": 8,
+        "8": 8,
+        "9": 8,
+        "10": 9,
+        "1": 2,
+        "2": 2,
+        "3": 6,
+        "4": 6,
+        "5": 6,
+        "6": 7
+      },
+      "total_attempts": 37,
+      "avg_attempts": 4.111111111111111,
+      "parsed_pct": 81.81818181818183,
+      "solved_pct": 81.81818181818183,
+      "correct_pct": 22.22222222222222
+    }
+  },
+  "openai/gpt-4-0125-preview*": {
+    "results": {
+      "blocksworld": {
+        "parsed": true,
+        "solved": true,
+        "correct": true,
+        "attempts": 2,
+        "plan": "SequentialPlan:\n    pick-up(b)\n    stack(b, a)\n    pick-up(c)\n    stack(c, b)\n    pick-up(d)\n    stack(d, c)",
+        "skipped": false
+      },
+      "gripper": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "depot": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 10,
+        "plan": "SequentialPlan:\n    drop(pallet3, crate2, distributor2)\n    lift(pallet2, crate2, distributor1)\n    drop(pallet2, crate1, distributor1)",
+        "skipped": false
+      },
+      "driverlog": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "satellite": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "rovers": {
+        "parsed": true,
+        "solved": true,
+        "correct": false,
+        "attempts": 6,
+        "plan": "SequentialPlan:\n    calibrate(rover1, objective1, waypoint1)\n    take_image(rover1, objective1, mode2)\n    communicate_image_data(rover1, objective1, mode2, waypoint3)",
+        "skipped": false
+      },
+      "tyreworld": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "storage": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "logistics": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 10,
+        "error": "Max attempts reached",
+        "skipped": false
+      },
+      "termes": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 0,
+        "error": "Skipped due to consecutive failures",
+        "skipped": true
+      },
+      "floortile": {
+        "parsed": false,
+        "solved": false,
+        "correct": null,
+        "attempts": 0,
+        "error": "Skipped due to consecutive failures",
+        "skipped": true
+      }
+    },
+    "stats": {
+      "total_problems": 11,
+      "parsed_count": 3,
+      "solved_count": 3,
+      "correct_count": 1,
+      "compared_count": 3,
+      "skipped_count": 2,
+      "solved_at_k": {
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 3,
+        "1": 0
+      },
+      "total_attempts": 18,
+      "avg_attempts": 6.0,
+      "parsed_pct": 27.27272727272727,
+      "solved_pct": 27.27272727272727,
+      "correct_pct": 33.33333333333333
+    }
+  }
+}

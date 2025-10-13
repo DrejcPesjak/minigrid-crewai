@@ -1,0 +1,2 @@
+A robot with two grippers (left and right) starts in room A where there are four balls. The robot has both grippers free and needs to transport all four balls from room A to room B. The robot can move between rooms, pick up balls with its grippers when they are free, and drop balls in rooms to free up the grippers. The available actions are move, pick, and drop.
+

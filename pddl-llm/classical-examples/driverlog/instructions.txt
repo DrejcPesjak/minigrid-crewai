@@ -1,0 +1,2 @@
+We have two drivers, two trucks, and two packages at different locations connected by roads and paths. Both drivers start at one location while both trucks and packages start at another location. The trucks are initially empty and can only be driven when a driver boards them. Drivers can walk between locations on paths or drive trucks on roads. The goal is to get one driver and one truck to a specific destination while keeping both packages at their starting location. The available actions are load-truck, unload-truck, board-truck, disembark-truck, drive-truck, and walk.
+

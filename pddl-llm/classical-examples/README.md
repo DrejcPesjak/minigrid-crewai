@@ -1,0 +1,1 @@
+Adapted from the [classical-domains](https://github.com/AI-Planning/classical-domains) repository.

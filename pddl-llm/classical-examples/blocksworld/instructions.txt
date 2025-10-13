@@ -1,0 +1,2 @@
+We have a robotic arm with a hand that is currently empty. There are four blocks labeled A, B, C, and D, all sitting separately on the table with nothing on top of them. The goal is to build a tower by stacking the blocks in a specific order: block D should be on top of block C, block C on top of block B, and block B on top of block A, creating a tower with A at the bottom and D at the top. The available actions are pick-up, put-down, stack, and unstack.
+

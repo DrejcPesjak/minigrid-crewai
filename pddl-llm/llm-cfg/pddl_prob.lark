@@ -1,0 +1,105 @@
+// ---------- PDDL Problem Grammar (Lark, problem-only, conflicts resolved) ----------
+start: problem
+
+// ===================== PROBLEM =====================
+problem: "(" "define" problem_decl problem_domain require_def? object_decl? init goal prob_constraints? metric_spec? ")"
+
+problem_decl: "(" "problem" NAME ")"
+problem_domain: "(" ":" "domain" NAME ")"
+
+// ===================== REQUIREMENTS & TYPES =====================
+require_def: "(" ":" "requirements" REQUIRE_KEY+ ")"
+REQUIRE_KEY: ":" NAME
+
+object_decl: "(" ":" "objects" typed_name_list ")"
+
+typed_name_list: ( NAME* | single_type_name_list+ NAME* )
+single_type_name_list: NAME+ "-" type
+
+typed_variable_list: ( VARIABLE* | single_type_var_list+ VARIABLE* )
+single_type_var_list: VARIABLE+ "-" type
+
+type: "(" "either" prim_type+ ")" | prim_type
+prim_type: NAME
+
+// ===================== INIT & GOAL =====================
+init: "(" ":" "init" init_el* ")"
+
+init_el: name_literal
+       | "(" "=" f_head NUMBER ")"
+       | "(" NUMBER name_literal ")"          // timed initial literal
+
+name_literal: atomic_name_formula | "(" "not" atomic_name_formula ")"
+atomic_name_formula: "(" predicate NAME* ")"
+
+goal: "(" ":" "goal" goal_desc ")"
+
+// ===================== GOAL DESC + ATOMS/TERMS/EXPR =====================
+goal_desc: atomic_term_formula
+         | "(" "and" goal_desc* ")"
+         | "(" "or" goal_desc* ")"
+         | "(" "not" goal_desc ")"
+         | "(" "imply" goal_desc goal_desc ")"
+         | "(" "exists" "(" typed_variable_list ")" goal_desc ")"
+         | "(" "forall" "(" typed_variable_list ")" goal_desc ")"
+         | f_comp
+         | "(" "=" term term ")"
+
+f_comp: "(" binary_comp f_exp f_exp ")"
+
+atomic_term_formula: "(" predicate term* ")"
+predicate: NAME
+term: NAME | VARIABLE
+
+f_exp: NUMBER
+     | "(" binary_op f_exp f_exp ")"
+     | "(" "-" f_exp ")"
+     | f_head
+
+f_head: "(" function_symbol term* ")" | function_symbol
+function_symbol: NAME
+
+binary_op: "*" | "+" | "-" | "/"
+binary_comp: ">" | "<" | "=" | ">=" | "<="
+
+// ===================== CONSTRAINTS (PDDL3) =====================
+// NOTE: Fold 'preference' into con_gd to avoid ambiguity with (and ...).
+prob_constraints: "(" ":" "constraints" con_gd ")"
+
+con_gd: "(" "and" con_gd* ")"
+      | "(" "forall" "(" typed_variable_list ")" con_gd ")"
+      | "(" "preference" NAME? con_gd ")"          // PDDL3 preference
+      | "(" "at_end" goal_desc ")"
+      | "(" "always" goal_desc ")"
+      | "(" "sometime" goal_desc ")"
+      | "(" "within" NUMBER goal_desc ")"
+      | "(" "at-most-once" goal_desc ")"
+      | "(" "sometime-after" goal_desc goal_desc ")"
+      | "(" "sometime-before" goal_desc goal_desc ")"
+      | "(" "always-within" NUMBER goal_desc goal_desc ")"
+      | "(" "hold-during" NUMBER NUMBER goal_desc ")"
+      | "(" "hold-after" NUMBER goal_desc ")"
+
+// ===================== METRICS =====================
+metric_spec: "(" ":" "metric" optimization metric_f_exp ")"
+optimization: "minimize" | "maximize"
+
+metric_f_exp: "(" binary_op metric_f_exp metric_f_exp ")"
+            | "(" ( "*" | "/" ) metric_f_exp metric_f_exp+ ")"
+            | "(" "-" metric_f_exp ")"
+            | NUMBER
+            | "(" function_symbol NAME* ")"
+            | function_symbol
+            | "total-time"
+            | "(" "is-violated" NAME ")"
+
+// ===================== LEXER / TOKENS =====================
+NAME: /[A-Za-z][A-Za-z0-9_-]*/
+VARIABLE: /\?[A-Za-z][A-Za-z0-9_-]*/
+NUMBER: /[0-9]+(\.[0-9]+)?/
+
+COMMENT: /;[^\n\r]*/
+%ignore COMMENT
+
+%import common.WS
+%ignore WS

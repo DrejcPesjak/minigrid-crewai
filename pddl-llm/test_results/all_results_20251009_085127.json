@@ -1,0 +1,147 @@
+{
+  "openai/gpt-5": {
+    "results": {},
+    "stats": {
+      "total_problems": 11,
+      "parsed_count": 11,
+      "solved_count": 11,
+      "correct_count": 2,
+      "compared_count": 11,
+      "skipped_count": 0,
+      "solved_at_k": {
+        "1": 9,
+        "2": 9,
+        "3": 9,
+        "4": 11,
+        "5": 11,
+        "6": 11,
+        "7": 11,
+        "8": 11,
+        "9": 11,
+        "10": 11
+      },
+      "total_attempts": 17,
+      "avg_attempts": 1.5454545454545454,
+      "parsed_pct": 100.0,
+      "solved_pct": 100.0,
+      "correct_pct": 18.181818181818183
+    },
+    "incomplete": false
+  },
+  "openai/gpt-5-mini": {
+    "results": {},
+    "stats": {
+      "total_problems": 11,
+      "parsed_count": 11,
+      "solved_count": 11,
+      "correct_count": 3,
+      "compared_count": 11,
+      "skipped_count": 0,
+      "solved_at_k": {
+        "1": 9,
+        "2": 10,
+        "3": 10,
+        "4": 11,
+        "5": 11,
+        "6": 11,
+        "7": 11,
+        "8": 11,
+        "9": 11,
+        "10": 11
+      },
+      "total_attempts": 15,
+      "avg_attempts": 1.3636363636363635,
+      "parsed_pct": 100.0,
+      "solved_pct": 100.0,
+      "correct_pct": 27.27272727272727
+    },
+    "incomplete": false
+  },
+  "openai/o3": {
+    "results": {},
+    "stats": {
+      "total_problems": 11,
+      "parsed_count": 10,
+      "solved_count": 10,
+      "correct_count": 2,
+      "compared_count": 10,
+      "skipped_count": 0,
+      "solved_at_k": {
+        "1": 5,
+        "2": 9,
+        "3": 9,
+        "4": 9,
+        "5": 9,
+        "6": 9,
+        "7": 10,
+        "8": 10,
+        "9": 10,
+        "10": 10
+      },
+      "total_attempts": 20,
+      "avg_attempts": 2.0,
+      "parsed_pct": 90.9090909090909,
+      "solved_pct": 90.9090909090909,
+      "correct_pct": 20.0
+    },
+    "incomplete": false
+  },
+  "openai/gpt-4.1": {
+    "results": {},
+    "stats": {
+      "total_problems": 11,
+      "parsed_count": 9,
+      "solved_count": 9,
+      "correct_count": 2,
+      "compared_count": 9,
+      "skipped_count": 0,
+      "solved_at_k": {
+        "1": 5,
+        "2": 8,
+        "3": 9,
+        "4": 9,
+        "5": 9,
+        "6": 9,
+        "7": 9,
+        "8": 9,
+        "9": 9,
+        "10": 9
+      },
+      "total_attempts": 14,
+      "avg_attempts": 1.5555555555555556,
+      "parsed_pct": 81.81818181818183,
+      "solved_pct": 81.81818181818183,
+      "correct_pct": 22.22222222222222
+    },
+    "incomplete": false
+  },
+  "openai/o4-mini": {
+    "results": {},
+    "stats": {
+      "total_problems": 11,
+      "parsed_count": 10,
+      "solved_count": 10,
+      "correct_count": 2,
+      "compared_count": 10,
+      "skipped_count": 0,
+      "solved_at_k": {
+        "1": 6,
+        "2": 9,
+        "3": 10,
+        "4": 10,
+        "5": 10,
+        "6": 10,
+        "7": 10,
+        "8": 10,
+        "9": 10,
+        "10": 10
+      },
+      "total_attempts": 15,
+      "avg_attempts": 1.5,
+      "parsed_pct": 90.9090909090909,
+      "solved_pct": 90.9090909090909,
+      "correct_pct": 20.0
+    },
+    "incomplete": false
+  }
+}

@@ -1,0 +1,156 @@
+// ---------- PDDL Domain Grammar (Lark, domain-only) ----------
+start: domain
+
+// ===================== DOMAINS =====================
+domain: "(" "define" domain_name require_def? types_def? constants_def? predicates_def? functions_def? constraints? structure_def* ")"
+domain_name: "(" "domain" NAME ")"
+
+require_def: "(" ":" "requirements" REQUIRE_KEY+ ")"
+REQUIRE_KEY: ":" NAME
+
+types_def: "(" ":" "types" typed_name_list ")"
+
+// If have any typed names, they must come FIRST!
+typed_name_list: ( NAME* | single_type_name_list+ NAME* )
+single_type_name_list: NAME+ "-" type
+
+type: "(" "either" prim_type+ ")" | prim_type
+prim_type: NAME
+
+functions_def: "(" ":" "functions" function_list ")"
+function_list: ( atomic_function_skeleton+ ( "-" function_type )? )*
+
+atomic_function_skeleton: "(" function_symbol typed_variable_list ")"
+function_symbol: NAME
+function_type: STR_NUMBER
+
+constants_def: "(" ":" "constants" typed_name_list ")"
+
+predicates_def: "(" ":" "predicates" atomic_formula_skeleton+ ")"
+atomic_formula_skeleton: "(" predicate typed_variable_list ")"
+predicate: NAME
+
+// If have any typed variables, they must come FIRST!
+typed_variable_list: ( VARIABLE* | single_type_var_list+ VARIABLE* )
+single_type_var_list: VARIABLE+ "-" type
+
+constraints: "(" ":" "constraints" con_gd ")"
+
+structure_def: action_def | durative_action_def | derived_def
+
+// ===================== ACTIONS =====================
+action_def: "(" ":" "action" action_symbol ":" "parameters" "(" typed_variable_list ")" action_def_body ")"
+action_symbol: NAME
+
+action_def_body: ( ":" "precondition" ( "()" | goal_desc ) )? ( ":" "effect" ( "()" | effect ) )?
+
+goal_desc: atomic_term_formula
+         | "(" "and" goal_desc* ")"
+         | "(" "or" goal_desc* ")"
+         | "(" "not" goal_desc ")"
+         | "(" "imply" goal_desc goal_desc ")"
+         | "(" "exists" "(" typed_variable_list ")" goal_desc ")"
+         | "(" "forall" "(" typed_variable_list ")" goal_desc ")"
+         | f_comp
+         | "(" "=" term term ")"
+
+f_comp: "(" binary_comp f_exp f_exp ")"
+
+atomic_term_formula: "(" predicate term* ")"
+term: NAME | VARIABLE
+
+// ===================== DURATIVE ACTIONS =====================
+durative_action_def: "(" ":" "durative-action" action_symbol ":" "parameters" "(" typed_variable_list ")" da_def_body ")"
+
+da_def_body: ":" "duration" duration_constraint
+           | ":" "condition" ( "()" | da_gd )
+           | ":" "effect"   ( "()" | da_effect )
+
+da_gd: pref_timed_gd
+     | "(" "and" da_gd* ")"
+     | "(" "forall" "(" typed_variable_list ")" da_gd ")"
+
+pref_timed_gd: timed_gd | "(" "preference" NAME? timed_gd ")"
+
+timed_gd: "(" time_specifier goal_desc ")" | "(" "over_all" goal_desc ")"
+
+time_specifier: "atstart" | "atend"
+interval: "over_all"
+
+// ===================== DERIVED DEFINITIONS =====================
+derived_def: "(" ":" "derived" atomic_formula_skeleton goal_desc ")"
+
+// ===================== EXPRESSIONS =====================
+f_exp: NUMBER
+     | "(" binary_op f_exp f_exp ")"
+     | "(" "-" f_exp ")"
+     | f_head
+
+f_head: "(" function_symbol term* ")" | function_symbol
+
+effect: "(" "and" c_effect* ")" | c_effect
+
+c_effect: "(" "forall" "(" typed_variable_list ")" effect ")"
+        | "(" "when" goal_desc cond_effect ")"
+        | p_effect
+
+p_effect: "(" assign_op f_head f_exp ")"
+        | "(" "not" atomic_term_formula ")"
+        | atomic_term_formula
+
+cond_effect: "(" "and" p_effect* ")" | p_effect
+
+binary_op: "*" | "+" | "-" | "/"
+binary_comp: ">" | "<" | "=" | ">=" | "<="
+
+assign_op: "assign" | "scale-up" | "scale-down" | "increase" | "decrease"
+
+// ===================== DURATIONS =====================
+duration_constraint: "(" "and" simple_duration_constraint+ ")" | "()" | simple_duration_constraint
+simple_duration_constraint: "(" dur_op "?" "duration" dur_value ")" | "(" time_specifier simple_duration_constraint ")"
+dur_op: "<=" | ">=" | "="
+dur_value: f_exp      // NOTE: NUMBER removed here to avoid R/R with f_exp
+
+da_effect: "(" "and" da_effect* ")"
+         | timed_effect
+         | "(" "forall" "(" typed_variable_list ")" da_effect ")"
+         | "(" "when" da_gd timed_effect ")"
+         | f_assign_da               // avoid duplicate paren-shape
+
+timed_effect: "(" time_specifier da_effect ")"
+            | "(" time_specifier f_assign_da ")"
+            | f_assign                // timed direct numeric assignment (non-DA expr)
+
+f_assign_da: "(" assign_op f_head f_exp_da ")"
+f_exp_da: "(" ( binary_op f_exp_da f_exp_da | "-" f_exp_da ) ")"
+        | "?" "duration"
+        | f_exp
+
+// ===================== PDDL3 state trajectory constraints (domain-level) =====================
+con_gd: "(" "and" con_gd* ")"
+      | "(" "forall" "(" typed_variable_list ")" con_gd ")"
+      | "(" "at_end" goal_desc ")"
+      | "(" "always" goal_desc ")"
+      | "(" "sometime" goal_desc ")"
+      | "(" "within" NUMBER goal_desc ")"
+      | "(" "at-most-once" goal_desc ")"
+      | "(" "sometime-after" goal_desc goal_desc ")"
+      | "(" "sometime-before" goal_desc goal_desc ")"
+      | "(" "always-within" NUMBER goal_desc goal_desc ")"
+      | "(" "hold-during" NUMBER NUMBER goal_desc ")"
+      | "(" "hold-after" NUMBER goal_desc ")"
+
+// Helper for non-DA numeric assign (used in timed_effect)
+f_assign: "(" assign_op f_head f_exp ")"
+
+// ===================== LEXER / TOKENS =====================
+NAME: /[A-Za-z][A-Za-z0-9_-]*/
+VARIABLE: /\?[A-Za-z][A-Za-z0-9_-]*/
+NUMBER: /[0-9]+(\.[0-9]+)?/
+STR_NUMBER: NUMBER
+
+COMMENT: /;[^\n\r]*/
+%ignore COMMENT
+
+%import common.WS
+%ignore WS

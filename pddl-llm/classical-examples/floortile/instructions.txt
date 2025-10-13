@@ -1,0 +1,2 @@
+Two robots with different colors (one has white, one has black) start on a grid of floor tiles. The robots can move between adjacent tiles (up, down, left, right), paint adjacent tiles with their current color, and change colors. Each robot occupies one tile at a time, making that tile unavailable for others. The goal is to paint a specific checkerboard pattern on the grid where tiles alternate between white and black colors according to a predetermined layout. The available actions are change-color, paint-up, paint-down, move-up, move-down, move-right, and move-left.
+
