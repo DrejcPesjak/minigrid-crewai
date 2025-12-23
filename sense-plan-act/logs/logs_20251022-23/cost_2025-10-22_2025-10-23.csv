@@ -1,3 +1,3 @@
 start_time,end_time,start_time_iso,end_time_iso,amount_value,amount_currency,line_item,project_id,organization_id,organization_name,project_name
-1761091200,1761177600,2025-10-22T00:00:00+00:00,2025-10-23T00:00:00+00:00,1.9504731000000002,usd,,proj_WNvpsD6aHStMKE863iVzao8P,org-oNO570RqW2fdYzH4TpKVkt9B,Personal,Default Project
-1761177600,1761264000,2025-10-23T00:00:00+00:00,2025-10-24T00:00:00+00:00,0.45620600000000006,usd,,proj_WNvpsD6aHStMKE863iVzao8P,org-oNO570RqW2fdYzH4TpKVkt9B,Personal,Default Project
+1761091200,1761177600,2025-10-22T00:00:00+00:00,2025-10-23T00:00:00+00:00,1.9504731000000002,usd,,proj_ANONYMIZED,org-ANONYMIZED,Anonymous,Default Project
+1761177600,1761264000,2025-10-23T00:00:00+00:00,2025-10-24T00:00:00+00:00,0.45620600000000006,usd,,proj_ANONYMIZED,org-ANONYMIZED,Anonymous,Default Project

@@ -1,4 +1,4 @@
-# Multimodal planning in robotics
+# Sense-Plan-Code-Act
 
 A comprehensive research platform exploring different approaches to embodied AI and robotic manipulation, from simulation to real-world deployment. This project systematically compares neural, symbolic, and hybrid approaches to AI agent development across multiple frameworks.
 
@@ -17,7 +17,7 @@ The project follows a **Sense-Plan-Code-Act** paradigm across all implementation
 
 ## 📁 Folder Structure & Approaches
 
-**Note**: The final version of the system is in the `sense-plan-act/` and `ros2-ur5/` folders. Other folders represent early prototypes and alternative approaches. A polished version of these two will be released soon.
+**Note**: The final version of the system is in the `sense-plan-act/` and `ros2-ur5/` folders. Other folders represent early prototypes and alternative approaches. 
 
 ### 🤖 Pure Neural Approaches
 
@@ -56,6 +56,12 @@ The project follows a **Sense-Plan-Code-Act** paradigm across all implementation
 - LLM-assisted domain and problem generation
 - Plan validation and optimization
 
+```bash
+cd pddl-llm
+pip install -r requirements.txt
+python test_all_models.py
+```
+
 
 ### 🧠 Hybrid Symbolic-Neural
 
@@ -65,6 +71,14 @@ The project follows a **Sense-Plan-Code-Act** paradigm across all implementation
 - Automatic Python code generation
 - Progressive difficulty through BabyAI/MiniGrid tasks
 - Dynamic code injection and hot reloading
+
+```bash
+cd sense-plan-act
+pip install -r requirements.txt
+python main.py
+# or resume from checkpoint:
+python main.py --start-category unlock_door --keep-agent --keep-pddl
+```
 
 
 #### [`pddl-code-minigrid/`](pddl-code-minigrid/)
@@ -86,9 +100,19 @@ The project follows a **Sense-Plan-Code-Act** paradigm across all implementation
 - Real-world validation of simulation strategies
 
 ```bash
-# Setup (see ros2-ur5/ros-install_pretty2.sh for full installation)
-cd ros2-ur5
-source working_commands.sh
+# Follow ros2-ur5/ros-install_pretty2.md for full ROS2/Gazebo/MoveIt2 installation
+```
+
+#### [`rl-baselines/`](rl-baselines/)
+**Reinforcement Learning Baseline**
+- PPO/A2C training on BabyAI environments
+- Derived from lcswillems/rl-starter-files
+- Success rate tracking and ensemble analysis
+
+```bash
+cd rl-baselines/rl-starter-files
+pip install -r requirements.txt
+python -m scripts.train --algo ppo --env BabyAI-GoToRedBallGrey-v0 --model MyModel-v1 --frames 250000 --seed 1
 ```
 
 <!-- 

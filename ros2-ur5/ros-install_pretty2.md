@@ -1,7 +1,3 @@
-Below is the **final, self‑contained “fresh‑install” guide** that **exactly matches the steps you and I ended up taking**, including the two manual tweaks you called out.
-
----
-
 # 🛠️ UR5 + Robotiq 2F‑85 + RGB‑D camera
 
 ### ROS 2 Humble • Gazebo 11 • MoveIt 2
@@ -165,8 +161,3 @@ rm -rf build install log
 colcon build --symlink-install
 source install/setup.bash
 ```
-
----
-
-✅ You now have a reproducible install path that matches the troubleshooting we did—complete with the **Robotiq directory cull** and the **camera texture + package.xml fixes**.
-

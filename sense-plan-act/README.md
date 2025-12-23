@@ -444,6 +444,32 @@ The client automatically routes to the correct API endpoint based on the model p
 
 ---
 
+## Setup
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Set API Key
+
+Create a `.env` file in this directory (or export the variable):
+
+```bash
+# .env
+OPENAI_API_KEY=sk-...
+```
+
+Or export directly:
+```bash
+export OPENAI_API_KEY="sk-..."
+```
+
+For local models via Ollama, ensure the server is running on `localhost:11434`.
+
+---
+
 ## Running the System
 
 ### Basic Execution
