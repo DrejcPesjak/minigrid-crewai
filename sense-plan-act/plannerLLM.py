@@ -14,6 +14,7 @@ from unified_planning.shortcuts import OneshotPlanner, PlanValidator
 from unified_planning.engines import PlanGenerationResultStatus
 
 from llmclient import ChatGPTClient
+from metrics_logger import MetricsLogger
 
 # --------------------------------------------------------------------------- #
 #  CONSTANTS / PROMPTS
@@ -168,11 +169,12 @@ class PlannerLLM:
     *One* call → possibly many LLM repair rounds internally → PlanBundle.
     """
 
-    def __init__(self):
+    def __init__(self, metrics: Optional[MetricsLogger] = None):
         self.big_model   = "openai/o3"
         self.small_model = "openai/o4-mini"
         self.client      = ChatGPTClient(self.big_model, PDDLResp)
         self._schemas    = {}          # cached after a success
+        self.metrics     = metrics     # optional MetricsLogger
     
     def _set_model(self, model_name: str):
         if self.client.model_name != model_name.split("/")[-1]:
@@ -255,11 +257,18 @@ class PlannerLLM:
         # ---------- repair loop -----------------------------------------
         for attempt in range(1, MAX_RETRIES + 1):
             print(f"PlannerLLM tokens approx: {2*sum(len(m['content'].split()) for m in conversation)}")
+
+            t0 = time.time()
             resp: PDDLResp = self.client.chat_completion(conversation)
+            duration = time.time() - t0
+            
             dom_txt, prob_txt = resp.domain.strip(), resp.problem.strip()
             TMP_DOMAIN.write_text(dom_txt)
             TMP_PROBLEM.write_text(prob_txt)
             # dom_txt, prob_txt = TMP_DOMAIN.read_text().strip(), TMP_PROBLEM.read_text().strip()
+
+            if self.metrics:
+                self.metrics.log_planner_mode(kind=mode, model=getattr(self.client, "model_name", "unknown"), duration_s=duration)
 
             try:
                 up_problem, up_result, up_validation = self._solve_and_validate()
@@ -291,7 +300,7 @@ class PlannerLLM:
                     # prev_problem = prob_txt
                 )}
             ])
-            mode = "syntax repair"
+            mode = "syntax"
             self._set_model(self.big_model)
             time.sleep(1)
 

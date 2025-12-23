@@ -1,0 +1,5 @@
+(define (problem reach_goal_problem)
+ (:domain mini_empty_navigation)
+ (:objects agent1 - agent goal_green - goal)
+ (:init (alive agent1))
+ (:goal (at_goal)))

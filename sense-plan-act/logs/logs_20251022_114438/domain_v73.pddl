@@ -1,0 +1,30 @@
+(define (domain locked_room_highlevel)
+ (:requirements :strips :typing)
+ (:types agent key)
+ (:predicates
+  (blue_room_open)
+  (have_key)
+  (green_door_unlocked)
+  (at_goal)
+ )
+ (:action open_blue_door
+  :parameters (?a - agent)
+  :precondition ()
+  :effect (blue_room_open)
+ )
+ (:action pick_up_obj
+  :parameters (?a - agent ?k - key)
+  :precondition (blue_room_open)
+  :effect (have_key)
+ )
+ (:action open_green_door
+  :parameters (?a - agent)
+  :precondition (have_key)
+  :effect (green_door_unlocked)
+ )
+ (:action goto_goal
+  :parameters (?a - agent)
+  :precondition (green_door_unlocked)
+  :effect (at_goal)
+ )
+)

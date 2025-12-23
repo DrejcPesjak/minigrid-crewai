@@ -35,6 +35,7 @@ import agent_tmp
 from coderLLM   import CoderLLM
 from minigridenv import MiniGridEnv, Outcome
 from plannerLLM import PlannerLLM, PlanBundle
+from metrics_logger import MetricsLogger
 
 # ───────────── constants ─────────────────────────────────────────────
 CURRIC_FILE          = Path(__file__).with_name("merged_curriculum2.json")
@@ -124,6 +125,7 @@ def _load_checkpoint_pddl() -> Tuple[str, str] | None:
 def main(start_category: str | None = None,
          keep_agent: bool = False,
          keep_pddl: bool = False):
+    global log_dir
     
     # optionally preserve current agent state
     if not keep_agent:
@@ -136,8 +138,15 @@ def main(start_category: str | None = None,
 
     curriculum = json.loads(Path(CURRIC_FILE).read_text())
 
-    planner = PlannerLLM()   # handles big→small swap inside itself
-    coder   = CoderLLM()
+    if log_dir is None:
+        log_dir = Path("new_logs") / f"logs_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        log_dir.mkdir(parents=True, exist_ok=True)
+
+    metrics = MetricsLogger(log_dir)
+    metrics.register_signal_handlers()
+
+    planner = PlannerLLM(metrics=metrics)   # handles big→small swap inside itself
+    coder   = CoderLLM(metrics=metrics)
 
     # start/resume logic
     skipping = False
@@ -181,7 +190,8 @@ def main(start_category: str | None = None,
         for lvl in cat["levels"]:
             for cfg in lvl["configs"]:
                 print(f"\n--- {cfg} ---")
-                env   = MiniGridEnv(cfg, seed=42)
+                seed = 1
+                env   = MiniGridEnv(cfg, seed=seed)
                 meta={
                         "category_name": cat["category_name"],
                         "skill": cat["skill"],
@@ -189,13 +199,20 @@ def main(start_category: str | None = None,
                         "level_description": lvl["description"],
                         "env_name": cfg,
                     }
-                
+                if metrics:
+                    metrics.start_level(level_name=meta.get("env_name","unknown"),
+                                        lvl_group=meta.get("level_name","unknown"),
+                                        category=meta.get("category_name","unknown"),
+                                        seed=seed)
                 plan_failed = False  # per-config flag
                 for spa in range(1, MAX_SPA_ROUNDS+1):
                     print(f"\n[S-P-C-A] round {spa}")
 
                     # SENSE ──────────────────────────────
                     snap = env.snapshot()
+
+                    if metrics:
+                        metrics.inc_spca_round()
 
                     # PLAN  (planner has its own 0-N loop) ─
                     bundle:PlanBundle = planner.plan(
@@ -217,6 +234,11 @@ def main(start_category: str | None = None,
                     while True:
                         # CODE  (coder handles syntax / merge) 
                         if missing:
+                            if metrics and semantic_retry == 0:
+                                metrics.inc_coder_first()
+                            elif metrics and semantic_retry > 0:
+                                metrics.inc_coder_semantic()
+
                             result = coder.implement_actions(
                                 actions       = missing,
                                 pddl_schemas  = {n: bundle.action_schemas.get(n,"") for n in missing},
@@ -237,6 +259,8 @@ def main(start_category: str | None = None,
                             print("✅ no missing methods, skipping coder round") # just for debug
 
                         # ACT ─────────────────────────────
+                        if metrics:
+                            metrics.inc_simulation_run()
                         out:Outcome = env.run_sim(bundle.plan_str)
                         print(f"{out.status}: {out.msg}")
 
@@ -244,6 +268,8 @@ def main(start_category: str | None = None,
                             print("✅ level solved")
                             shutil.copy(TMP_FILE, AGENT_FILE)
                             pddl_cache["trusted"] = True
+                            if metrics:
+                                metrics.end_level(outcome=out.status)
                             end_logging() # save logs
                             break  # next config
 
@@ -269,10 +295,16 @@ def main(start_category: str | None = None,
                         env._checkpoint = checkpoint
                         env.replay_checkpoint()
 
-                        print(f"🔄 retrying coder round {semantic_retry}...")
+                        print(f"🔄 retrying semantic coder round {semantic_retry}...")
 
-                    if out and out.status == "success":
-                        break  # next config
+                    if out:
+                        if out.status == "success":
+                            break  # next config
+                        elif spa == MAX_SPA_ROUNDS:
+                            print("⚠️  SPA retries exhausted"); 
+                            if metrics:
+                                metrics.end_level(outcome="fail")
+                    
                     # else: fall back to SPA round → new plan
 
                 env.end_env()
@@ -292,18 +324,17 @@ if __name__ == "__main__":
 
     #python main.py --start-category static_obstacle_navigation --keep-agent --keep-pddl
 
-    # ok = False
-    # try: 
-    #     main(start_category=args.start_category,
-    #         keep_agent=args.keep_agent,
-    #         keep_pddl=args.keep_pddl)
-    #     ok = True
-    # except KeyboardInterrupt:
-    #     print("\n⛔ interrupted")
-    #     traceback.print_exc()
-    # except Exception:
-    #     traceback.print_exc()
-    # finally:
-    #     end_logging(fail=not ok)
+    ok = False
+    try: 
+        main(start_category=args.start_category,
+            keep_agent=args.keep_agent,
+            keep_pddl=args.keep_pddl)
+        ok = True
+    except KeyboardInterrupt:
+        print("\n⛔ interrupted")
+        traceback.print_exc()
+    except Exception:
+        traceback.print_exc()
+    finally:
+        end_logging(fail=not ok)
 
-    prompt_log(Path("./new_logs/logs_20250716_142001"))

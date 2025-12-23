@@ -1,0 +1,5 @@
+(define (problem simplecrossing_s11n5)
+  (:domain mini_simple_crossing_s11n5)
+  (:objects agent1 - agent)
+  (:init (at agent1 start_loc))
+  (:goal (at agent1 goal_loc)))

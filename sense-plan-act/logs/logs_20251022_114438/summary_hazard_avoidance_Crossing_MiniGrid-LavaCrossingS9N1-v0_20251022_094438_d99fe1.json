@@ -1,0 +1,33 @@
+{
+  "run_id": "20251022_094438_d99fe1",
+  "summary": {
+    "type": "level_summary",
+    "level": {
+      "level_name": "MiniGrid-LavaCrossingS9N1-v0",
+      "lvl_group": "Crossing",
+      "category": "hazard_avoidance",
+      "seed": 1
+    },
+    "outcome": "success",
+    "elapsed_min": 0.4887754003206889,
+    "counters": {
+      "spca_rounds": 1,
+      "simulation_runs": 1,
+      "planner_calls": 1,
+      "planner_fresh": 0,
+      "planner_reuse": 1,
+      "planner_replan": 0,
+      "planner_syntax": 0,
+      "coder_calls": 0,
+      "coder_first": 0,
+      "coder_semantic": 0,
+      "coder_syntax": 0
+    },
+    "aggregates": {
+      "planner_calls_count": 1,
+      "planner_call_duration_mean_s": 25.119166374206543,
+      "coder_calls_count": 0,
+      "coder_call_duration_mean_s": null
+    }
+  }
+}

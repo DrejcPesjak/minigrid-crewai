@@ -10,6 +10,7 @@ Differences from the old version
 import ast
 import importlib
 import shutil
+import time
 import textwrap
 import traceback
 from dataclasses import dataclass
@@ -19,6 +20,7 @@ from typing import Dict, Optional, Set
 import agent_tmp
 from llmclient import ChatGPTClient
 from pydantic import BaseModel
+from metrics_logger import MetricsLogger
 
 # --------------------------------------------------------------------------- #
 #  CONSTANTS
@@ -38,7 +40,8 @@ Hard rules
 • Output plain Python.  Start every `def` at column-0 (no extra indent,
   no class wrapper).  The merge script will insert each def into the
   Agent class automatically.
-• Never run shell commands, subprocess calls, or print diagnostics.
+• Never run shell commands, subprocess calls, or print diagnostics. 
+• To communicate issues raise a RuntimeError with a descriptive message in code.
 • Implement every high-level action given, plus any helper predicates the
   PDDL preconditions/effects require.
 • Each generated action **must include every parameter that appears in the
@@ -75,6 +78,7 @@ Guidelines
   + optional COLOR ∈ {red, green, blue, purple, yellow, grey}  
   + optional STATE ∈ {open, closed, locked}.  
   No other words ever appear, and the order is always “object [color] [state]”.
+• When navigating, note that agent cannot move through objects, it must move around them.
 
 """.strip()
 
@@ -130,9 +134,10 @@ class CoderLLM:
     Internal chat-repair loop stops as soon as agent_tmp reloads cleanly.
     """
 
-    def __init__(self):
+    def __init__(self, metrics: Optional[MetricsLogger] = None):
         # self.client = ChatGPTClient("gemini/gemini-2.5-flash", CodeResp)
         self.client = ChatGPTClient("openai/codex-mini-latest", CodeResp)
+        self.metrics = metrics     # optional MetricsLogger
 
     # ------------------------------------------------------------------ #
 
@@ -174,8 +179,13 @@ class CoderLLM:
 
         for rnd in range(1, MAX_ROUNDS + 1):
             # print(conversation[-1])  # debug: print last user prompt
-            print(f"CoderLLM: round {rnd}, prompt tokens~{2*sum(len(m['content'].split()) for m in conversation)}")
+            print(f"CoderLLM: syntax round {rnd}, prompt tokens~{2*sum(len(m['content'].split()) for m in conversation)}")
+
+            t0 = time.time()
             patch: CodeResp = self.client.chat_completion(conversation)
+            duration = time.time() - t0
+            if self.metrics:
+                self.metrics.log_coder_call_duration(duration_s=duration)
 
             merged = self._merge(current_src, patch.code.strip())
             if merged.startswith("Error"):
@@ -196,6 +206,8 @@ class CoderLLM:
                 {"role": "user",      "content": CODER_FEEDBACK_TEMPLATE.format(
                     error_log=err)}
             ])
+            if self.metrics:
+                self.metrics.log_coder_syntax_repair(repair_step=rnd, error_msg=err)
             # current_src = merged       # even if bad, keep context
 
         return CoderResult("exhausted", trace="exceeded MAX_ROUNDS")

@@ -1,0 +1,6 @@
+(define (problem fetch_grey_ball)
+  (:domain babyai_pickup)
+  (:objects agent1 - agent ball_grey - item)
+  (:init)
+  (:goal (holding ball_grey))
+)
