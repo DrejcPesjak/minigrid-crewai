@@ -1,0 +1,37 @@
+BabyAI-GoToRedBallGrey-v0
+[VAL512] SR=0.9902  avg_len=11.38  total_frames=196608  total_eps=12046
+[VAL512] SR=0.9902  avg_len=12.03  total_frames=188416  total_eps=11518
+[VAL512] SR=0.9922  avg_len=11.36  total_frames=137216  total_eps=7588
+[VAL512] SR=0.9902  avg_len=11.95  total_frames=223232  total_eps=12988
+[VAL512] SR=0.9902  avg_len=11.06  total_frames=124928  total_eps=6743
+[VAL512] SR=0.9902  avg_len=11.44  total_frames=196608  total_eps=12395
+[VAL512] SR=0.9922  avg_len=10.86  total_frames=221184  total_eps=14232
+[VAL512] SR=0.9902  avg_len=11.24  total_frames=202752  total_eps=12950
+[VAL512] SR=0.9902  avg_len=12.20  total_frames=143360  total_eps=7600
+[VAL512] SR=0.9922  avg_len=11.83  total_frames=135168  total_eps=6337
+
+
+# *BabyAI-GoToRedBall-v0  : Basic (no memory)
+# [VAL512] SR=0.9629  avg_len=15.06  total_frames=448512  total_eps=22137
+# [VAL512] SR=0.9355  avg_len=17.82  total_frames=448512  total_eps=21357
+# [VAL512] SR=0.9590  avg_len=15.39  total_frames=448512  total_eps=23218
+# [VAL512] SR=0.9180  avg_len=18.85  total_frames=448512  total_eps=21115
+# [VAL512] SR=0.9590  avg_len=15.78  total_frames=448512  total_eps=23266
+# [VAL512] SR=0.9551  avg_len=17.23  total_frames=448512  total_eps=21770
+# [VAL512] SR=0.9434  avg_len=17.53  total_frames=448512  total_eps=22470
+# [VAL512] SR=0.9531  avg_len=16.12  total_frames=448512  total_eps=23510
+# [VAL512] SR=0.9688  avg_len=14.46  total_frames=448512  total_eps=22777
+# [VAL512] SR=0.9727  avg_len=14.29  total_frames=448512  total_eps=21167
+# scripts.evaluate gives 0.95-0.97
+
+BabyAI-GoToRedBall-v0  : MEM
+[VAL512] SR=0.9902  avg_len=11.87  total_frames=333824  total_eps=19539
+[VAL512] SR=0.9922  avg_len=11.37  total_frames=335872  total_eps=18931
+[VAL512] SR=0.9902  avg_len=11.18  total_frames=284672  total_eps=15477
+[VAL512] SR=0.9902  avg_len=11.86  total_frames=524288  total_eps=32314
+[VAL512] SR=0.9902  avg_len=11.14  total_frames=348160  total_eps=20376
+[VAL512] SR=0.9902  avg_len=12.28  total_frames=258048  total_eps=12270
+[VAL512] SR=0.9902  avg_len=11.17  total_frames=380928  total_eps=22760
+[VAL512] SR=0.9902  avg_len=11.96  total_frames=378880  total_eps=23140
+[VAL512] SR=0.9922  avg_len=11.08  total_frames=303104  total_eps=16190
+[VAL512] SR=0.9902  avg_len=12.24  total_frames=483328  total_eps=27680
