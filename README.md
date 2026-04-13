@@ -1,5 +1,7 @@
 # Sense-Plan-Code-Act
 
+📄 Associated paper: [Robot Planning via LLM Proposals and Symbolic Verification](https://www.mdpi.com/2504-4990/8/1/22)
+
 A comprehensive research platform exploring different approaches to embodied AI and robotic manipulation, from simulation to real-world deployment. This project systematically compares neural, symbolic, and hybrid approaches to AI agent development across multiple frameworks.
 
 ## 🎯 Project Overview
@@ -146,10 +148,16 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 If you use this work in your research, please cite:
 
 ```bibtex
-@misc{pesjak2025multimodal,
-  title={Multimodal planning in robotics},
-  author={Drejc Pesjak},
-  year={2025},
-  url={https://github.com/DrejcPesjak/minigrid-crewai}
+@article{pesjak2026robot,
+  author  = {Pesjak, Drejc and Žabkar, Jure},
+  title   = {Robot Planning via LLM Proposals and Symbolic Verification},
+  journal = {Machine Learning and Knowledge Extraction},
+  volume  = {8},
+  number  = {1},
+  article-number = {22},
+  year    = {2026},
+  issn    = {2504-4990},
+  doi     = {10.3390/make8010022},
+  url     = {https://www.mdpi.com/2504-4990/8/1/22}
 }
 ```
